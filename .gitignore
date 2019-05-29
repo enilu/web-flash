@@ -1,6 +1,0 @@
-*.iml
-**/target
-**/node_modules
-log
-.idea
-package-lock.json
