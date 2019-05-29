@@ -61,7 +61,7 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 
 ## 在线文档
 
-[http://www.enilu.cn/web-flash/](http://www.enilu.cn/web-flash/)
+[http://blog.enilu.cn/web-flash/](http://blog.enilu.cn/web-flash/)
 
 
 ## 交流
