@@ -61,6 +61,7 @@ public class TaskController extends BaseController {
             Task old = taskService.get(task.getId());
             old.setName(task.getName());
             old.setCron(task.getCron());
+            old.setJobClass(task.getJobClass());
             old.setNote(task.getNote());
             old.setData(task.getData());
             taskService.update(old);

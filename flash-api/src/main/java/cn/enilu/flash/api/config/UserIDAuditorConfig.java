@@ -12,7 +12,7 @@ import java.util.Optional;
 /**
  * UserIDAuditorBean
  *
- * @author zt
+ * @author enilu
  * @version 2019/1/8 0008
  */
 @Configuration
@@ -21,10 +21,16 @@ public class UserIDAuditorConfig implements AuditorAware<Long> {
     private TokenCache tokenCache;
     @Override
     public Optional<Long> getCurrentAuditor() {
-        String token = HttpKit.getRequest().getHeader("Authorization");
-        if(StringUtils.isNotEmpty(token)) {
-            return Optional.of(tokenCache.get(token));
+        try {
+            String token = HttpKit.getRequest().getHeader("Authorization");
+            if (StringUtils.isNotEmpty(token)) {
+                return Optional.of(tokenCache.get(token));
+            }
+        }catch (Exception e){
+            //返回系统用户id
+            return Optional.of(-1L);
         }
-        return null;
+        //返回系统用户id
+        return Optional.of(-1L);
     }
 }

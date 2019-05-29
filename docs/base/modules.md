@@ -4,14 +4,11 @@
 
 ## web-flash模块
 
-web-flash包含6个核心模块：
-- guns-admin 一个成熟的后台管理系统，完全具备了后台管理系统的基本功能
-- guns-admin-vuejs 基于vuejs的后台管理,如果你想要前后端分离，那么该目录和下面的guns-api可以帮到你，这两个模块共同实现了上面guns-admin实现了的功能
-- guns-api 基于vuejs后台管理的api服务
-- guns-utils 工具包
-- guns-dao dao层
-- guns-entity 实体层
-- guns-service 服务层
+web-flash包含4个核心模块：
+- flash-api 后台api服务,位vue-admin和vue-h5提供后台数据接口
+- flash-vue-admin 基于Vue.js的后台管理系统
+    - 该模块克隆自：[vue-admin-template](https://github.com/PanJiaChen/vue-admin-template)，感谢PanJiaChen，欢迎大家给他点赞。
+    - PanJiaChen同学提供了全面的文档，开发过程可以参考这里：[vue-elment-admin官方文档](https://panjiachen.github.io/vue-element-admin-site/zh/)
 
-其中guns-admin和guns-api一个java web模块，guns-admin-vuejs是前端项目（基于vuejs），
-其他都为java se模块，
+- flash-vue-h5 移动端内容系统，基于后台管理CMS内容管理模块的内容进行展示。基于[vux](https://vux.li)开发
+- flash-core 基础模块，包括工具类，dao，service，bean等内容

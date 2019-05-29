@@ -35,13 +35,12 @@ module.exports = {
                 collapsable: false,
                 children: [
                     '/base/jdkAndMaven',
-                    '/base/modules',
-                    '/base/guns-admin-vuejs.md'
+                    '/base/modules'
                 ]
             },
 
             {
-                title: '30分钟将本项目跑起来',
+                title: '20分钟将本项目跑起来',
                 collapsable: false,
                 children: [
                     '/quickstart/quickstart',
@@ -73,7 +72,6 @@ module.exports = {
                     '/feature/menu',
                     '/feature/dict',
                     '/feature/log',
-                    '/feature/permissionMgr',
                     '/feature/permissionMgrVue',
                     '/feature/monitor',
                     '/feature/sysConfig',
@@ -84,7 +82,6 @@ module.exports = {
                 collapsable: false,
                 children: [
                     '/action/i18n',
-                    '/action/sqlite',
                     '/action/cache',
                     '/action/task',
                     '/action/jpaauditing.md'

@@ -1,7 +1,6 @@
 package cn.enilu.flash.api;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -19,7 +18,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  */
 @EnableCaching
 @SpringBootApplication
-//@EnableAutoConfiguration
 @ComponentScan(basePackages = "cn.enilu.flash")
 @EntityScan(basePackages="cn.enilu.flash.bean.entity")
 @EnableJpaRepositories(basePackages= "cn.enilu.flash.dao")

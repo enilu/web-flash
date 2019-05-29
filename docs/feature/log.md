@@ -27,21 +27,19 @@
 在DeptController的新增部门方法增加注解：
 
 ```java
-    /**
-     * 新增部门
-     */
-    @BussinessLog(value = "添加部门", key = "simplename", dict = DeptDict.class)
-    @RequestMapping(value = "/add")
-    @Permission
-    @ResponseBody
-    public Object add(Dept dept) {
+    @RequestMapping(method = RequestMethod.POST)
+    @BussinessLog(value = "编辑部门", key = "simplename", dict = DeptDict.class)
+    public Object save(@ModelAttribute Dept dept){
+        logger.info(JSON.toJSONString(dept));
         if (ToolUtil.isOneEmpty(dept, dept.getSimplename())) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
+
         //完善pids,根据pid拿到pid的pids
-        deptSetPids(dept);
-        return this.deptRepository.save(dept);
+        deptService.deptSetPids(dept);
+        deptRepository.save(dept);
+        return Rets.success();
     }
 ```
 
-具体的实现逻辑感兴趣的同学可以自行通过注解类：BusinessLog进行跟进查看。
+具体的实现逻辑感兴趣的同学可以自行通过注解类：BussinessLog进行跟进查看。

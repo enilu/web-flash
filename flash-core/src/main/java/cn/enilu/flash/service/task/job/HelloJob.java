@@ -4,7 +4,6 @@ import cn.enilu.flash.bean.entity.system.Cfg;
 import cn.enilu.flash.dao.system.CfgRepository;
 import cn.enilu.flash.service.task.JobExecuter;
 import cn.enilu.flash.utils.DateUtil;
-import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +24,5 @@ public class HelloJob extends JobExecuter {
         Cfg cfg = cfgRepository.findById(1L).get();
         cfg.setCfgDesc(cfg.getCfgDesc()+"update by "+ DateUtil.getTime());
         cfgRepository.save(cfg);
-        System.out.println("hello :"+JSON.toJSONString(dataMap));
     }
 }

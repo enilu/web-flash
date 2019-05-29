@@ -1,4 +1,4 @@
-# 使用注解自动保存数据的维护时间和修改者
+# 系统审计
 
 
 通常来说，我们都有这样的需求：我需要知道库中的数据是由谁创建，什么时候创建，最后一次修改时间是什么时候，最后一次修改人是谁。
@@ -55,7 +55,7 @@ public abstract class BaseEntity implements Serializable {
 ```java
 @SpringBootApplication
 @EnableJpaAuditing
-public class AdminApplication extends WebMvcConfigurerAdapter {
+public class ApiApplication extends SpringBootServletInitializer {
  //省略
 }
 ```
@@ -63,13 +63,25 @@ public class AdminApplication extends WebMvcConfigurerAdapter {
 ```java
 @Configuration
 public class UserIDAuditorConfig implements AuditorAware<Long> {
+    @Autowired
+    private TokenCache tokenCache;
     @Override
-    public Long getCurrentAuditor() {
-        ShiroUser shiroUser = ShiroKit.getUser();
-        if(shiroUser!=null){
-            return shiroUser.getId();
+    public Optional<Long> getCurrentAuditor() {
+        try {
+            String token = HttpKit.getRequest().getHeader("Authorization");
+            if (StringUtils.isNotEmpty(token)) {
+                return Optional.of(tokenCache.get(token));
+            }
+        }catch (Exception e){
+            //返回系统用户id
+            return Optional.of(-1L);
         }
-        return null;
+        //返回系统用户id
+        return Optional.of(-1L);
     }
 }
 ```
+- 正常情况下用户通过浏览器进行系统管理操作，后台可以可以获取请求的request对象进而获取当前操作用户id，
+但是有时候后台系统线程（比如定时任务）进行更改系统数据的时候并没有对应的request，
+所以指定当前操作用户id为-1，即认定位系统自身对数据进行操作。
+

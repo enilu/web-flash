@@ -31,7 +31,7 @@ export default {
     size: 'Global Size'
   },
   login: {
-    title: 'guns-lite',
+    title: 'web-flash',
     logIn: 'Log in',
     username: 'Username',
     password: 'Password'

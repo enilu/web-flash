@@ -1,4 +1,4 @@
-# 权限管理（vue版）
+# 权限管理
 vue版本的后台管理和普通版后台管理的权限管理思路是基本一致的。
 
 
@@ -21,7 +21,7 @@ vue版本的后台管理和普通版后台管理的权限管理思路是基本�
 
  ## 配置拦截器
 
- cn.enilu.guns.api.config.WebAppConfig 中配置拦截器，拦截要过滤的请求地址，参考代码
+ cn.enilu.flash.api.config.WebAppConfig 中配置拦截器，拦截要过滤的请求地址，参考代码
 
  ```java
  @Configuration
@@ -52,7 +52,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 ``` 
 
 ## 左侧菜单导航的权限控制
-用户登陆成功后，会根据用户所拥有的角色配置的菜单生成路由表数据返回到前端：cn.enilu.guns.api.controller.AccountController：
+用户登陆成功后，会根据用户所拥有的角色配置的菜单生成路由表数据返回到前端：cn.enilu.flash.api.controller.AccountController：
 ```java
 //获取用户可以操作的菜单列表
 List menus = menuRepository.getMenusByRoleIds(shiroUser.getRoleList());
@@ -95,13 +95,6 @@ function filterAsyncRouterByMenu(asyncRouterMap, menus) {
   return accessedRouters
 }
 ```
-
-
-| 特性 | 旧版 | 新版 |
-| ------ | ------ | ------ |
-| 菜单国际化 | 不支持 | 支持 |
-| 菜单文本内容动态改变 | 支持(通过菜单管理可以更改菜单内容) | 不支持（写死在前端） |
-| 菜单国际化 | 不支持 | 支持 |
 
 
 ## 页面功能（按钮）的权限控制

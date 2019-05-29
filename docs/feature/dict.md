@@ -14,22 +14,12 @@ controller中调用常量工厂所有字典页面返回到页面
 
 ```java
   List<DictVo> degrees = ConstantFactory.me().findByDictName("学历类型");
-  model.addAttribute("degrees",degrees);
-```
-页面使用该数据即可
-        
-```html
-      <#select id="account" name="我方账户" >
-            @for(degree in degrees){
-            <option value="${degree.key}" }>${degree.value}</option>
-              @}
-      </#select>
-```
-    
+  return degrees
+``` 
 
 ## 根据字典id获取字典名称
 
-数据库中村的是字典id，但是页面展示需要具体的值
+数据库中存的是字典id，但是页面展示需要具体的值
 
 ```java
 String degreeName = ConstantFactory.me().findByPnameAndCode("学历类型",1).getName();

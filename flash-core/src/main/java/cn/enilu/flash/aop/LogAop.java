@@ -1,7 +1,6 @@
 package cn.enilu.flash.aop;
 
 import cn.enilu.flash.bean.core.BussinessLog;
-import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.dictmap.base.AbstractDictMap;
 import cn.enilu.flash.bean.vo.SpringContextHolder;
 import cn.enilu.flash.dao.cache.TokenCache;
@@ -9,7 +8,6 @@ import cn.enilu.flash.factory.Contrast;
 import cn.enilu.flash.platform.log.LogManager;
 import cn.enilu.flash.platform.log.LogTaskFactory;
 import cn.enilu.flash.service.system.LogObjectHolder;
-import cn.enilu.flash.shiro.ShiroKit;
 import cn.enilu.flash.utils.HttpKit;
 import cn.enilu.flash.utils.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -78,12 +76,13 @@ public class LogAop {
             idUser = SpringContextHolder.getBean(TokenCache.class).get(token);
         }
         if(idUser==null) {
+            return ;
             //如果当前用户未登录，不做日志
-            ShiroUser user = ShiroKit.getUser();
-            if (null == user) {
-                return;
-            }
-            idUser = user.getId();
+//            ShiroUser user = ShiroKit.getUser();
+//            if (null == user) {
+//                return;
+//            }
+//            idUser = user.getId();
         }
 
         //获取拦截方法的参数

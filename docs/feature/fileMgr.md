@@ -1,6 +1,6 @@
 # 文件管理
 
-本系统了设计了一个简单的文件管理功能，用来做文件生产下载，也可以用来管理图片。
+本系统了设计了一个简单的文件管理功能，用来做文件生产上传下载
 
 ## 功能
 - 文件上传
@@ -16,3 +16,4 @@
 - 文件上传参考内容管理(CMS)模块中的banner管理和文章管理
 - 文件下载使用url：/file/download?idFile=${fileId}
 - 在线显示图片使用url:/file/getImgStream?idFile=${fileId}
+- 具体实现参见：cn.enilu.flash.api.controller.FileController

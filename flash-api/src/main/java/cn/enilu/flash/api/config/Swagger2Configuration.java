@@ -33,8 +33,8 @@ public class Swagger2Configuration {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("guns api")
-                .description("guns api")
+                .title("web-flash api")
+                .description("快速构建web管理平台")
                 .termsOfServiceUrl("www.enilu.cn")
                 .contact("www.enilu.cn")
                 .version("1.0")

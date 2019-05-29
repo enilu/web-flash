@@ -28,7 +28,7 @@ public class SecurityInterceptor implements HandlerInterceptor {
     private TokenCache tokenCache;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        logger.info("requestURL:{},method:{}" , request.getRequestURL().toString(),request.getMethod());
+        logger.debug("requestURL:{},method:{}" , request.getRequestURL().toString(),request.getMethod());
 
         //如果用户是非登录用户，则拒绝用户请求
         String method = request.getMethod();
@@ -36,7 +36,6 @@ public class SecurityInterceptor implements HandlerInterceptor {
             return true;
         }
         String token = request.getHeader("Authorization");
-        logger.debug("token:{}",token);
         if (token == null) {
             this.printResponse(httpServletResponse);
             return false;

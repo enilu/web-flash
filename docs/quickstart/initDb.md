@@ -1,16 +1,9 @@
 # 初始化数据
 
-本系统使用mysql数据库，如果要使用oracle，可以使用oracle分支，这里仅说明mysql数据库初始化步骤。
+本系统使用mysql数据库
 
 - 在mysql中创建数据库 web-flash
-
-```sql
-CREATE DATABASE IF NOT EXISTS web-flash DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
-
-```
-
-- 登录mysql书库，导入mysql.sql文件
-
-```sql
-mysql>source d:/mysql.sql
-```
+    ```sql
+    CREATE DATABASE IF NOT EXISTS web-flash DEFAULT charset utf8 COLLATE utf8_general_ci;
+    ```
+- 启动项目的时候会自动创建数据库并初始化系统数据
