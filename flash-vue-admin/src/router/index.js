@@ -153,6 +153,14 @@ export const asyncRouterMap = [
     },
     children: [
       {
+        path: 'boy',
+        name: 'Boy',
+        component:  () => import('@/views/test/boy/index'),
+        meta: {
+          title: '鲜肉管理'
+        }
+      },
+      {
         path: 'banner',
         name: 'Banner',
         component: () => import('@/views/cms/banner/index'),

@@ -12,7 +12,7 @@ git clone https://github.com/enilu/sbvue-coder.git
 cd sbvue-coder
 mvn install
 
---在web-flash的guns-entity的pom.xml文件中添加依赖：web-flash/guns-entity/pom.xml
+--在web-flash的flash-core的pom.xml文件中添加依赖：web-flash/flash-core/pom.xml
 
 <dependency>
     <groupId>cn.enilu</groupId>
@@ -26,19 +26,19 @@ mvn install
     - 上图三个配置分别为
         - 1，运行的代码生成主类
         - 2，代码生成参数,详见下面说明
-        - 3，在哪个模块中执行代码生成：guns-entity，因为代码生成是通过读取guns-entity中的实体类的注解实现，所以这里选择guns-entity
+        - 3，在哪个模块中执行代码生成：flash-core，因为代码生成是通过读取flash-core中的实体类的注解实现，所以这里选择flash-core
 
-- 新建配置文件：guns-entity/src/main/resources/code/code.json,配置文件内容如下，下面内容指定了生成的相关代码分别放在哪个模块下，考虑到有的同学可能会更改项目名和模块名，增加该配置，开发人员可以自行配置模块名
+- 新建配置文件：flash-core/src/main/resources/code/code.json,配置文件内容如下，下面内容指定了生成的相关代码分别放在哪个模块下，考虑到有的同学可能会更改项目名和模块名，增加该配置，开发人员可以自行配置模块名
 ```json
 {
   "codeConfig": {
     "type": "cn.enilu.sbvue.code.CodeConfig",
     "fields": {
-      entityModel: "guns-entity",
-      daoModel: "guns-dao",
-      serviceModel: "guns-service",
-      controllerModel: "guns-api",
-      viewModel: "guns-admin-vuejs"
+      entityModel: "flash-core",
+      daoModel: "flash-core",
+      serviceModel: "flash-core",
+      controllerModel: "flash-api",
+      viewModel: "flash-vue-admin"
     }
   }
 }
@@ -58,7 +58,7 @@ usage: Generator [options] [all|entity|service|controller|view]
  -x,--exclude <arg>       exclude table pattern
 ```   
 
-比如在Program arguments配置 -mudule test 将会根据guns-entity/src/main/java/cn/enilu/guns/bean/entity/test/目录下所有的java类生成其CRUD相关代码
+比如在Program arguments配置 -mudule test 将会根据flash-core/src/main/java/cn/enilu/guns/bean/entity/test/目录下所有的java类生成其CRUD相关代码
 
 如果程序运行参数更改为 -mudule test -i t_test_boy 将会根据上述目录下的Boy实体生成其相关CRUD代码，注意这里-i 后面的参数值是实体中配置的表名称，而不是实体名本身。
 
@@ -90,11 +90,21 @@ public class Boy extends BaseEntity {
 以Boy实体为例,执行代码生成后将会生成如下文件：
 ![run code_add](./doc/code_add.jpg)
 
-代码生成后，在guns-admin-vuejs的路由配置文件中guns-admin-vuejs/src/store/modules/permission.js，增加如下红框内容：
-
+代码生成后，在flash-vue-admin的路由配置文件中flash-vue-admin/src/router/index.js，增加如下内容：
+```javascript
+      {
+        path: 'boy',
+        name: 'Boy',
+        component:  () => import('@/views/test/boy/index'),
+        meta: {
+          title: '鲜肉管理'
+        }
+      }
+```
+如下图所示
 ![run router](./doc/router.jpg)
 
-启动guns-api和guns-admin-vuejs,配置和菜单和角色权限后就可以访问刚刚生成的代码功能了
+启动flash-api和flash-vue-admin,配置和菜单和角色权限后就可以访问刚刚生成的代码功能了
 ![run code_result](./doc/code_result.jpg)
 
 
