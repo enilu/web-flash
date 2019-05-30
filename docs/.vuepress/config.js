@@ -15,8 +15,6 @@ module.exports = {
         editLinkText: '编辑此页面！',
         nav: [
             {text: '文档', link: '/'},
-            {text: '公告', link: 'https://www.oschina.net/p/web-flash'},
-            {text: '案例',link:'https://github.com/enilu/web-flash/issues/4'},
             {text: '捐赠',link:'/donate'},
             {text: '资源',link:'/resource'},
             {text: '周边',
