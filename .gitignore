@@ -4,3 +4,4 @@
 log
 .idea
 package-lock.json
+docs/.vuepress/dist

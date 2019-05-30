@@ -3,18 +3,6 @@
 
 
 ## 前端
-### Fontawesome 图标库
-- [http://www.fontawesome.com.cn/faicons](http://www.fontawesome.com.cn/faicons)
-- guns-admin中使用了fontawesome的图标库，如果你想用一些图标，又不知道用哪些合适，可以通过下面网站，找到合适的图标和样式名
-- 比如菜单管理，在添加菜单的时候，有个图标的配置项:**图标**,这里就要求默认使用fontawesome的图标库样式。<img src="./img/resource/menu_1.jpg" align=center />
-
-### Bootstrap
-- [https://v3.bootcss.com/css/](https://v3.bootcss.com/css/)
-- guns-admin中使用了Bootstrap作为前端样式库，Bootstrap有丰富的样式，插件和组件，开发过程中可以参考在线文档，方便搞笑。
-
-### Beetl
-- [http://ibeetl.com/guide](http://ibeetl.com/guide)
-- guns-admin使用Beetl做为模板引擎，Beetl是一个很好用的国产模板引擎。使用中有什么问题也可以去其官方论坛提问[http://bbs.ibeetl.com/](http://bbs.ibeetl.com/)
 
 ### 阿里巴巴矢量图库
 - [https://iconfont.cn](https://iconfont.cn)
@@ -22,11 +10,11 @@
 
 ### vue-element-admin
 - [https://panjiachen.gitee.io/vue-element-admin-site/zh/](https://panjiachen.gitee.io/vue-element-admin-site/zh/)
-- guns-admin-vuejs使用了vue-element-admin作为基础框架，基于guns-admin-vuejs开发之前强烈建议先看下vue-element-admin的官方文档
+- flash-vue-admin使用了vue-element-admin作为基础框架，基于flash-vue-admin开发之前强烈建议先看下vue-element-admin的官方文档
 
 ### vux.li
 - [https://vux.li](https://vux.li)
-- guns-admin使用vux作为基础组件库，vux.li是一个用户很多的移动端vuejs的组件库，开发h5过程中请多参考该文档
+- flash-vue-h5使用vux作为基础组件库，vux.li是一个用户很多的移动端vuejs的组件库，开发h5过程中请多参考该文档
 
 ## vuejs
 - [https://vuejs.org](https://vuejs.org)

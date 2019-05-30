@@ -50,20 +50,20 @@ module.exports = {
                     '/quickstart/startup'
                 ]
             },
-            {
-                title: '开发第一个功能',
-                collapsable: false,
-                children: [
-                    '/hello_guns/hello_guns',
-                    '/hello_guns/create_table',
-                    '/hello_guns/base',
-                    '/hello_guns/list',
-                    '/hello_guns/add',
-                    '/hello_guns/delete',
-                    '/hello_guns/update',
-                    '/hello_guns/menuAndPermission'
-                ]
-            },
+            // {
+            //     title: '开发第一个功能',
+            //     collapsable: false,
+            //     children: [
+            //         '/hello_guns/hello_guns',
+            //         '/hello_guns/create_table',
+            //         '/hello_guns/base',
+            //         '/hello_guns/list',
+            //         '/hello_guns/add',
+            //         '/hello_guns/delete',
+            //         '/hello_guns/update',
+            //         '/hello_guns/menuAndPermission'
+            //     ]
+            // },
             {
                 title: '基本功能介绍',
                 collapsable: false,
