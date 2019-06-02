@@ -1,4 +1,4 @@
-package cn.enilu.flash.factory;
+package cn.enilu.flash.core.factory;
 
 import cn.enilu.flash.bean.dto.UserDto;
 import cn.enilu.flash.bean.entity.system.User;

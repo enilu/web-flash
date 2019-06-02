@@ -46,7 +46,7 @@
         </div>
         <div class="tips">
           <span style="margin-right:18px;">{{ $t('login.username') }} : developer</span>
-          <span>{{ $t('login.password') }} : 123456</span>
+          <span>{{ $t('login.password') }} : developer</span>
         </div>
       </div>
     </el-form>

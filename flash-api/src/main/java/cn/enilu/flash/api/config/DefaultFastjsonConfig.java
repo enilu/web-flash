@@ -51,6 +51,7 @@ public class DefaultFastjsonConfig {
         );
         fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
         ValueFilter valueFilter = new ValueFilter() {
+            @Override
             public Object process(Object o, String s, Object o1) {
                 if (null == o1) {
                     o1 = "";

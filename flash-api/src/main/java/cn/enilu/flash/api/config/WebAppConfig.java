@@ -18,13 +18,20 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
      * 定义排除拦截路径
      */
     public String[] EXCLUDE_PATH_PATTERN = {
-            "/file/**",//文件上传和下载
-            "/offcialSite","/offcialSite/*",//h5端的api，建议生产中将前端h5和后端h5使用的api分拆成两个服务，
-            "/druid/**",//druid监控请求
-            "/validate/*",//验证码地址
-            "/account/register", "/account/login",//用户注册和登陆
-            "/error",//错误资源
-            "/swagger-resources","/v2/api-docs","/swagger-ui.html","/webjars/**"//swagger在线api文档资源
+            //文件上传和下载
+            "/file/**",
+            //h5端的api，建议生产中将前端h5和后端h5使用的api分拆成两个服务，
+            "/offcialSite","/offcialSite/*",
+            //druid监控请求
+            "/druid/**",
+            //验证码地址
+            "/validate/*",
+            //用户注册和登陆
+            "/account/register", "/account/login",
+            //错误资源
+            "/error",
+            //swagger在线api文档资源
+            "/swagger-resources","/v2/api-docs","/swagger-ui.html","/webjars/**"
     };
 
     /**

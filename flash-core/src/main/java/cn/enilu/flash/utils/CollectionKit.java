@@ -545,7 +545,7 @@ public class CollectionKit {
 	 * @return Map
 	 */
 	public static Map<String, String> zip(String keys, String values, String delimiter) {
-		return zip(StrKit.split(keys, delimiter), StrKit.split(values, delimiter));
+		return zip(StringUtils.split(keys, delimiter), StringUtils.split(values, delimiter));
 	}
 
 	/**

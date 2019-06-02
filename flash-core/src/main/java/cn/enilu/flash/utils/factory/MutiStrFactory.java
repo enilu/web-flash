@@ -1,8 +1,8 @@
 package cn.enilu.flash.utils.factory;
 
 
+import cn.enilu.flash.utils.StringUtils;
 import cn.enilu.flash.utils.ToolUtil;
-import cn.enilu.flash.utils.StrKit;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,7 +53,7 @@ public class MutiStrFactory {
             return new ArrayList<>();
         }else{
             ArrayList<Map<String,String>> results = new ArrayList<>();
-            String[] items = StrKit.split(StrKit.removeSuffix(mutiString, ITEM_SPLIT), ITEM_SPLIT);
+            String[] items = StringUtils.split(StringUtils.removeSuffix(mutiString, ITEM_SPLIT), ITEM_SPLIT);
             for (String item : items) {
                 String[] attrs = item.split(ATTR_SPLIT);
                 HashMap<String, String> itemMap = new HashMap<>();
@@ -76,7 +76,7 @@ public class MutiStrFactory {
             return new ArrayList<>();
         }else{
             ArrayList<Map<String,String>> results = new ArrayList<>();
-            String[] items = StrKit.split(StrKit.removeSuffix(mutiString, ITEM_SPLIT), ITEM_SPLIT);
+            String[] items = StringUtils.split(StringUtils.removeSuffix(mutiString, ITEM_SPLIT), ITEM_SPLIT);
             for (String item : items) {
                 String[] attrs = item.split(ATTR_SPLIT);
                 HashMap<String, String> itemMap = new HashMap<>();

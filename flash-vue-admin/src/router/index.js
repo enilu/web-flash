@@ -119,19 +119,7 @@ export const asyncRouterMap = [
         meta: { title: 'dictMgr' }
       },
       {
-        path: 'loginLog',
-        name: 'Login Log',
-        component: () => import('@/views/system/loginLog/index'),
-        meta: { title: 'loginLog' }
-      },
-      {
-        path: 'log',
-        name: 'Bussiness Log',
-        component: () => import('@/views/system/log/index'),
-        meta: { title: 'bussinessLog' }
-      },
-      {
-        path: 'config',
+        path: 'cfg',
         name: 'Config',
         component: () => import('@/views/system/cfg/index'),
         meta: {
@@ -190,6 +178,44 @@ export const asyncRouterMap = [
         meta: {
           title: 'fileMgr'
         }
+      }
+    ]
+  },
+  {
+    path: '/optionMgr',
+    component: Layout,
+    redirect: '#',
+    name: 'optionMgr',
+    alwaysShow: true,
+    meta: {
+      roles: ['administrator', 'developer'],
+      title: 'optionMgr',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'druid',
+        name: 'druid',
+        component:() => import('@/views/operation/druid/index'),
+        meta: { title: 'druid' }
+      },
+      {
+        path: 'swagger',
+        name: 'swagger',
+        component:() => import('@/views/operation/api/index'),
+        meta: { title: 'swagger' }
+      },
+      {
+        path: 'loginLog',
+        name: 'Login Log',
+        component: () => import('@/views/system/loginLog/index'),
+        meta: { title: 'loginLog' }
+      },
+      {
+        path: 'log',
+        name: 'Bussiness Log',
+        component: () => import('@/views/system/log/index'),
+        meta: { title: 'bussinessLog' }
       }
     ]
   },

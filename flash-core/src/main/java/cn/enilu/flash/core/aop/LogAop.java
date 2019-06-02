@@ -1,12 +1,12 @@
-package cn.enilu.flash.aop;
+package cn.enilu.flash.core.aop;
 
 import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.dictmap.base.AbstractDictMap;
 import cn.enilu.flash.bean.vo.SpringContextHolder;
 import cn.enilu.flash.dao.cache.TokenCache;
-import cn.enilu.flash.factory.Contrast;
-import cn.enilu.flash.platform.log.LogManager;
-import cn.enilu.flash.platform.log.LogTaskFactory;
+import cn.enilu.flash.core.factory.Contrast;
+import cn.enilu.flash.core.log.LogManager;
+import cn.enilu.flash.core.log.LogTaskFactory;
 import cn.enilu.flash.service.system.LogObjectHolder;
 import cn.enilu.flash.utils.HttpKit;
 import cn.enilu.flash.utils.StringUtils;

@@ -1,6 +1,6 @@
 package cn.enilu.flash.warpper;
 
-import cn.enilu.flash.factory.Contrast;
+import cn.enilu.flash.core.factory.Contrast;
 import cn.enilu.flash.service.system.impl.ConstantFactory;
 import cn.enilu.flash.utils.DateUtil;
 import cn.enilu.flash.utils.ToolUtil;

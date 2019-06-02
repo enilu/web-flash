@@ -12,7 +12,7 @@ import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.exception.GunsException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.dao.system.UserRepository;
-import cn.enilu.flash.factory.UserFactory;
+import cn.enilu.flash.core.factory.UserFactory;
 import cn.enilu.flash.service.system.UserService;
 import cn.enilu.flash.utils.BeanUtil;
 import cn.enilu.flash.utils.MD5;

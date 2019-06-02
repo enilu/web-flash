@@ -315,7 +315,7 @@ public class ToolUtil {
      * @return 格式化后的文本
      */
     public static String format(String template, Object... values) {
-        return StrKit.format(template, values);
+        return StringUtils.format(template, values);
     }
 
     /**
@@ -326,7 +326,7 @@ public class ToolUtil {
      * @return 格式化后的文本
      */
     public static String format(String template, Map<?, ?> map) {
-        return StrKit.format(template, map);
+        return StringUtils.format(template, map);
     }
 
     /**
@@ -495,7 +495,7 @@ public class ToolUtil {
      * @Date 2017/5/7 22:01
      */
     public static String firstLetterToUpper(String val) {
-        return StrKit.firstCharToUpperCase(val);
+        return StringUtils.firstCharToUpperCase(val);
     }
 
     /**
@@ -505,7 +505,7 @@ public class ToolUtil {
      * @Date 2017/5/7 22:02
      */
     public static String firstLetterToLower(String val) {
-        return StrKit.firstCharToLowerCase(val);
+        return StringUtils.firstCharToLowerCase(val);
     }
 
     /**

@@ -2,8 +2,8 @@ package cn.enilu.flash.api.interceptor;
 
 import cn.enilu.flash.bean.vo.SpringContextHolder;
 import cn.enilu.flash.dao.cache.TokenCache;
-import cn.enilu.flash.utils.Log;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -23,13 +23,11 @@ import java.io.IOException;
 @Component
 public class SecurityInterceptor implements HandlerInterceptor {
 
-    private Logger logger = Log.get(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(SecurityInterceptor.class);
     @Autowired
     private TokenCache tokenCache;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        logger.debug("requestURL:{},method:{}" , request.getRequestURL().toString(),request.getMethod());
-
         //如果用户是非登录用户，则拒绝用户请求
         String method = request.getMethod();
         if("OPTIONS".equals(method)){

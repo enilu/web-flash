@@ -42,7 +42,7 @@ public class HexKit {
 	 * @return 十六进制char[]
 	 */
 	public static char[] encodeHex(String str, Charset charset) {
-		return encodeHex(StrKit.getBytes(str, charset), true);
+		return encodeHex(StringUtils.getBytes(str, charset), true);
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class HexKit {
 	 * @return 字符串
 	 */
 	public static String decodeHexStr(String hexStr, Charset charset) {
-		if(StrKit.isEmpty(hexStr)){
+		if(StringUtils.isEmpty(hexStr)){
 			return hexStr;
 		}
 		return decodeHexStr(hexStr.toCharArray(), charset);
@@ -100,7 +100,7 @@ public class HexKit {
 	 * @return 字符串
 	 */
 	public static String decodeHexStr(char[] hexData, Charset charset) {
-		return StrKit.str(decodeHex(hexData), charset);
+		return StringUtils.str(decodeHex(hexData), charset);
 	}
 
 	/**
@@ -187,8 +187,9 @@ public class HexKit {
 	 * @return
 	 */
 	public static String binary2Hex(String bString) {
-		if (bString == null || bString.equals("") || bString.length() % 8 != 0)
+		if (bString == null || bString.equals("") || bString.length() % 8 != 0) {
 			return null;
+		}
 		StringBuffer tmp = new StringBuffer();
 		int iTmp = 0;
 		for (int i = 0; i < bString.length(); i += 4) {
@@ -240,8 +241,9 @@ public class HexKit {
 	 * @return
 	 */
 	public static byte[] hex2Byte(String hexStr) {
-		if (hexStr.length() < 1)
+		if (hexStr.length() < 1) {
 			return null;
+		}
 		byte[] result = new byte[hexStr.length() / 2];
 		for (int i = 0; i < hexStr.length() / 2; i++) {
 			int high = Integer.parseInt(hexStr.substring(i * 2, i * 2 + 1), 16);

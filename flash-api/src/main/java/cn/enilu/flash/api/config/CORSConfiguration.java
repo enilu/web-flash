@@ -7,7 +7,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * Created by zt on 2017/12/29 0029.
+ * 跨域配置
+ *
+ * @author enilu
+ * @version 2018-07-25
  */
 @Configuration
 public class CORSConfiguration {

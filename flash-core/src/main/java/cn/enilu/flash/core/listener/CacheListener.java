@@ -1,4 +1,4 @@
-package cn.enilu.flash.web.listener;
+package cn.enilu.flash.core.listener;
 
 import cn.enilu.flash.dao.cache.ConfigCache;
 import cn.enilu.flash.dao.cache.DictCache;
@@ -32,7 +32,7 @@ public class CacheListener implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        logger.info(".....................cache listener........................");
+        logger.info(".....................load cache........................");
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -41,6 +41,5 @@ public class CacheListener implements CommandLineRunner {
             }
         });
         thread.start();
-        logger.info("...................cache listener end......................");
     }
 }

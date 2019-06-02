@@ -19,7 +19,9 @@ export default {
     dictMgr: '字典管理',
     loginLog: '登录日志',
     bussinessLog: '业务日志',
-    configMgr: '参数管理'
+    configMgr: '参数管理',
+    druid:'监控管理',
+    swagger:'接口文档'
   },
   navbar: {
     logOut: '退出登录',

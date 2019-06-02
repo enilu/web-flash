@@ -41,6 +41,7 @@ public class DateTimeKit {
 	/** 标准日期（不含时间）格式化器 */
 	// private final static SimpleDateFormat NORM_DATE_FORMAT = new SimpleDateFormat(NORM_DATE_PATTERN);
 	private static ThreadLocal<SimpleDateFormat> NORM_DATE_FORMAT = new ThreadLocal<SimpleDateFormat>(){
+		@Override
 		synchronized protected SimpleDateFormat initialValue() {
 			return new SimpleDateFormat(NORM_DATE_PATTERN);
 		};
@@ -48,6 +49,7 @@ public class DateTimeKit {
 	/** 标准时间格式化器 */
 	// private final static SimpleDateFormat NORM_TIME_FORMAT = new SimpleDateFormat(NORM_TIME_PATTERN);
 	private static ThreadLocal<SimpleDateFormat> NORM_TIME_FORMAT = new ThreadLocal<SimpleDateFormat>(){
+		@Override
 		synchronized protected SimpleDateFormat initialValue() {
 			return new SimpleDateFormat(NORM_TIME_PATTERN);
 		};
@@ -55,6 +57,7 @@ public class DateTimeKit {
 	/** 标准日期时间格式化器 */
 	// private final static SimpleDateFormat NORM_DATETIME_FORMAT = new SimpleDateFormat(NORM_DATETIME_PATTERN);
 	private static ThreadLocal<SimpleDateFormat> NORM_DATETIME_FORMAT = new ThreadLocal<SimpleDateFormat>(){
+		@Override
 		synchronized protected SimpleDateFormat initialValue() {
 			return new SimpleDateFormat(NORM_DATETIME_PATTERN);
 		};
@@ -278,7 +281,7 @@ public class DateTimeKit {
 		try {
 			return new DateTime(simpleDateFormat.parse(dateStr));
 		} catch (Exception e) {
-			throw new ToolBoxException(StrKit.format("Parse [{}] with format [{}] error!", dateStr, simpleDateFormat.toPattern()), e);
+			throw new ToolBoxException(StringUtils.format("Parse [{}] with format [{}] error!", dateStr, simpleDateFormat.toPattern()), e);
 		}
 	}
 
@@ -352,11 +355,11 @@ public class DateTimeKit {
 				return parse(dateStr, NORM_DATETIME_MS_PATTERN);
 			}
 		} catch (Exception e) {
-			throw new ToolBoxException(StrKit.format("Parse [{}] with format normal error!", dateStr));
+			throw new ToolBoxException(StringUtils.format("Parse [{}] with format normal error!", dateStr));
 		}
 
 		// 没有更多匹配的时间格式
-		throw new ToolBoxException(StrKit.format(" [{}] format is not fit for date pattern!", dateStr));
+		throw new ToolBoxException(StringUtils.format(" [{}] format is not fit for date pattern!", dateStr));
 	}
 	// ------------------------------------ Parse end ----------------------------------------------
 
@@ -581,7 +584,7 @@ public class DateTimeKit {
 		cal.setTime(dateToCompare);
 
 		if (cal.before(birthDay)) {
-			throw new IllegalArgumentException(StrKit.format("Birthday is after date {}!", formatDate(dateToCompare)));
+			throw new IllegalArgumentException(StringUtils.format("Birthday is after date {}!", formatDate(dateToCompare)));
 		}
 
 		int year = cal.get(Calendar.YEAR);

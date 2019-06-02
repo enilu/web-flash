@@ -36,10 +36,12 @@ public class Convert {
 		try {
 			if (clazz.isAssignableFrom(String.class)) {
 				// ----2016-12-19---zhuangqian----防止beetlsql对空字符串不检测导致无法入库的问题----
-				if (StrKit.isBlank(String.valueOf(value)))
+				if (StringUtils.isEmpty(String.valueOf(value))) {
 					return " ";
-				else
+				}
+				else {
 					return String.valueOf(value);
+				}
 			}
 			return clazz.cast(value);
 		} catch (ClassCastException e) {
@@ -65,7 +67,7 @@ public class Convert {
 				return valueStr.getBytes();
 			}
 			// 未找到可转换的类型，返回原值
-			return (StrKit.isBlank(valueStr)) ? null : value;
+			return (StringUtils.isEmpty(valueStr)) ? null : value;
 		}
 	}
 
@@ -82,7 +84,7 @@ public class Convert {
 			return null;
 		}
 
-		if (StrKit.isBlank(valueStr)) return null;
+		if (StringUtils.isEmpty(valueStr)) return null;
 		
 		BasicType basicType = null;
 		try {
@@ -186,7 +188,7 @@ public class Convert {
 		}
 
 		final String valueStr = toStr(value, null);
-		return StrKit.isEmpty(valueStr) ? defaultValue : valueStr.charAt(0);
+		return StringUtils.isEmpty(valueStr) ? defaultValue : valueStr.charAt(0);
 	}
 
 	/**
@@ -221,7 +223,7 @@ public class Convert {
 			return ((Number) value).byteValue();
 		}
 		final String valueStr = toStr(value, null);
-		if (StrKit.isBlank(valueStr)) {
+		if (StringUtils.isEmpty(valueStr)) {
 			return defaultValue;
 		}
 		try {
@@ -263,7 +265,7 @@ public class Convert {
 			return ((Number) value).shortValue();
 		}
 		final String valueStr = toStr(value, null);
-		if (StrKit.isBlank(valueStr)) {
+		if (StringUtils.isEmpty(valueStr)) {
 			return defaultValue;
 		}
 		try {
@@ -302,7 +304,7 @@ public class Convert {
 			return (Number) value;
 		}
 		final String valueStr = toStr(value, null);
-		if (StrKit.isBlank(valueStr)) {
+		if (StringUtils.isEmpty(valueStr)) {
 			return defaultValue;
 		}
 		try {
@@ -344,7 +346,7 @@ public class Convert {
 			return ((Number) value).intValue();
 		}
 		final String valueStr = toStr(value, null);
-		if (StrKit.isBlank(valueStr)) {
+		if (StringUtils.isEmpty(valueStr)) {
 			return defaultValue;
 		}
 		try {
@@ -381,7 +383,7 @@ public class Convert {
 		for (int i = 0; i < values.length; i++) {
 			final Integer v = toInt(values[i], null);
 			if (null == v && isIgnoreConvertError == false) {
-				throw new ToolBoxException(StrKit.format("Convert [{}] to Integer error!", values[i]));
+				throw new ToolBoxException(StringUtils.format("Convert [{}] to Integer error!", values[i]));
 			}
 			ints[i] = v;
 		}
@@ -407,7 +409,7 @@ public class Convert {
 	 * @return 结果
 	 */
 	public static Integer[] toIntArray(String split, String str) {
-		if (StrKit.isEmpty(str)) {
+		if (StringUtils.isEmpty(str)) {
 			return new Integer[] {};
 		}
 		String[] arr = str.split(split);
@@ -419,7 +421,7 @@ public class Convert {
 		return ints;
 	}
 	public static Long[] toLongArray(String split, String str) {
-		if (StrKit.isEmpty(str)) {
+		if (StringUtils.isEmpty(str)) {
 			return new Long[] {};
 		}
 		String[] arr = str.split(split);
@@ -472,7 +474,7 @@ public class Convert {
 			return ((Number) value).longValue();
 		}
 		final String valueStr = toStr(value, null);
-		if (StrKit.isBlank(valueStr)) {
+		if (StringUtils.isEmpty(valueStr)) {
 			return defaultValue;
 		}
 		try {
@@ -510,7 +512,7 @@ public class Convert {
 		for (int i = 0; i < values.length; i++) {
 			final Long v = toLong(values[i], null);
 			if (null == v && isIgnoreConvertError == false) {
-				throw new ToolBoxException(StrKit.format("Convert [{}] to Long error!", values[i]));
+				throw new ToolBoxException(StringUtils.format("Convert [{}] to Long error!", values[i]));
 			}
 			longs[i] = v;
 		}
@@ -537,7 +539,7 @@ public class Convert {
 			return ((Number) value).doubleValue();
 		}
 		final String valueStr = toStr(value, null);
-		if (StrKit.isBlank(valueStr)) {
+		if (StringUtils.isEmpty(valueStr)) {
 			return defaultValue;
 		}
 		try {
@@ -575,7 +577,7 @@ public class Convert {
 		for (int i = 0; i < values.length; i++) {
 			final Double v = toDouble(values[i], null);
 			if (null == v && isIgnoreConvertError == false) {
-				throw new ToolBoxException(StrKit.format("Convert [{}] to Double error!", values[i]));
+				throw new ToolBoxException(StringUtils.format("Convert [{}] to Double error!", values[i]));
 			}
 			doubles[i] = v;
 		}
@@ -602,7 +604,7 @@ public class Convert {
 			return ((Number) value).floatValue();
 		}
 		final String valueStr = toStr(value, null);
-		if (StrKit.isBlank(valueStr)) {
+		if (StringUtils.isEmpty(valueStr)) {
 			return defaultValue;
 		}
 		try {
@@ -639,7 +641,7 @@ public class Convert {
 		for (int i = 0; i < values.length; i++) {
 			final Float v = toFloat(values[i], null);
 			if (null == v && isIgnoreConvertError == false) {
-				throw new ToolBoxException(StrKit.format("Convert [{}] to Float error!", values[i]));
+				throw new ToolBoxException(StringUtils.format("Convert [{}] to Float error!", values[i]));
 			}
 			floats[i] = v;
 		}
@@ -663,7 +665,7 @@ public class Convert {
 			return (Boolean) value;
 		}
 		String valueStr = toStr(value, null);
-		if (StrKit.isBlank(valueStr)) {
+		if (StringUtils.isEmpty(valueStr)) {
 			return defaultValue;
 		}
 		valueStr = valueStr.trim().toLowerCase();
@@ -714,7 +716,7 @@ public class Convert {
 		for (int i = 0; i < values.length; i++) {
 			final Boolean v = toBool(values[i], null);
 			if (null == v && isIgnoreConvertError == false) {
-				throw new ToolBoxException(StrKit.format("Convert [{}] to Boolean error!", values[i]));
+				throw new ToolBoxException(StringUtils.format("Convert [{}] to Boolean error!", values[i]));
 			}
 			bools[i] = v;
 		}
@@ -740,7 +742,7 @@ public class Convert {
 			return myE;
 		}
 		final String valueStr = toStr(value, null);
-		if (StrKit.isBlank(valueStr)) {
+		if (StringUtils.isEmpty(valueStr)) {
 			return defaultValue;
 		}
 		try {
@@ -782,7 +784,7 @@ public class Convert {
 			return BigInteger.valueOf((Long) value);
 		}
 		final String valueStr = toStr(value, null);
-		if (StrKit.isBlank(valueStr)) {
+		if (StringUtils.isEmpty(valueStr)) {
 			return defaultValue;
 		}
 		try {
@@ -830,7 +832,7 @@ public class Convert {
 			return new BigDecimal((Integer) value);
 		}
 		final String valueStr = toStr(value, null);
-		if (StrKit.isBlank(valueStr)) {
+		if (StringUtils.isEmpty(valueStr)) {
 			return defaultValue;
 		}
 		try {
@@ -1024,7 +1026,7 @@ public class Convert {
 	 * @return 转换后的字符串
 	 */
 	public static String convertCharset(String str, String sourceCharset, String destCharset) {
-		if (StrKit.hasBlank(str, sourceCharset, destCharset)) {
+		if (StringUtils.hasBlank(str, sourceCharset, destCharset)) {
 			return str;
 		}
 

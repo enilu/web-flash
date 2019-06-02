@@ -12,7 +12,6 @@ import cn.enilu.flash.dao.system.*;
 import cn.enilu.flash.service.system.IConstantFactory;
 import cn.enilu.flash.service.system.LogObjectHolder;
 import cn.enilu.flash.utils.Convert;
-import cn.enilu.flash.utils.StrKit;
 import cn.enilu.flash.utils.StringUtils;
 import cn.enilu.flash.utils.cache.TimeCacheMap;
 import org.springframework.cache.annotation.CacheConfig;
@@ -123,7 +122,7 @@ public class ConstantFactory implements IConstantFactory {
                 sb.append(roleObj.getName()).append(",");
             }
         }
-        val = StrKit.removeSuffix(sb.toString(), ",");
+        val = StringUtils.removeSuffix(sb.toString(), ",");
         set(CacheKey.ROLES_NAME + roleIds, val);
         return val;
     }
@@ -192,7 +191,7 @@ public class ConstantFactory implements IConstantFactory {
                 sb.append(menuObj.getName()).append(",");
             }
         }
-        return StrKit.removeSuffix(sb.toString(), ",");
+        return StringUtils.removeSuffix(sb.toString(), ",");
     }
 
     /**
@@ -376,7 +375,7 @@ public class ConstantFactory implements IConstantFactory {
         String[] split = pids.split(",");
         ArrayList<Integer> parentDeptIds = new ArrayList<>();
         for (String s : split) {
-            parentDeptIds.add(Integer.valueOf(StrKit.removeSuffix(StrKit.removePrefix(s, "["), "]")));
+            parentDeptIds.add(Integer.valueOf(StringUtils.removeSuffix(StringUtils.removePrefix(s, "["), "]")));
         }
         return parentDeptIds;
     }

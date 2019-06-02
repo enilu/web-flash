@@ -20,6 +20,8 @@ export default {
     fileMgr:'File',
     contactsMgr:'Contacts',
     channelMgr:'Channel',
+    druid:'Monitor',
+    swagger:'Docs'
   },
   navbar: {
     logOut: 'Log Out',

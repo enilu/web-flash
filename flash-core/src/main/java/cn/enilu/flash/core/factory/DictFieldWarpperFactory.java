@@ -1,4 +1,4 @@
-package cn.enilu.flash.factory;
+package cn.enilu.flash.core.factory;
 
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.exception.GunsException;

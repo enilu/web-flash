@@ -10,7 +10,7 @@ import org.springframework.data.domain.AuditorAware;
 import java.util.Optional;
 
 /**
- * UserIDAuditorBean
+ * 审计功能配置
  *
  * @author enilu
  * @version 2019/1/8 0008
