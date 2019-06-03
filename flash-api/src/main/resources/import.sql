@@ -195,8 +195,8 @@ INSERT INTO `t_sys_notice` (`id`, `title`, `type`, `content`, `create_time`, `cr
 -- ----------------------------
 -- Records of t_sys_operation_log
 -- ----------------------------
-INSERT INTO `t_sys_operation_log` (`id`, `logtype`, `logname`, `userid`, `classname`, `method`, `create_time`, `succeed`, `message`) VALUES ('76', '业务日志', '编辑文章', '1', 'cn.enilu.guns.api.controller.cms.ArticleMgrController', 'save', '2019-05-10 13:22:49', '成功', '名称=null;;;');
-INSERT INTO `t_sys_operation_log` (`id`, `logtype`, `logname`, `userid`, `classname`, `method`, `create_time`, `succeed`, `message`) VALUES ('77', '业务日志', '编辑文章', '1', 'cn.enilu.guns.api.controller.cms.ArticleMgrController', 'save', '2019-05-10 13:31:09', '成功', '名称=null;;;');
+INSERT INTO `t_sys_operation_log` (`id`, `logtype`, `logname`, `userid`, `classname`, `method`, `create_time`, `succeed`, `message`) VALUES ('76', '业务日志', '编辑文章', '1', 'cn.enilu.guns.api.controller.cms.ArticleMgrController', 'upload', '2019-05-10 13:22:49', '成功', '名称=null;;;');
+INSERT INTO `t_sys_operation_log` (`id`, `logtype`, `logname`, `userid`, `classname`, `method`, `create_time`, `succeed`, `message`) VALUES ('77', '业务日志', '编辑文章', '1', 'cn.enilu.guns.api.controller.cms.ArticleMgrController', 'upload', '2019-05-10 13:31:09', '成功', '名称=null;;;');
 
 -- ----------------------------
 -- Records of t_sys_relation

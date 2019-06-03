@@ -36,7 +36,7 @@ public class FileController extends BaseController {
     public Object upload(@RequestPart("file") MultipartFile multipartFile) {
 
         try {
-            FileInfo fileInfo = fileService.save(multipartFile);
+            FileInfo fileInfo = fileService.upload(multipartFile);
             return Rets.success(fileInfo);
         } catch (Exception e) {
             logger.error("上传文件异常",e);
@@ -53,7 +53,7 @@ public class FileController extends BaseController {
     public void download(@RequestParam("idFile") Long idFile,
                            @RequestParam(value = "fileName",required = false) String fileName){
         FileInfo fileInfo = fileService.get(idFile);
-        fileName = StringUtils.isEmpty(fileName)? fileInfo.getRealFileName():fileName;
+        fileName = StringUtils.isEmpty(fileName)? fileInfo.getOriginalFileName():fileName;
         HttpServletResponse response = HttpKit.getResponse();
         response.setContentType("application/x-download");
         try {

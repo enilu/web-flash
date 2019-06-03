@@ -81,10 +81,11 @@ public class BaseController {
 
     /**
      * 获取前端传递过来的json字符串<br>
-     *     如果前端使用axios的data方式传参则使用改方法接收参数
+     * 如果前端使用axios的data方式传参则使用改方法接收参数
+     *
      * @return
      */
-    public   String getjsonReq(   ) {
+    public String getjsonReq() {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(HttpKit.getRequest().getInputStream()));
             String line = null;
@@ -94,7 +95,9 @@ public class BaseController {
 
             }
             br.close();
-            if (sb.length() < 1) {return "";}
+            if (sb.length() < 1) {
+                return "";
+            }
             String reqBody = URLDecoder.decode(sb.toString(), "UTF-8");
             reqBody = reqBody.substring(reqBody.indexOf("{"));
             return reqBody;
@@ -108,13 +111,15 @@ public class BaseController {
         }
 
     }
-    public <T>T getFromJson(Class<T> klass){
+
+    public <T> T getFromJson(Class<T> klass) {
         String jsonStr = getjsonReq();
-        if(StringUtils.isEmpty(jsonStr)){
+        if (StringUtils.isEmpty(jsonStr)) {
             return null;
         }
         JSONObject json = JSONObject.parseObject(jsonStr);
-        return JSON.toJavaObject(json,klass);
+        return JSON.toJavaObject(json, klass);
     }
+
 
 }

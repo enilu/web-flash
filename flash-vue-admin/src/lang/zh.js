@@ -48,7 +48,8 @@ export default {
     submit: '提交',
     cancel: '取消',
     clear: '清除',
-    back: '返回'
+    back: '返回',
+    export: '导出'
   },
   common: {
     mustSelectOne: '请选中操作项!',

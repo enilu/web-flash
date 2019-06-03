@@ -225,7 +225,6 @@
             </dependency>
 
             <!-- json lib-->
-
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-annotations</artifactId>
@@ -259,7 +258,7 @@
                 <artifactId>spring-boot-starter-jdbc</artifactId>
                 <version>${spring.boot.version}</version>
             </dependency>
-
+            <!--quart定时任务-->
             <dependency>
                 <groupId>org.quartz-scheduler</groupId>
                 <artifactId>quartz</artifactId>
@@ -269,6 +268,17 @@
                 <groupId>org.quartz-scheduler</groupId>
                 <artifactId>quartz-jobs</artifactId>
                 <version>${quartz.version}</version>
+            </dependency>
+            <!--export excel -->
+            <dependency>
+                <groupId>org.jxls</groupId>
+                <artifactId>jxls</artifactId>
+                <version>2.3.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jxls</groupId>
+                <artifactId>jxls-poi</artifactId>
+                <version>1.0.9</version>
             </dependency>
         </dependencies>
 

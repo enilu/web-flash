@@ -9,6 +9,15 @@ export function getList(params) {
 }
 
 
+export function exportXls(params) {
+  return request({
+    url: '/cfg/export',
+    method: 'get',
+    params
+  })
+}
+
+
 export function save(params) {
   return request({
     url: '/cfg',

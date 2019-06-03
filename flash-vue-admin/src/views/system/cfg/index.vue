@@ -19,6 +19,7 @@
           <el-button type="success" icon="el-icon-plus" @click.native="add">{{ $t('button.add') }}</el-button>
           <el-button type="primary" icon="el-icon-edit" @click.native="edit">{{ $t('button.edit') }}</el-button>
           <el-button type="danger" icon="el-icon-delete" @click.native="remove">{{ $t('button.delete') }}</el-button>
+          <el-button type="info" icon="el-icon-document" @click.native="exportXls">{{ $t('button.export') }}</el-button>
         </el-col>
       </el-row>
     </div>

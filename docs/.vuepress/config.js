@@ -2,7 +2,9 @@ module.exports = {
     title: 'web-flash',
     description: '使用web-flash快速构建web应用程序',
     base: '/web-flash/',
-
+    head: [
+        ['link', { rel: 'shortcut icon', type: "image/x-icon", href: './favicon.ico' }]
+    ],
     evergreen: true,
     editLinkText:'在 GitHub 上编辑此页',
     port: 8081,
@@ -15,14 +17,23 @@ module.exports = {
         editLinkText: '编辑此页面！',
         nav: [
             {text: '文档', link: '/'},
-            {text: '捐赠',link:'/donate'},
-            {text: '资源',link:'/resource'},
+            {text: '功能',
+                items:[
+                    {text: '导出excel',link:'/feature/exportExcel'},
+                    {text: '定时任务',link:'/action/task'},
+                    {text: '缓存',link:'/action/cache'},
+                    {text: '审计功能',link:'/action/jpaauditing'},
+                ]
+            },
             {text: '周边',
                 items:[
                     {text: '代码生成',link:'/ecosystem/code-generator'},
                     {text: '数据库文档生成',link:'/ecosystem/database-doc-generator'},
                 ]
             },
+            {text: '捐赠',link:'/donate'},
+            {text: '资源',link:'/resource'},
+
             {text: '项目主页', link: 'https://github.com/enilu/web-flash'},
 
 
@@ -36,7 +47,6 @@ module.exports = {
                     '/base/modules'
                 ]
             },
-
             {
                 title: '20分钟将本项目跑起来',
                 collapsable: false,
@@ -48,20 +58,6 @@ module.exports = {
                     '/quickstart/startup'
                 ]
             },
-            // {
-            //     title: '开发第一个功能',
-            //     collapsable: false,
-            //     children: [
-            //         '/hello_guns/hello_guns',
-            //         '/hello_guns/create_table',
-            //         '/hello_guns/base',
-            //         '/hello_guns/list',
-            //         '/hello_guns/add',
-            //         '/hello_guns/delete',
-            //         '/hello_guns/update',
-            //         '/hello_guns/menuAndPermission'
-            //     ]
-            // },
             {
                 title: '基本功能介绍',
                 collapsable: false,

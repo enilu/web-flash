@@ -1,4 +1,5 @@
-import { remove, getList, save } from '@/api/system/cfg'
+import { remove, getList, save, exportXls } from '@/api/system/cfg'
+import { getApiUrl } from '@/utils/utils'
 
 export default {
   data() {
@@ -168,6 +169,12 @@ export default {
         }).catch(() => {
         })
       }
+    },
+    exportXls() {
+      exportXls(this.listQuery).then(response => {
+        window.location.href= getApiUrl() + '/file/download?idFile='+response.data.id
+      })
+
     }
 
   }

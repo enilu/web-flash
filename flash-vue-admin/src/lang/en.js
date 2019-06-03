@@ -47,7 +47,8 @@ export default {
     submit: 'Submit',
     cancel: 'Cancel',
     clear: 'Clear',
-    back: 'Back'
+    back: 'Back',
+    export: 'Export'
   },
   common: {
     mustSelectOne: 'Please select the record to operate!',
