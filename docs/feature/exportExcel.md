@@ -61,6 +61,9 @@ public FileInfo createExcel(String template, String fileName, Map<String, Object
 
 ```
 
+完整的实现参考参数管理的导出功能
+
+
 值得注意的时候，导出的excel文件会在存放在t_sys_file_info表中和对应的系统上传目录下，如果导出功能使用频率比较高的话，时间久了会生成很多文件信息。
 那么就需要定时清理这些数据。
 
