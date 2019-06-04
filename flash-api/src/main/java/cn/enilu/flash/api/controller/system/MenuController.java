@@ -1,8 +1,8 @@
 package cn.enilu.flash.api.controller.system;
 
 import cn.enilu.flash.api.controller.BaseController;
-import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.constant.state.MenuStatus;
+import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.dictmap.MenuDict;
 import cn.enilu.flash.bean.entity.system.Menu;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
@@ -21,10 +21,7 @@ import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -70,7 +67,7 @@ public class MenuController extends BaseController {
 
     @RequestMapping(method = RequestMethod.DELETE)
     @BussinessLog(value = "删除菜单", key = "id", dict = MenuDict.class)
-    public Object remove(Long id) {
+    public Object remove(@RequestParam Long id) {
         logger.info("id:{}", id);
         if (ToolUtil.isEmpty(id)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);

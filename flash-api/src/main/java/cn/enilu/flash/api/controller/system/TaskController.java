@@ -1,8 +1,8 @@
 package cn.enilu.flash.api.controller.system;
 
 import cn.enilu.flash.api.controller.BaseController;
-import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.constant.factory.PageFactory;
+import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.dictmap.TaskDict;
 import cn.enilu.flash.bean.entity.system.Task;
 import cn.enilu.flash.bean.entity.system.TaskLog;
@@ -14,7 +14,6 @@ import cn.enilu.flash.utils.factory.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -96,7 +95,7 @@ public class TaskController extends BaseController {
 
 
     @RequestMapping(value="/logList")
-    public Object logList(@Param("taskId") Long taskId) {
+    public Object logList(@RequestParam  Long taskId) {
         Page<TaskLog> page = new PageFactory<TaskLog>().defaultPage();
         page = taskService.getTaskLogs(page,taskId);
         return Rets.success(page);

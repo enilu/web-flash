@@ -82,7 +82,7 @@ public class CfgController extends BaseController {
     }
     @RequestMapping(method = RequestMethod.DELETE)
     @BussinessLog(value = "删除参数", key = "id",dict= CfgDict.class)
-    public Object remove(Long id){
+    public Object remove(@RequestParam Long id){
         logger.info("id:{}",id);
         if (ToolUtil.isEmpty(id)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);

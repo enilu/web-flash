@@ -1,8 +1,8 @@
 package cn.enilu.flash.api.controller.system;
 
 import cn.enilu.flash.api.controller.BaseController;
-import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.constant.Const;
+import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.dictmap.RoleDict;
 import cn.enilu.flash.bean.entity.system.Role;
 import cn.enilu.flash.bean.entity.system.User;
@@ -31,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -75,7 +76,7 @@ public class RoleController extends BaseController {
     }
     @RequestMapping(method = RequestMethod.DELETE)
     @BussinessLog(value = "删除角色", key = "roleId", dict = RoleDict.class)
-    public Object remove(Long roleId){
+    public Object remove(@RequestParam Long roleId){
         logger.info("id:{}",roleId);
         if (ToolUtil.isEmpty(roleId)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);

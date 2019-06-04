@@ -15,10 +15,7 @@ import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -56,7 +53,7 @@ public class DeptContoller extends BaseController {
     }
     @RequestMapping(method = RequestMethod.DELETE)
     @BussinessLog(value = "删除部门", key = "id", dict = DeptDict.class)
-    public Object remove(Long id){
+    public Object remove(@RequestParam  Long id){
         logger.info("id:{}",id);
         if (ToolUtil.isEmpty(id)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);

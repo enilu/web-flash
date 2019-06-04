@@ -1,25 +1,24 @@
 package cn.enilu.flash.api.controller.system;
 
 import cn.enilu.flash.api.controller.BaseController;
-import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.constant.Const;
 import cn.enilu.flash.bean.constant.factory.PageFactory;
 import cn.enilu.flash.bean.constant.state.ManagerStatus;
+import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.dictmap.UserDict;
 import cn.enilu.flash.bean.dto.UserDto;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.exception.GunsException;
 import cn.enilu.flash.bean.vo.front.Rets;
-import cn.enilu.flash.dao.system.UserRepository;
 import cn.enilu.flash.core.factory.UserFactory;
+import cn.enilu.flash.dao.system.UserRepository;
 import cn.enilu.flash.service.system.UserService;
 import cn.enilu.flash.utils.BeanUtil;
 import cn.enilu.flash.utils.MD5;
 import cn.enilu.flash.utils.ToolUtil;
 import cn.enilu.flash.utils.factory.Page;
 import cn.enilu.flash.warpper.UserWarpper;
-import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,9 +62,6 @@ public class UserController extends BaseController {
     @RequestMapping(method = RequestMethod.POST)
     @BussinessLog(value = "编辑管理员", key = "name", dict = UserDict.class)
     public Object save( @Valid UserDto user,BindingResult result){
-        logger.info(JSON.toJSONString(user));
-
-
         if(user.getId()==null) {
             // 判断账号是否重复
             User theUser = userRepository.findByAccount(user.getAccount());
@@ -86,8 +82,7 @@ public class UserController extends BaseController {
 
     @BussinessLog(value = "删除管理员", key = "userId", dict = UserDict.class)
     @RequestMapping(method = RequestMethod.DELETE)
-    public Object remove(Long userId){
-        logger.info("id:{}",userId);
+    public Object remove(@RequestParam Long userId){
         if (ToolUtil.isEmpty(userId)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
