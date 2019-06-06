@@ -10,7 +10,6 @@ module.exports = {
     port: 8081,
     ga: 'UA-71886989-13',
     themeConfig: {
-        // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
         repo: 'enilu/web-flash',
         docsDir: 'docs',
         editLinks: true,
