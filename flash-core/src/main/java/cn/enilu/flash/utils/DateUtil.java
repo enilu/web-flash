@@ -30,9 +30,9 @@ import java.util.Map;
 public class DateUtil {
 
 
-	private static final Object lock = new Object();
+	private static final Object LOCK = new Object();
 
-	private static final Map<String, ThreadLocal<SimpleDateFormat>> pool = new HashMap<String, ThreadLocal<SimpleDateFormat>>();
+	private static final Map<String, ThreadLocal<SimpleDateFormat>> POOL = new HashMap<String, ThreadLocal<SimpleDateFormat>>();
 	/**
 	 * 获取YYYY格式
 	 *
@@ -187,10 +187,10 @@ public class DateUtil {
 		return null;
 	}
 	public static SimpleDateFormat getDFormat(String pattern) {
-		ThreadLocal<SimpleDateFormat> tl = pool.get(pattern);
+		ThreadLocal<SimpleDateFormat> tl = POOL.get(pattern);
 		if (tl == null) {
-			synchronized (lock) {
-				tl = pool.get(pattern);
+			synchronized (LOCK) {
+				tl = POOL.get(pattern);
 				if (tl == null) {
 					final String p = pattern;
 					tl = new ThreadLocal<SimpleDateFormat>() {
@@ -199,7 +199,7 @@ public class DateUtil {
 							return new SimpleDateFormat(p);
 						}
 					};
-					pool.put(p, tl);
+					POOL.put(p, tl);
 				}
 			}
 		}

@@ -1,4 +1,4 @@
-package cn.enilu.flash.api.controller.front.officialSite;
+package cn.enilu.flash.api.controller.front.officialsite;
 
 import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.entity.cms.Article;
@@ -21,8 +21,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/offcialSite/case")
-public class CaseController extends BaseController {
+@RequestMapping("/offcialSite/product")
+public class OffcialSiteProductController extends BaseController {
     @Autowired
     private BannerService bannerService;
     @Autowired
@@ -32,7 +32,7 @@ public class CaseController extends BaseController {
     public Object index() {
         Map<String, Object> dataMap = new HashMap<>();
 
-        Banner banner = bannerService.queryBanner(BannerTypeEnum.CASE.getValue());
+        Banner banner = bannerService.queryBanner(BannerTypeEnum.SOLUTION.getValue());
         dataMap.put("banner", banner);
 
         List<Product> products = new ArrayList<>();
@@ -40,11 +40,9 @@ public class CaseController extends BaseController {
         for (Article article : articlePage.getRecords()) {
             products.add(new Product(article.getId(), article.getTitle(), article.getImg()));
         }
-        dataMap.put("caseList", products);
-
+        dataMap.put("productList", products);
 
         Map map = new HashMap();
-
         map.put("data", dataMap);
         return Rets.success(map);
 

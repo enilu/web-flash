@@ -19,7 +19,7 @@ import java.util.Map;
 public class Contrast {
 
     //记录每个修改字段的分隔符
-    public static final String separator = ";;;";
+    public static final String SEPARATOR = ";;;";
 
     /**
      * 比较两个对象,并返回不一致的信息
@@ -49,7 +49,7 @@ public class Contrast {
                 }
                 if (!o1.toString().equals(o2.toString())) {
                     if (i != 1) {
-                        str += separator;
+                        str += SEPARATOR;
                     }
                     str += "字段名称" + field.getName() + ",旧值:" + o1 + ",新值:" + o2;
                     i++;
@@ -69,7 +69,7 @@ public class Contrast {
      */
     public static String contrastObj(Class dictClass, String key, Object pojo1, Map<String, String> pojo2) throws IllegalAccessException, InstantiationException {
         AbstractDictMap dictMap = (AbstractDictMap) dictClass.newInstance();
-        String str = parseMutiKey(dictMap, key, pojo2) + separator;
+        String str = parseMutiKey(dictMap, key, pojo2) + SEPARATOR;
         try {
             Class clazz = pojo1.getClass();
             Field[] fields = pojo1.getClass().getDeclaredFields();
@@ -92,7 +92,7 @@ public class Contrast {
                 }
                 if (!o1.toString().equals(o2.toString())) {
                     if (i != 1) {
-                        str += separator;
+                        str += SEPARATOR;
                     }
                     String fieldName = dictMap.get(field.getName());
                     String fieldWarpperMethodName = dictMap.getFieldWarpperMethodName(field.getName());
@@ -120,7 +120,7 @@ public class Contrast {
      */
     public static String contrastObjByName(Class dictClass, String key, Object pojo1, Map<String, String> pojo2) throws IllegalAccessException, InstantiationException {
         AbstractDictMap dictMap = (AbstractDictMap) dictClass.newInstance();
-        String str = parseMutiKey(dictMap, key, pojo2) + separator;
+        String str = parseMutiKey(dictMap, key, pojo2) + SEPARATOR;
         try {
             Class clazz = pojo1.getClass();
             Field[] fields = pojo1.getClass().getDeclaredFields();
@@ -131,7 +131,7 @@ public class Contrast {
                 }
                 String prefix = "get";
                 int prefixLength = 3;
-                if (field.getType().getName().equals("java.lang.Boolean")) {
+                if ("java.lang.Boolean".equals(field.getType().getName())) {
                     prefix = "is";
                     prefixLength = 2;
                 }
@@ -154,7 +154,7 @@ public class Contrast {
                 }
                 if (!o1.toString().equals(o2.toString())) {
                     if (i != 1) {
-                        str += separator;
+                        str += SEPARATOR;
                     }
                     String fieldName = dictMap.get(field.getName());
                     String fieldWarpperMethodName = dictMap.getFieldWarpperMethodName(field.getName());

@@ -1,6 +1,6 @@
 package cn.enilu.flash.api.controller;
 
-import cn.enilu.flash.utils.*;
+import cn.enilu.flash.api.utils.ApiConstants;
 import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.vo.front.Rets;
@@ -11,6 +11,7 @@ import cn.enilu.flash.dao.system.UserRepository;
 import cn.enilu.flash.service.system.AccountService;
 import cn.enilu.flash.service.system.MenuService;
 import cn.enilu.flash.service.system.UserService;
+import cn.enilu.flash.utils.*;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.slf4j.Logger;
@@ -132,7 +133,7 @@ public class AccountController extends BaseController{
     public Object updatePwd( String oldPassword,String password, String rePassword){
         try {
             User user = userService.get(getIdUser(HttpKit.getRequest()));
-            if("admin".equals(user.getAccount())){
+            if(ApiConstants.ADMIN_ACCOUNT.equals(user.getAccount())){
                 return Rets.failure("不能修改超级管理员密码");
             }
             logger.info("oldPassword:{},password:{},rePassword:{}",MD5.md5(oldPassword, user.getSalt()),password,rePassword);

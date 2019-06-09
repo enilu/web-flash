@@ -9,34 +9,34 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MobileUtil {
-	public static final Set<String> prefixIds = new HashSet<String>();
+	public static final Set<String> PREFIX_IDS = new HashSet<String>();
 
     final static Pattern PHONE_START_WITH_ZERO = Pattern.compile("^01(3[0-9]|4[579]|5[0-35-9]|7[0135678]|8[0-9])[0-9]{8}$");
 
 	static {
-		prefixIds.add("12590");
-		prefixIds.add("12593");
-		prefixIds.add("17901");
-		prefixIds.add("17911");
-		prefixIds.add("17951");
-        prefixIds.add("10193");
+		PREFIX_IDS.add("12590");
+		PREFIX_IDS.add("12593");
+		PREFIX_IDS.add("17901");
+		PREFIX_IDS.add("17911");
+		PREFIX_IDS.add("17951");
+        PREFIX_IDS.add("10193");
 	}
 
 	public enum MobileType {ChinaTelecom, ChinaUnicom, ChinaMobile, UnKnow}
 
-	final static String chinaTelecomRegex = "(133|153|180|181|189|177|173)\\d{8}|1700\\d{7}";
-	final static String chinaUnicomRegex = "(130|131|132|155|156|145|185|186|176)\\d{8}|1709\\d{7}";
-	final static String chinaMobileRegex = "(13[5-9]|15[0-2|7-9]|18[2-4|7-8]|147|178)\\d{8}|(134[0-8]|1705)\\d{7}";
+	final static String CHINA_TELECOM_REGEX = "(133|153|180|181|189|177|173)\\d{8}|1700\\d{7}";
+	final static String CHINA_UNICOM_REGEX = "(130|131|132|155|156|145|185|186|176)\\d{8}|1709\\d{7}";
+	final static String CHINA_MOBILE_REGEX = "(13[5-9]|15[0-2|7-9]|18[2-4|7-8]|147|178)\\d{8}|(134[0-8]|1705)\\d{7}";
 
 	public static final Pattern P_RULE_1 = Pattern.compile("^((10)|(2[1-9])).*");
 	public static final Pattern P_RULE_2 = Pattern.compile("^[3-9].*");
 
 	public static MobileType type(String mobile) {
-		if (mobile.matches(chinaTelecomRegex)) {
+		if (mobile.matches(CHINA_TELECOM_REGEX)) {
 			return MobileType.ChinaTelecom;
-		} else if (mobile.matches(chinaUnicomRegex)) {
+		} else if (mobile.matches(CHINA_UNICOM_REGEX)) {
 			return MobileType.ChinaUnicom;
-		} else if (mobile.matches(chinaMobileRegex)) {
+		} else if (mobile.matches(CHINA_MOBILE_REGEX)) {
 			return MobileType.ChinaMobile;
 		}
 
@@ -92,7 +92,7 @@ public class MobileUtil {
 				value = value.substring(1);
 			}
 		} else if (value.length() == 16) {
-			for (String id : prefixIds) {
+			for (String id : PREFIX_IDS) {
 				if (value.startsWith(id)) {
 					value = value.substring(5);
 					break;

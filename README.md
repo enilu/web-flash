@@ -17,16 +17,15 @@
 
 ## 演示
 - 后台管理(vue版本) [http://47.104.84.62:8080/vue](http://47.104.84.62:8080/vue)
-- 手机端 [http://47.104.84.62:8080/mobile/#/index](http://47.104.84.62:8080/mobile/#/index)
+- 手机端 [http://47.104.84.62:8080/mobile/#/index](http://47.104.84.62:8080/mobile/#/index) 打开浏览器后使用debug模式的手机视图模式浏览
 
 ## 技术选型
 
 - 核心框架：Spring Boot
 - 数据库层：Spring data jpa
-- 安全框架：Shiro
 - 数据库连接池：Druid
 - 缓存：Ehcache
-- 前端：基于Vue.js的element和vux 
+- 前端：基于Vue.js的Element（后端）和vux（手机端） 
 
 
 ## 包含的功能
@@ -52,7 +51,7 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 - 导入idea或者eclipse
 - 创建数据库：web-flash
 - 修改flash-api中数据库连接配置
-- 启动flash-api，访问http://localhost:8082/swagger-ui.html，保证api服务启动成功
+- 启动flash-api，访问http://localhost:8082/swagger-ui.html ， 保证api服务启动成功
 - 进入flash-vue-admin目录
     - 运行 npm install --registry=https://registry.npm.taobao.org
     - 运行npm run dev

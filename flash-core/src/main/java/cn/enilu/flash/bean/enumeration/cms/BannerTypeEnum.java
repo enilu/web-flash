@@ -1,5 +1,8 @@
 package cn.enilu.flash.bean.enumeration.cms;
 
+/**
+ * 广告类型
+ */
 public enum  BannerTypeEnum {
 
     INDEX("index"),

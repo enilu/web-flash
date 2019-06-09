@@ -81,7 +81,7 @@ public class CfgController extends BaseController {
         return Rets.success();
     }
     @RequestMapping(method = RequestMethod.DELETE)
-    @BussinessLog(value = "删除参数", key = "id",dict= CfgDict.class)
+    @BussinessLog(value = "删除参数", key = "id",     dict= CfgDict.class)
     public Object remove(@RequestParam Long id){
         logger.info("id:{}",id);
         if (ToolUtil.isEmpty(id)) {

@@ -27,6 +27,7 @@ public class StringUtils {
     private static final Pattern SELECT_PATTERN_COMPILE = Pattern.compile("(?si)^.*?select(.*?)from");
 
     private static final Pattern PATTERN_URL_VERSION = Pattern.compile("/.*?/.*?/.*?/(v[0-9]+)");
+    private static  final Pattern PATERN_IP = Pattern.compile("((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)");
     /**
      * 是否为空字符
      */
@@ -211,8 +212,7 @@ public class StringUtils {
     }
 
     public static boolean isIp(String ip) {
-        Pattern pattern = Pattern.compile("((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)");
-        return pattern.matcher(ip).find();
+        return PATERN_IP.matcher(ip).find();
     }
 
     public static String getMethod(Field field) {

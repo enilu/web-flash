@@ -233,8 +233,9 @@ public class MenuNode implements Comparable {
      * @author fengshuonan
      */
     public List<MenuNode> findChildNodes(List<MenuNode> nodeList, Long parentId) {
-        if (nodeList == null && parentId == null)
+        if (nodeList == null && parentId == null) {
             return null;
+        }
         for (Iterator<MenuNode> iterator = nodeList.iterator(); iterator.hasNext(); ) {
             MenuNode node = (MenuNode) iterator.next();
             // 根据传入的某个父节点ID,遍历该父节点的所有子节点

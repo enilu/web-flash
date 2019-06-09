@@ -1,4 +1,4 @@
-package cn.enilu.flash.api.controller.front.officialSite;
+package cn.enilu.flash.api.controller.front.officialsite;
 
 import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.entity.cms.Article;
@@ -6,7 +6,7 @@ import cn.enilu.flash.bean.enumeration.cms.BannerTypeEnum;
 import cn.enilu.flash.bean.enumeration.cms.ChannelEnum;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.offcialSite.Banner;
-import cn.enilu.flash.bean.vo.offcialSite.Product;
+import cn.enilu.flash.bean.vo.offcialSite.Solution;
 import cn.enilu.flash.service.cms.ArticleService;
 import cn.enilu.flash.service.cms.BannerService;
 import cn.enilu.flash.utils.factory.Page;
@@ -21,8 +21,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/offcialSite/product")
-public class OffcialSiteProductController extends BaseController {
+@RequestMapping("/offcialSite/solution")
+public class SolutionController extends BaseController {
     @Autowired
     private BannerService bannerService;
     @Autowired
@@ -35,12 +35,12 @@ public class OffcialSiteProductController extends BaseController {
         Banner banner = bannerService.queryBanner(BannerTypeEnum.SOLUTION.getValue());
         dataMap.put("banner", banner);
 
-        List<Product> products = new ArrayList<>();
-        Page<Article> articlePage = articleService.query(1, 10, ChannelEnum.PRODUCT.getId());
+        List<Solution> solutions = new ArrayList<>();
+        Page<Article> articlePage = articleService.query(1, 10, ChannelEnum.SOLUTION.getId());
         for (Article article : articlePage.getRecords()) {
-            products.add(new Product(article.getId(), article.getTitle(), article.getImg()));
+            solutions.add(new Solution(article.getId(), article.getTitle(), article.getImg()));
         }
-        dataMap.put("productList", products);
+        dataMap.put("solutionList", solutions);
 
         Map map = new HashMap();
         map.put("data", dataMap);

@@ -168,7 +168,7 @@ public class MenuService {
     }
 
     public void menuSetPcode(Menu menu) {
-        if (ToolUtil.isEmpty(menu.getPcode()) || menu.getPcode().equals("0")) {
+        if (ToolUtil.isEmpty(menu.getPcode()) || "0".equals(menu.getPcode())) {
             menu.setPcode("0");
             menu.setPcodes("[0],");
             menu.setLevels(1);

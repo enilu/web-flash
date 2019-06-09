@@ -1,4 +1,4 @@
-package cn.enilu.flash.api.controller.front.officialSite;
+package cn.enilu.flash.api.controller.front.officialsite;
 
 import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.entity.cms.Article;

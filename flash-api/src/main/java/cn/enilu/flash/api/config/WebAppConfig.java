@@ -17,7 +17,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     /**
      * 定义排除拦截路径
      */
-    public String[] EXCLUDE_PATH_PATTERN = {
+    public static String[] EXCLUDE_PATH_PATTERN = {
             //文件上传和下载
             "/file/**",
             //h5端的api，建议生产中将前端h5和后端h5使用的api分拆成两个服务，

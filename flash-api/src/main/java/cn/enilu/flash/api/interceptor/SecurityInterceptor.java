@@ -1,5 +1,6 @@
 package cn.enilu.flash.api.interceptor;
 
+import cn.enilu.flash.api.utils.ApiConstants;
 import cn.enilu.flash.bean.vo.SpringContextHolder;
 import cn.enilu.flash.dao.cache.TokenCache;
 import org.slf4j.Logger;
@@ -30,7 +31,7 @@ public class SecurityInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse httpServletResponse, Object o) throws Exception {
         //如果用户是非登录用户，则拒绝用户请求
         String method = request.getMethod();
-        if("OPTIONS".equals(method)){
+        if(ApiConstants.HTTP_METHOD_OPTIONS.equals(method)){
             return true;
         }
         String token = request.getHeader("Authorization");

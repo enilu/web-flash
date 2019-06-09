@@ -1,4 +1,4 @@
-package cn.enilu.flash.api.controller.front.officialSite;
+package cn.enilu.flash.api.controller.front.officialsite;
 
 import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.entity.cms.Article;
@@ -6,7 +6,7 @@ import cn.enilu.flash.bean.enumeration.cms.BannerTypeEnum;
 import cn.enilu.flash.bean.enumeration.cms.ChannelEnum;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.offcialSite.Banner;
-import cn.enilu.flash.bean.vo.offcialSite.Solution;
+import cn.enilu.flash.bean.vo.offcialSite.News;
 import cn.enilu.flash.service.cms.ArticleService;
 import cn.enilu.flash.service.cms.BannerService;
 import cn.enilu.flash.utils.factory.Page;
@@ -21,28 +21,34 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/offcialSite/solution")
-public class SolutionController extends BaseController {
+@RequestMapping("/offcialSite/news")
+public class NewsController extends BaseController {
     @Autowired
     private BannerService bannerService;
     @Autowired
     private ArticleService articleService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Object index() {
+    public Object list() {
         Map<String, Object> dataMap = new HashMap<>();
-
-        Banner banner = bannerService.queryBanner(BannerTypeEnum.SOLUTION.getValue());
+        Banner banner = bannerService.queryBanner(BannerTypeEnum.NEWS.getValue());
         dataMap.put("banner", banner);
 
-        List<Solution> solutions = new ArrayList<>();
-        Page<Article> articlePage = articleService.query(1, 10, ChannelEnum.SOLUTION.getId());
-        for (Article article : articlePage.getRecords()) {
-            solutions.add(new Solution(article.getId(), article.getTitle(), article.getImg()));
+        List<News> newsList = new ArrayList<>();
+        Page<Article> articlePage = articleService.query(1, 10, ChannelEnum.NEWS.getId());
+
+        for (cn.enilu.flash.bean.entity.cms.Article article : articlePage.getRecords()) {
+            News news = new News();
+            news.setDesc(article.getTitle());
+            news.setUrl("/article?id=" + article.getId());
+            news.setSrc("static/images/icon/user.png");
+            newsList.add(news);
         }
-        dataMap.put("solutionList", solutions);
+
+        dataMap.put("list", newsList);
 
         Map map = new HashMap();
+
         map.put("data", dataMap);
         return Rets.success(map);
 

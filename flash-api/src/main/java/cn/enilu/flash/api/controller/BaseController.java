@@ -1,6 +1,7 @@
 package cn.enilu.flash.api.controller;
 
 
+import cn.enilu.flash.api.utils.ApiConstants;
 import cn.enilu.flash.bean.vo.SpringContextHolder;
 import cn.enilu.flash.dao.cache.TokenCache;
 import cn.enilu.flash.utils.HttpKit;
@@ -64,17 +65,17 @@ public class BaseController {
     public String getRealIp(HttpServletRequest req) {
         String ip = req.getHeader("x-forwarded-for");
 
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        if (ip == null || ip.length() == 0 || ApiConstants.IP_UNKNOW.equalsIgnoreCase(ip)) {
             ip = req.getHeader("Proxy-Client-IP");
         }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        if (ip == null || ip.length() == 0 || ApiConstants.IP_UNKNOW.equalsIgnoreCase(ip)) {
             ip = req.getHeader("WL-Proxy-Client-IP");
         }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        if (ip == null || ip.length() == 0 || ApiConstants.IP_UNKNOW.equalsIgnoreCase(ip)) {
             ip = req.getRemoteAddr();
         }
-        if (ip == null || ip.length() == 0 || "0:0:0:0:0:0:0:1".equals(ip)) {
-            ip = "127.0.0.1";
+        if (ip == null || ip.length() == 0 || ApiConstants.IPV6_LOCALHOST.equals(ip)) {
+            ip =ApiConstants.IPV4_LOCALHOST;
         }
         return ip;
     }

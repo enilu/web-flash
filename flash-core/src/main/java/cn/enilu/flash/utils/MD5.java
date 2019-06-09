@@ -28,20 +28,20 @@ public class MD5 {
     /**
      * 循环次数
      */
-    public final static int hashIterations = 1024;
+    public final static int HASH_ITERATIONS = 1024;
     /**
      * 加盐参数
      */
-    public final static String hashAlgorithmName = "MD5";
+    public final static String HASH_ALGORITHM_NAME = "MD5";
     /**
      * 指定算法为MD5的MessageDigest
      */
-    private static MessageDigest messageDigest = null;
+    private static MessageDigest MESSAGE_DIGEST = null;
 
     /** 初始化messageDigest的加密算法为MD5 */
     static {
         try {
-            messageDigest = MessageDigest.getInstance("MD5");
+            MESSAGE_DIGEST = MessageDigest.getInstance("MD5");
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
         }
@@ -69,8 +69,8 @@ public class MD5 {
      */
 
     public static String getMD5String(byte[] bytes) {
-        messageDigest.update(bytes);
-        return bytesToHex(messageDigest.digest());
+        MESSAGE_DIGEST.update(bytes);
+        return bytesToHex(MESSAGE_DIGEST.digest());
     }
 
     /**
@@ -87,8 +87,8 @@ public class MD5 {
             in = new FileInputStream(file);
             ch = in.getChannel();
             ByteBuffer byteBuffer = ch.map(FileChannel.MapMode.READ_ONLY, 0, file.length());
-            messageDigest.update(byteBuffer);
-            ret = bytesToHex(messageDigest.digest());
+            MESSAGE_DIGEST.update(byteBuffer);
+            ret = bytesToHex(MESSAGE_DIGEST.digest());
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
         } finally {

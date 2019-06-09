@@ -1,4 +1,4 @@
-package cn.enilu.flash.api.controller.front.officialSite;
+package cn.enilu.flash.api.controller.front.officialsite;
 
 import lombok.Data;
 
