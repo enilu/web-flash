@@ -45,10 +45,19 @@ public class DeptContoller extends BaseController {
         if (ToolUtil.isOneEmpty(dept, dept.getSimplename())) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
-
-        //完善pids,根据pid拿到pid的pids
-        deptService.deptSetPids(dept);
-        deptRepository.save(dept);
+        if(dept.getId()!=null){
+            Dept old = deptRepository.findById(dept.getId()).get();
+            old.setPid(dept.getPid());
+            old.setSimplename(dept.getSimplename());
+            old.setFullname(dept.getFullname());
+            old.setNum(dept.getNum());
+            old.setTips(dept.getTips());
+            deptService.deptSetPids(old);
+            deptRepository.save(old);
+        }else {
+            deptService.deptSetPids(dept);
+            deptRepository.save(dept);
+        }
         return Rets.success();
     }
     @RequestMapping(method = RequestMethod.DELETE)
