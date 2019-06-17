@@ -280,6 +280,14 @@
                 <artifactId>jxls-poi</artifactId>
                 <version>1.0.9</version>
             </dependency>
+
+            <!-- message  start-->
+            <dependency>
+                <groupId>com.github.qcloudsms</groupId>
+                <artifactId>qcloudsms</artifactId>
+                <version>1.0.6</version>
+            </dependency>
+            <!-- message end-->
         </dependencies>
 
     </dependencyManagement>

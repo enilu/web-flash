@@ -22,6 +22,10 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
 
         <!-- entiy start-->
         <dependency>
@@ -109,11 +113,19 @@
             <artifactId>jxls-poi</artifactId>
         </dependency>
 
+        <!-- message  start-->
+        <dependency>
+            <groupId>com.github.qcloudsms</groupId>
+            <artifactId>qcloudsms</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+        <!-- message end-->
+
         <!--代码生成-->
         <dependency>
             <groupId>cn.enilu</groupId>
             <artifactId>sbvue-coder</artifactId>
-            <version>1.0</version>
+            <version>1.1</version>
         </dependency>
 
         <dependency>

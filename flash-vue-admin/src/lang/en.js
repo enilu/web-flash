@@ -21,7 +21,11 @@ export default {
     contactsMgr:'Contacts',
     channelMgr:'Channel',
     druid:'Monitor',
-    swagger:'Docs'
+    swagger:'Docs',
+    messageMgr:'Message',
+    historyMessage:'History',
+    messageTemplate:'Template',
+    messageSender:'Sender'
   },
   navbar: {
     logOut: 'Log Out',

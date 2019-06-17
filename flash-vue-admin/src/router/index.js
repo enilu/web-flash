@@ -219,6 +219,38 @@ export const asyncRouterMap = [
       }
     ]
   },
+  {
+    path: '/message',
+    component: Layout,
+    redirect: '#',
+    name: 'messageMgr',
+    alwaysShow: true,
+    meta: {
+      roles: ['administrator', 'developer'],
+      title: 'messageMgr',
+      icon: 'message'
+    },
+    children: [
+      {
+        path: 'history',
+        name: 'message',
+        component:() => import('@/views/message/message/index'),
+        meta: { title: 'historyMessage' }
+      },
+      {
+        path: 'template',
+        name: 'template',
+        component:() => import('@/views/message/template/index'),
+        meta: { title: 'messageTemplate' }
+      },
+      {
+        path: 'sender',
+        name: 'Message Sender',
+        component: () => import('@/views/message/sender/index'),
+        meta: { title: 'messageSender' }
+      }
+    ]
+  },
   {path: '/404', component: () => import('@/views/404'), hidden: true}
 ];
 

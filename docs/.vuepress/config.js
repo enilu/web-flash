@@ -68,7 +68,8 @@ module.exports = {
                     '/feature/permissionMgrVue',
                     '/feature/monitor',
                     '/feature/sysConfig',
-                    '/feature/fileMgr'
+                    '/feature/fileMgr',
+                    '/feature/messageCenter'
                 ]
             },{
                 title: '进阶',

@@ -53,8 +53,11 @@ INSERT INTO `t_cms_contacts` (`id`, `create_by`, `create_time`, `modify_by`, `mo
 -- ----------------------------
 -- Records of t_sys_cfg
 -- ----------------------------
-INSERT INTO `t_sys_cfg` (`id`, `cfg_name`, `cfg_value`, `cfg_desc`, `create_time`, `create_by`, `modify_time`, `modify_by`) VALUES ('1', 'system.app.name', 'web-flash', '应用名称update by 2019-03-27 11:47:04', null, null, '2019-04-15 21:36:07', '1');
-INSERT INTO `t_sys_cfg` (`id`, `cfg_name`, `cfg_value`, `cfg_desc`, `create_time`, `create_by`, `modify_time`, `modify_by`) VALUES ('2', 'system.file.upload.path', 'D:\\data\\web-flash\\runtime\\upload', '系统默认上传文件路径', null, null, '2019-04-15 21:36:17', '1');
+INSERT INTO `t_sys_cfg` VALUES ('1', null, null, '1', '2019-04-15 21:36:07', '应用名称update by 2019-03-27 11:47:04', 'system.app.name', 'web-flash');
+INSERT INTO `t_sys_cfg` VALUES ('2', null, null, '1', '2019-04-15 21:36:17', '系统默认上传文件路径', 'system.file.upload.path', 'D:\\data\\web-flash\\runtime\\upload');
+INSERT INTO `t_sys_cfg` VALUES ('3', null, null, '1', '2019-04-15 21:36:17', '腾讯sms接口appid', 'api.tencent.sms.appid', '1400219425');
+INSERT INTO `t_sys_cfg` VALUES ('4', null, null, '1', '2019-04-15 21:36:17', '腾讯sms接口appkey', 'api.tencent.sms.appkey', '5f71ed5325f3b292946530a1773e997a');
+INSERT INTO `t_sys_cfg` VALUES ('5', null, null, '1', '2019-04-15 21:36:17', '腾讯sms接口签名参数', 'api.tencent.sms.sign', '需要去申请咯');
 
 -- ----------------------------
 -- Records of t_sys_dept
@@ -187,6 +190,11 @@ INSERT INTO `t_sys_menu` VALUES ('56', '1', '2019-03-11 22:30:17', '1', '2019-03
 INSERT INTO `t_sys_menu` VALUES ('3', null, null, '47', '2019-06-02 10:09:09', 'operationMgr', 'null', '1', null, '1', '运维管理', '3', '0', '[0],', '1', null, '/optionMgr');
 INSERT INTO `t_sys_menu` VALUES ('64', '47', '2019-06-02 10:10:20', '47', '2019-06-02 10:10:20', 'druid', '', '1', null, '2', '数据库管理', '1', 'operationMgr', '[0],[operationMgr],', '1', null, '/druid');
 INSERT INTO `t_sys_menu` VALUES ('65', '47', '2019-06-02 10:10:20', '47', '2019-06-02 10:10:20', 'swagger', null, '1', null, '2', '接口文档', '2', 'operationMgr', '[0],[operationMgr],', '1', null, '/swagger');
+INSERT INTO `t_sys_menu` VALUES ('66', '1', '2019-06-10 21:26:52', '1', '2019-06-10 21:26:52', 'messageMgr', null, '1', null, '1', '消息管理', '5', '0', '[0],', '1', null, '/message');
+INSERT INTO `t_sys_menu` VALUES ('67', '1', '2019-06-10 21:27:34', '1', '2019-06-10 21:27:34', 'historyMessage', null, '1', null, '2', '历史消息', '1', 'messageMgr', '[0],[messageMgr],', '1', null, '/history');
+INSERT INTO `t_sys_menu` VALUES ('68', '1', '2019-06-10 21:27:56', '1', '2019-06-10 21:27:56', ' messageTemplate', null, '1', null, '2', '消息模板', '2', 'messageMgr', '[0],[messageMgr],', '1', null, '/template');
+INSERT INTO `t_sys_menu` VALUES ('69', '1', '2019-06-10 21:28:21', '1', '2019-06-10 21:28:21', 'messageSender', null, '1', null, '2', '消息发送者', '3', 'messageMgr', '[0],[messageMgr],', '1', null, '/sender');
+
 -- ----------------------------
 -- Records of t_sys_notice
 -- ----------------------------
@@ -201,79 +209,83 @@ INSERT INTO `t_sys_operation_log` (`id`, `logtype`, `logname`, `userid`, `classn
 -- ----------------------------
 -- Records of t_sys_relation
 -- ----------------------------
+INSERT INTO `t_sys_relation` VALUES ('72', '65', '1');
+INSERT INTO `t_sys_relation` VALUES ('71', '64', '1');
+INSERT INTO `t_sys_relation` VALUES ('70', '63', '1');
+INSERT INTO `t_sys_relation` VALUES ('69', '62', '1');
+INSERT INTO `t_sys_relation` VALUES ('68', '59', '1');
+INSERT INTO `t_sys_relation` VALUES ('67', '61', '1');
+INSERT INTO `t_sys_relation` VALUES ('66', '60', '1');
+INSERT INTO `t_sys_relation` VALUES ('65', '58', '1');
+INSERT INTO `t_sys_relation` VALUES ('64', '3', '1');
+INSERT INTO `t_sys_relation` VALUES ('63', '55', '1');
+INSERT INTO `t_sys_relation` VALUES ('62', '54', '1');
+INSERT INTO `t_sys_relation` VALUES ('61', '53', '1');
+INSERT INTO `t_sys_relation` VALUES ('60', '56', '1');
+INSERT INTO `t_sys_relation` VALUES ('59', '52', '1');
+INSERT INTO `t_sys_relation` VALUES ('58', '51', '1');
+INSERT INTO `t_sys_relation` VALUES ('57', '2', '1');
+INSERT INTO `t_sys_relation` VALUES ('56', '57', '1');
+INSERT INTO `t_sys_relation` VALUES ('55', '50', '1');
+INSERT INTO `t_sys_relation` VALUES ('54', '49', '1');
+INSERT INTO `t_sys_relation` VALUES ('53', '48', '1');
+INSERT INTO `t_sys_relation` VALUES ('52', '47', '1');
+INSERT INTO `t_sys_relation` VALUES ('51', '46', '1');
+INSERT INTO `t_sys_relation` VALUES ('50', '45', '1');
+INSERT INTO `t_sys_relation` VALUES ('49', '44', '1');
+INSERT INTO `t_sys_relation` VALUES ('48', '43', '1');
+INSERT INTO `t_sys_relation` VALUES ('47', '35', '1');
+INSERT INTO `t_sys_relation` VALUES ('46', '34', '1');
+INSERT INTO `t_sys_relation` VALUES ('45', '33', '1');
+INSERT INTO `t_sys_relation` VALUES ('44', '27', '1');
+INSERT INTO `t_sys_relation` VALUES ('43', '26', '1');
+INSERT INTO `t_sys_relation` VALUES ('42', '25', '1');
+INSERT INTO `t_sys_relation` VALUES ('41', '22', '1');
+INSERT INTO `t_sys_relation` VALUES ('40', '36', '1');
+INSERT INTO `t_sys_relation` VALUES ('39', '32', '1');
+INSERT INTO `t_sys_relation` VALUES ('38', '31', '1');
+INSERT INTO `t_sys_relation` VALUES ('37', '30', '1');
+INSERT INTO `t_sys_relation` VALUES ('36', '24', '1');
+INSERT INTO `t_sys_relation` VALUES ('35', '23', '1');
+INSERT INTO `t_sys_relation` VALUES ('34', '21', '1');
+INSERT INTO `t_sys_relation` VALUES ('33', '29', '1');
+INSERT INTO `t_sys_relation` VALUES ('32', '28', '1');
+INSERT INTO `t_sys_relation` VALUES ('31', '20', '1');
+INSERT INTO `t_sys_relation` VALUES ('30', '19', '1');
+INSERT INTO `t_sys_relation` VALUES ('29', '18', '1');
+INSERT INTO `t_sys_relation` VALUES ('28', '17', '1');
+INSERT INTO `t_sys_relation` VALUES ('27', '39', '1');
+INSERT INTO `t_sys_relation` VALUES ('26', '38', '1');
+INSERT INTO `t_sys_relation` VALUES ('25', '37', '1');
+INSERT INTO `t_sys_relation` VALUES ('24', '16', '1');
+INSERT INTO `t_sys_relation` VALUES ('23', '15', '1');
+INSERT INTO `t_sys_relation` VALUES ('22', '14', '1');
+INSERT INTO `t_sys_relation` VALUES ('21', '13', '1');
+INSERT INTO `t_sys_relation` VALUES ('20', '12', '1');
+INSERT INTO `t_sys_relation` VALUES ('19', '42', '1');
+INSERT INTO `t_sys_relation` VALUES ('18', '41', '1');
+INSERT INTO `t_sys_relation` VALUES ('17', '40', '1');
+INSERT INTO `t_sys_relation` VALUES ('16', '11', '1');
+INSERT INTO `t_sys_relation` VALUES ('15', '10', '1');
+INSERT INTO `t_sys_relation` VALUES ('14', '9', '1');
+INSERT INTO `t_sys_relation` VALUES ('13', '8', '1');
+INSERT INTO `t_sys_relation` VALUES ('12', '7', '1');
+INSERT INTO `t_sys_relation` VALUES ('11', '6', '1');
+INSERT INTO `t_sys_relation` VALUES ('10', '5', '1');
+INSERT INTO `t_sys_relation` VALUES ('9', '4', '1');
+INSERT INTO `t_sys_relation` VALUES ('8', '1', '1');
+INSERT INTO `t_sys_relation` VALUES ('1', '2', '2');
+INSERT INTO `t_sys_relation` VALUES ('2', '51', '2');
+INSERT INTO `t_sys_relation` VALUES ('3', '52', '2');
+INSERT INTO `t_sys_relation` VALUES ('4', '53', '2');
+INSERT INTO `t_sys_relation` VALUES ('5', '54', '2');
+INSERT INTO `t_sys_relation` VALUES ('6', '55', '2');
+INSERT INTO `t_sys_relation` VALUES ('7', '56', '2');
+INSERT INTO `t_sys_relation` VALUES ('73', '66', '1');
+INSERT INTO `t_sys_relation` VALUES ('74', '67', '1');
+INSERT INTO `t_sys_relation` VALUES ('75', '68', '1');
+INSERT INTO `t_sys_relation` VALUES ('76', '69', '1');
 
-INSERT INTO `t_sys_relation` VALUES ('1', '1', '1');
-INSERT INTO `t_sys_relation` VALUES ('2', '2', '1');
-INSERT INTO `t_sys_relation` VALUES ('3', '3', '1');
-INSERT INTO `t_sys_relation` VALUES ('4', '4', '1');
-INSERT INTO `t_sys_relation` VALUES ('5', '5', '1');
-INSERT INTO `t_sys_relation` VALUES ('6', '6', '1');
-INSERT INTO `t_sys_relation` VALUES ('7', '7', '1');
-INSERT INTO `t_sys_relation` VALUES ('8', '8', '1');
-INSERT INTO `t_sys_relation` VALUES ('9', '9', '1');
-INSERT INTO `t_sys_relation` VALUES ('10', '10', '1');
-INSERT INTO `t_sys_relation` VALUES ('11', '11', '1');
-INSERT INTO `t_sys_relation` VALUES ('12', '12', '1');
-INSERT INTO `t_sys_relation` VALUES ('13', '13', '1');
-INSERT INTO `t_sys_relation` VALUES ('14', '14', '1');
-INSERT INTO `t_sys_relation` VALUES ('15', '15', '1');
-INSERT INTO `t_sys_relation` VALUES ('16', '16', '1');
-INSERT INTO `t_sys_relation` VALUES ('17', '17', '1');
-INSERT INTO `t_sys_relation` VALUES ('18', '18', '1');
-INSERT INTO `t_sys_relation` VALUES ('19', '19', '1');
-INSERT INTO `t_sys_relation` VALUES ('20', '20', '1');
-INSERT INTO `t_sys_relation` VALUES ('21', '21', '1');
-INSERT INTO `t_sys_relation` VALUES ('22', '22', '1');
-INSERT INTO `t_sys_relation` VALUES ('23', '23', '1');
-INSERT INTO `t_sys_relation` VALUES ('24', '24', '1');
-INSERT INTO `t_sys_relation` VALUES ('25', '25', '1');
-INSERT INTO `t_sys_relation` VALUES ('26', '26', '1');
-INSERT INTO `t_sys_relation` VALUES ('27', '27', '1');
-INSERT INTO `t_sys_relation` VALUES ('28', '28', '1');
-INSERT INTO `t_sys_relation` VALUES ('29', '29', '1');
-INSERT INTO `t_sys_relation` VALUES ('30', '30', '1');
-INSERT INTO `t_sys_relation` VALUES ('31', '31', '1');
-INSERT INTO `t_sys_relation` VALUES ('32', '32', '1');
-INSERT INTO `t_sys_relation` VALUES ('33', '33', '1');
-INSERT INTO `t_sys_relation` VALUES ('34', '34', '1');
-INSERT INTO `t_sys_relation` VALUES ('35', '35', '1');
-INSERT INTO `t_sys_relation` VALUES ('36', '36', '1');
-INSERT INTO `t_sys_relation` VALUES ('37', '37', '1');
-INSERT INTO `t_sys_relation` VALUES ('38', '38', '1');
-INSERT INTO `t_sys_relation` VALUES ('39', '39', '1');
-INSERT INTO `t_sys_relation` VALUES ('40', '40', '1');
-INSERT INTO `t_sys_relation` VALUES ('41', '41', '1');
-INSERT INTO `t_sys_relation` VALUES ('42', '42', '1');
-INSERT INTO `t_sys_relation` VALUES ('43', '43', '1');
-INSERT INTO `t_sys_relation` VALUES ('44', '44', '1');
-INSERT INTO `t_sys_relation` VALUES ('45', '45', '1');
-INSERT INTO `t_sys_relation` VALUES ('46', '46', '1');
-INSERT INTO `t_sys_relation` VALUES ('47', '47', '1');
-INSERT INTO `t_sys_relation` VALUES ('48', '48', '1');
-INSERT INTO `t_sys_relation` VALUES ('49', '49', '1');
-INSERT INTO `t_sys_relation` VALUES ('50', '50', '1');
-INSERT INTO `t_sys_relation` VALUES ('51', '51', '1');
-INSERT INTO `t_sys_relation` VALUES ('52', '52', '1');
-INSERT INTO `t_sys_relation` VALUES ('53', '53', '1');
-INSERT INTO `t_sys_relation` VALUES ('54', '54', '1');
-INSERT INTO `t_sys_relation` VALUES ('55', '55', '1');
-INSERT INTO `t_sys_relation` VALUES ('56', '56', '1');
-INSERT INTO `t_sys_relation` VALUES ('57', '57', '1');
-INSERT INTO `t_sys_relation` VALUES ('58', '58', '1');
-INSERT INTO `t_sys_relation` VALUES ('59', '59', '1');
-INSERT INTO `t_sys_relation` VALUES ('60', '60', '1');
-INSERT INTO `t_sys_relation` VALUES ('61', '61', '1');
-INSERT INTO `t_sys_relation` VALUES ('62', '62', '1');
-INSERT INTO `t_sys_relation` VALUES ('63', '63', '1');
-INSERT INTO `t_sys_relation` VALUES ('64', '64', '1');
-INSERT INTO `t_sys_relation` VALUES ('65', '65', '1');
-INSERT INTO `t_sys_relation` VALUES ('66', '2', '2');
-INSERT INTO `t_sys_relation` VALUES ('67', '51', '2');
-INSERT INTO `t_sys_relation` VALUES ('68', '52', '2');
-INSERT INTO `t_sys_relation` VALUES ('69', '53', '2');
-INSERT INTO `t_sys_relation` VALUES ('70', '54', '2');
-INSERT INTO `t_sys_relation` VALUES ('71', '55', '2');
-INSERT INTO `t_sys_relation` VALUES ('72', '56', '2');
 
 -- ----------------------------
 -- Records of t_sys_role
@@ -303,6 +315,21 @@ INSERT INTO `t_sys_user` VALUES ('2', null, '2018-09-13 17:21:02', '1', '2019-01
 -- ----------------------------
 INSERT INTO `t_test_boy` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `age`, `birthday`, `has_girl_friend`, `name`) VALUES ('1', null, null, null, null, '18', '2000-01-01', '1', '张三');
 
+
 -- ----------------------------
--- Records of t_test_girl
+-- Records of t_message_sender
 -- ----------------------------
+INSERT INTO `t_message_sender` VALUES ('1', null, null, null, null, 'tencentSmsSender', ' 腾讯短信服务', null);
+INSERT INTO `t_message_sender` VALUES ('2', null, null, null, null, 'defaultEmailSender', '默认邮件发送器', null);
+
+-- ----------------------------
+-- Records of t_message_template
+-- ----------------------------
+INSERT INTO `t_message_template` VALUES ('1', null, null, null, null, 'REGISTER_CODE', '注册页面，点击获取验证码', '【腾讯云】校验码{1}，请于5分钟内完成验证，如非本人操作请忽略本短信。', '1', '注册验证码', null);
+INSERT INTO `t_message_template` VALUES ('2', null, null, null, null, 'EMAIL_TEST', '测试发送', '你好:{1},欢迎使用{2}', '2', '测试邮件', null);
+INSERT INTO `t_message_template` VALUES ('3', null, null, null, null, 'EMAIL_HTML_TEMPLATE_TEST', '测试发送模板邮件', '你好<strong>${userName}</strong>欢迎使用<font color=\"red\">${appName}</font>,这是html模板邮件', '2', '测试发送模板邮件', null);
+
+-- ----------------------------
+-- Records of t_message
+-- ----------------------------
+INSERT INTO `t_message` VALUES ('1', null, '2019-06-10 21:20:16', null, null, '【腾讯云】校验码1032，请于5分钟内完成验证，如非本人操作请忽略本短信。', '15021592814', '2', 'REGISTER_CODE', '0');

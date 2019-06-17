@@ -12,7 +12,6 @@ import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.node.Node;
 import cn.enilu.flash.bean.vo.node.ZTreeNode;
 import cn.enilu.flash.dao.system.RoleRepository;
-import cn.enilu.flash.dao.system.UserRepository;
 import cn.enilu.flash.service.system.LogObjectHolder;
 import cn.enilu.flash.service.system.RoleService;
 import cn.enilu.flash.service.system.UserService;
@@ -37,9 +36,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.List;
 
-/**
- * Created by enilu on 18/9/16.
- */
 @RestController
 @RequestMapping("/role")
 public class RoleController extends BaseController {
@@ -49,12 +45,9 @@ public class RoleController extends BaseController {
     @Autowired
     private RoleService roleService;
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
     private UserService userService;
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public Object list(String name){
-        logger.info("role:{}",name);
         List roles = null;
         if(Strings.isNullOrEmpty(name)) {
             roles = (List) roleRepository.findAll();

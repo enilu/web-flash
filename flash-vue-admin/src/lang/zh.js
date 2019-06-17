@@ -21,7 +21,11 @@ export default {
     bussinessLog: '业务日志',
     configMgr: '参数管理',
     druid:'监控管理',
-    swagger:'接口文档'
+    swagger:'接口文档',
+    messageMgr:'消息管理',
+    historyMessage:'历史消息',
+    messageTemplate:'消息模板',
+    messageSender:'消息发送者'
   },
   navbar: {
     logOut: '退出登录',

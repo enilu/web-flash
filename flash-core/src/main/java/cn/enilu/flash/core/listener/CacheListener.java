@@ -22,7 +22,6 @@ public class CacheListener implements CommandLineRunner {
     private ConfigCache configCache;
     @Autowired
     private DictCache dictCache;
-
     private Logger logger = LoggerFactory.getLogger(CacheListener.class);
 
     public void loadCache() {
