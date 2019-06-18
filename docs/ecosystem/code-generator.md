@@ -64,16 +64,21 @@ usage: Generator [options] [all|entity|service|controller|view]
 
 测试实体Boy内容如下
 ```java
-package cn.enilu.guns.bean.entity.test;
-import cn.enilu.guns.bean.entity.BaseEntity;
+package cn.enilu.flash.bean.entity.test;
+
+import cn.enilu.flash.bean.entity.BaseEntity;
 import lombok.Data;
 import org.hibernate.annotations.Table;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+/**
+ * 该实体用于测试生成代码
+ */
 @Entity(name="t_test_boy")
 @Table(appliesTo = "t_test_boy",comment = "男孩")
 @Data
+
 public class Boy extends BaseEntity {
     @Column(columnDefinition = "VARCHAR(32) COMMENT '姓名'")
     private String name;
@@ -84,6 +89,7 @@ public class Boy extends BaseEntity {
     @Column(name = "has_girl_friend",columnDefinition = "TINYINT COMMENT '是否有女朋友'")
     private Boolean hasGirFriend;
 }
+
 ```
 注意如果要根据实体生成代码,实体中的@Table注解要配置为@org.hibernate.annotations.Table而不是能配置为：@javax.persistence.Table,因为前者可以配置注释comment
 

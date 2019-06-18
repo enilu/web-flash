@@ -72,7 +72,10 @@ public class MenuController extends BaseController {
         if (ToolUtil.isEmpty(id)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
-
+        //演示环境不允许删除初始化的菜单
+        if(id.intValue()<70){
+            return Rets.failure("演示环境不允许删除初始菜单");
+        }
         //缓存菜单的名称
         LogObjectHolder.me().set(ConstantFactory.me().getMenuName(id));
         menuService.delMenuContainSubMenus(id);

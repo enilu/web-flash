@@ -231,13 +231,17 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          console.log(id)
           remove(id).then(response => {
             this.$message({
               message: '删除成功',
               type: 'success'
             })
             this.fetchData()
+          }).catch( err=>{
+            this.$notify.error({
+              title: '错误',
+              message:err,
+            })
           })
         }).catch(() => {
         })

@@ -74,6 +74,9 @@ public class RoleController extends BaseController {
         if (ToolUtil.isEmpty(roleId)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
+        if(roleId.intValue()<2){
+            return Rets.failure("不能删除初始角色");
+        }
 
         //不能删除超级管理员角色
         if(roleId.equals(Const.ADMIN_ROLE_ID)){
