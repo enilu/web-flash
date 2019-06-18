@@ -46,3 +46,6 @@ messageService.sendTplEmail("EMAIL_HTML_TEMPLATE_TEST", "fromAccount@qq.com", "t
 "测试附件.txt",new FileSystemResource(new File("d:\\test.txt")),
 Maps.newHashMap("userName", "李四", "appName", "WEB-FLASH"));
 ```
+
+
+**PS** 这个功能大部分代码是用代码生成器生成的，如果你还没有用过，可以试试这个[代码生成器](../ecosystem/code-generator.md)
