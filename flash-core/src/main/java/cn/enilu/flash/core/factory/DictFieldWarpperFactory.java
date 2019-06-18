@@ -23,11 +23,17 @@ public class DictFieldWarpperFactory {
             return result;
         } catch (Exception e) {
             try {
-                Method method = IConstantFactory.class.getMethod(methodName, Integer.class);
-                Object result = method.invoke(me, Integer.parseInt(field.toString()));
+                Method method = IConstantFactory.class.getMethod(methodName, Long.class);
+                Object result = method.invoke(me, Long.valueOf(field.toString()));
                 return result;
             } catch (Exception e1) {
-                throw new GunsException(BizExceptionEnum.ERROR_WRAPPER_FIELD);
+                try {
+                    Method method = IConstantFactory.class.getMethod(methodName, Integer.class);
+                    Object result = method.invoke(me, Integer.parseInt(field.toString()));
+                    return result;
+                } catch (Exception e2) {
+                    throw new GunsException(BizExceptionEnum.ERROR_WRAPPER_FIELD);
+                }
             }
         }
     }
