@@ -216,6 +216,8 @@ public class MessageService {
             return null;
         }
     }
-
+    public void clear() {
+        messageRepository.deleteAllInBatch();
+    }
 }
 

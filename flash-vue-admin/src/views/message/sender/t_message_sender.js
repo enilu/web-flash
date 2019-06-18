@@ -152,13 +152,20 @@ export default {
           type: 'warning'
         }).then(() => {
           remove(id).then(response => {
-            this.$message({
-              message: this.$t('common.optionSuccess'),
-              type: 'success'
+              console.log(response)
+              this.$message({
+                message: this.$t('common.optionSuccess'),
+                type: 'success'
+              })
+              this.fetchData()
+
+          }).catch(err => {
+            console.log(err)
+            this.$notify.error({
+              title: '错误',
+              message:err,
             })
-            this.fetchData()
           })
-        }).catch(() => {
         })
       }
     }

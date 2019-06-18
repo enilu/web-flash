@@ -51,7 +51,13 @@ public class MessagesenderController {
 		if (ToolUtil.isEmpty(id)) {
 			throw new GunsException(BizExceptionEnum.REQUEST_NULL);
 		}
-		messagesenderService.delete(id);
-		return Rets.success();
+
+		Boolean result = messagesenderService.delete(id);
+		if(result){
+			return Rets.success();
+		}else{
+			return Rets.failure("有模板使用该发送器，无法删除");
+		}
+
 	}
 }

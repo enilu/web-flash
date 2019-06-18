@@ -25,7 +25,7 @@ export default {
     messageMgr:'消息管理',
     historyMessage:'历史消息',
     messageTemplate:'消息模板',
-    messageSender:'消息发送者'
+    messageSender:'消息发送器'
   },
   navbar: {
     logOut: '退出登录',

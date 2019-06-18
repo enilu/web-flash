@@ -1,4 +1,4 @@
-import { remove, getList, save } from '@/api/message/message'
+import { clear, getList, save } from '@/api/message/message'
 
 export default {
   data() {
@@ -68,6 +68,21 @@ export default {
     changeSize(limit) {
       this.listQuery.limit = limit
       this.fetchData()
+    },
+    clear(){
+      this.$confirm('确认清楚所有历史消息?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+         clear().then(response => {
+           this.fetchData()
+           this.$message({
+             type: 'success',
+             message: '清楚成功!'
+           });
+         })
+      })
     }
 
   }

@@ -3,7 +3,7 @@
         <div class="block">
             <el-row>
                 <el-col :span="24">
-                    <el-button type="danger" icon="el-icon-delete" @click.native="remove">{{ $t('button.clear') }}</el-button>
+                    <el-button type="danger" icon="el-icon-delete" @click.native="clear">{{ $t('button.clear') }}</el-button>
                 </el-col>
             </el-row>
         </div>

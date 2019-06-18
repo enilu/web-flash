@@ -2,7 +2,9 @@ package cn.enilu.flash.service.message;
 
 
 import cn.enilu.flash.bean.entity.message.MessageSender;
+import cn.enilu.flash.bean.entity.message.MessageTemplate;
 import cn.enilu.flash.dao.message.MessagesenderRepository;
+import cn.enilu.flash.dao.message.MessagetemplateRepository;
 import cn.enilu.flash.utils.StringUtils;
 import cn.enilu.flash.utils.factory.Page;
 
@@ -28,12 +30,20 @@ public class MessagesenderService {
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     private MessagesenderRepository messageSenderRepository;
+    @Autowired
+    private MessagetemplateRepository messagetemplateRepository;
 
     public void save(MessageSender messageSender){
         messageSenderRepository.save(messageSender);
     }
-    public void delete(Long id){
-        messageSenderRepository.deleteById(id);
+    public boolean  delete(Long id){
+        List<MessageTemplate> templateList = messagetemplateRepository.findByIdMessageSender(id);
+        if(templateList.isEmpty()) {
+            messageSenderRepository.deleteById(id);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public Page<MessageSender> findPage(Page<MessageSender> page, HashMap<String, String> params) {

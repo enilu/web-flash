@@ -17,12 +17,9 @@ export function save(params) {
     })
 }
 
-export function remove(id) {
+export function clear() {
     return request({
         url: '/message',
-        method: 'delete',
-        params: {
-            id: id
-        }
+        method: 'delete'
     })
 }
