@@ -1,0 +1,13 @@
+package ${packageName};
+
+
+import ${table.EntityFullClassName};
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+
+public interface ${table.RepositoryClassName} extends PagingAndSortingRepository<${table.EntityClassName},Long>
+    , JpaRepository<${table.EntityClassName},Long>, JpaSpecificationExecutor<${table.EntityClassName}>{
+}
+

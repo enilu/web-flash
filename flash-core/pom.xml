@@ -122,10 +122,15 @@
         <!-- message end-->
 
         <!--代码生成-->
+        <!--<dependency>-->
+            <!--<groupId>cn.enilu</groupId>-->
+            <!--<artifactId>sbvue-coder</artifactId>-->
+            <!--<version>1.1</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>cn.enilu</groupId>
-            <artifactId>sbvue-coder</artifactId>
-            <version>1.1</version>
+            <artifactId>flash-generator</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
 
         <dependency>

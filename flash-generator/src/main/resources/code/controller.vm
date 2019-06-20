@@ -1,0 +1,52 @@
+package ${packageName};
+
+import ${table.EntityFullClassName};
+import ${table.ServiceFullClassName};
+
+import ${table.basePackageName}.bean.core.BussinessLog;
+import ${table.basePackageName}.bean.constant.factory.PageFactory;
+import ${table.basePackageName}.bean.dictmap.CommonDict;
+import ${table.basePackageName}.bean.enumeration.BizExceptionEnum;
+import ${table.basePackageName}.bean.exception.GunsException;
+import ${table.basePackageName}.bean.vo.front.Rets;
+
+import ${table.basePackageName}.utils.Maps;
+import ${table.basePackageName}.utils.ToolUtil;
+import ${table.basePackageName}.utils.factory.Page;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("${table.UriPrefix}")
+public class ${table.ControllerClassName} {
+	private  Logger logger = LoggerFactory.getLogger(getClass());
+	@Autowired
+	private ${table.ServiceClassName} ${table.ServiceInstanceName};
+
+	@RequestMapping(value = "/list",method = RequestMethod.GET)
+	public Object list() {
+	Page<${table.EntityClassName}> page = new PageFactory<${table.EntityClassName}>().defaultPage();
+		page = ${table.ServiceInstanceName}.findPage(page, Maps.newHashMap());
+		page.setRecords(page.getRecords());
+		return Rets.success(page);
+	}
+	@RequestMapping(method = RequestMethod.POST)
+	@BussinessLog(value = "编辑${table.Label}", key = "name",dict= CommonDict.class)
+	public Object save(@ModelAttribute ${table.EntityClassName} ${table.EntityInstanceName}){
+		${table.ServiceInstanceName}.save(${table.EntityInstanceName});
+		return Rets.success();
+	}
+	@RequestMapping(method = RequestMethod.DELETE)
+	@BussinessLog(value = "删除${table.Label}", key = "id",dict= CommonDict.class)
+	public Object remove(Long id){
+		if (ToolUtil.isEmpty(id)) {
+			throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+		}
+		${table.ServiceInstanceName}.delete(id);
+		return Rets.success();
+	}
+}
