@@ -73,6 +73,7 @@ public class UserService {
             @Override
             public Predicate toPredicate(Root<User> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
                 List<Predicate> list = new ArrayList<Predicate>();
+                list.add(criteriaBuilder.greaterThan(root.get("status").as(Integer.class),0));
                 if(params.get("deptid") !=null && !Strings.isNullOrEmpty(params.get("deptid").toString())){
                     list.add(criteriaBuilder.equal(root.get("deptid").as(String.class), params.get("deptid").toString()));
                 }

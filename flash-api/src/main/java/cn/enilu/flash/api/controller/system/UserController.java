@@ -86,6 +86,9 @@ public class UserController extends BaseController {
         if (ToolUtil.isEmpty(userId)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
+        if(userId.intValue()<=2){
+            return Rets.failure("不能删除初始用户");
+        }
         User user = userService.get(userId);
         user.setStatus(ManagerStatus.DELETED.getCode());
         userRepository.save(user);
