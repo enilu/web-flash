@@ -32,7 +32,7 @@ mvn install
 ```json
 {
   "codeConfig": {
-    "type": "cn.enilu.sbvue.code.CodeConfig",
+    "type": "CodeConfig",
     "fields": {
       entityModel: "flash-core",
       daoModel: "flash-core",

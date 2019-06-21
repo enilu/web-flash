@@ -1,4 +1,4 @@
-package cn.enilu.sbvue.code;
+package cn.enilu.flash.code;
 
 public class CodeConfig {
     private String entityModel = "guns-entity";

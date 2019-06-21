@@ -12,9 +12,7 @@
 ```json
 {
   "codeConfig": {
-    "type": "cn.enilu.sbvue.code.CodeConfig",
-    "fields": {
-      entityModel: "flash-core",
+    "type": CCodeConfig   entityModel: "flash-core",
       daoModel: "flash-core",
       serviceModel: "flash-core",
       controllerModel: "flash-api",

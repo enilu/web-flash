@@ -1,4 +1,4 @@
-package cn.enilu.sbvue.code;
+package cn.enilu.flash.code;
 
 import org.nutz.ioc.Ioc;
 
