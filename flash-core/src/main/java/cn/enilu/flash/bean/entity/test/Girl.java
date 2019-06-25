@@ -18,6 +18,6 @@ public class Girl extends BaseEntity {
     private Integer age;
     @Column(columnDefinition = "DATE COMMENT '生日'")
     private Date birthday;
-    @Column(name = "has_boy_friend",columnDefinition = "TINYINT COMMENT '是否由男朋友'")
+    @Column(name = "has_boy_friend",columnDefinition = "TINYINT COMMENT '是否有男朋友'")
     private Boolean hasBoyFriend;
 }
