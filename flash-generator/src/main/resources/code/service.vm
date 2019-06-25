@@ -1,0 +1,61 @@
+package ${packageName};
+
+
+import ${table.EntityFullClassName};
+import ${table.RepositoryFullClassName};
+import ${table.basePackageName}.dao.${table.modPackageName}.${table.EntityClassName}Repository;
+import ${table.basePackageName}.utils.StringUtils;
+import ${table.basePackageName}.utils.factory.Page;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+@Service
+public class ${table.ServiceClassName} {
+    private Logger logger = LoggerFactory.getLogger(getClass());
+    @Autowired
+    private ${table.RepositoryClassName} ${table.entityNameLowerFirstChar}Repository;
+
+    public void save(${table.EntityClassName} ${table.entityNameLowerFirstChar}){
+        ${table.entityNameLowerFirstChar}Repository.save(${table.entityNameLowerFirstChar});
+    }
+    public void delete(Long id){
+        ${table.entityNameLowerFirstChar}Repository.deleteById(id);
+    }
+
+    public Page<${table.EntityClassName}> findPage(Page<${table.EntityClassName}> page, HashMap<String, String> params) {
+        Pageable pageable  = new PageRequest(page.getCurrent() - 1, page.getSize(), Sort.Direction.DESC,"id");
+        org.springframework.data.domain.Page<${table.EntityClassName}> pageResult = ${table.entityNameLowerFirstChar}Repository.findAll(new Specification<${table.EntityClassName}>() {
+            @Override
+            public Predicate toPredicate(Root<${table.EntityClassName}> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> list = new ArrayList<Predicate>();
+                    //根据实际业务构建复杂的查询条件
+                    for(Map.Entry<String,String> entry:params.entrySet()){
+                        if (StringUtils.isNotEmpty(entry.getValue())) {
+                            list.add(criteriaBuilder.equal(root.get(entry.getKey()).as(String.class), entry.getValue()));
+                        }
+                    }
+                    Predicate[] p = new Predicate[list.size()];
+                    return criteriaBuilder.and(list.toArray(p));
+                }
+            }, pageable);
+        page.setTotal(Integer.valueOf(pageResult.getTotalElements() + ""));
+        page.setRecords(pageResult.getContent());
+        return page;
+    }
+}
+
