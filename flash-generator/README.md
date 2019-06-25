@@ -80,9 +80,11 @@ public class Boy extends BaseEntity {
 本项目提供了基于IDEA的插件来生成代码,你可以再idea插件仓库中索索webflash-generator，或者直接从本地安装插件：flash-generator/idea-plugin.jar即可
 用法如下：
 - 首先写好实体类，打开实体类，右键选择Generator(或者Alt+Insert)     
+
  ![](../docs/img/plugin/generator.jpg)
  
  - 选择web-flash mvc，在弹框中勾选生成选项 
+ 
  ![](../docs/img/plugin/generator-config.jpg) 
  - 点击生成即可，生成完毕后在vue的router/index.js添加路由，启动api和vue项目，配置上菜单和角色后即可使用
         
