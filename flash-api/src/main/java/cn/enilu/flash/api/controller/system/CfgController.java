@@ -45,6 +45,7 @@ public class CfgController extends BaseController {
      */
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public Object list(@RequestParam(required = false) String cfgName, @RequestParam(required = false) String cfgValue) {
+       //test
         List<Cfg> list = cfgRepository.query("select * from t_sys_cfg");
         Cfg cfg = cfgRepository.get("select * from t_sys_cfg where id=1");
         List list2 = cfgRepository.queryBySql("select * from t_sys_cfg where id>1");

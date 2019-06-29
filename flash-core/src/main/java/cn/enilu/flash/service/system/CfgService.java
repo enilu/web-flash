@@ -1,7 +1,7 @@
 package cn.enilu.flash.service.system;
 
 import cn.enilu.flash.bean.entity.system.Cfg;
-import cn.enilu.flash.dao.cache.ConfigCache;
+import cn.enilu.flash.cache.ConfigCache;
 import cn.enilu.flash.dao.system.CfgRepository;
 import cn.enilu.flash.utils.StringUtils;
 import cn.enilu.flash.utils.factory.Page;

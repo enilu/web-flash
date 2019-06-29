@@ -2,12 +2,10 @@ package ${packageName};
 
 
 import ${table.EntityFullClassName};
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import cn.enilu.flash.dao.BaseRepository;
 
 
-public interface ${table.RepositoryClassName} extends PagingAndSortingRepository<${table.EntityClassName},Long>
-    , JpaRepository<${table.EntityClassName},Long>, JpaSpecificationExecutor<${table.EntityClassName}>{
+public interface ${table.RepositoryClassName} extends BaseRepository<${table.EntityClassName},Long>{
+
 }
 

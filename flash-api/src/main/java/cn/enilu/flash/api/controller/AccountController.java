@@ -5,7 +5,7 @@ import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.node.MenuNode;
-import cn.enilu.flash.dao.cache.TokenCache;
+import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.dao.system.MenuRepository;
 import cn.enilu.flash.dao.system.UserRepository;
 import cn.enilu.flash.service.system.AccountService;

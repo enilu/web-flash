@@ -2,7 +2,7 @@ package cn.enilu.flash.api.interceptor;
 
 import cn.enilu.flash.api.utils.ApiConstants;
 import cn.enilu.flash.bean.vo.SpringContextHolder;
-import cn.enilu.flash.dao.cache.TokenCache;
+import cn.enilu.flash.cache.TokenCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

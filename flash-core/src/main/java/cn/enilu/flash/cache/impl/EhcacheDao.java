@@ -1,6 +1,6 @@
-package cn.enilu.flash.dao.cache.impl;
+package cn.enilu.flash.cache.impl;
 
-import cn.enilu.flash.dao.cache.CacheDao;
+import cn.enilu.flash.cache.CacheDao;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Component;

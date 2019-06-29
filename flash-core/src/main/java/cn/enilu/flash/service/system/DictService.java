@@ -1,7 +1,7 @@
 package cn.enilu.flash.service.system;
 
 import cn.enilu.flash.bean.entity.system.Dict;
-import cn.enilu.flash.dao.cache.DictCache;
+import cn.enilu.flash.cache.DictCache;
 import cn.enilu.flash.dao.system.DictRepository;
 import cn.enilu.flash.utils.factory.MutiStrFactory;
 import org.slf4j.Logger;

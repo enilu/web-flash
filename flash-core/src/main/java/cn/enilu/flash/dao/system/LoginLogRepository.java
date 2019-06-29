@@ -1,11 +1,9 @@
 package cn.enilu.flash.dao.system;
 
 import cn.enilu.flash.bean.entity.system.LoginLog;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import cn.enilu.flash.dao.BaseRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -13,8 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author enilu
  */
-public interface LoginLogRepository extends PagingAndSortingRepository<LoginLog,Long>
-        ,JpaRepository<LoginLog,Long>,JpaSpecificationExecutor<LoginLog> {
+public interface LoginLogRepository extends BaseRepository<LoginLog,Long> {
     @Modifying
     @Transactional
     @Query(nativeQuery = true,value = "delete from t_sys_login_log")

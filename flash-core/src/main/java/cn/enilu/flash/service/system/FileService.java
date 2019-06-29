@@ -2,8 +2,8 @@ package cn.enilu.flash.service.system;
 
 import cn.enilu.flash.bean.entity.system.FileInfo;
 import cn.enilu.flash.bean.enumeration.ConfigKeyEnum;
-import cn.enilu.flash.dao.cache.ConfigCache;
-import cn.enilu.flash.dao.cache.TokenCache;
+import cn.enilu.flash.cache.ConfigCache;
+import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.dao.system.FileInfoRepository;
 import cn.enilu.flash.utils.StringUtils;
 import cn.enilu.flash.utils.XlsUtils;

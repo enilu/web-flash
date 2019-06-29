@@ -1,7 +1,7 @@
-package cn.enilu.flash.dao.cache;
+package cn.enilu.flash.cache;
 
 import cn.enilu.flash.bean.core.ShiroUser;
-import cn.enilu.flash.dao.cache.impl.EhcacheDao;
+import cn.enilu.flash.cache.impl.EhcacheDao;
 import cn.enilu.flash.utils.HttpKit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

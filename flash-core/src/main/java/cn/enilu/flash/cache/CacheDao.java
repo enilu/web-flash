@@ -1,4 +1,4 @@
-package cn.enilu.flash.dao.cache;
+package cn.enilu.flash.cache;
 
 import java.io.Serializable;
 

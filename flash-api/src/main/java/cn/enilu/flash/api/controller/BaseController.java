@@ -3,7 +3,7 @@ package cn.enilu.flash.api.controller;
 
 import cn.enilu.flash.api.utils.ApiConstants;
 import cn.enilu.flash.bean.vo.SpringContextHolder;
-import cn.enilu.flash.dao.cache.TokenCache;
+import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.utils.HttpKit;
 import cn.enilu.flash.utils.StringUtils;
 import com.alibaba.fastjson.JSON;
