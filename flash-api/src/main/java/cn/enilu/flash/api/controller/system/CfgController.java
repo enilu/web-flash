@@ -1,8 +1,8 @@
 package cn.enilu.flash.api.controller.system;
 
 import cn.enilu.flash.api.controller.BaseController;
-import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.constant.factory.PageFactory;
+import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.dictmap.CfgDict;
 import cn.enilu.flash.bean.entity.system.Cfg;
 import cn.enilu.flash.bean.entity.system.FileInfo;
@@ -15,10 +15,13 @@ import cn.enilu.flash.service.system.FileService;
 import cn.enilu.flash.utils.Maps;
 import cn.enilu.flash.utils.ToolUtil;
 import cn.enilu.flash.utils.factory.Page;
+import org.nutz.json.Json;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * CfgController
@@ -42,6 +45,14 @@ public class CfgController extends BaseController {
      */
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public Object list(@RequestParam(required = false) String cfgName, @RequestParam(required = false) String cfgValue) {
+        List<Cfg> list = cfgRepository.query("select * from t_sys_cfg");
+        Cfg cfg = cfgRepository.get("select * from t_sys_cfg where id=1");
+        List list2 = cfgRepository.queryBySql("select * from t_sys_cfg where id>1");
+        Object obj = cfgRepository.getBySql("select id,cfg_name  from t_sys_cfg where id=1");
+        logger.info(Json.toJson(obj));
+        logger.info(Json.toJson(list));
+        logger.info(Json.toJson(list2));
+        logger.info(Json.toJson(cfg));
         Page<Cfg> page = new PageFactory<Cfg>().defaultPage();
 
         page = cfgService.findPage(page, Maps.newHashMap("cfgName",cfgName,"cfgValue",cfgValue));
