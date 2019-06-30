@@ -53,6 +53,11 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
     }
 
     @Override
+    public Class<T> getDataClass() {
+        return klass;
+    }
+
+    @Override
     public List<T> query(String sql) {
         return entityManager.createNativeQuery(sql,klass).getResultList();
     }

@@ -23,5 +23,6 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
     Object getBySql(String sql);
     T get(String sql);
     int execute(String sql);
+    Class<T> getDataClass();
 
 }

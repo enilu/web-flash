@@ -5,30 +5,24 @@ import cn.enilu.flash.bean.enumeration.ConfigKeyEnum;
 import cn.enilu.flash.cache.ConfigCache;
 import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.dao.system.FileInfoRepository;
-import cn.enilu.flash.utils.StringUtils;
+import cn.enilu.flash.service.BaseService;
 import cn.enilu.flash.utils.XlsUtils;
-import cn.enilu.flash.utils.factory.Page;
 import org.jxls.common.Context;
 import org.jxls.expression.JexlExpressionEvaluator;
 import org.jxls.transform.Transformer;
 import org.jxls.util.JxlsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import java.io.*;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 @Service
-public class FileService {
+public class FileService extends BaseService<FileInfo,Long,FileInfoRepository> {
     @Autowired
     private ConfigCache configCache;
     @Autowired
@@ -122,29 +116,10 @@ public class FileService {
         }
     }
 
-
+    @Override
     public FileInfo get(Long id){
         FileInfo fileInfo = fileInfoRepository.getOne(id);
         fileInfo.setAblatePath(configCache.get(ConfigKeyEnum.SYSTEM_FILE_UPLOAD_PATH.getValue()) + File.separator+fileInfo.getRealFileName());
         return fileInfo;
-    }
-
-    public Page<FileInfo> findPage(Page<FileInfo> page, HashMap<String, String> params) {
-        Pageable pageable  = new PageRequest(page.getCurrent() - 1, page.getSize(), Sort.Direction.DESC,"id");
-        org.springframework.data.domain.Page<FileInfo> pageResult = fileInfoRepository.findAll(new Specification<FileInfo>() {
-            @Override
-            public Predicate toPredicate(Root<FileInfo> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                List<Predicate> list = new ArrayList<Predicate>();
-                if (StringUtils.isNotEmpty(params.get("originalFileName"))) {
-                    list.add(criteriaBuilder.like(root.get("originalFileName").as(String.class), "%" + params.get("originalFileName") + "%"));
-                }
-
-                Predicate[] p = new Predicate[list.size()];
-                return criteriaBuilder.and(list.toArray(p));
-            }
-        }, pageable);
-        page.setTotal(Integer.valueOf(pageResult.getTotalElements() + ""));
-        page.setRecords(pageResult.getContent());
-        return page;
     }
 }

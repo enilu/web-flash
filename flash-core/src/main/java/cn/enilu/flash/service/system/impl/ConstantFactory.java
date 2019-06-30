@@ -40,7 +40,7 @@ public class ConstantFactory implements IConstantFactory {
     private DictRepository dictRepository = SpringContextHolder.getBean(DictRepository.class);
     private UserRepository userRepository = SpringContextHolder.getBean(UserRepository.class);
     private MenuRepository menuRepository = SpringContextHolder.getBean(MenuRepository.class);
-    private SysNoticeRepository sysNoticeRepository = SpringContextHolder.getBean(SysNoticeRepository.class);
+    private NoticeRepository sysNoticeRepository = SpringContextHolder.getBean(NoticeRepository.class);
     private ConfigCache configCache = SpringContextHolder.getBean(ConfigCache.class);
 
     public static IConstantFactory me() {

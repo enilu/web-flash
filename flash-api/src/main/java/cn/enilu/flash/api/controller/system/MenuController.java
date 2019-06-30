@@ -11,7 +11,6 @@ import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.node.MenuNode;
 import cn.enilu.flash.bean.vo.node.Node;
 import cn.enilu.flash.bean.vo.node.ZTreeNode;
-import cn.enilu.flash.dao.system.MenuRepository;
 import cn.enilu.flash.service.system.LogObjectHolder;
 import cn.enilu.flash.service.system.MenuService;
 import cn.enilu.flash.service.system.impl.ConstantFactory;
@@ -37,8 +36,6 @@ public class MenuController extends BaseController {
 
     private Logger logger = LoggerFactory.getLogger(MenuController.class);
     @Autowired
-    private MenuRepository menuRepository;
-    @Autowired
     private MenuService menuService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -61,7 +58,7 @@ public class MenuController extends BaseController {
 
         //设置父级菜单编号
         menuService.menuSetPcode(menu);
-        menuRepository.save(menu);
+        menuService.saveOrUpdate(menu);
         return Rets.success();
     }
 
@@ -87,12 +84,12 @@ public class MenuController extends BaseController {
      */
     @RequestMapping(value = "/menuTreeListByRoleId", method = RequestMethod.GET)
     public Object menuTreeListByRoleId(Integer roleId) {
-        List<Long> menuIds = this.menuRepository.getMenuIdsByRoleId(roleId);
+        List<Long> menuIds = menuService.getMenuIdsByRoleId(roleId);
         List<ZTreeNode> roleTreeList = null;
         if (ToolUtil.isEmpty(menuIds)) {
-            roleTreeList = this.menuService.menuTreeList();
+            roleTreeList = menuService.menuTreeList();
         } else {
-            roleTreeList = this.menuService.menuTreeListByMenuIds(menuIds);
+            roleTreeList = menuService.menuTreeListByMenuIds(menuIds);
 
         }
         List<Node> list = menuService.generateMenuTreeForRole(roleTreeList);

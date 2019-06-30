@@ -5,7 +5,7 @@ import cn.enilu.flash.bean.entity.cms.Article;
 import cn.enilu.flash.bean.enumeration.cms.BannerTypeEnum;
 import cn.enilu.flash.bean.enumeration.cms.ChannelEnum;
 import cn.enilu.flash.bean.vo.front.Rets;
-import cn.enilu.flash.bean.vo.offcialSite.Banner;
+import cn.enilu.flash.bean.vo.offcialSite.BannerVo;
 import cn.enilu.flash.bean.vo.offcialSite.Product;
 import cn.enilu.flash.service.cms.ArticleService;
 import cn.enilu.flash.service.cms.BannerService;
@@ -32,7 +32,7 @@ public class OffcialSiteProductController extends BaseController {
     public Object index() {
         Map<String, Object> dataMap = new HashMap<>();
 
-        Banner banner = bannerService.queryBanner(BannerTypeEnum.SOLUTION.getValue());
+        BannerVo banner = bannerService.queryBanner(BannerTypeEnum.SOLUTION.getValue());
         dataMap.put("banner", banner);
 
         List<Product> products = new ArrayList<>();

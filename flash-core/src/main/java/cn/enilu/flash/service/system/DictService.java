@@ -3,6 +3,7 @@ package cn.enilu.flash.service.system;
 import cn.enilu.flash.bean.entity.system.Dict;
 import cn.enilu.flash.cache.DictCache;
 import cn.enilu.flash.dao.system.DictRepository;
+import cn.enilu.flash.service.BaseService;
 import cn.enilu.flash.utils.factory.MutiStrFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +22,7 @@ import java.util.Optional;
  * @date 2017-04-27 17:00
  */
 @Service
-public class DictService {
+public class DictService extends BaseService<Dict,Long,DictRepository> {
     private Logger logger = LoggerFactory.getLogger(DictService.class);
     @Resource
     DictRepository dictRepository;
@@ -87,5 +88,13 @@ public class DictService {
             return optional.get();
         }
         return null;
+    }
+
+    public List<Dict> findByNameLike(String name) {
+        return dictRepository.findByNameLike(name);
+    }
+
+    public List<Dict> findByPid(Long pid) {
+        return dictRepository.findByPid(pid);
     }
 }

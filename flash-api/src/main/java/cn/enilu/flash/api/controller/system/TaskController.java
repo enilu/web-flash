@@ -7,16 +7,11 @@ import cn.enilu.flash.bean.dictmap.TaskDict;
 import cn.enilu.flash.bean.entity.system.Task;
 import cn.enilu.flash.bean.entity.system.TaskLog;
 import cn.enilu.flash.bean.vo.front.Rets;
-import cn.enilu.flash.dao.system.TaskRepository;
 import cn.enilu.flash.service.task.TaskService;
 import cn.enilu.flash.utils.StringUtils;
 import cn.enilu.flash.utils.factory.Page;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created  on 2018/4/9 0009.
@@ -26,9 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/task")
 public class TaskController extends BaseController {
-    private Logger logger = LoggerFactory.getLogger(TaskController.class);
-    @Autowired
-    private TaskRepository taskRepository;
     @Autowired
     private TaskService taskService;
 
@@ -40,9 +32,9 @@ public class TaskController extends BaseController {
     @ResponseBody
     public Object list(String name) {
         if(StringUtils.isNullOrEmpty(name)) {
-            return Rets.success(taskRepository.findAll());
+            return Rets.success(taskService.queryAll());
         }else{
-            return Rets.success(taskRepository.findByNameLike("%"+name+"%"));
+            return Rets.success(taskService.queryAllByNameLike(name));
         }
     }
 
@@ -52,8 +44,7 @@ public class TaskController extends BaseController {
     @RequestMapping(method = RequestMethod.POST)
 
     @BussinessLog(value = "编辑定时任务", key = "name",dict = TaskDict.class)
-    public Object add(@ModelAttribute Task task,
-                      HttpServletRequest request) {
+    public Object add(@ModelAttribute Task task) {
         if(task.getId()==null) {
             taskService.save(task);
         }else{

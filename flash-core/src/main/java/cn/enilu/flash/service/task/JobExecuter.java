@@ -58,7 +58,7 @@ public abstract class JobExecuter {
         task.setExecResult(exeResult);
         task.setExecAt(exeAt);
         taskLogRepository.save(taskLog);
-        taskService.simpleUpdate(task);
+        taskService.update(task);
         log.info(">>>>>>>>>>>>>>>>>执行定时任务[" + taskName + "]结束<<<<<<<<<<<<<<<<<<<");
     }
 

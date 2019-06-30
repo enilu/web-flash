@@ -5,7 +5,7 @@ import cn.enilu.flash.bean.entity.cms.Article;
 import cn.enilu.flash.bean.enumeration.cms.BannerTypeEnum;
 import cn.enilu.flash.bean.enumeration.cms.ChannelEnum;
 import cn.enilu.flash.bean.vo.front.Rets;
-import cn.enilu.flash.bean.vo.offcialSite.Banner;
+import cn.enilu.flash.bean.vo.offcialSite.BannerVo;
 import cn.enilu.flash.bean.vo.offcialSite.News;
 import cn.enilu.flash.service.cms.ArticleService;
 import cn.enilu.flash.service.cms.BannerService;
@@ -31,7 +31,7 @@ public class NewsController extends BaseController {
     @RequestMapping(method = RequestMethod.GET)
     public Object list() {
         Map<String, Object> dataMap = new HashMap<>();
-        Banner banner = bannerService.queryBanner(BannerTypeEnum.NEWS.getValue());
+        BannerVo banner = bannerService.queryBanner(BannerTypeEnum.NEWS.getValue());
         dataMap.put("banner", banner);
 
         List<News> newsList = new ArrayList<>();
