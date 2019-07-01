@@ -1,7 +1,4 @@
 'use strict'
-// Template version: 1.2.4
-// see http://vuejs-templates.github.io/webpack for documentation.
-
 const path = require('path')
 
 module.exports = {
@@ -12,7 +9,6 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {// 以/开头的服务器请求都通过该代理转发,可以设置为/或者api，如果设置成api，api.js中所有请求都要以api开头
-        // target: 'https://nutz.cn/yvr/api', //设置调用接口域名和端口号别忘了加http
         target: 'http://localhost:8082',
         changeOrigin: true,
         pathRewrite: {
