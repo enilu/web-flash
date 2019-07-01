@@ -78,6 +78,7 @@ export default {
     message: '未处理消息',
     income: '收入',
     onlineUser: '在线用户',
+    document:'在线文档',
     date: '日期',
     name: '名称',
     addr: '地址',

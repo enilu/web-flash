@@ -78,6 +78,7 @@ export default {
     message: 'Message',
     income: 'Income',
     onlineUser: 'Online User',
+    document:'Document',
     date: 'Date',
     name: 'Name',
     addr: 'Address',

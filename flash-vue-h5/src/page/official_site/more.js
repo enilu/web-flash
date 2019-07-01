@@ -48,6 +48,9 @@ export default {
     },
     phoneCall() {
       window.location.href = 'tel://' + this.phoneNo
+    },
+    openDoc() {
+      window.location.href = 'http://enilu.github.io/web-flash'
     }
   }
 }

@@ -6,7 +6,6 @@ import cn.enilu.flash.utils.factory.Page;
 import java.util.List;
 
 /**
- * descript
  *
  * @author ：enilu
  * @date ：Created in 2019/6/29 22:30

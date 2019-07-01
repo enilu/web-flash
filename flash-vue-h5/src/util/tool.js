@@ -12,8 +12,6 @@ export function setSession (key, value) {
 }
 
 export function getSession (key) {
-  console.log('get-----')
-  console.log(key, sessionStorage.getItem(key))
   return sessionStorage.getItem(key)
 }
 
@@ -21,7 +19,6 @@ export function getSession (key) {
  *   Toast公共方法
  */
 export function toast (str, icon) {
-  console.log('toast')
   store.dispatch('showToast', true)
   if (icon == 'success') {
     store.dispatch('showSuccess', true)

@@ -1,7 +1,6 @@
 package cn.enilu.flash.service;
 
 /**
- * descript
  *
  * @author ：enilu
  * @date ：Created in 2019/6/29 22:28
