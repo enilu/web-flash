@@ -1,6 +1,6 @@
 # web-flash代码生成工具
  
-本项目提供了基于IDEA的插件来生成代码,你可以再idea插件仓库中索webflash-generator，或者直接从本地安装插件：flash-generator/idea-plugin.jar即可
+本项目提供了基于IDEA的插件来生成代码,你可以再idea插件仓库中搜索webflash-generator，或者直接从本地安装插件：flash-generator/idea-plugin.jar即可
 用法如下：
 - 首先写好实体类，打开实体类，右键选择Generator(或者Alt+Insert)     
 
