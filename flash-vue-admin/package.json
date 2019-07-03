@@ -2,7 +2,7 @@
   "name": "web-flash-vue-admin",
   "version": "1.0.0",
   "license": "MIT",
-  "description": "web-flashadmin with vuejs",
+  "description": "web-flash admin with vuejs",
   "author": "enilu <eniluzt@qq.com>",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
