@@ -135,22 +135,27 @@ public class MenuService  extends BaseService<Menu,Long,MenuRepository> {
         }
         return menuNodes;
     }
-    public List<ZTreeNode> menuTreeList() {
-        List list = menuRepository.menuTreeList();
-        List<ZTreeNode> nodes  =new ArrayList<>();
-        for(int i=0;i<list.size();i++){
-            Object[] source = (Object[]) list.get(i);
-            ZTreeNode node = new ZTreeNode();
-            node.setId(Long.valueOf(source[0].toString()));
-            node.setpId(Long.valueOf(source[1].toString()));
-            node.setName(source[2].toString());
-            node.setIsOpen(Boolean.valueOf(source[3].toString()));
-            nodes.add(node);
+    public List<ZTreeNode> menuTreeList(List<Long> menuIds) {
+        List<ZTreeNode> nodes = new ArrayList<>();
+        if(menuIds==null) {
+            List list = menuRepository.menuTreeList();
+
+            for (int i = 0; i < list.size(); i++) {
+                Object[] source = (Object[]) list.get(i);
+                ZTreeNode node = new ZTreeNode();
+                node.setId(Long.valueOf(source[0].toString()));
+                node.setpId(Long.valueOf(source[1].toString()));
+                node.setName(source[2].toString());
+                node.setIsOpen(Boolean.valueOf(source[3].toString()));
+                nodes.add(node);
+            }
+        }else{
+            nodes = menuTreeListByMenuIds(menuIds);
         }
         return nodes;
     }
 
-    public List<ZTreeNode> menuTreeListByMenuIds(List<Long> menuIds) {
+    private List<ZTreeNode> menuTreeListByMenuIds(List<Long> menuIds) {
         List list = menuRepository.menuTreeListByMenuIds(menuIds);
         List<ZTreeNode> nodes  =new ArrayList<>();
         for(int i=0;i<list.size();i++){

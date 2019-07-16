@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * MenuController
@@ -87,15 +88,26 @@ public class MenuController extends BaseController {
         List<Long> menuIds = menuService.getMenuIdsByRoleId(roleId);
         List<ZTreeNode> roleTreeList = null;
         if (ToolUtil.isEmpty(menuIds)) {
-            roleTreeList = menuService.menuTreeList();
+            roleTreeList = menuService.menuTreeList(null);
         } else {
-            roleTreeList = menuService.menuTreeListByMenuIds(menuIds);
+            roleTreeList = menuService.menuTreeList(menuIds);
 
         }
         List<Node> list = menuService.generateMenuTreeForRole(roleTreeList);
+
+        //element-ui中tree控件中如果选中父节点会默认选中所有子节点，所以这里将所有非叶子节点去掉
+        Map<Long,ZTreeNode> map = cn.enilu.flash.utils.Lists.toMap(roleTreeList,"id");
+        Map<Long,List<ZTreeNode>> group = cn.enilu.flash.utils.Lists.group(roleTreeList,"pId");
+        for(Map.Entry<Long,List<ZTreeNode>> entry:group.entrySet()){
+            if(entry.getValue().size()>1){
+                roleTreeList.remove(map.get(entry.getKey()));
+            }
+        }
+
         List<Long> checkedIds = Lists.newArrayList();
         for (ZTreeNode zTreeNode : roleTreeList) {
-            if (zTreeNode.getChecked() != null && zTreeNode.getChecked()) {
+            if (zTreeNode.getChecked() != null && zTreeNode.getChecked()
+            &&zTreeNode.getpId().intValue()!=0) {
                 checkedIds.add(zTreeNode.getId());
             }
         }
