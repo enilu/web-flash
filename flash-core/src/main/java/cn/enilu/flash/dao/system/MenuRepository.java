@@ -1,9 +1,9 @@
 package cn.enilu.flash.dao.system;
 
 import cn.enilu.flash.bean.entity.system.Menu;
+import cn.enilu.flash.dao.BaseRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author enilu
  */
-public interface MenuRepository extends PagingAndSortingRepository<Menu,Long> {
+public interface MenuRepository extends BaseRepository<Menu,Long> {
     Menu findByCode(String code);
     List<Menu> findByPcodesLike(String code);
     List<Menu> findByNameLikeAndLevels(String name,Integer levels);

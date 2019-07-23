@@ -8,10 +8,10 @@ import cn.enilu.flash.bean.vo.SpringContextHolder;
 import cn.enilu.flash.dao.message.MessageRepository;
 import cn.enilu.flash.dao.message.MessagesenderRepository;
 import cn.enilu.flash.dao.message.MessagetemplateRepository;
+import cn.enilu.flash.service.BaseService;
 import cn.enilu.flash.service.message.email.EmailSender;
 import cn.enilu.flash.service.message.sms.SmsSender;
 import cn.enilu.flash.utils.StringUtils;
-import cn.enilu.flash.utils.factory.Page;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang.text.StrSubstitutor;
@@ -20,21 +20,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamSource;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import java.text.MessageFormat;
 import java.util.*;
-
+/**
+ * MessageService
+ *
+ * @author enilu
+ * @version 2019/05/17 0017
+ */
 @Service
-public class MessageService {
+public class MessageService extends BaseService<Message,Long,MessageRepository> {
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     private MessageRepository messageRepository;
@@ -43,38 +40,6 @@ public class MessageService {
     @Autowired
     private MessagetemplateRepository messagetemplateRepository;
 
-    public void save(Message message){
-        messageRepository.save(message);
-    }
-    public void delete(Long id){
-        messageRepository.deleteById(id);
-    }
-
-    public Page<Message> findPage(Page<Message> page, HashMap<String, String> params) {
-        Pageable pageable  = new PageRequest(page.getCurrent() - 1, page.getSize(), Sort.Direction.DESC,"id");
-        org.springframework.data.domain.Page<Message> pageResult = messageRepository.findAll(new Specification<Message>() {
-            @Override
-            public Predicate toPredicate(Root<Message> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                List<Predicate> list = new ArrayList<Predicate>();
-                    //根据实际业务构建复杂的查询条件
-                    for(Map.Entry<String,String> entry:params.entrySet()){
-                        if (StringUtils.isNotEmpty(entry.getValue())) {
-                            list.add(criteriaBuilder.equal(root.get(entry.getKey()).as(String.class), entry.getValue()));
-                        }
-                    }
-                    Predicate[] p = new Predicate[list.size()];
-                    return criteriaBuilder.and(list.toArray(p));
-                }
-            }, pageable);
-        page.setTotal(Integer.valueOf(pageResult.getTotalElements() + ""));
-        page.setRecords(pageResult.getContent());
-        return page;
-    }
-
-
-    public Message get(Long id) {
-        return messageRepository.getOne(id);
-    }
 
 
     public boolean delete(String ids) {
@@ -215,9 +180,6 @@ public class MessageService {
         } else {
             return null;
         }
-    }
-    public void clear() {
-        messageRepository.deleteAllInBatch();
     }
 }
 

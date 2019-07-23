@@ -4,7 +4,7 @@ import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.entity.cms.Article;
 import cn.enilu.flash.bean.enumeration.cms.ChannelEnum;
 import cn.enilu.flash.bean.vo.front.Rets;
-import cn.enilu.flash.bean.vo.offcialSite.Banner;
+import cn.enilu.flash.bean.vo.offcialSite.BannerVo;
 import cn.enilu.flash.bean.vo.offcialSite.News;
 import cn.enilu.flash.bean.vo.offcialSite.Product;
 import cn.enilu.flash.bean.vo.offcialSite.Solution;
@@ -34,7 +34,7 @@ public class OffcialSiteController extends BaseController {
     public Object index() {
         Map<String, Object> dataMap = new HashMap<>();
 
-        Banner banner = bannerService.queryIndexBanner();
+        BannerVo banner = bannerService.queryIndexBanner();
         dataMap.put("banner", banner);
         List<News> newsList = new ArrayList<>();
         List<cn.enilu.flash.bean.entity.cms.Article> articles = articleService.queryIndexNews();

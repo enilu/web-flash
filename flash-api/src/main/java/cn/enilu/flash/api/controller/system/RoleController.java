@@ -11,7 +11,6 @@ import cn.enilu.flash.bean.exception.GunsException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.node.Node;
 import cn.enilu.flash.bean.vo.node.ZTreeNode;
-import cn.enilu.flash.dao.system.RoleRepository;
 import cn.enilu.flash.service.system.LogObjectHolder;
 import cn.enilu.flash.service.system.RoleService;
 import cn.enilu.flash.service.system.UserService;
@@ -40,8 +39,7 @@ import java.util.List;
 @RequestMapping("/role")
 public class RoleController extends BaseController {
     private Logger logger = LoggerFactory.getLogger(RoleController.class);
-    @Autowired
-    private RoleRepository roleRepository;
+
     @Autowired
     private RoleService roleService;
     @Autowired
@@ -50,9 +48,9 @@ public class RoleController extends BaseController {
     public Object list(String name){
         List roles = null;
         if(Strings.isNullOrEmpty(name)) {
-            roles = (List) roleRepository.findAll();
+            roles =  roleService.queryAll();
         }else{
-            roles = roleRepository.findByName(name);
+            roles = roleService.findByName(name);
         }
         return Rets.success(new RoleWarpper(BeanUtil.objectsToMaps(roles)).warp());
     }
@@ -64,7 +62,7 @@ public class RoleController extends BaseController {
         if (result.hasErrors()) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
-        roleRepository.save(role);
+        roleService.saveOrUpdate(role);
         return Rets.success();
     }
     @RequestMapping(method = RequestMethod.DELETE)
@@ -84,7 +82,7 @@ public class RoleController extends BaseController {
         }
         //缓存被删除的角色名称
         LogObjectHolder.me().set(ConstantFactory.me().getSingleRoleName(roleId));
-        this.roleService.delRoleById(roleId);
+        roleService.delRoleById(roleId);
         return Rets.success();
     }
 

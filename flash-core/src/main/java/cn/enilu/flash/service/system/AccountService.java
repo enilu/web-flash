@@ -2,7 +2,7 @@ package cn.enilu.flash.service.system;
 
 import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.entity.system.User;
-import cn.enilu.flash.dao.cache.TokenCache;
+import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.core.log.LogManager;
 import cn.enilu.flash.core.log.LogTaskFactory;
 import cn.enilu.flash.service.system.impl.ConstantFactory;

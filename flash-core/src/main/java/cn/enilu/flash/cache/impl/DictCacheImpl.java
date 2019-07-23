@@ -1,9 +1,9 @@
-package cn.enilu.flash.dao.cache.impl;
+package cn.enilu.flash.cache.impl;
 
 import cn.enilu.flash.bean.constant.cache.CacheKey;
 import cn.enilu.flash.bean.entity.system.Dict;
-import cn.enilu.flash.dao.cache.CacheDao;
-import cn.enilu.flash.dao.cache.DictCache;
+import cn.enilu.flash.cache.CacheDao;
+import cn.enilu.flash.cache.DictCache;
 import cn.enilu.flash.dao.system.DictRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

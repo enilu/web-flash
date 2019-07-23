@@ -4,6 +4,7 @@ import cn.enilu.flash.bean.entity.system.Dept;
 import cn.enilu.flash.bean.vo.node.DeptNode;
 import cn.enilu.flash.bean.vo.node.ZTreeNode;
 import cn.enilu.flash.dao.system.DeptRepository;
+import cn.enilu.flash.service.BaseService;
 import cn.enilu.flash.utils.ToolUtil;
 import com.google.common.base.Strings;
 import org.springframework.beans.BeanUtils;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created  on 2018/3/21 0021.
@@ -20,7 +20,7 @@ import java.util.Optional;
  * @author enilu
  */
 @Service
-public class DeptService {
+public class DeptService extends BaseService<Dept,Long,DeptRepository> {
     @Autowired
     private DeptRepository deptRepository;
 
@@ -61,9 +61,8 @@ public class DeptService {
         deptRepository.delete(dept);
     }
 
-    public List<DeptNode> queryAll() {
-        List<Dept> list = (List<Dept>) deptRepository.findAll();
-
+    public List<DeptNode> queryAllNode() {
+        List<Dept> list = super.queryAll();
         return generateTree(list);
     }
 
@@ -74,9 +73,11 @@ public class DeptService {
         } else {
             Long pid = dept.getPid();
             Dept temp = get(pid);
-            String pids = temp.getPids();
-            dept.setPid(pid);
-            dept.setPids(pids + "[" + pid + "],");
+            if(temp!=null) {
+                String pids = temp.getPids();
+                dept.setPid(pid);
+                dept.setPids(pids + "[" + pid + "],");
+            }
         }
     }
 
@@ -107,12 +108,5 @@ public class DeptService {
     }
 
 
-    public Dept get(Long id) {
-        Optional<Dept> optiona = deptRepository.findById(id);
-        if (optiona.isPresent()) {
-            return optiona.get();
-        }
-        return null;
-    }
 
 }

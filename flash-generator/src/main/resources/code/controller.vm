@@ -30,14 +30,13 @@ public class ${table.ControllerClassName} {
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
 	public Object list() {
 	Page<${table.EntityClassName}> page = new PageFactory<${table.EntityClassName}>().defaultPage();
-		page = ${table.ServiceInstanceName}.findPage(page, Maps.newHashMap());
-		page.setRecords(page.getRecords());
+		page = ${table.ServiceInstanceName}.queryPage(page);
 		return Rets.success(page);
 	}
 	@RequestMapping(method = RequestMethod.POST)
 	@BussinessLog(value = "编辑${table.Label}", key = "name",dict= CommonDict.class)
 	public Object save(@ModelAttribute ${table.EntityClassName} ${table.EntityInstanceName}){
-		${table.ServiceInstanceName}.save(${table.EntityInstanceName});
+		${table.ServiceInstanceName}.saveOrUpdate(${table.EntityInstanceName});
 		return Rets.success();
 	}
 	@RequestMapping(method = RequestMethod.DELETE)

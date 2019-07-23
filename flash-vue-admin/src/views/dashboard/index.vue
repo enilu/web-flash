@@ -6,6 +6,19 @@
       <el-col :span="6">
         <el-card class="box-card">
           <el-col :span="12">
+            <svg-icon  icon-class="documentation" ></svg-icon>
+          </el-col>
+          <el-col :span="12" >
+            <div class="card-panel-text">{{ $t('dashboard.document') }}</div>
+            <div class="card-panel-num">
+              <a href="http://enilu.github.io/web-flash" target="_blank">Document</a>
+            </div>
+          </el-col>
+        </el-card>
+      </el-col>
+      <el-col :span="6">
+        <el-card class="box-card">
+          <el-col :span="12">
             <svg-icon  icon-class="user" ></svg-icon>
           </el-col>
           <el-col :span="12" >
@@ -33,17 +46,6 @@
           <el-col :span="12" >
             <div class="card-panel-text">{{ $t('dashboard.income') }}</div>
             <div class="card-panel-num">10000</div>
-          </el-col>
-        </el-card>
-      </el-col>
-      <el-col :span="6">
-        <el-card class="box-card">
-          <el-col :span="12">
-            <svg-icon  icon-class="chart" ></svg-icon>
-          </el-col>
-          <el-col :span="12" >
-            <div class="card-panel-text">{{ $t('dashboard.onlineUser') }}</div>
-            <div class="card-panel-num">5000</div>
           </el-col>
         </el-card>
       </el-col>

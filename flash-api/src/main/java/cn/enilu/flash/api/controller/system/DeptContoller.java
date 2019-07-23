@@ -8,7 +8,6 @@ import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.exception.GunsException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.node.DeptNode;
-import cn.enilu.flash.dao.system.DeptRepository;
 import cn.enilu.flash.service.system.DeptService;
 import cn.enilu.flash.utils.ToolUtil;
 import com.alibaba.fastjson.JSON;
@@ -29,13 +28,12 @@ import java.util.List;
 @RequestMapping("/dept")
 public class DeptContoller extends BaseController {
     private Logger logger = LoggerFactory.getLogger(MenuController.class);
-    @Autowired
-    private DeptRepository deptRepository;
+
     @Autowired
     private DeptService deptService;
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public Object list(){
-        List<DeptNode> list = deptService.queryAll();
+        List<DeptNode> list = deptService.queryAllNode();
         return Rets.success(list);
     }
     @RequestMapping(method = RequestMethod.POST)
@@ -46,17 +44,17 @@ public class DeptContoller extends BaseController {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         if(dept.getId()!=null){
-            Dept old = deptRepository.findById(dept.getId()).get();
+            Dept old = deptService.get(dept.getId());
             old.setPid(dept.getPid());
             old.setSimplename(dept.getSimplename());
             old.setFullname(dept.getFullname());
             old.setNum(dept.getNum());
             old.setTips(dept.getTips());
             deptService.deptSetPids(old);
-            deptRepository.save(old);
+            deptService.update(old);
         }else {
             deptService.deptSetPids(dept);
-            deptRepository.save(dept);
+            deptService.insert(dept);
         }
         return Rets.success();
     }

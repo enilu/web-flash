@@ -1,4 +1,4 @@
-package cn.enilu.flash.dao.cache;
+package cn.enilu.flash.cache;
 
 /**
  * 顶级缓存接口

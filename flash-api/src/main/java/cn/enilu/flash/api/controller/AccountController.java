@@ -5,9 +5,8 @@ import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.node.MenuNode;
-import cn.enilu.flash.dao.cache.TokenCache;
+import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.dao.system.MenuRepository;
-import cn.enilu.flash.dao.system.UserRepository;
 import cn.enilu.flash.service.system.AccountService;
 import cn.enilu.flash.service.system.MenuService;
 import cn.enilu.flash.service.system.UserService;
@@ -38,8 +37,7 @@ import java.util.Set;
 @RequestMapping("/account")
 public class AccountController extends BaseController{
      private Logger logger = LoggerFactory.getLogger(AccountController.class);
-    @Autowired
-    UserRepository userRepository;
+
     @Autowired
     private UserService userService;
     @Autowired
@@ -65,7 +63,7 @@ public class AccountController extends BaseController{
         try {
             logger.info("用户登录:" + userName + ",密码:" + password);
             //1,
-            User user = userRepository.findByAccount(userName);
+            User user = userService.findByAccount(userName);
             if (user == null) {
                 return Rets.failure("该用户不存在");
             }
@@ -116,12 +114,12 @@ public class AccountController extends BaseController{
             ShiroUser shiroUser = tokenCache.getUser(token);
             Map map = Maps.newHashMap("name",user.getName(),"role","admin","roles", shiroUser.getRoleCodes());
 
-            List menus = menuRepository.getMenusByRoleIds(shiroUser.getRoleList());
+            List menus = menuService.getMenusByRoleIds(shiroUser.getRoleList());
             map.put("menus",menus);
             //获取用户可以操作的菜单列表
-            List<MenuNode> menuNodes =  menuService.getMenusTreeByRoleIds(shiroUser.getRoleList());
+//            List<MenuNode> menuNodes =  menuService.getMenusTreeByRoleIds(shiroUser.getRoleList());
             //返回（根据拥有操作权限的菜单列表构造）路由信息
-            map.put("routers",generateRouters(menuNodes));
+//            map.put("routers",generateRouters(menuNodes));
             //返回所有可操作的功能列表，用作进行按钮级别权限控制
             map.put("permissions",generatePermissions(shiroUser.getRoleList()));
 
@@ -145,7 +143,7 @@ public class AccountController extends BaseController{
                 return Rets.failure("新密码前后不一致");
             }
             user.setPassword(MD5.md5(password, user.getSalt()));
-            userRepository.save(user);
+            userService.saveOrUpdate(user);
             return Rets.success();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
@@ -156,7 +154,7 @@ public class AccountController extends BaseController{
     private List<String> generatePermissions(List<Long> roleList) {
         Set<String> permissionSet = Sets.newHashSet();
         for (Long roleId : roleList) {
-            List<String> permissions =     menuRepository.getResUrlsByRoleId(roleId.intValue());
+            List<String> permissions =     menuService.getResUrlsByRoleId(roleId.intValue());
             if (permissions != null) {
                 for (String permission : permissions) {
                     if (ToolUtil.isNotEmpty(permission)) {

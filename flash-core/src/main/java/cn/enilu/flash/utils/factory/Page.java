@@ -1,5 +1,7 @@
 package cn.enilu.flash.utils.factory;
 
+import cn.enilu.flash.bean.vo.query.SearchFilter;
+import cn.enilu.flash.utils.Lists;
 import cn.enilu.flash.utils.StringUtils;
 
 import java.util.ArrayList;
@@ -305,6 +307,7 @@ public class Page<T>  {
      * 查询参数
      */
     private transient Map<String, Object> condition;
+    private transient  List<SearchFilter> filters;
 
 
     public List<T> getRecords() {
@@ -323,6 +326,24 @@ public class Page<T>  {
     public Page<T> setCondition(Map<String, Object> condition) {
         this.condition = condition;
         return this;
+    }
+
+    public List<SearchFilter> getFilters() {
+        return filters;
+    }
+
+    public void setFilters(List<SearchFilter> filters) {
+        this.filters = filters;
+    }
+    public void addFilter(SearchFilter filter){
+        if(filter==null){
+            return ;
+        }
+        if(filters==null){
+            filters = Lists.newArrayList();
+        }
+        filters.add(filter);
+
     }
 
     @Override

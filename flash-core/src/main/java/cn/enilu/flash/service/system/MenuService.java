@@ -1,6 +1,7 @@
 package cn.enilu.flash.service.system;
 
 
+import cn.enilu.flash.service.BaseService;
 import cn.enilu.flash.utils.Lists;
 import cn.enilu.flash.bean.entity.system.Menu;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
@@ -23,14 +24,14 @@ import java.util.*;
  * @author enilu
  */
 @Service
-public class MenuService {
+public class MenuService  extends BaseService<Menu,Long,MenuRepository> {
 
     private Logger logger = LoggerFactory.getLogger(MenuService.class);
     @Autowired
     private MenuRepository menuRepository;
 
-
-    public void delMenu(Long menuId) {
+    @Override
+    public void delete(Long menuId) {
         //删除菜单
         menuRepository.deleteById(menuId);
         //删除关联的relation
@@ -44,12 +45,12 @@ public class MenuService {
         List<Menu> menus = menuRepository.findByPcodesLike("%[" + menu.getCode() + "]%");
         menuRepository.deleteAll(menus);
         //删除当前菜单
-        delMenu(menuId);
+        delete(menuId);
 
     }
-    public List<MenuNode> getMenusByRoleIds(List<Long> roleList) {
+    public List getMenusByRoleIds(List<Long> roleList) {
         List menus = menuRepository.getMenusByRoleIds(roleList);
-        return transferMenuNode(menus);
+        return menus;
 
     }
 
@@ -73,8 +74,6 @@ public class MenuService {
     public List<MenuNode> getMenus() {
         List<MenuNode> list =  transferMenuNode(menuRepository.getMenus());
         List<MenuNode> result =  generateTree(list);
-
-
         for(MenuNode menuNode:result){
             if(!menuNode.getChildren().isEmpty()){
                 sortTree(menuNode.getChildren());
@@ -217,11 +216,12 @@ public class MenuService {
 
     }
 
-    public Menu get(Long id) {
-        Optional<Menu> optiona = menuRepository.findById(id);
-        if (optiona.isPresent()) {
-            return optiona.get();
-        }
-        return null;
+
+    public List<Long> getMenuIdsByRoleId(Integer roleId) {
+        return menuRepository.getMenuIdsByRoleId(roleId);
+    }
+
+    public List<String> getResUrlsByRoleId(Integer roleId) {
+        return menuRepository.getResUrlsByRoleId(roleId);
     }
 }

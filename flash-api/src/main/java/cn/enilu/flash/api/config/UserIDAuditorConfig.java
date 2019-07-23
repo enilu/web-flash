@@ -1,6 +1,6 @@
 package cn.enilu.flash.api.config;
 
-import cn.enilu.flash.dao.cache.TokenCache;
+import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.utils.HttpKit;
 import cn.enilu.flash.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

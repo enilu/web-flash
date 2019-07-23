@@ -1,7 +1,5 @@
 package cn.enilu.flash.utils;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -12,10 +10,12 @@ import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Date;
 
 /**
  * 加密工具类
+ * @author  enilu
  */
 public class CryptUtils {
 
@@ -194,15 +194,21 @@ public class CryptUtils {
 		return null;
 	}
 
-	// 根据密码和keyGenerator生成密钥。
+	/**
+	 * 根据密码和keyGenerator生成密钥。
+	 * @param key
+	 * @return
+	 */
 	private static SecretKey generateSecretKey(String key) {
 		SecretKey secretKey = null;
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			byte[] bytes = key.getBytes();
 			md.update(bytes, 0, bytes.length);
-			byte[] mdBytes = md.digest(); // Generate 16 bytes
-			byte[] truncatedBytes = Arrays.copyOf(mdBytes, 8); // Fetch 8 bytes for DESKeySpec
+			// Generate 16 bytes
+			byte[] mdBytes = md.digest();
+			// Fetch 8 bytes for DESKeySpec
+			byte[] truncatedBytes = Arrays.copyOf(mdBytes, 8);
 			DESKeySpec keySpec = new DESKeySpec(truncatedBytes);
 			SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
 			secretKey = keyFactory.generateSecret(keySpec);
@@ -231,27 +237,18 @@ public class CryptUtils {
 	 * BASE64加密
 	 */
 	public static String encryptBASE64(byte[] key) throws Exception {
-//		return (new Base64()).encodeToString(key);
-		return (new BASE64Encoder()).encodeBuffer(key);
+		return (Base64.getEncoder()).encodeToString(key);
 	}
 
 	/**
 	 * BASE64解密
 	 */
 	public static byte[] decryptBASE64(String key) throws Exception {
-//		return (new Base64()).decode(key);
-		return (new BASE64Decoder()).decodeBuffer(key);
+		return Base64.getDecoder().decode(key);
 	}
-
-	public static String encodeBASE64(String str) {
-		BASE64Encoder encoder = new BASE64Encoder();
-		String encode = encoder.encode(str.getBytes());
-		return encode;
-	}
-
 	public static String encodeBASE64(byte[] bytes) {
-		BASE64Encoder encoder = new BASE64Encoder();
-		String encode = encoder.encode(bytes);
+
+		String encode = Base64.getEncoder().encodeToString(bytes);
 		encode = encode.replaceAll("\n", "");
 		return encode;
 	}
@@ -260,7 +257,7 @@ public class CryptUtils {
 	 * 文件内容生成BASE64编码的字符串
 	 */
 	public static String encodeBASE64(File file) {
-		BASE64Encoder encoder = new BASE64Encoder();
+		Base64.Encoder encoder =  Base64.getEncoder();
 		StringBuilder sb = new StringBuilder();
 		InputStream input = null;
 		try {
@@ -290,11 +287,11 @@ public class CryptUtils {
 	 * BASE64编码的字符串解码为文件
 	 */
 	public static void decodeBASE64(String encoder, File file) {
-		BASE64Decoder decoder = new BASE64Decoder();
+	Base64.Decoder decoder = Base64.getDecoder();
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(file);
-			byte[] decoderBytes = decoder.decodeBuffer(encoder);
+			byte[] decoderBytes = decoder.decode(encoder);
 			fos.write(decoderBytes);
 			fos.flush();
 		} catch (Exception e) {
@@ -311,13 +308,10 @@ public class CryptUtils {
 	}
 
 	public static byte[] decodeBASE64(String encoder) {
-		BASE64Decoder decoder = new BASE64Decoder();
-		try {
-			return decoder.decodeBuffer(encoder);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
+		Base64.Decoder decoder = Base64.getDecoder();
+
+		return decoder.decode(encoder);
+
 	}
 	public static String getSign(String privateKey) {
 		return getSign(privateKey, new Date());
@@ -352,8 +346,5 @@ public class CryptUtils {
 
 		return sign;
 	}
-	public static void main(String[] args) {
-		System.out.println("-->>" + decode("BED75B6020FFB7F2"));
 
-	}
 }

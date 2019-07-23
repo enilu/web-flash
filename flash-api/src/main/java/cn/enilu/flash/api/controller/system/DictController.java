@@ -7,7 +7,6 @@ import cn.enilu.flash.bean.entity.system.Dict;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.exception.GunsException;
 import cn.enilu.flash.bean.vo.front.Rets;
-import cn.enilu.flash.dao.system.DictRepository;
 import cn.enilu.flash.service.system.DictService;
 import cn.enilu.flash.utils.BeanUtil;
 import cn.enilu.flash.utils.StringUtils;
@@ -31,8 +30,6 @@ import java.util.List;
 @RequestMapping("/dict")
 public class DictController extends BaseController {
     @Autowired
-    private DictRepository dictRepository;
-    @Autowired
     private DictService dictService;
 
     /**
@@ -41,10 +38,10 @@ public class DictController extends BaseController {
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public Object list(String name) {
         if(StringUtils.isNotEmpty(name)){
-            List<Dict> list = dictRepository.findByNameLike(name);
+            List<Dict> list = dictService.findByNameLike(name);
             return Rets.success(new DictWarpper(BeanUtil.objectsToMaps(list)).warp());
         }
-        List<Dict> list = dictRepository.findByPid(0L);
+        List<Dict> list = dictService.findByPid(0L);
         return Rets.success(new DictWarpper(BeanUtil.objectsToMaps(list)).warp());
     }
 
@@ -54,7 +51,7 @@ public class DictController extends BaseController {
         if (ToolUtil.isOneEmpty(dictName, dictValues)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
-        this.dictService.addDict(dictName, dictValues);
+        dictService.addDict(dictName, dictValues);
         return Rets.success();
     }
 
@@ -64,7 +61,7 @@ public class DictController extends BaseController {
         if (ToolUtil.isOneEmpty(dictName, dictValues)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
-        this.dictService.editDict(id,dictName, dictValues);
+        dictService.editDict(id,dictName, dictValues);
         return Rets.success();
     }
 
@@ -72,7 +69,7 @@ public class DictController extends BaseController {
     @RequestMapping(method = RequestMethod.DELETE)
     @BussinessLog(value = "删除字典", key = "id",dict=DictMap.class)
     public Object delete(@RequestParam Long id) {
-        this.dictService.delteDict(id);
+        dictService.delteDict(id);
         return Rets.success();
     }
 

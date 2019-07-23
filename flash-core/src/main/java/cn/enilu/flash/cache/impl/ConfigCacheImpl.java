@@ -1,8 +1,8 @@
-package cn.enilu.flash.dao.cache.impl;
+package cn.enilu.flash.cache.impl;
 
 import cn.enilu.flash.bean.entity.system.Cfg;
-import cn.enilu.flash.dao.cache.CacheDao;
-import cn.enilu.flash.dao.cache.ConfigCache;
+import cn.enilu.flash.cache.CacheDao;
+import cn.enilu.flash.cache.ConfigCache;
 import cn.enilu.flash.dao.system.CfgRepository;
 import cn.enilu.flash.utils.StringUtils;
 import org.slf4j.Logger;

@@ -3,11 +3,11 @@ package cn.enilu.flash.dao.system;
 
 
 import cn.enilu.flash.bean.entity.system.Task;
-import org.springframework.data.jpa.repository.JpaRepository;
+import cn.enilu.flash.dao.BaseRepository;
 
 import java.util.List;
 
-public interface TaskRepository extends JpaRepository<Task, Long> {
+public interface TaskRepository extends BaseRepository<Task,Long> {
 
     long countByNameLike(String name);
 

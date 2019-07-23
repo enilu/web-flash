@@ -1,7 +1,7 @@
 package cn.enilu.flash.service.message.sms.tencent;
 
 import cn.enilu.flash.bean.enumeration.ConfigKeyEnum;
-import cn.enilu.flash.dao.cache.ConfigCache;
+import cn.enilu.flash.cache.ConfigCache;
 import cn.enilu.flash.service.message.sms.SmsSender;
 import cn.enilu.flash.utils.StringUtils;
 import com.github.qcloudsms.SmsSingleSender;

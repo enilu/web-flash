@@ -1,7 +1,7 @@
 package cn.enilu.flash.core.listener;
 
-import cn.enilu.flash.dao.cache.ConfigCache;
-import cn.enilu.flash.dao.cache.DictCache;
+import cn.enilu.flash.cache.ConfigCache;
+import cn.enilu.flash.cache.DictCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

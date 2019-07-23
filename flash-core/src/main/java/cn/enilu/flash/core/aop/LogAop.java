@@ -3,7 +3,7 @@ package cn.enilu.flash.core.aop;
 import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.dictmap.base.AbstractDictMap;
 import cn.enilu.flash.bean.vo.SpringContextHolder;
-import cn.enilu.flash.dao.cache.TokenCache;
+import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.core.factory.Contrast;
 import cn.enilu.flash.core.log.LogManager;
 import cn.enilu.flash.core.log.LogTaskFactory;
