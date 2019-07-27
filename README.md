@@ -58,7 +58,7 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
     - 运行 npm install --registry=https://registry.npm.taobao.org
     - 运行npm run dev
     - 启动成功后访问 http://localhost:9528 ,登录，用户名密码:admin/admin 
-- ![vue](docs/vuejs.gif)
+- ![vue](http://www.enilu.cn/github/web-flash.gif)
 
 ## 在线文档
 - [http://enilu.github.io/web-flash](http://enilu.github.io/web-flash)
