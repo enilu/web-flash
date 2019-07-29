@@ -154,7 +154,7 @@ public class AccountController extends BaseController{
     private List<String> generatePermissions(List<Long> roleList) {
         Set<String> permissionSet = Sets.newHashSet();
         for (Long roleId : roleList) {
-            List<String> permissions =     menuService.getResUrlsByRoleId(roleId.intValue());
+            List<String> permissions =     menuService.getResUrlsByRoleId(roleId);
             if (permissions != null) {
                 for (String permission : permissions) {
                     if (ToolUtil.isNotEmpty(permission)) {

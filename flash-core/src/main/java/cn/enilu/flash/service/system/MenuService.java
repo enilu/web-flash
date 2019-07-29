@@ -226,7 +226,7 @@ public class MenuService  extends BaseService<Menu,Long,MenuRepository> {
         return menuRepository.getMenuIdsByRoleId(roleId);
     }
 
-    public List<String> getResUrlsByRoleId(Integer roleId) {
+    public List<String> getResUrlsByRoleId(Long roleId) {
         return menuRepository.getResUrlsByRoleId(roleId);
     }
 }
