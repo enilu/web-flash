@@ -4,6 +4,7 @@
 
 - web-flash是一个基于SrpingBoot2和Vue.JS的前后端分离的后台管理系统。而且不仅仅是一个后台管理系统，还提供了一个基于后台cms模块的手机端h5通用站点。
 - web-flash具备后台管理类系统的通用的基础功能，而且提供了基于idea intellij的的代码生成插件，可以一键生成前后端页面。
+- 另提供单体版：[guns-lite](https://github.com/enilu/guns-lite)
  
 
 
