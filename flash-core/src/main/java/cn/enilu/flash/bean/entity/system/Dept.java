@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.validation.constraints.NotBlank;
 
 /**
  * Created  on 2018/4/2 0002.
@@ -26,8 +27,10 @@ public class Dept extends BaseEntity {
     @Column
     private String pids;
     @Column
+    @NotBlank(message = "部门简称不能为空")
     private String simplename;
     @Column
+    @NotBlank(message = "部门全称不能为空")
     private String fullname;
     @Column
     private String tips;

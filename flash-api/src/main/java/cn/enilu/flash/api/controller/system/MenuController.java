@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -47,7 +48,7 @@ public class MenuController extends BaseController {
 
     @RequestMapping(method = RequestMethod.POST)
     @BussinessLog(value = "编辑菜单", key = "name", dict = MenuDict.class)
-    public Object save(@ModelAttribute Menu menu) {
+    public Object save(@ModelAttribute @Valid Menu menu) {
         //判断是否存在该编号
         if(menu.getId()==null) {
             String existedMenuName = ConstantFactory.me().getMenuNameByCode(menu.getCode());

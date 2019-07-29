@@ -13,6 +13,8 @@ import cn.enilu.flash.utils.factory.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * Created  on 2018/4/9 0009.
  * 系统参数
@@ -44,7 +46,7 @@ public class TaskController extends BaseController {
     @RequestMapping(method = RequestMethod.POST)
 
     @BussinessLog(value = "编辑定时任务", key = "name",dict = TaskDict.class)
-    public Object add(@ModelAttribute Task task) {
+    public Object add(@ModelAttribute @Valid Task task) {
         if(task.getId()==null) {
             taskService.save(task);
         }else{

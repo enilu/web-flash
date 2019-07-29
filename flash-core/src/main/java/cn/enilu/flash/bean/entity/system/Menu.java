@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.validation.constraints.NotBlank;
 
 /**
  * Created  on 2018/4/2 0002.
@@ -19,29 +20,31 @@ import javax.persistence.EntityListeners;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Menu  extends BaseEntity {
-    @Column
+    @Column(columnDefinition = "VARCHAR(32) COMMENT '编号'",unique = true,nullable = false)
+    @NotBlank(message="编号不能为空")
     private String code;
-    @Column
+    @Column(columnDefinition = "VARCHAR(64) COMMENT '父菜单编号'",nullable = false)
     private String pcode;
-    @Column
+    @Column(columnDefinition = "VARCHAR(128) COMMENT '递归父级菜单编号'")
     private String pcodes;
-    @Column
+    @Column(columnDefinition = "VARCHAR(64) COMMENT '名称'",nullable = false)
+    @NotBlank(message = "名称并能为空")
     private String name;
-    @Column
+    @Column(columnDefinition = "VARCHAR(32) COMMENT '图标'")
     private String icon;
-    @Column
+    @Column(columnDefinition = "VARCHAR(32) COMMENT '链接'",nullable = false)
     private String url;
-    @Column
+    @Column(columnDefinition = "VARCHAR(32) COMMENT '顺序'",nullable = false)
     private Integer num;
-    @Column
+    @Column(columnDefinition = "VARCHAR(32) COMMENT '级别'",nullable = false)
     private Integer levels;
-    @Column
+    @Column(columnDefinition = "VARCHAR(32) COMMENT '是否是菜单1:菜单,0:按钮'",nullable = false)
     private Integer ismenu;
-    @Column
+    @Column(columnDefinition = "VARCHAR(32) COMMENT '鼠标悬停提示信息'")
     private String tips;
-    @Column
+    @Column(columnDefinition = "VARCHAR(32) COMMENT '状态1:启用,0:禁用'",nullable = false)
     private Integer status;
-    @Column
+    @Column(columnDefinition = "VARCHAR(32) COMMENT '是否默认打开1:是,0:否'")
     private Integer isopen;
 
 }

@@ -21,6 +21,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * CfgController
  *
@@ -73,10 +75,10 @@ public class CfgController extends BaseController {
     }
     @RequestMapping(method = RequestMethod.POST)
     @BussinessLog(value = "编辑参数", key = "cfgName",dict= CfgDict.class)
-    public Object save(@ModelAttribute Cfg cfg){
-        if (ToolUtil.isOneEmpty(cfg, cfg.getCfgName(),cfg.getCfgValue())) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
-        }
+    public Object save(@ModelAttribute @Valid Cfg cfg){
+//        if (ToolUtil.isOneEmpty(cfg, cfg.getCfgName(),cfg.getCfgValue())) {
+//            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+//        }
         if(cfg.getId()!=null){
             Cfg old = cfgService.get(cfg.getId());
             old.setCfgName(cfg.getCfgName());

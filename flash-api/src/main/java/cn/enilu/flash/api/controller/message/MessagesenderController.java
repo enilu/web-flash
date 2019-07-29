@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/message/sender")
 public class MessagesenderController {
@@ -37,7 +39,7 @@ public class MessagesenderController {
 
     @RequestMapping(method = RequestMethod.POST)
     @BussinessLog(value = "编辑消息发送者", key = "name", dict = CommonDict.class)
-    public Object save(@ModelAttribute MessageSender tMessageSender) {
+    public Object save(@ModelAttribute @Valid MessageSender tMessageSender) {
         messagesenderService.save(tMessageSender);
         return Rets.success();
     }

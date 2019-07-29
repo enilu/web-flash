@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -38,7 +39,7 @@ public class DeptContoller extends BaseController {
     }
     @RequestMapping(method = RequestMethod.POST)
     @BussinessLog(value = "编辑部门", key = "simplename", dict = DeptDict.class)
-    public Object save(@ModelAttribute Dept dept){
+    public Object save(@ModelAttribute @Valid Dept dept){
         logger.info(JSON.toJSONString(dept));
         if (ToolUtil.isOneEmpty(dept, dept.getSimplename())) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);

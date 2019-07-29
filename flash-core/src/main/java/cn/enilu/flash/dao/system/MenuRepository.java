@@ -18,7 +18,7 @@ public interface MenuRepository extends BaseRepository<Menu,Long> {
     List<Menu> findByPcodesLike(String code);
     List<Menu> findByNameLikeAndLevels(String name,Integer levels);
     @Query(nativeQuery = true,value = "select url from t_sys_relation rel inner join t_sys_menu m on rel.menuid = m.id where m.status=1 and  rel.roleid = ?1")
-    List<String> getResUrlsByRoleId(Integer roleId);
+    List<String> getResUrlsByRoleId(Long roleId);
     @Query(nativeQuery = true,value="SELECT m1.id AS id, m1.icon AS icon, ( CASE WHEN (m2.id = 0 OR m2.id IS NULL) " +
             "THEN 0 ELSE m2.id END ) AS parentId, m1. NAME AS NAME, m1.url AS url, m1.levels AS levels, m1.ismenu AS " +
             "ismenu, m1.num AS num,m1.code as code,m1.status as status FROM t_sys_menu m1 LEFT JOIN t_sys_menu m2 ON " +

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/message/template")
 public class MessagetemplateController {
@@ -32,7 +34,7 @@ public class MessagetemplateController {
 
     @RequestMapping(method = RequestMethod.POST)
     @BussinessLog(value = "编辑消息模板", key = "name", dict = CommonDict.class)
-    public Object save(@ModelAttribute MessageTemplate tMessageTemplate) {
+    public Object save(@ModelAttribute @Valid MessageTemplate tMessageTemplate) {
         messagetemplateService.saveOrUpdate(tMessageTemplate);
         return Rets.success();
     }

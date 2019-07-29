@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity(name = "t_sys_task")
@@ -18,18 +19,21 @@ import java.util.Date;
 public class Task extends BaseEntity {
 
     @Column(columnDefinition = "VARCHAR(50) COMMENT '任务名'")
+    @NotBlank(message = "名称不能为空")
     private String name;
 
     @Column(name="job_group", columnDefinition = "VARCHAR(50) COMMENT '任务组名'")
     private String jobGroup;
 
     @Column(name="job_class", columnDefinition = "VARCHAR(255) COMMENT '执行类'")
+    @NotBlank(message = "执行类不能为空")
     private String jobClass;
 
     @Column(name="note", columnDefinition = "VARCHAR(255) COMMENT '任务说明'")
     private String note;
 
     @Column(name="cron", columnDefinition = "VARCHAR(50) COMMENT '定时规则'")
+    @NotBlank(message = "定时规则不能为空")
     private String cron;
 
     @Column(name="concurrent", columnDefinition = "TINYINT COMMENT '是否允许并发'")

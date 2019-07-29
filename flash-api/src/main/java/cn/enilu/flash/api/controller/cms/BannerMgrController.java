@@ -11,6 +11,7 @@ import cn.enilu.flash.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ public class BannerMgrController extends BaseController {
 
     @RequestMapping(method = RequestMethod.POST)
     @BussinessLog(value = "编辑banner", key = "title", dict = CommonDict.class)
-    public Object save(@ModelAttribute Banner banner) {
+    public Object save(@ModelAttribute @Valid Banner banner) {
         bannerService.saveOrUpdate(banner);
         return Rets.success();
     }
