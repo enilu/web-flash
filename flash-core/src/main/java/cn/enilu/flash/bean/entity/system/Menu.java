@@ -32,7 +32,7 @@ public class Menu  extends BaseEntity {
     private String name;
     @Column(columnDefinition = "VARCHAR(32) COMMENT '图标'")
     private String icon;
-    @Column(columnDefinition = "VARCHAR(32) COMMENT '链接'",nullable = false)
+    @Column(columnDefinition = "VARCHAR(32) COMMENT '链接'")
     private String url;
     @Column(columnDefinition = "VARCHAR(32) COMMENT '顺序'",nullable = false)
     private Integer num;

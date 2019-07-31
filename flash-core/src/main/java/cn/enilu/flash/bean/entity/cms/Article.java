@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity(name="t_cms_article")
 @Table(appliesTo = "t_cms_article",comment = "文章")
@@ -16,7 +17,7 @@ import javax.validation.constraints.NotBlank;
 @EntityListeners(AuditingEntityListener.class)
 public class Article extends BaseEntity {
     @Column(columnDefinition = "BIGINT COMMENT '栏目id'")
-    @NotBlank(message = "栏目不能为空")
+    @NotNull(message = "栏目不能为空")
     private Long idChannel;
     @Column(columnDefinition = "VARCHAR(128) COMMENT '标题'")
     @NotBlank(message = "标题不能为空")

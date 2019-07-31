@@ -4,6 +4,7 @@ import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.constant.factory.PageFactory;
 import cn.enilu.flash.bean.constant.state.BizLogType;
 import cn.enilu.flash.bean.entity.system.OperationLog;
+import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.system.OperationLogService;
@@ -12,6 +13,7 @@ import cn.enilu.flash.utils.DateUtil;
 import cn.enilu.flash.utils.StringUtils;
 import cn.enilu.flash.utils.factory.Page;
 import cn.enilu.flash.warpper.LogWarpper;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +35,7 @@ public class LogController extends BaseController {
      */
     @RequestMapping("/list")
     @ResponseBody
+    @RequiresPermissions(value = {Permission.LOG})
     public Object list(@RequestParam(required = false) String beginTime,
                        @RequestParam(required = false) String endTime,
                        @RequestParam(required = false) String logName,
@@ -60,6 +63,7 @@ public class LogController extends BaseController {
      * 清空日志
      */
     @RequestMapping(method = RequestMethod.DELETE)
+    @RequiresPermissions(value = {Permission.LOG_CLEAR})
     public Object delLog() {
         operationLogService.clear();
         return Rets.success();

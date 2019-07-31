@@ -9,6 +9,7 @@ import cn.enilu.flash.bean.dictmap.UserDict;
 import cn.enilu.flash.bean.dto.UserDto;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
+import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.exception.GunsException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
@@ -20,6 +21,7 @@ import cn.enilu.flash.utils.StringUtils;
 import cn.enilu.flash.utils.ToolUtil;
 import cn.enilu.flash.utils.factory.Page;
 import cn.enilu.flash.warpper.UserWarpper;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +44,7 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userService;
     @RequestMapping(value = "/list",method = RequestMethod.GET)
+    @RequiresPermissions(value = {Permission.USER})
     public Object list(@RequestParam(required = false) String account,
                        @RequestParam(required = false) String name){
         Page page = new PageFactory().defaultPage();
@@ -59,6 +62,7 @@ public class UserController extends BaseController {
     }
     @RequestMapping(method = RequestMethod.POST)
     @BussinessLog(value = "编辑管理员", key = "name", dict = UserDict.class)
+    @RequiresPermissions(value = {Permission.USER_EDIT})
     public Object save( @Valid UserDto user,BindingResult result){
         if(user.getId()==null) {
             // 判断账号是否重复
@@ -80,6 +84,7 @@ public class UserController extends BaseController {
 
     @BussinessLog(value = "删除管理员", key = "userId", dict = UserDict.class)
     @RequestMapping(method = RequestMethod.DELETE)
+    @RequiresPermissions(value = {Permission.USER_DEL})
     public Object remove(@RequestParam Long userId){
         if (ToolUtil.isEmpty(userId)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
@@ -94,6 +99,7 @@ public class UserController extends BaseController {
     }
     @BussinessLog(value="设置用户角色",key="userId",dict=UserDict.class)
     @RequestMapping(value="/setRole",method = RequestMethod.GET)
+    @RequiresPermissions(value = {Permission.USER_EDIT})
     public Object setRole(@RequestParam("userId") Long userId, @RequestParam("roleIds") String roleIds) {
         if (ToolUtil.isOneEmpty(userId, roleIds)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);

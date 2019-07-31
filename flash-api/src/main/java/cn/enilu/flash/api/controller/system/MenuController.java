@@ -6,6 +6,7 @@ import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.dictmap.MenuDict;
 import cn.enilu.flash.bean.entity.system.Menu;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
+import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.exception.GunsException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.node.MenuNode;
@@ -17,6 +18,7 @@ import cn.enilu.flash.service.system.impl.ConstantFactory;
 import cn.enilu.flash.utils.Maps;
 import cn.enilu.flash.utils.ToolUtil;
 import com.google.common.collect.Lists;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,7 @@ public class MenuController extends BaseController {
     private MenuService menuService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequiresPermissions(value = {Permission.MENU})
     public Object list() {
         List<MenuNode> list = menuService.getMenus();
         return Rets.success(list);
@@ -48,6 +51,7 @@ public class MenuController extends BaseController {
 
     @RequestMapping(method = RequestMethod.POST)
     @BussinessLog(value = "编辑菜单", key = "name", dict = MenuDict.class)
+    @RequiresPermissions(value = {Permission.MENU_EDIT})
     public Object save(@ModelAttribute @Valid Menu menu) {
         //判断是否存在该编号
         if(menu.getId()==null) {
@@ -66,6 +70,7 @@ public class MenuController extends BaseController {
 
     @RequestMapping(method = RequestMethod.DELETE)
     @BussinessLog(value = "删除菜单", key = "id", dict = MenuDict.class)
+    @RequiresPermissions(value = {Permission.MENU_DEL})
     public Object remove(@RequestParam Long id) {
         logger.info("id:{}", id);
         if (ToolUtil.isEmpty(id)) {
@@ -85,6 +90,7 @@ public class MenuController extends BaseController {
      * 获取菜单树
      */
     @RequestMapping(value = "/menuTreeListByRoleId", method = RequestMethod.GET)
+    @RequiresPermissions(value = {Permission.MENU})
     public Object menuTreeListByRoleId(Integer roleId) {
         List<Long> menuIds = menuService.getMenuIdsByRoleId(roleId);
         List<ZTreeNode> roleTreeList = null;

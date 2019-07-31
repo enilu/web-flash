@@ -7,6 +7,7 @@ import cn.enilu.flash.bean.dictmap.CfgDict;
 import cn.enilu.flash.bean.entity.system.Cfg;
 import cn.enilu.flash.bean.entity.system.FileInfo;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
+import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.exception.GunsException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
@@ -16,6 +17,7 @@ import cn.enilu.flash.utils.Maps;
 import cn.enilu.flash.utils.StringUtils;
 import cn.enilu.flash.utils.ToolUtil;
 import cn.enilu.flash.utils.factory.Page;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,7 @@ public class CfgController extends BaseController {
      * 查询参数列表
      */
     @RequestMapping(value = "/list",method = RequestMethod.GET)
+    @RequiresPermissions(value = {Permission.CFG})
     public Object list(@RequestParam(required = false) String cfgName, @RequestParam(required = false) String cfgValue) {
         Page<Cfg> page = new PageFactory<Cfg>().defaultPage();
         if(StringUtils.isNotEmpty(cfgName)){
@@ -61,6 +64,7 @@ public class CfgController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/export",method = RequestMethod.GET)
+    @RequiresPermissions(value = {Permission.CFG})
     public Object export(@RequestParam(required = false) String cfgName, @RequestParam(required = false) String cfgValue) {
         Page<Cfg> page = new PageFactory<Cfg>().defaultPage();
         if(StringUtils.isNotEmpty(cfgName)){
@@ -75,10 +79,8 @@ public class CfgController extends BaseController {
     }
     @RequestMapping(method = RequestMethod.POST)
     @BussinessLog(value = "编辑参数", key = "cfgName",dict= CfgDict.class)
+    @RequiresPermissions(value = {Permission.CFG_EDIT})
     public Object save(@ModelAttribute @Valid Cfg cfg){
-//        if (ToolUtil.isOneEmpty(cfg, cfg.getCfgName(),cfg.getCfgValue())) {
-//            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
-//        }
         if(cfg.getId()!=null){
             Cfg old = cfgService.get(cfg.getId());
             old.setCfgName(cfg.getCfgName());
@@ -92,6 +94,7 @@ public class CfgController extends BaseController {
     }
     @RequestMapping(method = RequestMethod.DELETE)
     @BussinessLog(value = "删除参数", key = "id",     dict= CfgDict.class)
+    @RequiresPermissions(value = {Permission.CFG_DEL})
     public Object remove(@RequestParam Long id){
         logger.info("id:{}",id);
         if (ToolUtil.isEmpty(id)) {

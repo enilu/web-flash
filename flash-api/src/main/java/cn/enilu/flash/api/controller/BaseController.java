@@ -2,8 +2,7 @@ package cn.enilu.flash.api.controller;
 
 
 import cn.enilu.flash.api.utils.ApiConstants;
-import cn.enilu.flash.bean.vo.SpringContextHolder;
-import cn.enilu.flash.cache.TokenCache;
+import cn.enilu.flash.security.JwtUtil;
 import cn.enilu.flash.utils.HttpKit;
 import cn.enilu.flash.utils.StringUtils;
 import com.alibaba.fastjson.JSON;
@@ -35,7 +34,7 @@ public class BaseController {
     public Long getIdUser(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
 
-        Long idUser = SpringContextHolder.getBean(TokenCache.class).get(token);
+        Long idUser = JwtUtil.getUserId(token);
         if (idUser == null) {
             throw new RuntimeException("用户不存在");
         }

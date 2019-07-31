@@ -33,6 +33,8 @@
         <!--auth libs-->
         <spring.security.jwt.version>1.0.9.RELEASE</spring.security.jwt.version>
         <spring.security.oauth2.version>2.2.0.RELEASE</spring.security.oauth2.version>
+        <shiro.version>1.3.2</shiro.version>
+        <jwt.version>3.2.0</jwt.version>
         <!--util libs-->
         <guava.version>20.0</guava.version>
         <mail.version>1.4.7</mail.version>
@@ -169,6 +171,17 @@
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-jwt</artifactId>
                 <version>${spring.security.jwt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${jwt.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>

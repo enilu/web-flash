@@ -16,7 +16,8 @@ public class UserService  extends BaseService<User,Long,UserRepository> {
     @Autowired
     private UserRepository userRepository;
 
-    public User findByAccount(String userName) {
-        return userRepository.findByAccount(userName);
+    public User findByAccount(String account) {
+        return userRepository.findByAccount(account);
     }
+
 }
