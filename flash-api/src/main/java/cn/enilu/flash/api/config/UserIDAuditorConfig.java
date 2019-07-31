@@ -1,6 +1,7 @@
 package cn.enilu.flash.api.config;
 
 import cn.enilu.flash.cache.TokenCache;
+import cn.enilu.flash.security.JwtUtil;
 import cn.enilu.flash.utils.HttpKit;
 import cn.enilu.flash.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class UserIDAuditorConfig implements AuditorAware<Long> {
         try {
             String token = HttpKit.getRequest().getHeader("Authorization");
             if (StringUtils.isNotEmpty(token)) {
-                return Optional.of(tokenCache.get(token));
+                return Optional.of(JwtUtil.getUserId(token));
             }
         }catch (Exception e){
             //返回系统用户id

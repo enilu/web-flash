@@ -5,6 +5,7 @@ import cn.enilu.flash.bean.enumeration.ConfigKeyEnum;
 import cn.enilu.flash.cache.ConfigCache;
 import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.dao.system.FileInfoRepository;
+import cn.enilu.flash.security.JwtUtil;
 import cn.enilu.flash.service.BaseService;
 import cn.enilu.flash.utils.XlsUtils;
 import org.jxls.common.Context;
@@ -105,7 +106,7 @@ public class FileService extends BaseService<FileInfo,Long,FileInfoRepository> {
         try {
             FileInfo fileInfo = new FileInfo();
             fileInfo.setCreateTime(new Date());
-            fileInfo.setCreateBy(tokenCache.getIdUser());
+            fileInfo.setCreateBy(JwtUtil.getUserId());
             fileInfo.setOriginalFileName(originalFileName);
             fileInfo.setRealFileName(file.getName());
             fileInfoRepository.save(fileInfo);

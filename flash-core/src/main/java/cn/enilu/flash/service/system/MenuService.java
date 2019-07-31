@@ -122,11 +122,11 @@ public class MenuService  extends BaseService<Menu,Long,MenuRepository> {
                 menuNode.setParentId(Long.valueOf(source[2].toString()));
                 menuNode.setName(String.valueOf(source[3]));
                 menuNode.setUrl(String.valueOf(source[4]));
-                menuNode.setLevels((Integer) source[5]);
-                menuNode.setIsmenu((Integer) source[6]);
-                menuNode.setNum((Integer) source[7]);
+                menuNode.setLevels(Integer.valueOf(source[5].toString()));
+                menuNode.setIsmenu(Integer.valueOf(source[6].toString()));
+                menuNode.setNum(Integer.valueOf(source[7].toString()));
                 menuNode.setCode(String.valueOf(source[8]));
-                menuNode.setStatus((Integer)source[9]);
+                menuNode.setStatus(Integer.valueOf(source[9].toString()));
                 menuNodes.add(menuNode);
 
             }

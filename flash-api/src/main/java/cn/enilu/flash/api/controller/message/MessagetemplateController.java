@@ -5,11 +5,13 @@ import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.dictmap.CommonDict;
 import cn.enilu.flash.bean.entity.message.MessageTemplate;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
+import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.exception.GunsException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.service.message.MessagetemplateService;
 import cn.enilu.flash.utils.ToolUtil;
 import cn.enilu.flash.utils.factory.Page;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +27,7 @@ public class MessagetemplateController {
     private MessagetemplateService messagetemplateService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequiresPermissions(value = {Permission.MSG_TPL})
     public Object list() {
         Page<MessageTemplate> page = new PageFactory<MessageTemplate>().defaultPage();
         page = messagetemplateService.queryPage(page);
@@ -34,6 +37,7 @@ public class MessagetemplateController {
 
     @RequestMapping(method = RequestMethod.POST)
     @BussinessLog(value = "编辑消息模板", key = "name", dict = CommonDict.class)
+    @RequiresPermissions(value = {Permission.MSG_TPL_EDIT})
     public Object save(@ModelAttribute @Valid MessageTemplate tMessageTemplate) {
         messagetemplateService.saveOrUpdate(tMessageTemplate);
         return Rets.success();
@@ -41,6 +45,7 @@ public class MessagetemplateController {
 
     @RequestMapping(method = RequestMethod.DELETE)
     @BussinessLog(value = "删除消息模板", key = "id", dict = CommonDict.class)
+    @RequiresPermissions(value = {Permission.MSG_TPL_DEL})
     public Object remove(Long id) {
         if (ToolUtil.isEmpty(id)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);

@@ -6,10 +6,12 @@ import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.dictmap.TaskDict;
 import cn.enilu.flash.bean.entity.system.Task;
 import cn.enilu.flash.bean.entity.system.TaskLog;
+import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.service.task.TaskService;
 import cn.enilu.flash.utils.StringUtils;
 import cn.enilu.flash.utils.factory.Page;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +33,7 @@ public class TaskController extends BaseController {
      * 获取定时任务管理列表
      */
     @RequestMapping(value = "/list")
-    @ResponseBody
+    @RequiresPermissions(value = {Permission.TASK})
     public Object list(String name) {
         if(StringUtils.isNullOrEmpty(name)) {
             return Rets.success(taskService.queryAll());
@@ -44,8 +46,8 @@ public class TaskController extends BaseController {
      * 新增定时任务管理
      */
     @RequestMapping(method = RequestMethod.POST)
-
     @BussinessLog(value = "编辑定时任务", key = "name",dict = TaskDict.class)
+    @RequiresPermissions(value = {Permission.TASK_EDIT})
     public Object add(@ModelAttribute @Valid Task task) {
         if(task.getId()==null) {
             taskService.save(task);
@@ -67,6 +69,7 @@ public class TaskController extends BaseController {
     @RequestMapping(method = RequestMethod.DELETE)
 
     @BussinessLog(value = "删除定时任务", key = "taskId",dict = TaskDict.class)
+    @RequiresPermissions(value = {Permission.TASK_DEL})
     public Object delete(@RequestParam Long id) {
         taskService.delete(id);
         return Rets.success();
@@ -75,12 +78,14 @@ public class TaskController extends BaseController {
     @RequestMapping(value = "/disable",method = RequestMethod.POST)
 
     @BussinessLog(value = "禁用定时任务", key = "taskId",dict = TaskDict.class)
+    @RequiresPermissions(value = {Permission.TASK_EDIT})
     public Object disable(@RequestParam Long taskId  ) {
         taskService.disable(taskId);
         return Rets.success();
     }
     @RequestMapping(value = "/enable",method = RequestMethod.POST)
     @BussinessLog(value = "启用定时任务", key = "taskId",dict = TaskDict.class)
+    @RequiresPermissions(value = {Permission.TASK_EDIT})
     public Object enable(@RequestParam Long taskId  ) {
         taskService.enable(taskId);
         return Rets.success();
@@ -88,6 +93,7 @@ public class TaskController extends BaseController {
 
 
     @RequestMapping(value="/logList")
+    @RequiresPermissions(value = {Permission.TASK})
     public Object logList(@RequestParam  Long taskId) {
         Page<TaskLog> page = new PageFactory<TaskLog>().defaultPage();
         page = taskService.getTaskLogs(page,taskId);

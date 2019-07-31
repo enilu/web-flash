@@ -6,6 +6,7 @@ import org.hibernate.annotations.Table;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * 消息模板
@@ -26,7 +27,7 @@ public class MessageTemplate extends BaseEntity {
     @Column(name="cond",columnDefinition = "VARCHAR(32) COMMENT '发送条件'")
     private String cond;
     @Column(name="id_message_sender",columnDefinition = "BIGINT COMMENT '发送者id'")
-    @NotBlank(message = "发送器不能为空")
+    @NotNull(message = "发送器不能为空")
     private Long idMessageSender;
     @Column(name="type",columnDefinition = "VARCHAR(32) COMMENT '消息类型,0:短信,1:邮件'")
     private Integer type;
