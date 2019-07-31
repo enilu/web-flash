@@ -78,7 +78,8 @@ module.exports = {
                     '/action/i18n',
                     '/action/cache',
                     '/action/task',
-                    '/action/jpaauditing.md'
+                    '/action/jpaauditing.md',
+                    '/action/validator'
 
                 ]
             },{

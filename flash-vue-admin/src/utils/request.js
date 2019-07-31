@@ -48,7 +48,6 @@ service.interceptors.response.use(
   error => {
     //debug
     if(error.response && error.response.data.errors) {
-      console.log(error.response)
       Message({
         message: error.response.data.errors[0].defaultMessage,
         type: 'error',
