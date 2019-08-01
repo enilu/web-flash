@@ -54,6 +54,12 @@ public class DynamicSpecifications {
                             case IN:
                                 predicates.add(expression.in(filter.value));
                                 break;
+                            case ISNULL:
+                                predicates.add(expression.isNull());
+                                break;
+                            case ISNOTNULL:
+                                predicates.add(expression.isNotNull());
+                                break;
                         }
                     }
 

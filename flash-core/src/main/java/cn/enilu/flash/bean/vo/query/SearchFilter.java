@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class SearchFilter {
     public enum Operator {
-        EQ, LIKE, GT, LT, GTE, LTE,IN
+        EQ, LIKE, GT, LT, GTE, LTE,IN,ISNULL,ISNOTNULL
     }
 
     public String fieldName;
@@ -21,6 +21,13 @@ public class SearchFilter {
     public Operator operator;
     public  static SearchFilter build(String fieldName, Operator operator, Object value){
         return  new SearchFilter(fieldName,operator,value);
+    }
+    public  static SearchFilter build(String fieldName, Operator operator){
+        return  new SearchFilter(fieldName,operator);
+    }
+    public SearchFilter(String fieldName, Operator operator) {
+        this.fieldName = fieldName;
+        this.operator = operator;
     }
     public SearchFilter(String fieldName, Operator operator, Object value) {
         this.fieldName = fieldName;

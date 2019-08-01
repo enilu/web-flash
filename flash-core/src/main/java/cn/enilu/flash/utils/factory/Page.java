@@ -343,7 +343,14 @@ public class Page<T>  {
             filters = Lists.newArrayList();
         }
         filters.add(filter);
-
+    }
+    public void addFilter(String fieldName, SearchFilter.Operator operator, Object value){
+        if(!StringUtils.isNullOrEmpty(value)){
+            addFilter(SearchFilter.build(fieldName,operator,value));
+        }
+    }
+    public void addFilter(String fieldName, SearchFilter.Operator operator){
+        addFilter(SearchFilter.build(fieldName,operator));
     }
 
     @Override
