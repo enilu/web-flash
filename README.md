@@ -17,7 +17,7 @@
 - flash-vue-admin 基于vuejs的后台管理系统
 - flash-vue-h5 移动端内容系统，基于后台管理CMS内容管理模块的内容进行展示。
 - flash-core 基础模块，包括工具类，dao，service，bean等内容
-- flash-generator 代码生成模块
+- flash-generator 代码生成模块,配合IDEA 代码生成插件[webflash-generator](https://plugins.jetbrains.com/plugin/12648-webflash-generator)使用效果更好
 
 ## 演示
 - 后台管理(vue版本) [http://47.104.84.62:8080/vue](http://47.104.84.62:8080/vue)
