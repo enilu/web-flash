@@ -6,7 +6,6 @@ import router from '../router/router'
 import store from '../store/store'
 import * as types from '../store/types'
 
-// const imgBaseUrl='http://htwx.xinshucredit.com/api'
 const imgBaseUrl = env.IMG_URL
 
 // axios 配置

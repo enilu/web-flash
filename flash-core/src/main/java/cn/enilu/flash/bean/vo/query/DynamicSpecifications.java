@@ -9,14 +9,12 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * descript
+ * 将SearchFilter查询条件解析为jpa查询对象Predicate
  *
  * @author ：enilu
  * @date ：Created in 2019/6/30 16:04
  */
 public class DynamicSpecifications {
-
-
     public static <T> Specification<T> bySearchFilter(final Collection<SearchFilter> filters, final Class<T> entityClazz) {
         return new Specification<T>() {
             @Override

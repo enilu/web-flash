@@ -24,5 +24,4 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
     T get(String sql);
     int execute(String sql);
     Class<T> getDataClass();
-
 }
