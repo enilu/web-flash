@@ -2,15 +2,10 @@
 
 [![Join the chat at https://gitter.im/web-flash/community](https://badges.gitter.im/web-flash/community.svg)](https://gitter.im/web-flash/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-- web-flash是一个基于SrpingBoot2和Vue.JS的前后端分离的后台管理系统。而且不仅仅是一个后台管理系统，还提供了一个基于后台cms模块的手机端h5通用站点。
-- web-flash具备后台管理类系统的通用的基础功能，而且提供了基于idea intellij的的代码生成插件，可以一键生成前后端页面。
-- 另提供单体版：[guns-lite](https://github.com/enilu/guns-lite)
- 
-
-
-## 版本说明
-- web-flash提供了一个后台管理系统和前端h5站点系统
 - web-flash是一个基于[Spring Boot](https://spring.io/projects/spring-boot/)和[Vue.js](https://cn.vuejs.org)的web系统，包含了基于[element](https://element.eleme.cn/#/zh-CN)搭建的后台管理系统和基于[vux](https://vux.li)搭建的手机端h5站点
+- web-flash具备后台管理类系统的通用的基础功能，而且提供了基于idea intellij的的代码生成插件，可以一键生成前后端页面。
+- web-flash提供了一个后台管理系统和前端h5站点系统
+- 另提供单体版：[guns-lite](https://github.com/enilu/guns-lite)
 
 ## 目录说明
 - flash-api 后台api服务
