@@ -56,7 +56,7 @@ public class MutiStrFactory {
             String[] items = StringUtils.split(StringUtils.removeSuffix(mutiString, ITEM_SPLIT), ITEM_SPLIT);
             for (String item : items) {
                 String[] attrs = item.split(ATTR_SPLIT);
-                HashMap<String, String> itemMap = new HashMap<>();
+                HashMap<String, String> itemMap = new HashMap<>(100);
                 itemMap.put(MUTI_STR_KEY,attrs[0]);
                 itemMap.put(MUTI_STR_VALUE,attrs[1]);
                 results.add(itemMap);
@@ -79,7 +79,7 @@ public class MutiStrFactory {
             String[] items = StringUtils.split(StringUtils.removeSuffix(mutiString, ITEM_SPLIT), ITEM_SPLIT);
             for (String item : items) {
                 String[] attrs = item.split(ATTR_SPLIT);
-                HashMap<String, String> itemMap = new HashMap<>();
+                HashMap<String, String> itemMap = new HashMap<>(100);
                 itemMap.put(MUTI_STR_ID,attrs[0]);
                 itemMap.put(MUTI_STR_KEY,attrs[1]);
                 itemMap.put(MUTI_STR_VALUE,attrs[2]);

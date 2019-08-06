@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/offcialSite/contact")
+@RequestMapping("/offcialsite/contact")
 public class ContactController extends BaseController {
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired

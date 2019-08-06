@@ -92,26 +92,26 @@ export default {
 
   imgBaseUrl,
   getOffcialSite () {
-    return get('/api/offcialSite')
+    return get('/api/offcialsite')
   },
   getProductList () {
-    return get('/api/offcialSite/product')
+    return get('/api/offcialsite/product')
   },
 
   getSolutionList () {
-    return get('/api/offcialSite/solution')
+    return get('/api/offcialsite/solution')
   },
 
   getCaseList () {
-    return get('/api/offcialSite/case')
+    return get('/api/offcialsite/case')
   },
   getNewsList () {
-    return get('/api/offcialSite/news')
+    return get('/api/offcialsite/news')
   },
   getArticle (id, type) {
-    return get('/api/offcialSite/article?id=' + id + '&type=' + type)
+    return get('/api/offcialsite/article?id=' + id + '&type=' + type)
   },
   saveContact (params) {
-    return post('/api/offcialSite/contact', params)
+    return post('/api/offcialsite/contact', params)
   }
 }

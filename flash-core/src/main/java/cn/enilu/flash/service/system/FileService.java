@@ -79,7 +79,7 @@ public class FileService extends BaseService<FileInfo,Long,FileInfoRepository> {
             }
 
             JexlExpressionEvaluator evaluator = (JexlExpressionEvaluator) transformer.getTransformationConfig().getExpressionEvaluator();
-            Map<String, Object> funcs = new HashMap<String, Object>();
+            Map<String, Object> funcs = new HashMap<String, Object>(4);
             funcs.put("utils", new XlsUtils());
             evaluator.getJexlEngine().setFunctions(funcs);
             jxlsHelper.processTemplate(context, transformer);

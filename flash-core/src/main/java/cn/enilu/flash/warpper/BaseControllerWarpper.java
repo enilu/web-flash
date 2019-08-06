@@ -34,5 +34,9 @@ public abstract class BaseControllerWarpper {
         }
     }
 
+    /**
+     * 数据转换
+     * @param map
+     */
     protected abstract void warpTheMap(Map<String, Object> map);
 }

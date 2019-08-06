@@ -1,17 +1,18 @@
-package cn.enilu.flash.bean.vo.offcialSite;
+package cn.enilu.flash.bean.vo.offcialsite;
 
 import lombok.Data;
 
 @Data
-public class Product {
+public class Solution {
+
     private Long id;
     private String name;
     private String img;
-    public Product(){
+    public Solution(){
 
     }
 
-    public Product(Long id, String name, String img) {
+    public Solution(Long id, String name, String img) {
         this.id = id;
         this.name = name;
         this.img = img;

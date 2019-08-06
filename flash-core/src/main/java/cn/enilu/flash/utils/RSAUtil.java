@@ -9,7 +9,6 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-import java.util.HashMap;
 import java.util.Map;
 
 
@@ -53,7 +52,7 @@ public class RSAUtil {
         //甲方私钥
         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
         //将密钥存储在map中
-        Map<String, Object> keyMap = new HashMap<String, Object>();
+        Map<String, Object> keyMap =  Maps.newHashMap();
         keyMap.put(PUBLIC_KEY, publicKey);
         keyMap.put(PRIVATE_KEY, privateKey);
         return keyMap;

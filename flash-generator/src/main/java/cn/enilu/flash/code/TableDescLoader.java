@@ -22,7 +22,7 @@ import java.util.Map;
  * 作者: zhangtao <br>
  * 创建日期: 16-7-10<br>
  */
-public class TableDescLoader extends Loader{
+public class TableDescLoader extends AbstractLoader {
 
 
     @Override
@@ -62,7 +62,7 @@ public class TableDescLoader extends Loader{
 
                 List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
                 while (rs.next()) {
-                    Map<String, Object> record = new HashMap<String, Object>();
+                    Map<String, Object> record = new HashMap<String, Object>(20);
                     for (int i = 1; i <= columnCount; i++) {
                         String columnName = metaData.getColumnName(i);
                         record.put(columnName, rs.getObject(columnName));
@@ -79,7 +79,7 @@ public class TableDescLoader extends Loader{
 
         List<Map> columns =tableSchemaSql.getList(Map.class);
 
-        Map<String, TableDescriptor> tables = new HashMap<String, TableDescriptor>();
+        Map<String, TableDescriptor> tables = new HashMap<String, TableDescriptor>(20);
         for (Map<String, Object> columnInfo : columns) {
             String tableName = (String) columnInfo.get("TABLE_NAME");
 
@@ -117,7 +117,7 @@ public class TableDescLoader extends Loader{
 
                 List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
                 while (rs.next()) {
-                    Map<String, Object> record = new HashMap<String, Object>();
+                    Map<String, Object> record = new HashMap<String, Object>(20);
                     for (int i = 1; i <= columnCount; i++) {
                         String columnName = metaData.getColumnName(i);
                         record.put(columnName, rs.getObject(columnName));

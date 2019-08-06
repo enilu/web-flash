@@ -19,7 +19,6 @@ import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -173,7 +172,7 @@ public class XmlHelper {
      */
     public Map<String, String> toMap() {
         Element root = doc.getDocumentElement();
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = Maps.newHashMap();
 
         // 将节点封装成map形式
         NodeList list = root.getChildNodes();

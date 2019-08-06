@@ -5,10 +5,11 @@ import cn.enilu.flash.bean.entity.cms.Article;
 import cn.enilu.flash.bean.enumeration.cms.BannerTypeEnum;
 import cn.enilu.flash.bean.enumeration.cms.ChannelEnum;
 import cn.enilu.flash.bean.vo.front.Rets;
-import cn.enilu.flash.bean.vo.offcialSite.BannerVo;
-import cn.enilu.flash.bean.vo.offcialSite.Product;
+import cn.enilu.flash.bean.vo.offcialsite.BannerVo;
+import cn.enilu.flash.bean.vo.offcialsite.Product;
 import cn.enilu.flash.service.cms.ArticleService;
 import cn.enilu.flash.service.cms.BannerService;
+import cn.enilu.flash.utils.Maps;
 import cn.enilu.flash.utils.factory.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/offcialSite/product")
+@RequestMapping("/offcialsite/product")
 public class OffcialSiteProductController extends BaseController {
     @Autowired
     private BannerService bannerService;
@@ -30,9 +30,9 @@ public class OffcialSiteProductController extends BaseController {
 
     @RequestMapping(method = RequestMethod.GET)
     public Object index() {
-        Map<String, Object> dataMap = new HashMap<>();
+        Map<String, Object> dataMap = Maps.newHashMap();
 
-        BannerVo banner = bannerService.queryBanner(BannerTypeEnum.SOLUTION.getValue());
+                BannerVo banner = bannerService.queryBanner(BannerTypeEnum.SOLUTION.getValue());
         dataMap.put("banner", banner);
 
         List<Product> products = new ArrayList<>();
@@ -42,8 +42,7 @@ public class OffcialSiteProductController extends BaseController {
         }
         dataMap.put("productList", products);
 
-        Map map = new HashMap();
-        map.put("data", dataMap);
+        Map map =  Maps.newHashMap("data",dataMap);
         return Rets.success(map);
 
     }

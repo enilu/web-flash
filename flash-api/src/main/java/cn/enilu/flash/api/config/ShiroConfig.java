@@ -2,6 +2,7 @@ package cn.enilu.flash.api.config;
 
 import cn.enilu.flash.api.interceptor.JwtFilter;
 import cn.enilu.flash.security.ApiRealm;
+import cn.enilu.flash.utils.Maps;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -14,7 +15,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
 import javax.servlet.Filter;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -47,7 +47,7 @@ public class ShiroConfig {
         ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
 
         // 添加自己的过滤器并且取名为jwt
-        Map<String, Filter> filterMap = new HashMap<>();
+        Map<String, Filter> filterMap =  Maps.newHashMap();
         filterMap.put("jwt", new JwtFilter());
         factoryBean.setFilters(filterMap);
 
@@ -58,7 +58,7 @@ public class ShiroConfig {
          * 自定义url规则
          * http://shiro.apache.org/web.html#urls-
          */
-        Map<String, String> filterRuleMap = new HashMap<>();
+        Map<String, String> filterRuleMap =  Maps.newHashMap();
         // 所有请求通过我们自己的JWT Filter
         filterRuleMap.put("/**", "jwt");
         // 访问401和404页面不通过我们的Filter

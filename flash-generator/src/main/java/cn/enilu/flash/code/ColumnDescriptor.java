@@ -134,9 +134,8 @@ public class ColumnDescriptor {
 		extractLabel(comment);
 		extractSearchable(comment);
 	}
-
+	Pattern labelPattern = Pattern.compile("label:\\s*([^,;，]+)");
 	private void extractLabel(String comment) {
-		Pattern labelPattern = Pattern.compile("label:\\s*([^,;，]+)");
 		Matcher m = labelPattern.matcher(comment);
 		if (m.find()) {
 			this.label = m.group(1);
@@ -146,10 +145,9 @@ public class ColumnDescriptor {
 	public String getQueryOperator() {
 		return queryOperator;
 	}
-
+	Pattern queryPattern = Pattern.compile("searchable:\\s*(\\w+)");
 	private void extractSearchable(String comment) {
 		// searchable: eq
-		Pattern queryPattern = Pattern.compile("searchable:\\s*(\\w+)");
 		Matcher m = queryPattern.matcher(comment);
 		if (m.find()) {
 			queryOperator = m.group(1);
@@ -162,7 +160,7 @@ public class ColumnDescriptor {
 
 	public String getFieldName() {
 		if(Strings.isBlank(fieldName)){
-			return Utils.LOWER_CAMEL(columnName);
+			return Utils.lowerCamel(columnName);
 		}
 		return fieldName;
 	}
@@ -230,8 +228,8 @@ public class ColumnDescriptor {
 	}
 
 	public String getUpperJavaFieldName() {
-		return Utils.LOWER_CAMEL(columnName);
-//		return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL,
+		return Utils.lowerCamel(columnName);
+//		return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.upperCamel,
 //				columnName);
 	}
 

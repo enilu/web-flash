@@ -1,4 +1,4 @@
-package cn.enilu.flash.bean.vo.offcialSite;
+package cn.enilu.flash.bean.vo.offcialsite;
 
 import lombok.Data;
 

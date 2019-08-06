@@ -31,7 +31,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
      */
     public String[] EXCLUDE_PATH_PATTERN = {
             "/file/**",//文件上传和下载
-            "/offcialSite","/offcialSite/*",//h5端的api，建议生产中将前端h5和后端h5使用的api分拆成两个服务，
+            offcialsite,offcialsite,//h5端的api，建议生产中将前端h5和后端h5使用的api分拆成两个服务，
             "/druid/**",//druid监控请求
             "/validate/*",//验证码地址
             "/account/register", "/account/login",//用户注册和登陆

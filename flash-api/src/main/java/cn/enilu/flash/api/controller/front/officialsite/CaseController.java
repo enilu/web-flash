@@ -5,8 +5,8 @@ import cn.enilu.flash.bean.entity.cms.Article;
 import cn.enilu.flash.bean.enumeration.cms.BannerTypeEnum;
 import cn.enilu.flash.bean.enumeration.cms.ChannelEnum;
 import cn.enilu.flash.bean.vo.front.Rets;
-import cn.enilu.flash.bean.vo.offcialSite.BannerVo;
-import cn.enilu.flash.bean.vo.offcialSite.Product;
+import cn.enilu.flash.bean.vo.offcialsite.BannerVo;
+import cn.enilu.flash.bean.vo.offcialsite.Product;
 import cn.enilu.flash.service.cms.ArticleService;
 import cn.enilu.flash.service.cms.BannerService;
 import cn.enilu.flash.utils.factory.Page;
@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/offcialSite/case")
+@RequestMapping("/offcialsite/case")
 public class CaseController extends BaseController {
     @Autowired
     private BannerService bannerService;

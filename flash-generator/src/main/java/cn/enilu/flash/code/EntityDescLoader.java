@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
  * 作者: zhangtao <br>
  * 创建日期: 16-7-10<br>
  */
-public class EntityDescLoader extends  Loader {
+public class EntityDescLoader extends AbstractLoader {
     
     private static final Log log = Logs.get();
     public static  final Pattern COLUMN_DEFINITION_PATTERN  =  Pattern.compile("([A-Za-z]+)(?:\\(\\d+\\))?\\s*(?:(?:COMMENT|[Cc]omment)\\s+'(.*?)')?");
@@ -41,10 +41,11 @@ public class EntityDescLoader extends  Loader {
         String packageName = basePackageName+"."+modPackageName;
 
         String filePath = packageName.replaceAll("\\.","\\/");
-        URL url = Loader.class.getClassLoader().getResource(filePath);
+        URL url = AbstractLoader.class.getClassLoader().getResource(filePath);
         String path;
-        if (url != null)
+        if (url != null) {
             path = url.getPath();
+        }
         else {
             path = "out/" + basePackageName.replace('.', '/');
         }
@@ -52,7 +53,7 @@ public class EntityDescLoader extends  Loader {
         log.debug("output dir = " + f.getAbsolutePath());
         String abstractPath = URLDecoder.decode(path, "utf8");
         File[] files = Files.lsFile(abstractPath, null);
-        Map<String, TableDescriptor> tables = new HashMap<String, TableDescriptor>();
+        Map<String, TableDescriptor> tables = new HashMap<String, TableDescriptor>(10);
 
         for(File file:files){
             String fileName = file.getName().split("\\.")[0];
@@ -82,7 +83,7 @@ public class EntityDescLoader extends  Loader {
             for(Field field:fields){
                 ColumnDescriptor column = new ColumnDescriptor();
                 String fieldName = field.getName();
-                if(fieldName.equals("createTime")||fieldName.equals("createBy")||fieldName.equals("modifyTime")||fieldName.equals("modifyBy")){
+                if("createTime".equals(fieldName) || "createBy".equals(fieldName) || "modifyTime".equals(fieldName) || "modifyBy".equals(fieldName)){
                     continue;
                 }
                 column.setFieldName(fieldName);

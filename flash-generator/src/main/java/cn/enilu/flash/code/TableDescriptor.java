@@ -130,7 +130,7 @@ public class TableDescriptor {
 
     public String getEntityClassName() {
         if (Strings.isBlank(entityName)) {
-            return Utils.UPPER_CAMEL(name);
+            return Utils.upperCamel(name);
         }
         return entityName;
     }
@@ -151,7 +151,7 @@ public class TableDescriptor {
 
 
     public String getEntityInstanceName() {
-        return Utils.LOWER_CAMEL(name);
+        return Utils.lowerCamel(name);
     }
 
     public String getEntityInstancesName() {
@@ -163,14 +163,14 @@ public class TableDescriptor {
     }
 
     public String getServiceClassName() {
-        return Utils.UPPER_CAMEL(getEntityClassName()) + "Service";
+        return Utils.upperCamel(getEntityClassName()) + "Service";
     }
     public String getRepositoryClassName(){
-        return Utils.UPPER_CAMEL(getEntityClassName()) + "Repository";
+        return Utils.upperCamel(getEntityClassName()) + "Repository";
     }
 
     public String getControllerClassName() {
-        return Utils.UPPER_CAMEL(getEntityClassName()) + "Controller";
+        return Utils.upperCamel(getEntityClassName()) + "Controller";
     }
 
     public void addPrimaryKeyColumn(String columnName) {

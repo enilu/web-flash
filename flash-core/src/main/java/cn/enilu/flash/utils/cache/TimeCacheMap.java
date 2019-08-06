@@ -1,5 +1,7 @@
 package cn.enilu.flash.utils.cache;
 
+import cn.enilu.flash.utils.Maps;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -57,7 +59,7 @@ public class TimeCacheMap<K, V> {
                     synchronized (lock) {
                         //删掉最后一个桶，在头补充一个新的桶，最后一个桶的数据是最旧的
                         dead = buckets.removeLast();
-                        buckets.addFirst(new HashMap<K, V>());
+                        buckets.addFirst(Maps.newHashMap());
                     }
                     if (TimeCacheMap.this.callback != null) {
                         for (Map.Entry<K, V> entry : dead.entrySet()) {
