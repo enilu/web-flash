@@ -18,6 +18,7 @@ export default {
         limit: 20,
         id: undefined
       },
+      rangeDate: undefined,
       total: 0,
       list: null,
       listLoading: true,
@@ -43,11 +44,26 @@ export default {
     },
     fetchData() {
       this.listLoading = true
-      getList(this.listQuery).then(response => {
+      let queryData = this.listQuery
+      if(this.rangeDate){
+        queryData['startDate'] = this.rangeDate[0]
+        queryData['endDate'] = this.rangeDate[1]
+
+      }
+      getList(queryData).then(response => {
         this.list = response.data.records
         this.listLoading = false
         this.total = response.data.total
       })
+    },
+    search() {
+      this.fetchData()
+    },
+    reset() {
+      this.listQuery.startDate = undefined
+      this.listQuery.endDate = undefined
+      this.rangeDate = ''
+      this.fetchData()
     },
     handleFilter() {
       this.listQuery.page = 1

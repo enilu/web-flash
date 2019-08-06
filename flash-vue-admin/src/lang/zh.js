@@ -8,7 +8,7 @@ export default {
     articleMgr:'文章管理',
     editArticle:'编辑文章',
     fileMgr:'文件管理',
-    contactsMgr:'联系管理',
+    contactsMgr:'邀约管理',
     channelMgr:'栏目管理',
     menuMgr: '菜单管理',
     deptMgr: '部门管理',

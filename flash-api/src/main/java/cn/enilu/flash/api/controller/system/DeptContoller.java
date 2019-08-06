@@ -11,7 +11,6 @@ import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.node.DeptNode;
 import cn.enilu.flash.service.system.DeptService;
 import cn.enilu.flash.utils.ToolUtil;
-import com.alibaba.fastjson.JSON;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +43,6 @@ public class DeptContoller extends BaseController {
     @BussinessLog(value = "编辑部门", key = "simplename", dict = DeptDict.class)
     @RequiresPermissions(value = {Permission.DEPT_EDIT})
     public Object save(@ModelAttribute @Valid Dept dept){
-        logger.info(JSON.toJSONString(dept));
         if (ToolUtil.isOneEmpty(dept, dept.getSimplename())) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }

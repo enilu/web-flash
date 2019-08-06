@@ -34,7 +34,9 @@ public class LoginLogController extends BaseController {
     private LoginLogService loginlogService;
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.LOGIN_LOG})
-    public Object list(@RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) String logname) {
+    public Object list(@RequestParam(required = false) String beginTime,
+                       @RequestParam(required = false) String endTime,
+                       @RequestParam(required = false) String logname) {
         Page<LoginLog> page = new PageFactory<LoginLog>().defaultPage();
         if(StringUtils.isNotEmpty(beginTime)){
             page.addFilter(SearchFilter.build("createTime", SearchFilter.Operator.GTE, DateUtil.parseDate(beginTime)));

@@ -1,5 +1,7 @@
 package cn.enilu.flash.service.system;
 
+import cn.enilu.flash.bean.constant.cache.Cache;
+import cn.enilu.flash.bean.constant.cache.CacheKey;
 import cn.enilu.flash.bean.entity.system.FileInfo;
 import cn.enilu.flash.bean.enumeration.ConfigKeyEnum;
 import cn.enilu.flash.cache.ConfigCache;
@@ -13,6 +15,7 @@ import org.jxls.expression.JexlExpressionEvaluator;
 import org.jxls.transform.Transformer;
 import org.jxls.util.JxlsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -118,6 +121,7 @@ public class FileService extends BaseService<FileInfo,Long,FileInfoRepository> {
     }
 
     @Override
+    @Cacheable(value = Cache.APPLICATION, key = "'" + CacheKey.FILE_INFO + "'+#id")
     public FileInfo get(Long id){
         FileInfo fileInfo = fileInfoRepository.getOne(id);
         fileInfo.setAblatePath(configCache.get(ConfigKeyEnum.SYSTEM_FILE_UPLOAD_PATH.getValue()) + File.separator+fileInfo.getRealFileName());

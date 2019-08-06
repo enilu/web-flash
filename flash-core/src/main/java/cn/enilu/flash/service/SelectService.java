@@ -19,6 +19,8 @@ public interface SelectService <T, ID> {
      * @return 查询结果,无结果时返回{@code null}
      */
     T get(ID id);
+    T get(SearchFilter filter);
+    T get(List<SearchFilter> filters);
 
     /**
      * 根据多个主键查询

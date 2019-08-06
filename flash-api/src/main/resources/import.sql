@@ -44,7 +44,7 @@ INSERT INTO `t_cms_channel` (`id`, `create_by`, `create_time`, `modify_by`, `mod
 -- ----------------------------
 -- Records of t_cms_contacts
 -- ----------------------------
-INSERT INTO `t_cms_contacts` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `email`, `mobile`, `remark`, `user_name`) VALUES ('1', null, null, null, null, 'test@qq.com', '15011111111', '测试联系，哈哈哈', '张三');
+INSERT INTO `t_cms_contacts` VALUES ('1', null, '2019-07-31 17:44:27', null, '2019-07-31 17:44:27', 'test@qq.com', '15011111111', '测试联系，哈哈哈', '张三');
 
 -- ----------------------------
 -- Records of t_snow_product
@@ -168,7 +168,7 @@ INSERT INTO `t_sys_menu` VALUES ('40', '1', '2019-07-31 22:04:30', '1', '2019-07
 INSERT INTO `t_sys_menu` VALUES ('41', '1', '2019-03-11 22:29:54', '1', '2019-03-11 22:29:54', 'channel', null, '1', null, '2', '栏目管理', '1', 'cms', '[0],[cms],', '1', null, '/channel');
 INSERT INTO `t_sys_menu` VALUES ('42', '1', '2019-03-11 22:30:17', '1', '2019-03-11 22:30:17', 'article', null, '1', null, '2', '文章管理', '2', 'cms', '[0],[cms],', '1', null, '/article');
 INSERT INTO `t_sys_menu` VALUES ('43', '1', '2019-03-11 22:30:52', '1', '2019-03-11 22:30:52', 'banner', null, '1', null, '2', 'banner管理', '3', 'cms', '[0],[cms],', '1', null, '/banner');
-INSERT INTO `t_sys_menu` VALUES ('44', '1', '2019-03-18 19:45:37', '1', '2019-03-18 19:45:37', 'contacts', null, '1', null, '2', '联系管理', '4', 'cms', '[0],[cms],', '1', null, '/contacts');
+INSERT INTO `t_sys_menu` VALUES ('44', '1', '2019-03-18 19:45:37', '1', '2019-03-18 19:45:37', 'contacts', null, '1', null, '2', '邀约管理', '4', 'cms', '[0],[cms],', '1', null, '/contacts');
 INSERT INTO `t_sys_menu` VALUES ('45', '1', '2019-03-19 10:25:05', '1', '2019-03-19 10:25:05', 'file', null, '1', null, '2', '文件管理', '5', 'cms', '[0],[cms],', '1', null, '/fileMgr');
 INSERT INTO `t_sys_menu` VALUES ('46', '1', '2019-03-11 22:30:17', '1', '2019-03-11 22:30:17', 'article.edit', null, '1', null, '3', '编辑文章', '1', 'article', '[0],[cms],[article]', '1', null, '/article/edit');
 INSERT INTO `t_sys_menu` VALUES ('47', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'task.log', null, '1', null, '3', '任务日志', '4', 'task', '[0],[system],[task],', '1', null, '/taskLog');

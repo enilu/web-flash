@@ -9,7 +9,7 @@ import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.cms.ArticleService;
-import cn.enilu.flash.utils.StringUtils;
+import cn.enilu.flash.utils.DateUtil;
 import cn.enilu.flash.utils.factory.Page;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,11 +61,16 @@ public class ArticleMgrController extends BaseController {
     }
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.ARTICLE})
-    public Object list(@RequestParam(required = false) String title) {
+    public Object list(@RequestParam(required = false) String title,
+                       @RequestParam(required = false) String author,
+                       @RequestParam(required = false) String startDate,
+                       @RequestParam(required = false) String endDate
+                       ) {
         Page<Article> page = new PageFactory<Article>().defaultPage();
-        if (StringUtils.isNotEmpty(title)) {
-            page.addFilter(SearchFilter.build("title", SearchFilter.Operator.LIKE, title));
-        }
+        page.addFilter("title", SearchFilter.Operator.LIKE,title);
+        page.addFilter("author", SearchFilter.Operator.EQ,author);
+        page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parse(startDate,"yyyyMMddHHmmss"));
+        page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parse(endDate,"yyyyMMddHHmmss"));
         page = articleService.queryPage(page);
         return Rets.success(page);
     }

@@ -1,11 +1,13 @@
 package cn.enilu.flash.service;
 
+import cn.enilu.flash.bean.constant.cache.Cache;
 import cn.enilu.flash.bean.vo.query.DynamicSpecifications;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.dao.BaseRepository;
 import cn.enilu.flash.utils.Lists;
 import cn.enilu.flash.utils.factory.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -46,8 +48,21 @@ public abstract  class BaseService<T, ID extends Serializable, R extends BaseRep
     }
 
     @Override
+    @Cacheable(value = Cache.APPLICATION ,key = "#root.targetClass.simpleName+':'+#id")
     public T get(ID id) {
         return  dao.findById(id).get();
+    }
+
+    @Override
+    public T get(SearchFilter filter) {
+       List<T> list = queryAll(filter);
+       return list.isEmpty()?null:list.get(0);
+    }
+
+    @Override
+    public T get(List<SearchFilter> filters) {
+        List<T> list = queryAll(filters);
+        return list.isEmpty()?null:list.get(0);
     }
 
     @Override
