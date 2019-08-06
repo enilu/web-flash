@@ -47,7 +47,7 @@ public abstract  class BaseService<T, ID extends Serializable, R extends BaseRep
 
     @Override
     public T get(ID id) {
-        return  dao.getOne(id);
+        return  dao.findById(id).get();
     }
 
     @Override
@@ -96,7 +96,12 @@ public abstract  class BaseService<T, ID extends Serializable, R extends BaseRep
 
     @Override
     public List<T> queryAll(SearchFilter filter, Sort sort) {
-        return queryAll(Lists.newArrayList(filter),sort);
+        if(filter!=null){
+            return queryAll(Lists.newArrayList(filter),sort);
+        }else {
+            return queryAll(Lists.newArrayList(), sort);
+        }
+
     }
 
     @Override

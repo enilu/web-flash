@@ -1,7 +1,7 @@
 package cn.enilu.flash.bean.vo.query;
 
 import cn.enilu.flash.utils.Maps;
-import org.apache.commons.lang3.StringUtils;
+import cn.enilu.flash.utils.StringUtils;
 
 import java.util.Map;
 
@@ -30,9 +30,11 @@ public class SearchFilter {
         this.operator = operator;
     }
     public SearchFilter(String fieldName, Operator operator, Object value) {
-        this.fieldName = fieldName;
-        this.value = value;
-        this.operator = operator;
+        if(!StringUtils.isNullOrEmpty(value)) {
+            this.fieldName = fieldName;
+            this.value = value;
+            this.operator = operator;
+        }
     }
 
     /**
