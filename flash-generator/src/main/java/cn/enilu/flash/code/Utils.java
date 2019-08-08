@@ -33,6 +33,9 @@ public class Utils {
      * @return
      */
     public static String upperCamel(String src){
+        if(!src.contains("_")){
+            return src;
+        }
         src = src.toLowerCase();
         StringBuilder result = new StringBuilder();
         for(String sitem:src.split("_")){
