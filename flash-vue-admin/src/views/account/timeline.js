@@ -8,7 +8,7 @@ export default {
         password: '',
         rePassword: ''
       },
-      activeName: 'updatePwd',
+      activeName: 'timeline',
       user: {}
     }
   },

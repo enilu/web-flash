@@ -12,9 +12,9 @@
           <i class="el-icon-caret-bottom"/>
         </div>
         <el-dropdown-menu slot="dropdown">
-          <router-link to="/">
+          <router-link to="/account/profile">
             <el-dropdown-item>
-              {{ $t('navbar.dashboard') }}
+              {{ $t('navbar.profile') }}
             </el-dropdown-item>
           </router-link>
           <router-link to="/account/updatePwd">

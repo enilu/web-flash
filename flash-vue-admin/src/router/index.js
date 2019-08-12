@@ -35,13 +35,29 @@ export const constantRouterMap = [
       meta: { title: 'dashboard', icon: 'dashboard', noCache: true }
     },
     {
-      path: '/account/updatePwd',
-      name: '修改密码',
-      component: () => import('@/views/account/updatePwd.vue'),
+      path: '/account/profile',
+      name: '个人资料',
+      component: () => import('@/views/account/profile.vue'),
       hidden: true,
-      meta: { title: '修改密码' }
+      meta: { title: '个人资料' }
 
-    }
+    },
+      {
+        path: '/account/timeline',
+        name: '最近活动',
+        component: () => import('@/views/account/timeline.vue'),
+        hidden: true,
+        meta: { title: '最近活动' }
+
+      },
+      {
+        path: '/account/updatePwd',
+        name: '修改密码',
+        component: () => import('@/views/account/updatePwd.vue'),
+        hidden: true,
+        meta: { title: '修改密码' }
+
+      }
     ]
   },
   { path: '/404', component: () => import('@/views/404'), hidden: true }

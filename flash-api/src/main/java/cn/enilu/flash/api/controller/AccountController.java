@@ -112,6 +112,8 @@ public class AccountController extends BaseController{
             map.put("menus",menus);
             map.put("permissions",shiroUser.getUrls());
 
+            map.put("profile",user);
+
             return Rets.success(map);
         }
         return Rets.failure("获取用户信息失败");
