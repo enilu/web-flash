@@ -1,11 +1,12 @@
 <template>
   <div class="app-container">
-    <div>
-      <h3>{{user.name}}</h3>
+    <div class="user">
+      <strong>{{ user.name }}</strong><br>
+      <small>{{ user.dept }} &nbsp;&nbsp; {{ user.roles }}</small>
     </div>
-    <el-row style="box-shadow: 1px 0px 1px #838080;">
-      <el-col :span="6"  style="box-shadow: 1px 0px 1px #838080;height:500px;width:220px;">
-        <img class="user-avatar" style="width:200px;" src="@/assets/img/avatar.gif"><br>
+    <el-row class="user-content" style="">
+      <el-col :span="6" class="profile">
+        <img class="user-avatar" src="@/assets/img/avatar.gif"><br>
         <p><span class="title"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ user.phone }}</span></p>
         <p><span class="title"><i class="el-icon-message"></i>&nbsp;&nbsp;{{ user.email }}</span></p>
         <p><span class="title"><i class="el-icon-view"></i>&nbsp;&nbsp;{{ user.status == '1'?'启用' : '禁用' }}</span></p>

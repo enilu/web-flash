@@ -25,13 +25,11 @@ import java.util.Set;
 public class ApiRealm extends AuthorizingRealm {
 
     private     Logger logger = LogManager.getLogger(getClass());
-
-    private UserService userService;
-
     @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
+    private UserService userService;
+    @Autowired
+    private ShiroFactroy shiroFactroy;
+
 
     /**
      * 大坑！，必须重写此方法，不然Shiro会报错
@@ -47,7 +45,8 @@ public class ApiRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = JwtUtil.getUsername(principals.toString());
-        ShiroUser user = ShiroFactroy.me().shiroUser(userService.findByAccount(username));
+
+        ShiroUser user = shiroFactroy.shiroUser(userService.findByAccount(username));
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         simpleAuthorizationInfo.addRoles(user.getRoleCodes());
         Set<String> permission = user.getPermissions();

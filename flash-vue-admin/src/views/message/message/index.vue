@@ -14,7 +14,7 @@
                 align="right">
               </el-date-picker>
             </el-col>
-            <el-col :span="4">
+            <el-col :span="6">
               <el-button type="success" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
               <el-button type="primary" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
             </el-col>

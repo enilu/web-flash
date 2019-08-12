@@ -66,7 +66,7 @@ export default {
     },
     add() {
       this.resetForm()
-      this.formTitle = '添加蓝马'
+      this.formTitle = '添加栏目'
       this.formVisible = true
       this.isAdd = true
     },

@@ -40,7 +40,10 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
         }
         return list.get(0);
     }
-
+    @Override
+    public T getOne(ID id){
+        return findById(id).get();
+    }
     @Override
     public T get(String sql) {
         List<T> list =  entityManager.createNativeQuery(sql,klass).getResultList();
