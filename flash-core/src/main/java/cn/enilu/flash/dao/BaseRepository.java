@@ -45,6 +45,7 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
      * @return
      */
     T get(String sql);
+    T getOne(ID id);
 
     /**
      * 执行sql

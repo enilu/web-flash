@@ -13,6 +13,7 @@ import cn.enilu.flash.utils.HttpKit;
 import cn.enilu.flash.utils.MD5;
 import cn.enilu.flash.utils.Maps;
 import cn.enilu.flash.utils.StringUtils;
+import org.nutz.mapl.Mapl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,8 +112,10 @@ public class AccountController extends BaseController{
             List menus = menuService.getMenusByRoleIds(shiroUser.getRoleList());
             map.put("menus",menus);
             map.put("permissions",shiroUser.getUrls());
-
-            map.put("profile",user);
+            Map profile = (Map) Mapl.toMaplist(user);
+            profile.put("dept",shiroUser.getDeptName());
+            profile.put("roles",shiroUser.getRoleNames());
+            map.put("profile",profile);
 
             return Rets.success(map);
         }

@@ -8,6 +8,13 @@ export function getList(params) {
   })
 }
 
+export function queryByUser() {
+  return request({
+    url:'/log/queryByUser',
+    method: 'get'
+  })
+}
+
 export function clear() {
   return request({
     url: '/log',

@@ -1,11 +1,12 @@
 <template>
   <div class="app-container">
-    <div>
-    <h3>{{user.name}}</h3>
+    <div class="user">
+      <strong>{{ user.name }}</strong><br>
+      <small>{{ user.dept }} &nbsp;&nbsp; {{ user.roles }}</small>
     </div>
-    <el-row style="box-shadow: 1px 0px 1px #838080;">
-      <el-col :span="6"  style="box-shadow: 1px 0px 1px #838080;height:500px;width:220px;">
-        <img class="user-avatar" style="width:200px;" src="@/assets/img/avatar.gif"><br>
+    <el-row class="user-content" style="">
+      <el-col :span="6" class="profile">
+        <img class="user-avatar" src="@/assets/img/avatar.gif"><br>
         <p><span class="title"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ user.phone }}</span></p>
         <p><span class="title"><i class="el-icon-message"></i>&nbsp;&nbsp;{{ user.email }}</span></p>
         <p><span class="title"><i class="el-icon-view"></i>&nbsp;&nbsp;{{ user.status == '1'?'启用' : '禁用' }}</span></p>
@@ -17,10 +18,27 @@
           <el-tab-pane label="最近活动" name="timeline"></el-tab-pane>
           <el-tab-pane label="修改密码" name="updatePwd"></el-tab-pane>
         </el-tabs>
-        <el-form ref="form" :model="form"   label-width="150px">
-
-
-
+        <el-form  label-width="80px">
+          <h3>基本信息</h3>
+          <el-form-item label="名称">
+            <span>{{ user.name }}</span>
+          </el-form-item>
+          <el-form-item label="性别">
+            <span> {{ user.sex = 1 ? '男' : '女' }}</span>
+          </el-form-item>
+          <el-form-item label="生日">
+            <span> {{ user.birthday }}</span>
+          </el-form-item>
+          <h3>联系信息</h3>
+          <el-form-item label="手机">
+            <span>{{ user.phone }}</span>
+          </el-form-item>
+          <el-form-item label="邮箱">
+            <span> {{ user.email }}</span>
+          </el-form-item>
+          <el-form-item label="地址">
+            <span> 浦东大道290弄</span>
+          </el-form-item>
         </el-form>
       </el-col>
     </el-row>
