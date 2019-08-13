@@ -8,6 +8,8 @@ import cn.enilu.flash.bean.entity.system.Task;
 import cn.enilu.flash.bean.entity.system.TaskLog;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.vo.front.Rets;
+import cn.enilu.flash.bean.vo.query.SearchFilter;
+import cn.enilu.flash.service.task.TaskLogService;
 import cn.enilu.flash.service.task.TaskService;
 import cn.enilu.flash.utils.StringUtils;
 import cn.enilu.flash.utils.factory.Page;
@@ -27,6 +29,8 @@ import javax.validation.Valid;
 public class TaskController extends BaseController {
     @Autowired
     private TaskService taskService;
+    @Autowired
+    private TaskLogService taskLogService;
 
 
     /**
@@ -96,7 +100,8 @@ public class TaskController extends BaseController {
     @RequiresPermissions(value = {Permission.TASK})
     public Object logList(@RequestParam  Long taskId) {
         Page<TaskLog> page = new PageFactory<TaskLog>().defaultPage();
-        page = taskService.getTaskLogs(page,taskId);
+        page.addFilter(SearchFilter.build("idTask", SearchFilter.Operator.EQ,taskId));
+        page = taskLogService.queryPage(page);
         return Rets.success(page);
     }
 

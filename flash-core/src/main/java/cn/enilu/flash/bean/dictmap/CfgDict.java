@@ -14,6 +14,7 @@ public class CfgDict extends AbstractDictMap {
     public void init() {
         put("cfgId","参数id");
         put("cfgName","参数名称");
+        put("cfgDesc","备注");
     }
 
     @Override

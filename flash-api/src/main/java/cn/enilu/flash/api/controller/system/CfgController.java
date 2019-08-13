@@ -13,6 +13,7 @@ import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.system.CfgService;
 import cn.enilu.flash.service.system.FileService;
+import cn.enilu.flash.service.system.LogObjectHolder;
 import cn.enilu.flash.utils.Maps;
 import cn.enilu.flash.utils.StringUtils;
 import cn.enilu.flash.utils.ToolUtil;
@@ -83,6 +84,7 @@ public class CfgController extends BaseController {
     public Object save(@ModelAttribute @Valid Cfg cfg){
         if(cfg.getId()!=null){
             Cfg old = cfgService.get(cfg.getId());
+            LogObjectHolder.me().set(old);
             old.setCfgName(cfg.getCfgName());
             old.setCfgValue(cfg.getCfgValue());
             old.setCfgDesc(cfg.getCfgDesc());

@@ -10,6 +10,7 @@ import cn.enilu.flash.bean.exception.GunsException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.node.DeptNode;
 import cn.enilu.flash.service.system.DeptService;
+import cn.enilu.flash.service.system.LogObjectHolder;
 import cn.enilu.flash.utils.ToolUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
@@ -48,6 +49,7 @@ public class DeptContoller extends BaseController {
         }
         if(dept.getId()!=null){
             Dept old = deptService.get(dept.getId());
+            LogObjectHolder.me().set(old);
             old.setPid(dept.getPid());
             old.setSimplename(dept.getSimplename());
             old.setFullname(dept.getFullname());

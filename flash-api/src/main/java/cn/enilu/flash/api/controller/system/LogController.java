@@ -16,7 +16,6 @@ import cn.enilu.flash.utils.factory.Page;
 import cn.enilu.flash.warpper.LogWarpper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -68,9 +67,10 @@ public class LogController extends BaseController {
     @ResponseBody
     @RequiresPermissions(value = {Permission.LOG})
     public Object list() {
-        SearchFilter searchFilter = SearchFilter.build("userid", SearchFilter.Operator.EQ, getIdUser(HttpKit.getRequest()));
-        List<OperationLog> list = operationLogService.queryAll(searchFilter, Sort.by(Sort.Direction.DESC,"id"));
-        return Rets.success(list);
+        Page<OperationLog> page = new Page<OperationLog>();
+        page.addFilter(SearchFilter.build("userid", SearchFilter.Operator.EQ, getIdUser(HttpKit.getRequest())));
+        Page<OperationLog> pageResult = operationLogService.queryPage(page);
+        return Rets.success(pageResult.getRecords());
     }
 
     /**

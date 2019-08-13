@@ -2,11 +2,10 @@ package cn.enilu.flash.core.aop;
 
 import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.dictmap.base.AbstractDictMap;
-import cn.enilu.flash.bean.vo.SpringContextHolder;
-import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.core.factory.Contrast;
 import cn.enilu.flash.core.log.LogManager;
 import cn.enilu.flash.core.log.LogTaskFactory;
+import cn.enilu.flash.security.JwtUtil;
 import cn.enilu.flash.service.system.LogObjectHolder;
 import cn.enilu.flash.utils.HttpKit;
 import cn.enilu.flash.utils.StringUtils;
@@ -73,16 +72,10 @@ public class LogAop {
         HttpServletRequest request = HttpKit.getRequest();
         String token = request.getHeader("Authorization");
         if(StringUtils.isNotEmpty(token)) {
-            idUser = SpringContextHolder.getBean(TokenCache.class).get(token);
+            idUser = JwtUtil.getUserId(token);
         }
         if(idUser==null) {
             return ;
-            //如果当前用户未登录，不做日志
-//            ShiroUser user = ShiroKit.getUser();
-//            if (null == user) {
-//                return;
-//            }
-//            idUser = user.getId();
         }
 
         //获取拦截方法的参数
@@ -104,7 +97,6 @@ public class LogAop {
         //如果涉及到修改,比对变化
         String msg="";
         if (bussinessName.indexOf("修改") != -1 || bussinessName.indexOf("编辑") != -1) {
-            //todo api模块无法使用该方法获取数据
             Object obj1 = LogObjectHolder.me().get();
             Map<String, String> obj2 = HttpKit.getRequestParameters();
             try {
