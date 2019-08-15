@@ -58,7 +58,6 @@ public class Contrast {
                 }
             }
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
         }
         return str;
     }
@@ -109,7 +108,6 @@ public class Contrast {
                 }
             }
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
         }
         return str;
     }
@@ -171,7 +169,6 @@ public class Contrast {
                 }
             }
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
         }
         return str;
     }
