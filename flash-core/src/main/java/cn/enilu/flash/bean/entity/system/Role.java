@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.validation.constraints.NotBlank;
 
 /**
  * Created  on 2018/4/2 0002.
@@ -24,6 +25,7 @@ public class Role extends BaseEntity {
     @Column
     private Long pid;
     @Column
+    @NotBlank(message = "角色名称不能为空")
     private String name;
     @Column
     private Long deptid;

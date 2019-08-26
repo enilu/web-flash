@@ -34,8 +34,9 @@ public class MessagesenderService extends BaseService<MessageSender,Long,Message
         List<MessageTemplate> templateList = messagetemplateRepository.findByIdMessageSender(id);
         if(templateList.isEmpty()) {
             messageSenderRepository.deleteById(id);
+        }else {
+            throw new RuntimeException("有模板使用该发送器，无法删除");
         }
-        throw new RuntimeException("有模板使用该发送器，无法删除");
     }
 
 }

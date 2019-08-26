@@ -53,6 +53,7 @@ public interface CacheDao {
      * 获取key值
      *
      * @param key
+     * @param klass
      * @return
      */
       <T>T get(Serializable key,Class<T> klass);

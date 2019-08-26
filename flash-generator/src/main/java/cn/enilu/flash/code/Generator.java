@@ -28,11 +28,9 @@ import java.util.regex.Pattern;
  */
 public class Generator {
     private static final Log log = Logs.get();
-    //private final Map<String, TableDescriptor> tables;
     private final TableDescriptor table;
 
     public Generator(Map<String, TableDescriptor> tables, TableDescriptor table) {
-        //this.tables = tables;
         this.table = table;
     }
 
@@ -64,26 +62,24 @@ public class Generator {
         return writer.toString();
 
     }
-
+    static Pattern includePattern = Pattern.compile(".*");
     public static void main(String[] args) throws Exception {
 
         String configPath = "code/code.json";
         String basePath = "";
-        Pattern includePattern = Pattern.compile(".*");
-        Pattern excludePattern = null;
+
         String module = "test";
         String basePackageName = "cn.enilu.flash";
         String controllerPackageName = "api.controller."+module;
         String servicePackageName = "service."+module;
         String repositoryPackageName = "dao."+module;
         String modelPackageName = "bean.entity."+module;
-        String _loader = "entity";
 
         String outputDir = "src/main/java";
         boolean force = false;
         String baseUri = "/";
-        String types[] = {"all"};
-        String pages[] = {"index", "add", "edit", "detail"};
+        String[] types = {"all"};
+        String[] pages = {"index", "add", "edit", "detail"};
         Options options = new Options();
         options.addOption("basePath","base path",true,"base path");
         options.addOption("i", "include", true, "include table pattern");
@@ -164,7 +160,7 @@ public class Generator {
 
         log.debug("=================================================");
 
-        Loader loader = (Loader) Mirror.me(EntityDescLoader.class).born();
+        AbstractLoader loader = (AbstractLoader) Mirror.me(EntityDescLoader.class).born();
         Map<String, TableDescriptor> tables = loader.loadTables(ioc,
                                                                 basePackageName,
                                                                 baseUri,
@@ -185,7 +181,7 @@ public class Generator {
             log.debug("generate " + tableName + " ...");
             TableDescriptor table = entry.getValue();
             Generator generator = new Generator(tables, table);
-            Map<String, String> typeMap = new HashMap<String, String>();
+            Map<String, String> typeMap = new HashMap<String, String>(10);
             typeMap.put("model", modelPackageName);
             typeMap.put("service", servicePackageName);
             typeMap.put("controller", controllerPackageName);
@@ -195,10 +191,10 @@ public class Generator {
                 if (!isTypeMatch(types, type)) {
                     continue;
                 }
-                if (type.equals("view")) {
+                if ("view".equals(type)) {
                     generateViews(basePath,codeConfig,force, table, generator, pages);
                 } else {
-                    if (loader instanceof EntityDescLoader && type.equals("model")) {
+                    if (loader instanceof EntityDescLoader && "model".equals(type)) {
                         continue;
                     }
                     String packageName = basePackageName + "." + typeMap.get(type);
@@ -207,7 +203,7 @@ public class Generator {
                     String packagePath = packageName.replace('.', '/');
                     String className = table.getEntityClassName();
                     if (!"model".equals(type)) {
-                        className = Utils.UPPER_CAMEL(className) + Strings.upperFirst(type);
+                        className = Utils.upperCamel(className) + Strings.upperFirst(type);
                     }
                     File file = new File(basePath+codeConfig.getModel(type)+File.separator+outputDir, packagePath + "/" + className + ".java");
                     log.debug("generate " + file.getName());

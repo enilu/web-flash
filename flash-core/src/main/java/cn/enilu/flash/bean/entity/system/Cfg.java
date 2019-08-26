@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.validation.constraints.NotBlank;
 
 /**
  * Created  on 2018/4/2 0002.
@@ -19,11 +20,13 @@ import javax.persistence.EntityListeners;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Cfg  extends BaseEntity {
-    @Column(name = "cfg_name",columnDefinition = "VARCHAR(64) COMMENT '参数名'")
+    @NotBlank(message = "参数名并能为空")
+    @Column(name = "cfg_name",columnDefinition = "VARCHAR(256) COMMENT '参数名'")
     private String cfgName;
-    @Column(name = "cfg_value",columnDefinition = "VARCHAR(256) COMMENT '参数值'")
+    @NotBlank(message = "参数值不能为空")
+    @Column(name = "cfg_value",columnDefinition = "VARCHAR(512) COMMENT '参数值'")
     private String cfgValue;
-    @Column(name = "cfg_desc",columnDefinition = "VARCHAR(256) COMMENT '备注'")
+    @Column(name = "cfg_desc",columnDefinition = "TEXT COMMENT '备注'")
     private String cfgDesc;
 
 }

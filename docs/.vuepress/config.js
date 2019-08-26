@@ -22,6 +22,7 @@ module.exports = {
                     {text: '定时任务',link:'/action/task'},
                     {text: '缓存',link:'/action/cache'},
                     {text: '审计功能',link:'/action/jpaauditing'},
+                    {text: 'CMS',link:'/feature/cms'}
                 ]
             },
             {text: '周边',
@@ -69,7 +70,9 @@ module.exports = {
                     '/feature/monitor',
                     '/feature/sysConfig',
                     '/feature/fileMgr',
-                    '/feature/messageCenter'
+                    '/feature/exportExcel',
+                    '/feature/messageCenter',
+                    '/feature/cms.md'
                 ]
             },{
                 title: '进阶',
@@ -78,7 +81,9 @@ module.exports = {
                     '/action/i18n',
                     '/action/cache',
                     '/action/task',
-                    '/action/jpaauditing.md'
+                    '/action/jpaauditing.md',
+                    '/action/validator'
+
 
                 ]
             },{

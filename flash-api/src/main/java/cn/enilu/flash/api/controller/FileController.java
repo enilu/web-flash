@@ -1,13 +1,14 @@
 package cn.enilu.flash.api.controller;
 
 import cn.enilu.flash.bean.entity.system.FileInfo;
+import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.vo.front.Rets;
-import cn.enilu.flash.dao.system.FileInfoRepository;
 import cn.enilu.flash.service.system.FileService;
 import cn.enilu.flash.utils.CryptUtils;
 import cn.enilu.flash.utils.HttpKit;
 import cn.enilu.flash.utils.Maps;
 import cn.enilu.flash.utils.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,6 @@ public class FileController extends BaseController {
     private static  final Logger logger = LoggerFactory.getLogger(FileController.class);
     @Autowired
     private FileService fileService;
-    @Autowired
-    private FileInfoRepository fileInfoRepository;
 
     /**
      * 上传文件
@@ -33,6 +32,7 @@ public class FileController extends BaseController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST)
+    @RequiresPermissions(value = {Permission.FILE_UPLOAD})
     public Object upload(@RequestPart("file") MultipartFile multipartFile) {
 
         try {

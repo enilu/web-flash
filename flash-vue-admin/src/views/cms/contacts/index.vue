@@ -3,12 +3,24 @@
     <div class="block">
       <el-row  :gutter="20">
         <el-col :span="6">
-          <el-input v-model="listQuery.cfgName" placeholder="姓名"></el-input>
+          <el-input v-model="listQuery.userName" placeholder="姓名"></el-input>
         </el-col>
         <el-col :span="6">
-          <el-input v-model="listQuery.cfgValue"  placeholder="手机号"></el-input>
+          <el-input v-model="listQuery.mobile"  placeholder="手机号"></el-input>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="8">
+          <el-date-picker
+            v-model="rangeDate"
+            type="datetimerange"
+            :picker-options="pickerOptions"
+            range-separator="至"
+            start-placeholder="邀约开始日期"
+            end-placeholder="邀约截至日期"
+            value-format="yyyyMMddHHmmss"
+            align="right">
+          </el-date-picker>
+        </el-col>
+        <el-col :span="4">
           <el-button type="success" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
           <el-button type="primary" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
         </el-col>
@@ -39,6 +51,11 @@
       <el-table-column label="email">
         <template slot-scope="scope">
           {{scope.row.email}}
+        </template>
+      </el-table-column>
+      <el-table-column label="邀约时间">
+        <template slot-scope="scope">
+          {{scope.row.createTime}}
         </template>
       </el-table-column>
       <el-table-column label="备注">

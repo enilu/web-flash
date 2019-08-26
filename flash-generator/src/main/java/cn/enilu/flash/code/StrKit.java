@@ -1,16 +1,5 @@
 package cn.enilu.flash.code;
 
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 /**
  * 字符串工具类
  * 
@@ -145,7 +134,7 @@ public class StrKit {
 			}
 			if (Character.isUpperCase(c)) {
 				if (!isPreUpperCase || !isNextUpperCase) {
-					if (i > 0) sb.append(UNDERLINE);
+					if (i > 0){ sb.append(UNDERLINE);}
 				}
 				isPreUpperCase = true;
 			} else {
@@ -185,8 +174,9 @@ public class StrKit {
 				}
 			}
 			return sb.toString();
-		} else
+		} else {
 			return name;
+		}
 	}
 
 

@@ -7,7 +7,9 @@ export default {
         oldPassword: '',
         password: '',
         rePassword: ''
-      }
+      },
+      activeName: 'updatePwd',
+      user: {}
     }
   },
 
@@ -21,7 +23,16 @@ export default {
       }
     }
   },
+  mounted() {
+    this.init()
+  },
   methods: {
+    init(){
+      this.user = this.$store.state.user.profile
+    },
+    handleClick(tab, event){
+      this.$router.push({ path: '/account/'+tab.name})
+    },
     updatePwd() {
       this.$refs['form'].validate((valid) => {
         if (valid) {

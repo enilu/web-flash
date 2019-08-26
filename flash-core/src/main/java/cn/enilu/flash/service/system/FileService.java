@@ -1,10 +1,13 @@
 package cn.enilu.flash.service.system;
 
+import cn.enilu.flash.bean.constant.cache.Cache;
+import cn.enilu.flash.bean.constant.cache.CacheKey;
 import cn.enilu.flash.bean.entity.system.FileInfo;
 import cn.enilu.flash.bean.enumeration.ConfigKeyEnum;
 import cn.enilu.flash.cache.ConfigCache;
 import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.dao.system.FileInfoRepository;
+import cn.enilu.flash.security.JwtUtil;
 import cn.enilu.flash.service.BaseService;
 import cn.enilu.flash.utils.XlsUtils;
 import org.jxls.common.Context;
@@ -12,6 +15,7 @@ import org.jxls.expression.JexlExpressionEvaluator;
 import org.jxls.transform.Transformer;
 import org.jxls.util.JxlsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -78,7 +82,7 @@ public class FileService extends BaseService<FileInfo,Long,FileInfoRepository> {
             }
 
             JexlExpressionEvaluator evaluator = (JexlExpressionEvaluator) transformer.getTransformationConfig().getExpressionEvaluator();
-            Map<String, Object> funcs = new HashMap<String, Object>();
+            Map<String, Object> funcs = new HashMap<String, Object>(4);
             funcs.put("utils", new XlsUtils());
             evaluator.getJexlEngine().setFunctions(funcs);
             jxlsHelper.processTemplate(context, transformer);
@@ -105,7 +109,7 @@ public class FileService extends BaseService<FileInfo,Long,FileInfoRepository> {
         try {
             FileInfo fileInfo = new FileInfo();
             fileInfo.setCreateTime(new Date());
-            fileInfo.setCreateBy(tokenCache.getIdUser());
+            fileInfo.setCreateBy(JwtUtil.getUserId());
             fileInfo.setOriginalFileName(originalFileName);
             fileInfo.setRealFileName(file.getName());
             fileInfoRepository.save(fileInfo);
@@ -117,6 +121,7 @@ public class FileService extends BaseService<FileInfo,Long,FileInfoRepository> {
     }
 
     @Override
+    @Cacheable(value = Cache.APPLICATION, key = "'" + CacheKey.FILE_INFO + "'+#id")
     public FileInfo get(Long id){
         FileInfo fileInfo = fileInfoRepository.getOne(id);
         fileInfo.setAblatePath(configCache.get(ConfigKeyEnum.SYSTEM_FILE_UPLOAD_PATH.getValue()) + File.separator+fileInfo.getRealFileName());

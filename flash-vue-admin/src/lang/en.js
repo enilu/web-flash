@@ -30,6 +30,7 @@ export default {
   navbar: {
     logOut: 'Log Out',
     dashboard: 'Dashboard',
+    profile:'Profile',
     updatePwd: 'Modify Password',
     github: 'Github',
     screenfull: 'Screenfull',

@@ -12,4 +12,5 @@ public interface Cache {
      * 常量缓存
      */
     String CONSTANT = "CONSTANT";
+    String APPLICATION = "APPLICATION";
 }

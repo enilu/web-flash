@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/offcialSite/article")
+@RequestMapping("/offcialsite/article")
 public class ArticleController extends BaseController {
     private Logger logger = LoggerFactory.getLogger(ArticleController.class);
     @Autowired

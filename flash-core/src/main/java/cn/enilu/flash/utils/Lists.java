@@ -88,7 +88,7 @@ public final class Lists {
      * @return
      */
     public static <K, V> Map<K, V> toMap(List<V> list, String keyProperty) {
-        Map<K, V> map = new HashMap<K, V>();
+        Map<K, V> map = new HashMap<K, V>(100);
         for (V v : list) {
 
             try {
@@ -198,7 +198,7 @@ public final class Lists {
      * @return
      */
     public static <K, V> Map<K, List<V>> group(List<V> input, String keyProperty) {
-        Map<K, List<V>> result = new HashMap<>();
+        Map<K, List<V>> result = new HashMap<>(100);
 
         for (V v : input) {
 

@@ -15,11 +15,11 @@ public final class Maps {
     }
 
     public static <K, V> HashMap<K, V> newHashMap() {
-        return new HashMap<K, V>();
+        return new HashMap<K, V>(100);
     }
 
     public static <K, V> HashMap<K, V> newHashMap(K k, V v) {
-        HashMap<K, V> map = new HashMap<K, V>();
+        HashMap<K, V> map = new HashMap<K, V>(100);
         map.put(k, v);
         return map;
     }
@@ -30,7 +30,7 @@ public final class Maps {
         if (extraKeyValues.length % 2 != 0) {
             throw new IllegalArgumentException();
         }
-        HashMap<K, V> map = new HashMap<K, V>();
+        HashMap<K, V> map = new HashMap<K, V>(100);
         map.put(k, v);
         for (int i = 0; i < extraKeyValues.length; i += 2) {
             k = (K) extraKeyValues[i];

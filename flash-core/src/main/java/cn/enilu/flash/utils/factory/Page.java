@@ -3,11 +3,10 @@ package cn.enilu.flash.utils.factory;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.utils.Lists;
 import cn.enilu.flash.utils.StringUtils;
+import org.springframework.data.domain.Sort;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created  on 2018/3/22 0022.
@@ -15,6 +14,8 @@ import java.util.Map;
  * @author enilu
  */
 public class Page<T>  {
+
+    private Sort sort;
     /**
      * 该操作只是为了忽略RowBounds属性
      *
@@ -54,60 +55,26 @@ public class Page<T>  {
     private transient boolean searchCount = true;
 
     /**
-     * 开启排序（默认 true） 只在代码逻辑判断 并不截取sql分析
-     *
-     *
-     **/
-    private transient boolean openSort = true;
-
-
-    /**
-     * <p>
-     * SQL 排序 ASC 集合
-     * </p>
+     * 查询数据列表
      */
-    private transient List<String> ascs;
-    /**
-     * <p>
-     * SQL 排序 DESC 集合
-     * </p>
-     */
-    private transient List<String> descs;
+    private List<T> records = Collections.emptyList();
 
-    /**
-     * 是否为升序 ASC（ 默认： true ）
-     *
-     * @see #ascs
-     * @see #descs
-     */
-    private transient boolean isAsc = true;
-
-    /**
-     * <p>
-     * SQL 排序 ORDER BY 字段，例如： id DESC（根据id倒序查询）
-     * </p>
-     * <p>
-     * DESC 表示按倒序排序(即：从大到小排序)<br>
-     * ASC 表示按正序排序(即：从小到大排序)
-     *
-     * @see #ascs
-     * @see #descs
-     * </p>
-     */
-    private transient String orderByField;
+    private transient  List<SearchFilter> filters;
 
     public Page() {
 
     }
 
     public Page(int current, int size, String orderByField) {
+        this(current,size,orderByField,true);
 
-        this.setOrderByField(orderByField);
+
     }
 
     public Page(int current, int size, String orderByField, boolean isAsc) {
-        this(current, size, orderByField);
-        this.setAsc(isAsc);
+        this(current, size);
+        setSort(Sort.by(isAsc? Sort.Direction.ASC: Sort.Direction.DESC,orderByField));
+
     }
 
     /**
@@ -122,11 +89,8 @@ public class Page<T>  {
         this(current,size,true);
     }
 
-    public Page(int current, int size, boolean searchCount) {
-        this(current, size, searchCount, true);
-    }
 
-    public Page(int current, int size, boolean searchCount, boolean openSort) {
+    public Page(int current, int size, boolean searchCount) {
 
         setOffset(offsetCurrent(current, size));
         setLimit(size);
@@ -135,7 +99,6 @@ public class Page<T>  {
         }
         this.size = size;
         this.searchCount = searchCount;
-        this.openSort = openSort;
     }
 
     protected static int offsetCurrent(int current, int size) {
@@ -143,6 +106,14 @@ public class Page<T>  {
             return (current - 1) * size;
         }
         return 0;
+    }
+
+    public Sort getSort() {
+        return sort;
+    }
+
+    public void setSort(Sort sort) {
+        this.sort = sort;
     }
 
     public int offsetCurrent() {
@@ -204,83 +175,6 @@ public class Page<T>  {
         return this;
     }
 
-    /**
-     * @see #ascs
-     * @see #descs
-     */
-    @Deprecated
-    public String getOrderByField() {
-        return orderByField;
-    }
-
-    /**
-     * @see #ascs
-     * @see #descs
-     */
-    public Page setOrderByField(String orderByField) {
-        if (StringUtils.isNotEmpty(orderByField)) {
-            this.orderByField = orderByField;
-        }
-        return this;
-    }
-
-    public boolean isOpenSort() {
-        return openSort;
-    }
-
-    public Page setOpenSort(boolean openSort) {
-        this.openSort = openSort;
-        return this;
-    }
-
-    public List<String> getAscs() {
-        return orders(isAsc, ascs);
-    }
-
-    private List<String> orders(boolean condition, List<String> columns) {
-        if (condition && StringUtils.isNotEmpty(orderByField)) {
-            if (columns == null) {
-                columns = new ArrayList<>();
-            }
-            if (!columns.contains(orderByField)) {
-                columns.add(orderByField);
-            }
-        }
-        return columns;
-    }
-
-    public Page setAscs(List<String> ascs) {
-        this.ascs = ascs;
-        return this;
-    }
-
-    public List<String> getDescs() {
-        return orders(!isAsc, descs);
-    }
-
-    public Page setDescs(List<String> descs) {
-        this.descs = descs;
-        return this;
-    }
-
-    /**
-     * @see #ascs
-     * @see #descs
-     */
-    @Deprecated
-    public boolean isAsc() {
-        return isAsc;
-    }
-
-    /**
-     * @see #ascs
-     * @see #descs
-     */
-    public Page setAsc(boolean isAsc) {
-        this.isAsc = isAsc;
-        return this;
-    }
-
     public int getOffset() {
         return offset;
     }
@@ -298,16 +192,7 @@ public class Page<T>  {
         this.limit = limit;
         return this;
     }
-    /**
-     * 查询数据列表
-     */
-    private List<T> records = Collections.emptyList();
 
-    /**
-     * 查询参数
-     */
-    private transient Map<String, Object> condition;
-    private transient  List<SearchFilter> filters;
 
 
     public List<T> getRecords() {
@@ -319,14 +204,6 @@ public class Page<T>  {
         return this;
     }
 
-    public Map<String, Object> getCondition() {
-        return condition;
-    }
-
-    public Page<T> setCondition(Map<String, Object> condition) {
-        this.condition = condition;
-        return this;
-    }
 
     public List<SearchFilter> getFilters() {
         return filters;
@@ -343,7 +220,14 @@ public class Page<T>  {
             filters = Lists.newArrayList();
         }
         filters.add(filter);
-
+    }
+    public void addFilter(String fieldName, SearchFilter.Operator operator, Object value){
+        if(!StringUtils.isNullOrEmpty(value)){
+            addFilter(SearchFilter.build(fieldName,operator,value));
+        }
+    }
+    public void addFilter(String fieldName, SearchFilter.Operator operator){
+        addFilter(SearchFilter.build(fieldName,operator));
     }
 
     @Override

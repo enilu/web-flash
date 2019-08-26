@@ -1,6 +1,25 @@
 <template>
     <div class="app-container">
         <div class="block">
+          <el-row  :gutter="20">
+
+            <el-col :span="8">
+              <el-date-picker
+                v-model="rangeDate"
+                type="datetimerange"
+                range-separator="至"
+                start-placeholder="发送起始日期"
+                end-placeholder="发送截至日期"
+                value-format="yyyyMMddHHmmss"
+                align="right">
+              </el-date-picker>
+            </el-col>
+            <el-col :span="6">
+              <el-button type="success" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
+              <el-button type="primary" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
+            </el-col>
+          </el-row>
+          <br>
             <el-row>
                 <el-col :span="24">
                     <el-button type="danger" icon="el-icon-delete" @click.native="clear">{{ $t('button.clear') }}</el-button>
@@ -26,6 +45,11 @@
                     {{scope.row.receiver}}
                 </template>
             </el-table-column>
+          <el-table-column label="发送日期">
+            <template slot-scope="scope">
+              {{scope.row.createTime}}
+            </template>
+          </el-table-column>
             <el-table-column label="消息类型">
                 <template slot-scope="scope">
                     {{scope.row.type==0?"短信":"邮件"}}

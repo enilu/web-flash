@@ -40,7 +40,7 @@ public class HttpKit {
      * 获取所有请求的值
      */
     public static Map<String, String> getRequestParameters() {
-        HashMap<String, String> values = new HashMap<>();
+        HashMap<String, String> values = new HashMap<>(20);
         HttpServletRequest request = HttpKit.getRequest();
         Enumeration enums = request.getParameterNames();
         while ( enums.hasMoreElements()){

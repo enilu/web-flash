@@ -3,6 +3,8 @@ package cn.enilu.flash.core.factory;
 import cn.enilu.flash.bean.dictmap.base.AbstractDictMap;
 import cn.enilu.flash.utils.DateUtil;
 import cn.enilu.flash.utils.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
@@ -17,7 +19,7 @@ import java.util.Map;
  * @Date 2017/3/31 10:36
  */
 public class Contrast {
-
+    private static Logger logger = LoggerFactory.getLogger(Contrast.class);
     //记录每个修改字段的分隔符
     public static final String SEPARATOR = ";;;";
 
@@ -56,7 +58,6 @@ public class Contrast {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
         }
         return str;
     }
@@ -107,7 +108,6 @@ public class Contrast {
                 }
             }
         } catch (Exception e) {
-//            e.printStackTrace();
         }
         return str;
     }
@@ -169,7 +169,6 @@ public class Contrast {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
         }
         return str;
     }

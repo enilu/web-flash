@@ -120,7 +120,14 @@
             <version>1.0.6</version>
         </dependency>
         <!-- message end-->
-
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+        </dependency>
         <!--代码生成-->
         <dependency>
             <groupId>cn.enilu</groupId>

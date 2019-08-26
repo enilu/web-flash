@@ -2,7 +2,7 @@ package cn.enilu.flash.service.cms;
 
 import cn.enilu.flash.bean.entity.cms.Banner;
 import cn.enilu.flash.bean.enumeration.cms.BannerTypeEnum;
-import cn.enilu.flash.bean.vo.offcialSite.BannerVo;
+import cn.enilu.flash.bean.vo.offcialsite.BannerVo;
 import cn.enilu.flash.dao.cms.BannerRepository;
 import cn.enilu.flash.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,6 +3,7 @@ package cn.enilu.flash.bean.dto;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 /**
@@ -15,11 +16,14 @@ import java.util.Date;
 public class UserDto{
 
 	private Long id;
+
+	@NotBlank(message = "账号不能为空")
 	private String account;
+	@NotBlank(message = "密码不能为空")
 	private String password;
 	private String salt;
+	@NotBlank(message = "姓名不能为空")
 	private String name;
-
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthday;
 	private Integer sex;

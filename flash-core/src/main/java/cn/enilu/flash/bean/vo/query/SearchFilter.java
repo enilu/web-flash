@@ -1,7 +1,7 @@
 package cn.enilu.flash.bean.vo.query;
 
 import cn.enilu.flash.utils.Maps;
-import org.apache.commons.lang3.StringUtils;
+import cn.enilu.flash.utils.StringUtils;
 
 import java.util.Map;
 
@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class SearchFilter {
     public enum Operator {
-        EQ, LIKE, GT, LT, GTE, LTE,IN
+        EQ, LIKE, GT, LT, GTE, LTE,IN,ISNULL,ISNOTNULL
     }
 
     public String fieldName;
@@ -22,10 +22,19 @@ public class SearchFilter {
     public  static SearchFilter build(String fieldName, Operator operator, Object value){
         return  new SearchFilter(fieldName,operator,value);
     }
-    public SearchFilter(String fieldName, Operator operator, Object value) {
+    public  static SearchFilter build(String fieldName, Operator operator){
+        return  new SearchFilter(fieldName,operator);
+    }
+    public SearchFilter(String fieldName, Operator operator) {
         this.fieldName = fieldName;
-        this.value = value;
         this.operator = operator;
+    }
+    public SearchFilter(String fieldName, Operator operator, Object value) {
+        if(!StringUtils.isNullOrEmpty(value)) {
+            this.fieldName = fieldName;
+            this.value = value;
+            this.operator = operator;
+        }
     }
 
     /**

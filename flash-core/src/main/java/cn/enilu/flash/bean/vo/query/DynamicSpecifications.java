@@ -5,18 +5,17 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 /**
- * descript
+ * 将SearchFilter查询条件解析为jpa查询对象Predicate
  *
  * @author ：enilu
  * @date ：Created in 2019/6/30 16:04
  */
 public class DynamicSpecifications {
-
-
     public static <T> Specification<T> bySearchFilter(final Collection<SearchFilter> filters, final Class<T> entityClazz) {
         return new Specification<T>() {
             @Override
@@ -52,7 +51,13 @@ public class DynamicSpecifications {
                                 predicates.add(builder.lessThanOrEqualTo(expression, (Comparable) filter.value));
                                 break;
                             case IN:
-                                predicates.add(expression.in(filter.value));
+                                predicates.add(expression.in((ArrayList)filter.value));
+                                break;
+                            case ISNULL:
+                                predicates.add(expression.isNull());
+                                break;
+                            case ISNOTNULL:
+                                predicates.add(expression.isNotNull());
                                 break;
                         }
                     }

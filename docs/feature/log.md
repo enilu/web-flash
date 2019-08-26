@@ -24,22 +24,27 @@
 
 系统提供了通过注解的形式可以方便的添加业务操作日志，比如在新增部门的是增加业务日志通过如下方式：
 
-在DeptController的新增部门方法增加注解：
+在CfgController的编辑参数增加注解：
 
 ```java
     @RequestMapping(method = RequestMethod.POST)
-    @BussinessLog(value = "编辑部门", key = "simplename", dict = DeptDict.class)
-    public Object save(@ModelAttribute Dept dept){
-        logger.info(JSON.toJSONString(dept));
-        if (ToolUtil.isOneEmpty(dept, dept.getSimplename())) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+    @BussinessLog(value = "编辑参数", key = "cfgName",dict= CfgDict.class)   
+    public Object save(@ModelAttribute @Valid Cfg cfg){
+        if(cfg.getId()!=null){
+            Cfg old = cfgService.get(cfg.getId());
+            LogObjectHolder.me().set(old);
+            old.setCfgName(cfg.getCfgName());
+            old.setCfgValue(cfg.getCfgValue());
+            old.setCfgDesc(cfg.getCfgDesc());
+            cfgService.saveOrUpdate(old);
+        }else {
+            cfgService.saveOrUpdate(cfg);
         }
-
-        //完善pids,根据pid拿到pid的pids
-        deptService.deptSetPids(dept);
-        deptRepository.save(dept);
         return Rets.success();
     }
 ```
+后台通过LogAop来保存用户操作日志。其中针对详细的数据变更内容LogAop中通过对比数据前后变化来识别变更内容。
+
+因此针对老数据提供了LogObjectHolder类将其临时存起来，在LogAop中拿出来和新数据进行对比。如果不需要记录详细变更的内容，可以不设置，也就不会对比变化内容了。
 
 具体的实现逻辑感兴趣的同学可以自行通过注解类：BussinessLog进行跟进查看。

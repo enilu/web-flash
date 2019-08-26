@@ -14,7 +14,7 @@ public class Utils {
      * @param src
      * @return
      */
-    public static String  LOWER_CAMEL(String src){
+    public static String lowerCamel(String src){
         src = src.toLowerCase();
         StringBuilder result = new StringBuilder();
         for(String sitem:src.split("_")){
@@ -32,7 +32,10 @@ public class Utils {
      * @param src
      * @return
      */
-    public static String  UPPER_CAMEL(String src){
+    public static String upperCamel(String src){
+        if(!src.contains("_")){
+            return src;
+        }
         src = src.toLowerCase();
         StringBuilder result = new StringBuilder();
         for(String sitem:src.split("_")){
@@ -45,6 +48,6 @@ public class Utils {
         return result.toString();
     }
     public static  void main(String[] args){
-        System.out.println(UPPER_CAMEL("AAAA_BBBB"));
+        System.out.println(upperCamel("AAAA_BBBB"));
     }
 }

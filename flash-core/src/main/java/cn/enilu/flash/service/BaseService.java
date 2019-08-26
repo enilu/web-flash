@@ -1,11 +1,13 @@
 package cn.enilu.flash.service;
 
+import cn.enilu.flash.bean.constant.cache.Cache;
 import cn.enilu.flash.bean.vo.query.DynamicSpecifications;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.dao.BaseRepository;
 import cn.enilu.flash.utils.Lists;
 import cn.enilu.flash.utils.factory.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -14,7 +16,6 @@ import org.springframework.data.jpa.domain.Specification;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 /**
  *
@@ -47,9 +48,21 @@ public abstract  class BaseService<T, ID extends Serializable, R extends BaseRep
     }
 
     @Override
+    @Cacheable(value = Cache.APPLICATION ,key = "#root.targetClass.simpleName+':'+#id")
     public T get(ID id) {
-        Optional<T> optional =  dao.findById(id);
-        return optional.isPresent()?optional.get():null;
+        return  dao.findById(id).get();
+    }
+
+    @Override
+    public T get(SearchFilter filter) {
+       List<T> list = queryAll(filter);
+       return list.isEmpty()?null:list.get(0);
+    }
+
+    @Override
+    public T get(List<SearchFilter> filters) {
+        List<T> list = queryAll(filters);
+        return list.isEmpty()?null:list.get(0);
     }
 
     @Override
@@ -65,10 +78,10 @@ public abstract  class BaseService<T, ID extends Serializable, R extends BaseRep
     @Override
     public Page<T> queryPage(Page<T> page) {
         Pageable pageable = null;
-        if(page.isOpenSort()) {
-            pageable = new PageRequest(page.getCurrent()-1, page.getSize(), page.isAsc() ? Sort.Direction.ASC : Sort.Direction.DESC, page.getOrderByField());
+        if(page.getSort()!=null) {
+            pageable = PageRequest.of(page.getCurrent()-1, page.getSize(), page.getSort());
         }else{
-            pageable = new PageRequest(page.getCurrent()-1,page.getSize(),Sort.Direction.DESC,"id");
+            pageable = PageRequest.of(page.getCurrent()-1,page.getSize(), Sort.Direction.DESC,"id");
         }
         Specification<T> specification = DynamicSpecifications.bySearchFilter(page.getFilters(),dao.getDataClass());
         org.springframework.data.domain.Page<T> pageResult  = dao.findAll(specification,pageable);
@@ -79,16 +92,31 @@ public abstract  class BaseService<T, ID extends Serializable, R extends BaseRep
 
     @Override
     public List<T> queryAll(List<SearchFilter> filters) {
-        Specification<T> specification = DynamicSpecifications.bySearchFilter(filters,dao.getDataClass());
-        return dao.findAll(specification);
+        return queryAll(filters,null);
     }
 
     @Override
     public List<T> queryAll(SearchFilter filter) {
-        if(filter!=null) {
-            return queryAll(Lists.newArrayList(filter));
+        return queryAll(filter,null);
+    }
+
+    @Override
+    public List<T> queryAll(List<SearchFilter> filters, Sort sort) {
+        Specification<T> specification = DynamicSpecifications.bySearchFilter(filters,dao.getDataClass());
+        if(sort==null){
+            return dao.findAll(specification);
         }
-        return queryAll();
+        return dao.findAll(specification,sort);
+    }
+
+    @Override
+    public List<T> queryAll(SearchFilter filter, Sort sort) {
+        if(filter!=null){
+            return queryAll(Lists.newArrayList(filter),sort);
+        }else {
+            return queryAll(Lists.newArrayList(), sort);
+        }
+
     }
 
     @Override

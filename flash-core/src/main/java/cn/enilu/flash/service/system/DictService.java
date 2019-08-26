@@ -82,6 +82,7 @@ public class DictService extends BaseService<Dict,Long,DictRepository> {
 
         dictCache.cache();
     }
+    @Override
     public Dict get(Long id) {
         Optional<Dict> optional = dictRepository.findById(id);
         if (optional.isPresent()) {

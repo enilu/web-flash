@@ -199,7 +199,7 @@ public class CollectionKit {
 	 * @return HashMap对象
 	 */
 	public static <T, K> HashMap<T, K> newHashMap() {
-		return new HashMap<T, K>();
+		return new HashMap<T, K>(100);
 	}
 
 	/**
@@ -604,7 +604,7 @@ public class CollectionKit {
 	 * @return Map
 	 */
 	public static <T, K> HashMap<T, K> toMap(Collection<Entry<T, K>> entryCollection) {
-		HashMap<T,K> map = new HashMap<T, K>();
+		HashMap<T,K> map = new HashMap<T, K>(100);
 		for (Entry<T, K> entry : entryCollection) {
 			map.put(entry.getKey(), entry.getValue());
 		}

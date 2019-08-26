@@ -7,6 +7,7 @@ import cn.enilu.flash.bean.dictmap.RoleDict;
 import cn.enilu.flash.bean.entity.system.Role;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
+import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.exception.GunsException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.node.Node;
@@ -20,13 +21,12 @@ import cn.enilu.flash.utils.Convert;
 import cn.enilu.flash.utils.Maps;
 import cn.enilu.flash.utils.ToolUtil;
 import cn.enilu.flash.warpper.RoleWarpper;
-import com.alibaba.fastjson.JSON;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,6 +45,7 @@ public class RoleController extends BaseController {
     @Autowired
     private UserService userService;
     @RequestMapping(value = "/list",method = RequestMethod.GET)
+    @RequiresPermissions(value = {Permission.ROLE})
     public Object list(String name){
         List roles = null;
         if(Strings.isNullOrEmpty(name)) {
@@ -57,16 +58,14 @@ public class RoleController extends BaseController {
 
     @RequestMapping(method = RequestMethod.POST)
     @BussinessLog(value = "编辑角色", key = "name", dict = RoleDict.class)
-    public Object save(@Valid Role role, BindingResult result){
-        logger.info(JSON.toJSONString(role));
-        if (result.hasErrors()) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
-        }
+    @RequiresPermissions(value = {Permission.ROLE_EDIT})
+    public Object save(@Valid Role role){
         roleService.saveOrUpdate(role);
         return Rets.success();
     }
     @RequestMapping(method = RequestMethod.DELETE)
     @BussinessLog(value = "删除角色", key = "roleId", dict = RoleDict.class)
+    @RequiresPermissions(value = {Permission.ROLE_DEL})
     public Object remove(@RequestParam Long roleId){
         logger.info("id:{}",roleId);
         if (ToolUtil.isEmpty(roleId)) {
@@ -88,6 +87,7 @@ public class RoleController extends BaseController {
 
     @RequestMapping(value = "/savePermisson",method = RequestMethod.POST)
     @BussinessLog(value = "配置角色权限", key = "roleId", dict = RoleDict.class)
+    @RequiresPermissions(value = {Permission.ROLE_EDIT})
     public Object setAuthority(Long roleId, String
             permissions) {
         if (ToolUtil.isOneEmpty(roleId)) {
@@ -102,6 +102,7 @@ public class RoleController extends BaseController {
      * 获取角色树
      */
     @RequestMapping(value = "/roleTreeListByIdUser", method = RequestMethod.GET)
+    @RequiresPermissions(value = {Permission.ROLE})
     public Object roleTreeListByIdUser(Long idUser) {
         User user = userService.get(idUser);
         String roleIds = user.getRoleid();

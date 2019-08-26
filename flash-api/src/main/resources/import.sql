@@ -44,7 +44,7 @@ INSERT INTO `t_cms_channel` (`id`, `create_by`, `create_time`, `modify_by`, `mod
 -- ----------------------------
 -- Records of t_cms_contacts
 -- ----------------------------
-INSERT INTO `t_cms_contacts` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `email`, `mobile`, `remark`, `user_name`) VALUES ('1', null, null, null, null, 'test@qq.com', '15011111111', '测试联系，哈哈哈', '张三');
+INSERT INTO `t_cms_contacts` VALUES ('1', null, '2019-07-31 17:44:27', null, '2019-07-31 17:44:27', 'test@qq.com', '15011111111', '测试联系，哈哈哈', '张三');
 
 -- ----------------------------
 -- Records of t_snow_product
@@ -125,75 +125,76 @@ INSERT INTO `t_sys_login_log` (`id`, `logname`, `userid`, `create_time`, `succee
 -- ----------------------------
 -- Records of t_sys_menu
 -- ----------------------------
-INSERT INTO `t_sys_menu` VALUES ('1', null, null, null, null, 'system', 'fa-cog', '1', '1', '1', '系统管理', '4', '0', '[0],', '1', null, '/system');
-INSERT INTO `t_sys_menu` VALUES ('4', null, null, '1', '2019-04-16 18:59:15', 'mgr', '', '1', null, '2', '用户管理', '1', 'system', '[0],[system],', '1', null, '/mgr');
-INSERT INTO `t_sys_menu` VALUES ('5', null, null, null, null, 'mgr_add', '', '0', null, '3', '添加用户', '1', 'mgr', '[0],[system],[mgr],', '1', null, '/mgr/add');
-INSERT INTO `t_sys_menu` VALUES ('6', null, null, null, null, 'mgr_edit', '', '0', null, '3', '修改用户', '2', 'mgr', '[0],[system],[mgr],', '1', null, '/mgr/edit');
-INSERT INTO `t_sys_menu` VALUES ('7', null, null, null, null, 'mgr_delete', '', '0', '0', '3', '删除用户', '3', 'mgr', '[0],[system],[mgr],', '1', null, '/mgr/delete');
-INSERT INTO `t_sys_menu` VALUES ('8', null, null, null, null, 'mgr_reset', '', '0', '0', '3', '重置密码', '4', 'mgr', '[0],[system],[mgr],', '1', null, '/mgr/reset');
-INSERT INTO `t_sys_menu` VALUES ('9', null, null, null, null, 'mgr_freeze', '', '0', '0', '3', '冻结用户', '5', 'mgr', '[0],[system],[mgr],', '1', null, '/mgr/freeze');
-INSERT INTO `t_sys_menu` VALUES ('10', null, null, null, null, 'mgr_unfreeze', '', '0', '0', '3', '解除冻结用户', '6', 'mgr', '[0],[system],[mgr],', '1', null, '/mgr/unfreeze');
-INSERT INTO `t_sys_menu` VALUES ('11', null, null, null, null, 'mgr_setRole', '', '0', '0', '3', '分配角色', '7', 'mgr', '[0],[system],[mgr],', '1', null, '/mgr/setRole');
-INSERT INTO `t_sys_menu` VALUES ('12', null, null, null, null, 'role', '', '1', '0', '2', '角色管理', '2', 'system', '[0],[system],', '1', null, '/role');
-INSERT INTO `t_sys_menu` VALUES ('13', null, null, null, null, 'role_add', '', '0', '0', '3', '添加角色', '1', 'role', '[0],[system],[role],', '1', null, '/role/add');
-INSERT INTO `t_sys_menu` VALUES ('14', null, null, null, null, 'role_edit', '', '0', '0', '3', '修改角色', '2', 'role', '[0],[system],[role],', '1', null, '/role/edit');
-INSERT INTO `t_sys_menu` VALUES ('15', null, null, null, null, 'role_remove', '', '0', '0', '3', '删除角色', '3', 'role', '[0],[system],[role],', '1', null, '/role/remove');
-INSERT INTO `t_sys_menu` VALUES ('16', null, null, null, null, 'role_setAuthority', '', '0', '0', '3', '配置权限', '4', 'role', '[0],[system],[role],', '1', null, '/role/setAuthority');
-INSERT INTO `t_sys_menu` VALUES ('17', null, null, null, null, 'menu', '', '1', '0', '2', '菜单管理', '4', 'system', '[0],[system],', '1', null, '/menu');
-INSERT INTO `t_sys_menu` VALUES ('18', null, null, null, null, 'menu_add', '', '0', '0', '3', '添加菜单', '1', 'menu', '[0],[system],[menu],', '1', null, '/menu/add');
-INSERT INTO `t_sys_menu` VALUES ('19', null, null, null, null, 'menu_edit', '', '0', '0', '3', '修改菜单', '2', 'menu', '[0],[system],[menu],', '1', null, '/menu/edit');
-INSERT INTO `t_sys_menu` VALUES ('20', null, null, null, null, 'menu_remove', '', '0', '0', '3', '删除菜单', '3', 'menu', '[0],[system],[menu],', '1', null, '/menu/remove');
-INSERT INTO `t_sys_menu` VALUES ('58', null, null, '47', '2019-06-02 10:25:31', 'log', null, '1', null, '2', '业务日志', '6', 'operationMgr', '[0],[operationMgr],', '1', null, '/log');
-INSERT INTO `t_sys_menu` VALUES ('21', null, null, null, null, 'dept', '', '1', null, '2', '部门管理', '3', 'system', '[0],[system],', '1', null, '/dept');
-INSERT INTO `t_sys_menu` VALUES ('22', null, null, null, null, 'dict', '', '1', null, '2', '字典管理', '4', 'system', '[0],[system],', '1', null, '/dict');
-INSERT INTO `t_sys_menu` VALUES ('59', null, null, '47', '2019-06-02 10:25:36', 'loginLog', null, '1', null, '2', '登录日志', '6', 'operationMgr', '[0],[operationMgr],', '1', null, '/loginLog');
-INSERT INTO `t_sys_menu` VALUES ('60', null, null, null, null, 'log_clean', '', '0', null, '3', '清空日志', '3', 'log', '[0],[system],[log],', '1', null, '/log/delLog');
-INSERT INTO `t_sys_menu` VALUES ('36', null, null, null, null, 'dept_add', '', '0', null, '3', '添加部门', '1', 'dept', '[0],[system],[dept],', '1', null, '/dept/add');
-INSERT INTO `t_sys_menu` VALUES ('23', null, null, null, null, 'dept_update', '', '0', null, '3', '修改部门', '1', 'dept', '[0],[system],[dept],', '1', null, '/dept/update');
-INSERT INTO `t_sys_menu` VALUES ('24', null, null, null, null, 'dept_delete', '', '0', null, '3', '删除部门', '1', 'dept', '[0],[system],[dept],', '1', null, '/dept/delete');
-INSERT INTO `t_sys_menu` VALUES ('25', null, null, null, null, 'dict_add', '', '0', null, '3', '添加字典', '1', 'dict', '[0],[system],[dict],', '1', null, '/dict/add');
-INSERT INTO `t_sys_menu` VALUES ('26', null, null, null, null, 'dict_update', '', '0', null, '3', '修改字典', '1', 'dict', '[0],[system],[dict],', '1', null, '/dict/update');
-INSERT INTO `t_sys_menu` VALUES ('27', null, null, null, null, 'dict_delete', '', '0', null, '3', '删除字典', '1', 'dict', '[0],[system],[dict],', '1', null, '/dict/delete');
-INSERT INTO `t_sys_menu` VALUES ('28', null, null, null, null, 'to_menu_edit', '', '0', null, '3', '菜单编辑跳转', '4', 'menu', '[0],[system],[menu],', '1', null, '/menu/menu_edit');
-INSERT INTO `t_sys_menu` VALUES ('29', null, null, null, null, 'menu_list', '', '0', null, '3', '菜单列表', '5', 'menu', '[0],[system],[menu],', '1', null, '/menu/list');
-INSERT INTO `t_sys_menu` VALUES ('30', null, null, null, null, 'to_dept_update', '', '0', null, '3', '修改部门跳转', '4', 'dept', '[0],[system],[dept],', '1', null, '/dept/dept_update');
-INSERT INTO `t_sys_menu` VALUES ('31', null, null, null, null, 'dept_list', '', '0', null, '3', '部门列表', '5', 'dept', '[0],[system],[dept],', '1', null, '/dept/list');
-INSERT INTO `t_sys_menu` VALUES ('32', null, null, null, null, 'dept_detail', '', '0', null, '3', '部门详情', '6', 'dept', '[0],[system],[dept],', '1', null, '/dept/detail');
-INSERT INTO `t_sys_menu` VALUES ('33', null, null, null, null, 'to_dict_edit', '', '0', null, '3', '修改菜单跳转', '4', 'dict', '[0],[system],[dict],', '1', null, '/dict/dict_edit');
-INSERT INTO `t_sys_menu` VALUES ('34', null, null, null, null, 'dict_list', '', '0', null, '3', '字典列表', '5', 'dict', '[0],[system],[dict],', '1', null, '/dict/list');
-INSERT INTO `t_sys_menu` VALUES ('35', null, null, null, null, 'dict_detail', '', '0', null, '3', '字典详情', '6', 'dict', '[0],[system],[dict],', '1', null, '/dict/detail');
-INSERT INTO `t_sys_menu` VALUES ('61', null, null, null, null, 'log_detail', '', '0', null, '3', '日志详情', '3', 'log', '[0],[system],[log],', '1', null, '/log/detail');
-INSERT INTO `t_sys_menu` VALUES ('62', null, null, null, null, 'del_login_log', '', '0', null, '3', '清空登录日志', '1', 'loginLog', '[0],[system],[loginLog],', '1', null, '/loginLog/delLoginLog');
-INSERT INTO `t_sys_menu` VALUES ('63', null, null, null, null, 'login_log_list', '', '0', null, '3', '登录日志列表', '2', 'loginLog', '[0],[system],[loginLog],', '1', null, '/loginLog/list');
-INSERT INTO `t_sys_menu` VALUES ('37', null, null, null, null, 'to_role_edit', '', '0', null, '3', '修改角色跳转', '5', 'role', '[0],[system],[role],', '1', null, '/role/role_edit');
-INSERT INTO `t_sys_menu` VALUES ('38', null, null, null, null, 'to_role_assign', '', '0', null, '3', '角色分配跳转', '6', 'role', '[0],[system],[role],', '1', null, '/role/role_assign');
-INSERT INTO `t_sys_menu` VALUES ('39', null, null, null, null, 'role_list', '', '0', null, '3', '角色列表', '7', 'role', '[0],[system],[role],', '1', null, '/role/list');
-INSERT INTO `t_sys_menu` VALUES ('40', null, null, null, null, 'to_assign_role', '', '0', null, '3', '分配角色跳转', '8', 'mgr', '[0],[system],[mgr],', '1', null, '/mgr/role_assign');
-INSERT INTO `t_sys_menu` VALUES ('41', null, null, null, null, 'to_user_edit', '', '0', null, '3', '编辑用户跳转', '9', 'mgr', '[0],[system],[mgr],', '1', null, '/mgr/user_edit');
-INSERT INTO `t_sys_menu` VALUES ('42', null, null, null, null, 'mgr_list', '', '0', null, '3', '用户列表', '10', 'mgr', '[0],[system],[mgr],', '1', null, '/mgr/list');
-INSERT INTO `t_sys_menu` VALUES ('43', null, null, null, null, 'cfg', '', '1', null, '2', '参数管理', '10', 'system', '[0],[system],', '1', null, '/cfg');
-INSERT INTO `t_sys_menu` VALUES ('44', null, null, null, null, 'cfg_add', '', '0', null, '3', '添加系统参数', '1', 'cfg', '[0],[system],[cfg],', '1', null, '/cfg/add');
-INSERT INTO `t_sys_menu` VALUES ('45', null, null, null, null, 'cfg_update', '', '0', null, '3', '修改系统参数', '2', 'cfg', '[0],[system],[cfg],', '1', null, '/cfg/update');
-INSERT INTO `t_sys_menu` VALUES ('46', null, null, null, null, 'cfg_delete', '', '0', null, '3', '删除系统参数', '3', 'cfg', '[0],[system],[cfg],', '1', null, '/cfg/delete');
-INSERT INTO `t_sys_menu` VALUES ('47', null, null, null, null, 'task', '', '1', null, '2', '任务管理', '11', 'system', '[0],[system],', '1', null, '/task');
-INSERT INTO `t_sys_menu` VALUES ('48', null, null, null, null, 'task_add', '', '0', null, '3', '添加任务', '1', 'task', '[0],[system],[task],', '1', null, '/task/add');
-INSERT INTO `t_sys_menu` VALUES ('49', null, null, null, null, 'task_update', '', '0', null, '3', '修改任务', '2', 'task', '[0],[system],[task],', '1', null, '/task/update');
-INSERT INTO `t_sys_menu` VALUES ('50', null, null, null, null, 'task_delete', '', '0', null, '3', '删除任务', '3', 'task', '[0],[system],[task],', '1', null, '/task/delete');
-INSERT INTO `t_sys_menu` VALUES ('2', null, null, '1', '2019-03-11 22:25:38', 'cms', '', '1', null, '1', 'CMS管理', '5', '0', '[0],', '1', null, '/cms');
-INSERT INTO `t_sys_menu` VALUES ('51', '1', '2019-03-11 22:29:54', '1', '2019-03-11 22:29:54', 'channel', '', '1', null, '2', '栏目管理', '1', 'cms', '[0],[cms],', '1', null, '/channel');
-INSERT INTO `t_sys_menu` VALUES ('52', '1', '2019-03-11 22:30:17', '1', '2019-03-11 22:30:17', 'article', '', '1', null, '2', '文章管理', '2', 'cms', '[0],[cms],', '1', null, '/article');
-INSERT INTO `t_sys_menu` VALUES ('53', '1', '2019-03-11 22:30:52', '1', '2019-03-11 22:30:52', 'banner', '', '1', null, '2', 'banner管理', '3', 'cms', '[0],[cms],', '1', null, '/banner');
-INSERT INTO `t_sys_menu` VALUES ('54', '1', '2019-03-18 19:45:37', '1', '2019-03-18 19:45:37', 'contacts', '', '1', null, '2', '联系管理', '4', 'cms', '[0],[cms],', '1', null, '/contacts');
-INSERT INTO `t_sys_menu` VALUES ('55', '1', '2019-03-19 10:25:05', '1', '2019-03-19 10:25:05', 'fileMgr', '', '1', null, '2', '文件管理', '5', 'cms', '[0],[cms],', '1', null, '/fileMgr');
-INSERT INTO `t_sys_menu` VALUES ('57', null, null, null, null, 'task_log', '', '1', null, '3', '任务日志', '4', 'task', '[0],[system],[task],', '1', null, '/taskLog');
-INSERT INTO `t_sys_menu` VALUES ('56', '1', '2019-03-11 22:30:17', '1', '2019-03-11 22:30:17', 'editArticle', '', '1', null, '3', '编辑文章', '1', 'article', '[0],[cms],[article]', '1', null, '/article/edit');
-INSERT INTO `t_sys_menu` VALUES ('3', null, null, '47', '2019-06-02 10:09:09', 'operationMgr', 'null', '1', null, '1', '运维管理', '3', '0', '[0],', '1', null, '/optionMgr');
-INSERT INTO `t_sys_menu` VALUES ('64', '47', '2019-06-02 10:10:20', '47', '2019-06-02 10:10:20', 'druid', '', '1', null, '2', '数据库管理', '1', 'operationMgr', '[0],[operationMgr],', '1', null, '/druid');
-INSERT INTO `t_sys_menu` VALUES ('65', '47', '2019-06-02 10:10:20', '47', '2019-06-02 10:10:20', 'swagger', null, '1', null, '2', '接口文档', '2', 'operationMgr', '[0],[operationMgr],', '1', null, '/swagger');
-INSERT INTO `t_sys_menu` VALUES ('66', '1', '2019-06-10 21:26:52', '1', '2019-06-10 21:26:52', 'messageMgr', null, '1', null, '1', '消息管理', '5', '0', '[0],', '1', null, '/message');
-INSERT INTO `t_sys_menu` VALUES ('67', '1', '2019-06-10 21:27:34', '1', '2019-06-10 21:27:34', 'historyMessage', null, '1', null, '2', '历史消息', '1', 'messageMgr', '[0],[messageMgr],', '1', null, '/history');
-INSERT INTO `t_sys_menu` VALUES ('68', '1', '2019-06-10 21:27:56', '1', '2019-06-10 21:27:56', ' messageTemplate', null, '1', null, '2', '消息模板', '2', 'messageMgr', '[0],[messageMgr],', '1', null, '/template');
-INSERT INTO `t_sys_menu` VALUES ('69', '1', '2019-06-10 21:28:21', '1', '2019-06-10 21:28:21', 'messageSender', null, '1', null, '2', '消息发送者', '3', 'messageMgr', '[0],[messageMgr],', '1', null, '/sender');
+INSERT INTO `t_sys_menu` VALUES ('1', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'system', 'fa-cog', '1', '1', '1', '系统管理', '4', '0', '[0],', '1', null, '/system');
+INSERT INTO `t_sys_menu` VALUES ('2', '1', '2019-07-31 22:04:30', '1', '2019-03-11 22:25:38', 'cms', null, '1', null, '1', 'CMS管理', '5', '0', '[0],', '1', null, '/cms');
+INSERT INTO `t_sys_menu` VALUES ('3', '1', '2019-07-31 22:04:30', '1', '2019-06-02 10:09:09', 'operationMgr', null, '1', null, '1', '运维管理', '3', '0', '[0],', '1', null, '/optionMgr');
+INSERT INTO `t_sys_menu` VALUES ('4', '1', '2019-07-31 22:04:30', '1', '2019-04-16 18:59:15', 'mgr', null, '1', null, '2', '用户管理', '1', 'system', '[0],[system],', '1', null, '/mgr');
+INSERT INTO `t_sys_menu` VALUES ('5', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'mgr.add', null, '0', null, '3', '添加用户', '1', 'mgr', '[0],[system],[mgr],', '1', null, '/mgr/add');
+INSERT INTO `t_sys_menu` VALUES ('6', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'mgr.edit', null, '0', null, '3', '修改用户', '2', 'mgr', '[0],[system],[mgr],', '1', null, '/mgr/edit');
+INSERT INTO `t_sys_menu` VALUES ('7', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'mgr.delete', null, '0', '0', '3', '删除用户', '3', 'mgr', '[0],[system],[mgr],', '1', null, '/mgr/delete');
+INSERT INTO `t_sys_menu` VALUES ('8', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'mgr.reset', null, '0', '0', '3', '重置密码', '4', 'mgr', '[0],[system],[mgr],', '1', null, '/mgr/reset');
+INSERT INTO `t_sys_menu` VALUES ('9', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'mgr.freeze', null, '0', '0', '3', '冻结用户', '5', 'mgr', '[0],[system],[mgr],', '1', null, '/mgr/freeze');
+INSERT INTO `t_sys_menu` VALUES ('10', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'mgr.unfreeze', null, '0', '0', '3', '解除冻结用户', '6', 'mgr', '[0],[system],[mgr],', '1', null, '/mgr/unfreeze');
+INSERT INTO `t_sys_menu` VALUES ('11', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'mgr.set.role', null, '0', '0', '3', '分配角色', '7', 'mgr', '[0],[system],[mgr],', '1', null, '/mgr/setRole');
+INSERT INTO `t_sys_menu` VALUES ('12', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'role', null, '1', '0', '2', '角色管理', '2', 'system', '[0],[system],', '1', null, '/role');
+INSERT INTO `t_sys_menu` VALUES ('13', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'role.add', null, '0', '0', '3', '添加角色', '1', 'role', '[0],[system],[role],', '1', null, '/role/add');
+INSERT INTO `t_sys_menu` VALUES ('14', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'role.edit', null, '0', '0', '3', '修改角色', '2', 'role', '[0],[system],[role],', '1', null, '/role/edit');
+INSERT INTO `t_sys_menu` VALUES ('15', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'role.delete', null, '0', '0', '3', '删除角色', '3', 'role', '[0],[system],[role],', '1', null, '/role/remove');
+INSERT INTO `t_sys_menu` VALUES ('16', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'role.set.authority', null, '0', '0', '3', '配置权限', '4', 'role', '[0],[system],[role],', '1', null, '/role/setAuthority');
+INSERT INTO `t_sys_menu` VALUES ('17', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'menu', null, '1', '0', '2', '菜单管理', '4', 'system', '[0],[system],', '1', null, '/menu');
+INSERT INTO `t_sys_menu` VALUES ('18', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'menu.add', null, '0', '0', '3', '添加菜单', '1', 'menu', '[0],[system],[menu],', '1', null, '/menu/add');
+INSERT INTO `t_sys_menu` VALUES ('19', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'menu.edit', null, '0', '0', '3', '修改菜单', '2', 'menu', '[0],[system],[menu],', '1', null, '/menu/edit');
+INSERT INTO `t_sys_menu` VALUES ('20', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'menu.delete', null, '0', '0', '3', '删除菜单', '3', 'menu', '[0],[system],[menu],', '1', null, '/menu/remove');
+INSERT INTO `t_sys_menu` VALUES ('21', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'dept', null, '1', null, '2', '部门管理', '3', 'system', '[0],[system],', '1', null, '/dept');
+INSERT INTO `t_sys_menu` VALUES ('22', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'dict', null, '1', null, '2', '字典管理', '4', 'system', '[0],[system],', '1', null, '/dict');
+INSERT INTO `t_sys_menu` VALUES ('23', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'dept.edit', null, '0', null, '3', '修改部门', '1', 'dept', '[0],[system],[dept],', '1', null, '/dept/update');
+INSERT INTO `t_sys_menu` VALUES ('24', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'dept.delete', null, '0', null, '3', '删除部门', '1', 'dept', '[0],[system],[dept],', '1', null, '/dept/delete');
+INSERT INTO `t_sys_menu` VALUES ('25', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'dict.add', null, '0', null, '3', '添加字典', '1', 'dict', '[0],[system],[dict],', '1', null, '/dict/add');
+INSERT INTO `t_sys_menu` VALUES ('26', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'dict.edit', null, '0', null, '3', '修改字典', '1', 'dict', '[0],[system],[dict],', '1', null, '/dict/update');
+INSERT INTO `t_sys_menu` VALUES ('27', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'dict.delete', null, '0', null, '3', '删除字典', '1', 'dict', '[0],[system],[dict],', '1', null, '/dict/delete');
+INSERT INTO `t_sys_menu` VALUES ('28', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'dept.list', null, '0', null, '3', '部门列表', '5', 'dept', '[0],[system],[dept],', '1', null, '/dept/list');
+INSERT INTO `t_sys_menu` VALUES ('29', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'dept.detail', null, '0', null, '3', '部门详情', '6', 'dept', '[0],[system],[dept],', '1', null, '/dept/detail');
+INSERT INTO `t_sys_menu` VALUES ('30', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'dict.list', null, '0', null, '3', '字典列表', '5', 'dict', '[0],[system],[dict],', '1', null, '/dict/list');
+INSERT INTO `t_sys_menu` VALUES ('31', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'dict.detail', null, '0', null, '3', '字典详情', '6', 'dict', '[0],[system],[dict],', '1', null, '/dict/detail');
+INSERT INTO `t_sys_menu` VALUES ('32', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'dept.add', null, '0', null, '3', '添加部门', '1', 'dept', '[0],[system],[dept],', '1', null, '/dept/add');
+INSERT INTO `t_sys_menu` VALUES ('33', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'cfg', null, '1', null, '2', '参数管理', '10', 'system', '[0],[system],', '1', null, '/cfg');
+INSERT INTO `t_sys_menu` VALUES ('34', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'cfg.add', null, '0', null, '3', '添加系统参数', '1', 'cfg', '[0],[system],[cfg],', '1', null, '/cfg/add');
+INSERT INTO `t_sys_menu` VALUES ('35', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'cfg.edit', null, '0', null, '3', '修改系统参数', '2', 'cfg', '[0],[system],[cfg],', '1', null, '/cfg/update');
+INSERT INTO `t_sys_menu` VALUES ('36', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'cfg.delete', null, '0', null, '3', '删除系统参数', '3', 'cfg', '[0],[system],[cfg],', '1', null, '/cfg/delete');
+INSERT INTO `t_sys_menu` VALUES ('37', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'task', null, '1', null, '2', '任务管理', '11', 'system', '[0],[system],', '1', null, '/task');
+INSERT INTO `t_sys_menu` VALUES ('38', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'task.add', null, '0', null, '3', '添加任务', '1', 'task', '[0],[system],[task],', '1', null, '/task/add');
+INSERT INTO `t_sys_menu` VALUES ('39', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'task.edit', null, '0', null, '3', '修改任务', '2', 'task', '[0],[system],[task],', '1', null, '/task/update');
+INSERT INTO `t_sys_menu` VALUES ('40', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'task.delete', null, '0', null, '3', '删除任务', '3', 'task', '[0],[system],[task],', '1', null, '/task/delete');
+INSERT INTO `t_sys_menu` VALUES ('41', '1', '2019-03-11 22:29:54', '1', '2019-03-11 22:29:54', 'channel', null, '1', null, '2', '栏目管理', '1', 'cms', '[0],[cms],', '1', null, '/channel');
+INSERT INTO `t_sys_menu` VALUES ('42', '1', '2019-03-11 22:30:17', '1', '2019-03-11 22:30:17', 'article', null, '1', null, '2', '文章管理', '2', 'cms', '[0],[cms],', '1', null, '/article');
+INSERT INTO `t_sys_menu` VALUES ('43', '1', '2019-03-11 22:30:52', '1', '2019-03-11 22:30:52', 'banner', null, '1', null, '2', 'banner管理', '3', 'cms', '[0],[cms],', '1', null, '/banner');
+INSERT INTO `t_sys_menu` VALUES ('44', '1', '2019-03-18 19:45:37', '1', '2019-03-18 19:45:37', 'contacts', null, '1', null, '2', '邀约管理', '4', 'cms', '[0],[cms],', '1', null, '/contacts');
+INSERT INTO `t_sys_menu` VALUES ('45', '1', '2019-03-19 10:25:05', '1', '2019-03-19 10:25:05', 'file', null, '1', null, '2', '文件管理', '5', 'cms', '[0],[cms],', '1', null, '/fileMgr');
+INSERT INTO `t_sys_menu` VALUES ('46', '1', '2019-03-11 22:30:17', '1', '2019-03-11 22:30:17', 'article.edit', null, '1', null, '3', '编辑文章', '1', 'article', '[0],[cms],[article]', '1', null, '/article/edit');
+INSERT INTO `t_sys_menu` VALUES ('47', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'task.log', null, '1', null, '3', '任务日志', '4', 'task', '[0],[system],[task],', '1', null, '/taskLog');
+INSERT INTO `t_sys_menu` VALUES ('48', '1', '2019-07-31 22:04:30', '1', '2019-06-02 10:25:31', 'log', null, '1', null, '2', '业务日志', '6', 'operationMgr', '[0],[operationMgr],', '1', null, '/log');
+INSERT INTO `t_sys_menu` VALUES ('49', '1', '2019-07-31 22:04:30', '1', '2019-06-02 10:25:36', 'login.log', null, '1', null, '2', '登录日志', '6', 'operationMgr', '[0],[operationMgr],', '1', null, '/loginLog');
+INSERT INTO `t_sys_menu` VALUES ('50', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'log.clear', null, '0', null, '3', '清空日志', '3', 'log', '[0],[system],[log],', '1', null, '/log/delLog');
+INSERT INTO `t_sys_menu` VALUES ('51', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'log.detail', null, '0', null, '3', '日志详情', '3', 'log', '[0],[system],[log],', '1', null, '/log/detail');
+INSERT INTO `t_sys_menu` VALUES ('52', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'login.log.clear', null, '0', null, '3', '清空登录日志', '1', 'loginLog', '[0],[system],[loginLog],', '1', null, '/loginLog/delLoginLog');
+INSERT INTO `t_sys_menu` VALUES ('53', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'login.log.list', null, '0', null, '3', '登录日志列表', '2', 'loginLog', '[0],[system],[loginLog],', '1', null, '/loginLog/list');
+INSERT INTO `t_sys_menu` VALUES ('54', '1', '2019-06-02 10:10:20', '1', '2019-06-02 10:10:20', 'druid', null, '1', null, '2', '数据库管理', '1', 'operationMgr', '[0],[operationMgr],', '1', null, '/druid');
+INSERT INTO `t_sys_menu` VALUES ('55', '1', '2019-06-02 10:10:20', '1', '2019-06-02 10:10:20', 'swagger', null, '1', null, '2', '接口文档', '2', 'operationMgr', '[0],[operationMgr],', '1', null, '/swagger');
+INSERT INTO `t_sys_menu` VALUES ('56', '1', '2019-06-10 21:26:52', '1', '2019-06-10 21:26:52', 'messageMgr', null, '1', null, '1', '消息管理', '5', '0', '[0],', '1', null, '/message');
+INSERT INTO `t_sys_menu` VALUES ('57', '1', '2019-06-10 21:27:34', '1', '2019-06-10 21:27:34', 'msg', null, '1', null, '2', '历史消息', '1', 'messageMgr', '[0],[messageMgr],', '1', null, '/history');
+INSERT INTO `t_sys_menu` VALUES ('58', '1', '2019-06-10 21:27:56', '1', '2019-06-10 21:27:56', 'msg.tpl', null, '1', null, '2', '消息模板', '2', 'messageMgr', '[0],[messageMgr],', '1', null, '/template');
+INSERT INTO `t_sys_menu` VALUES ('59', '1', '2019-06-10 21:28:21', '1', '2019-06-10 21:28:21', 'msg.sender', null, '1', null, '2', '消息发送者', '3', 'messageMgr', '[0],[messageMgr],', '1', null, '/sender');
+INSERT INTO `t_sys_menu` VALUES ('60', '1', '2019-06-10 21:28:21', '1', '2019-06-10 21:28:21', 'msg.clear', null, '1', null, '2', '清空历史消息', '3', 'messageMgr', '[0],[messageMgr],', '1', null, null);
+INSERT INTO `t_sys_menu` VALUES ('61', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'msg.tpl.edit', null, '0', null, '3', '编辑消息模板', '1', 'msg.tpl', '[0],[messageMgr],[msg.tpl]', '1', null, null);
+INSERT INTO `t_sys_menu` VALUES ('62', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'msg.tpl.delete', null, '0', null, '3', '删除消息模板', '2', 'msg.tpl', '[0],[messageMgr],[msg.tpl]', '1', null, null);
+INSERT INTO `t_sys_menu` VALUES ('63', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'msg.sender.edit', null, '0', null, '3', '编辑消息发送器', '1', 'msg.sender', '[0],[messageMgr],[msg.sender]', '1', null, null);
+INSERT INTO `t_sys_menu` VALUES ('64', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'msg.sender.delete', null, '0', null, '3', '删除消息发送器', '2', 'msg.sender', '[0],[messageMgr],[msg.sender]', '1', null, null);
+INSERT INTO `t_sys_menu` VALUES ('65', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'file.upload', null, '0', null, '3', '上传文件', '1', 'file', '[0],[cms],[file],', '1', null, null);
+INSERT INTO `t_sys_menu` VALUES ('66', '1', '2019-07-31 21:51:33', '1', '2019-07-31 21:51:33', 'banner.edit', null, '0', null, '3', '编辑banner', '1', 'banner', '[0],[cms],[banner],', '1', null, null);
+INSERT INTO `t_sys_menu` VALUES ('67', '1', '2019-07-31 21:51:33', '1', '2019-07-31 21:51:33', 'banner.delete', null, '0', null, '3', '删除banner', '2', 'banner', '[0],[cms],[banner],', '1', null, null);
+INSERT INTO `t_sys_menu` VALUES ('68', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'channel.edit', null, '0', null, '3', '编辑栏目', '1', 'channel', '[0],[cms],[channel],', '1', null, null);
+INSERT INTO `t_sys_menu` VALUES ('69', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'channel.delete', null, '0', null, '3', '删除栏目', '2', 'channel', '[0],[cms],[channel],', '1', null, null);
+INSERT INTO `t_sys_menu` VALUES ('70', '1', '2019-07-31 22:04:30', '1', '2019-07-31 22:04:30', 'article.delete', null, '0', null, '3', '删除文章', '2', 'article', '[0],[cms],[article]', '1', null, null);
 
 -- ----------------------------
 -- Records of t_sys_notice
@@ -203,89 +204,98 @@ INSERT INTO `t_sys_notice` (`id`, `title`, `type`, `content`, `create_time`, `cr
 -- ----------------------------
 -- Records of t_sys_operation_log
 -- ----------------------------
-INSERT INTO `t_sys_operation_log` (`id`, `logtype`, `logname`, `userid`, `classname`, `method`, `create_time`, `succeed`, `message`) VALUES ('76', '业务日志', '编辑文章', '1', 'cn.enilu.guns.api.controller.cms.ArticleMgrController', 'upload', '2019-05-10 13:22:49', '成功', '名称=null;;;');
-INSERT INTO `t_sys_operation_log` (`id`, `logtype`, `logname`, `userid`, `classname`, `method`, `create_time`, `succeed`, `message`) VALUES ('77', '业务日志', '编辑文章', '1', 'cn.enilu.guns.api.controller.cms.ArticleMgrController', 'upload', '2019-05-10 13:31:09', '成功', '名称=null;;;');
+INSERT INTO `t_sys_operation_log` (`id`, `logtype`, `logname`, `userid`, `classname`, `method`, `create_time`, `succeed`, `message`) VALUES ('1', '业务日志', '添加参数', '1', 'cn.enilu.guns.api.controller.cms.ArticleMgrController', 'upload', '2019-05-10 13:22:49', '成功', '参数名称=system.app.name');
+INSERT INTO `t_sys_operation_log` (`id`, `logtype`, `logname`, `userid`, `classname`, `method`, `create_time`, `succeed`, `message`) VALUES ('2', '业务日志', '修改参数', '1', 'cn.enilu.guns.api.controller.cms.ArticleMgrController', 'upload', '2019-06-10 13:31:09', '成功', '参数名称=system.app.name');
+INSERT INTO `t_sys_operation_log` (`id`, `logtype`, `logname`, `userid`, `classname`, `method`, `create_time`, `succeed`, `message`) VALUES ('3', '业务日志', '编辑文章', '1', 'cn.enilu.guns.api.controller.cms.ArticleMgrController', 'upload', '2019-07-10 13:22:49', '成功', '参数名称=system.app.name');
+INSERT INTO `t_sys_operation_log` (`id`, `logtype`, `logname`, `userid`, `classname`, `method`, `create_time`, `succeed`, `message`) VALUES ('4', '业务日志', '编辑栏目', '1', 'cn.enilu.guns.api.controller.cms.ArticleMgrController', 'upload', '2019-08-10 13:31:09', '成功', '参数名称=system.app.name');
 
 -- ----------------------------
 -- Records of t_sys_relation
 -- ----------------------------
-INSERT INTO `t_sys_relation` VALUES ('72', '65', '1');
-INSERT INTO `t_sys_relation` VALUES ('71', '64', '1');
-INSERT INTO `t_sys_relation` VALUES ('70', '63', '1');
-INSERT INTO `t_sys_relation` VALUES ('69', '62', '1');
-INSERT INTO `t_sys_relation` VALUES ('68', '59', '1');
-INSERT INTO `t_sys_relation` VALUES ('67', '61', '1');
-INSERT INTO `t_sys_relation` VALUES ('66', '60', '1');
-INSERT INTO `t_sys_relation` VALUES ('65', '58', '1');
-INSERT INTO `t_sys_relation` VALUES ('64', '3', '1');
-INSERT INTO `t_sys_relation` VALUES ('63', '55', '1');
-INSERT INTO `t_sys_relation` VALUES ('62', '54', '1');
-INSERT INTO `t_sys_relation` VALUES ('61', '53', '1');
-INSERT INTO `t_sys_relation` VALUES ('60', '56', '1');
-INSERT INTO `t_sys_relation` VALUES ('59', '52', '1');
-INSERT INTO `t_sys_relation` VALUES ('58', '51', '1');
-INSERT INTO `t_sys_relation` VALUES ('57', '2', '1');
-INSERT INTO `t_sys_relation` VALUES ('56', '57', '1');
-INSERT INTO `t_sys_relation` VALUES ('55', '50', '1');
-INSERT INTO `t_sys_relation` VALUES ('54', '49', '1');
-INSERT INTO `t_sys_relation` VALUES ('53', '48', '1');
-INSERT INTO `t_sys_relation` VALUES ('52', '47', '1');
-INSERT INTO `t_sys_relation` VALUES ('51', '46', '1');
-INSERT INTO `t_sys_relation` VALUES ('50', '45', '1');
-INSERT INTO `t_sys_relation` VALUES ('49', '44', '1');
-INSERT INTO `t_sys_relation` VALUES ('48', '43', '1');
-INSERT INTO `t_sys_relation` VALUES ('47', '35', '1');
-INSERT INTO `t_sys_relation` VALUES ('46', '34', '1');
-INSERT INTO `t_sys_relation` VALUES ('45', '33', '1');
-INSERT INTO `t_sys_relation` VALUES ('44', '27', '1');
-INSERT INTO `t_sys_relation` VALUES ('43', '26', '1');
-INSERT INTO `t_sys_relation` VALUES ('42', '25', '1');
-INSERT INTO `t_sys_relation` VALUES ('41', '22', '1');
-INSERT INTO `t_sys_relation` VALUES ('40', '36', '1');
-INSERT INTO `t_sys_relation` VALUES ('39', '32', '1');
-INSERT INTO `t_sys_relation` VALUES ('38', '31', '1');
-INSERT INTO `t_sys_relation` VALUES ('37', '30', '1');
-INSERT INTO `t_sys_relation` VALUES ('36', '24', '1');
-INSERT INTO `t_sys_relation` VALUES ('35', '23', '1');
-INSERT INTO `t_sys_relation` VALUES ('34', '21', '1');
-INSERT INTO `t_sys_relation` VALUES ('33', '29', '1');
-INSERT INTO `t_sys_relation` VALUES ('32', '28', '1');
-INSERT INTO `t_sys_relation` VALUES ('31', '20', '1');
-INSERT INTO `t_sys_relation` VALUES ('30', '19', '1');
-INSERT INTO `t_sys_relation` VALUES ('29', '18', '1');
-INSERT INTO `t_sys_relation` VALUES ('28', '17', '1');
-INSERT INTO `t_sys_relation` VALUES ('27', '39', '1');
-INSERT INTO `t_sys_relation` VALUES ('26', '38', '1');
-INSERT INTO `t_sys_relation` VALUES ('25', '37', '1');
-INSERT INTO `t_sys_relation` VALUES ('24', '16', '1');
-INSERT INTO `t_sys_relation` VALUES ('23', '15', '1');
-INSERT INTO `t_sys_relation` VALUES ('22', '14', '1');
-INSERT INTO `t_sys_relation` VALUES ('21', '13', '1');
-INSERT INTO `t_sys_relation` VALUES ('20', '12', '1');
-INSERT INTO `t_sys_relation` VALUES ('19', '42', '1');
-INSERT INTO `t_sys_relation` VALUES ('18', '41', '1');
-INSERT INTO `t_sys_relation` VALUES ('17', '40', '1');
-INSERT INTO `t_sys_relation` VALUES ('16', '11', '1');
-INSERT INTO `t_sys_relation` VALUES ('15', '10', '1');
-INSERT INTO `t_sys_relation` VALUES ('14', '9', '1');
-INSERT INTO `t_sys_relation` VALUES ('13', '8', '1');
-INSERT INTO `t_sys_relation` VALUES ('12', '7', '1');
-INSERT INTO `t_sys_relation` VALUES ('11', '6', '1');
-INSERT INTO `t_sys_relation` VALUES ('10', '5', '1');
-INSERT INTO `t_sys_relation` VALUES ('9', '4', '1');
-INSERT INTO `t_sys_relation` VALUES ('8', '1', '1');
-INSERT INTO `t_sys_relation` VALUES ('1', '2', '2');
-INSERT INTO `t_sys_relation` VALUES ('2', '51', '2');
-INSERT INTO `t_sys_relation` VALUES ('3', '52', '2');
-INSERT INTO `t_sys_relation` VALUES ('4', '53', '2');
-INSERT INTO `t_sys_relation` VALUES ('5', '54', '2');
-INSERT INTO `t_sys_relation` VALUES ('6', '55', '2');
-INSERT INTO `t_sys_relation` VALUES ('7', '56', '2');
-INSERT INTO `t_sys_relation` VALUES ('73', '66', '1');
-INSERT INTO `t_sys_relation` VALUES ('74', '67', '1');
-INSERT INTO `t_sys_relation` VALUES ('75', '68', '1');
-INSERT INTO `t_sys_relation` VALUES ('76', '69', '1');
 
+INSERT INTO `t_sys_relation` VALUES ('1', '42', '1');
+INSERT INTO `t_sys_relation` VALUES ('2', '70', '1');
+INSERT INTO `t_sys_relation` VALUES ('3', '46', '1');
+INSERT INTO `t_sys_relation` VALUES ('4', '43', '1');
+INSERT INTO `t_sys_relation` VALUES ('5', '67', '1');
+INSERT INTO `t_sys_relation` VALUES ('6', '66', '1');
+INSERT INTO `t_sys_relation` VALUES ('7', '33', '1');
+INSERT INTO `t_sys_relation` VALUES ('8', '34', '1');
+INSERT INTO `t_sys_relation` VALUES ('9', '36', '1');
+INSERT INTO `t_sys_relation` VALUES ('10', '35', '1');
+INSERT INTO `t_sys_relation` VALUES ('11', '41', '1');
+INSERT INTO `t_sys_relation` VALUES ('12', '69', '1');
+INSERT INTO `t_sys_relation` VALUES ('13', '68', '1');
+INSERT INTO `t_sys_relation` VALUES ('14', '2', '1');
+INSERT INTO `t_sys_relation` VALUES ('15', '44', '1');
+INSERT INTO `t_sys_relation` VALUES ('16', '21', '1');
+INSERT INTO `t_sys_relation` VALUES ('17', '32', '1');
+INSERT INTO `t_sys_relation` VALUES ('18', '24', '1');
+INSERT INTO `t_sys_relation` VALUES ('19', '29', '1');
+INSERT INTO `t_sys_relation` VALUES ('20', '23', '1');
+INSERT INTO `t_sys_relation` VALUES ('21', '28', '1');
+INSERT INTO `t_sys_relation` VALUES ('22', '22', '1');
+INSERT INTO `t_sys_relation` VALUES ('23', '25', '1');
+INSERT INTO `t_sys_relation` VALUES ('24', '27', '1');
+INSERT INTO `t_sys_relation` VALUES ('25', '31', '1');
+INSERT INTO `t_sys_relation` VALUES ('26', '26', '1');
+INSERT INTO `t_sys_relation` VALUES ('27', '30', '1');
+INSERT INTO `t_sys_relation` VALUES ('28', '54', '1');
+INSERT INTO `t_sys_relation` VALUES ('29', '45', '1');
+INSERT INTO `t_sys_relation` VALUES ('30', '65', '1');
+INSERT INTO `t_sys_relation` VALUES ('31', '48', '1');
+INSERT INTO `t_sys_relation` VALUES ('32', '50', '1');
+INSERT INTO `t_sys_relation` VALUES ('33', '51', '1');
+INSERT INTO `t_sys_relation` VALUES ('34', '49', '1');
+INSERT INTO `t_sys_relation` VALUES ('35', '52', '1');
+INSERT INTO `t_sys_relation` VALUES ('36', '53', '1');
+INSERT INTO `t_sys_relation` VALUES ('37', '17', '1');
+INSERT INTO `t_sys_relation` VALUES ('38', '18', '1');
+INSERT INTO `t_sys_relation` VALUES ('39', '20', '1');
+INSERT INTO `t_sys_relation` VALUES ('40', '19', '1');
+INSERT INTO `t_sys_relation` VALUES ('41', '56', '1');
+INSERT INTO `t_sys_relation` VALUES ('42', '4', '1');
+INSERT INTO `t_sys_relation` VALUES ('43', '5', '1');
+INSERT INTO `t_sys_relation` VALUES ('44', '7', '1');
+INSERT INTO `t_sys_relation` VALUES ('45', '6', '1');
+INSERT INTO `t_sys_relation` VALUES ('46', '9', '1');
+INSERT INTO `t_sys_relation` VALUES ('47', '8', '1');
+INSERT INTO `t_sys_relation` VALUES ('48', '11', '1');
+INSERT INTO `t_sys_relation` VALUES ('49', '10', '1');
+INSERT INTO `t_sys_relation` VALUES ('50', '57', '1');
+INSERT INTO `t_sys_relation` VALUES ('51', '60', '1');
+INSERT INTO `t_sys_relation` VALUES ('52', '59', '1');
+INSERT INTO `t_sys_relation` VALUES ('53', '64', '1');
+INSERT INTO `t_sys_relation` VALUES ('54', '63', '1');
+INSERT INTO `t_sys_relation` VALUES ('55', '58', '1');
+INSERT INTO `t_sys_relation` VALUES ('56', '62', '1');
+INSERT INTO `t_sys_relation` VALUES ('57', '61', '1');
+INSERT INTO `t_sys_relation` VALUES ('58', '3', '1');
+INSERT INTO `t_sys_relation` VALUES ('59', '12', '1');
+INSERT INTO `t_sys_relation` VALUES ('60', '13', '1');
+INSERT INTO `t_sys_relation` VALUES ('61', '15', '1');
+INSERT INTO `t_sys_relation` VALUES ('62', '14', '1');
+INSERT INTO `t_sys_relation` VALUES ('63', '16', '1');
+INSERT INTO `t_sys_relation` VALUES ('64', '55', '1');
+INSERT INTO `t_sys_relation` VALUES ('65', '1', '1');
+INSERT INTO `t_sys_relation` VALUES ('66', '37', '1');
+INSERT INTO `t_sys_relation` VALUES ('67', '38', '1');
+INSERT INTO `t_sys_relation` VALUES ('68', '40', '1');
+INSERT INTO `t_sys_relation` VALUES ('69', '39', '1');
+INSERT INTO `t_sys_relation` VALUES ('70', '47', '1');
+INSERT INTO `t_sys_relation` VALUES ('128', '41', '2');
+INSERT INTO `t_sys_relation` VALUES ('129', '42', '2');
+INSERT INTO `t_sys_relation` VALUES ('130', '43', '2');
+INSERT INTO `t_sys_relation` VALUES ('131', '44', '2');
+INSERT INTO `t_sys_relation` VALUES ('132', '45', '2');
+INSERT INTO `t_sys_relation` VALUES ('133', '46', '2');
+INSERT INTO `t_sys_relation` VALUES ('134', '65', '2');
+INSERT INTO `t_sys_relation` VALUES ('135', '66', '2');
+INSERT INTO `t_sys_relation` VALUES ('136', '67', '2');
+INSERT INTO `t_sys_relation` VALUES ('137', '68', '2');
+INSERT INTO `t_sys_relation` VALUES ('138', '69', '2');
+INSERT INTO `t_sys_relation` VALUES ('139', '70', '2');
+INSERT INTO `t_sys_relation` VALUES ('143', '2', '2');
 
 -- ----------------------------
 -- Records of t_sys_role
@@ -296,7 +306,7 @@ INSERT INTO `t_sys_role` VALUES ('2', null, null, null, null, '25', '网站管�
 -- ----------------------------
 -- Records of t_sys_task
 -- ----------------------------
-INSERT INTO `t_sys_task` (`id`, `name`, `job_group`, `job_class`, `note`, `cron`, `data`, `exec_at`, `exec_result`, `disabled`, `create_time`, `create_by`, `concurrent`, `modify_time`, `modify_by`) VALUES ('1', '测试任务', 'default', 'cn.enilu.flash.service.task.job.HelloJob', '测试任务,每两分钟执行一次', '0 0/2 * * * ?', '{\n\"appname\": \"web-flash\",\n\"version\":1\n}\n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            ', '2019-03-27 11:47:00', '执行成功', '0', '2018-12-28 09:54:00', '1', '0', '2019-03-27 11:47:11', '-1');
+INSERT INTO `t_sys_task` (`id`, `name`, `job_group`, `job_class`, `note`, `cron`, `data`, `exec_at`, `exec_result`, `disabled`, `create_time`, `create_by`, `concurrent`, `modify_time`, `modify_by`) VALUES ('1', '测试任务', 'default', 'cn.enilu.flash.service.task.job.HelloJob', '测试任务,每30分钟执行一次', '0 0/30 * * * ?', '{\n\"appname\": \"web-flash\",\n\"version\":1\n}\n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            ', '2019-03-27 11:47:00', '执行成功', '0', '2018-12-28 09:54:00', '1', '0', '2019-03-27 11:47:11', '-1');
 
 -- ----------------------------
 -- Records of t_sys_task_log
@@ -307,8 +317,8 @@ INSERT INTO `t_sys_task` (`id`, `name`, `job_group`, `job_class`, `note`, `cron`
 -- ----------------------------
 
 INSERT INTO `t_sys_user` VALUES ('-1', null, null, null, null, 'system', null, null, null, null, '应用系统', null, null, null, null, null, null, null);
-INSERT INTO `t_sys_user` VALUES ('1', null, '2016-01-29 08:49:53', '1', '2019-03-20 23:45:24', 'admin', null, '2017-05-05 00:00:00', '27', 'eniluzt@qq.com', '管理员', 'b5a51391f271f062867e5984e2fcffee', null, '1', '8pgby', '2', '1', '25');
-INSERT INTO `t_sys_user` VALUES ('2', null, '2018-09-13 17:21:02', '1', '2019-01-09 23:05:51', 'developer', null, '2017-12-31 00:00:00', '25', 'eniluzt@qq.com', '网站管理员', 'fac36d5616fe9ebd460691264b28ee27', '', '2,', 'vscp9', '1', '1', null);
+INSERT INTO `t_sys_user` VALUES ('1', null, '2016-01-29 08:49:53', '1', '2019-03-20 23:45:24', 'admin', null, '2017-05-05 00:00:00', '27', 'eniluzt@qq.com', '管理员', 'b5a51391f271f062867e5984e2fcffee', '15021222222', '1', '8pgby', '2', '1', '25');
+INSERT INTO `t_sys_user` VALUES ('2', null, '2018-09-13 17:21:02', '1', '2019-01-09 23:05:51', 'developer', null, '2017-12-31 00:00:00', '25', 'eniluzt@qq.com', '网站管理员', 'fac36d5616fe9ebd460691264b28ee27', '15022222222', '2,', 'vscp9', '1', '1', null);
 
 -- ----------------------------
 -- Records of t_test_boy
@@ -325,9 +335,9 @@ INSERT INTO `t_message_sender` VALUES ('2', null, null, null, null, 'defaultEmai
 -- ----------------------------
 -- Records of t_message_template
 -- ----------------------------
-INSERT INTO `t_message_template` VALUES ('1', null, null, null, null, 'REGISTER_CODE', '注册页面，点击获取验证码', '【腾讯云】校验码{1}，请于5分钟内完成验证，如非本人操作请忽略本短信。', '1', '注册验证码', null);
-INSERT INTO `t_message_template` VALUES ('2', null, null, null, null, 'EMAIL_TEST', '测试发送', '你好:{1},欢迎使用{2}', '2', '测试邮件', null);
-INSERT INTO `t_message_template` VALUES ('3', null, null, null, null, 'EMAIL_HTML_TEMPLATE_TEST', '测试发送模板邮件', '你好<strong>${userName}</strong>欢迎使用<font color=\"red\">${appName}</font>,这是html模板邮件', '2', '测试发送模板邮件', null);
+INSERT INTO `t_message_template` VALUES ('1', null, null, null, null, 'REGISTER_CODE', '注册页面，点击获取验证码', '【腾讯云】校验码{1}，请于5分钟内完成验证，如非本人操作请忽略本短信。', '1', '注册验证码', 0);
+INSERT INTO `t_message_template` VALUES ('2', null, null, null, null, 'EMAIL_TEST', '测试发送', '你好:{1},欢迎使用{2}', '2', '测试邮件', 1);
+INSERT INTO `t_message_template` VALUES ('3', null, null, null, null, 'EMAIL_HTML_TEMPLATE_TEST', '测试发送模板邮件', '你好<strong>${userName}</strong>欢迎使用<font color=\"red\">${appName}</font>,这是html模板邮件', '2', '测试发送模板邮件', 1);
 
 -- ----------------------------
 -- Records of t_message

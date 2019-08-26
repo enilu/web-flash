@@ -27,7 +27,7 @@ public   class TokenCache {
     }
 
     public   void remove(String token) {
-        ehcacheDao.hdel(EhcacheDao.SESSION,token);
+        ehcacheDao.hdel(EhcacheDao.SESSION,token+"user");
     }
 
     public void setUser(String token, ShiroUser shiroUser){

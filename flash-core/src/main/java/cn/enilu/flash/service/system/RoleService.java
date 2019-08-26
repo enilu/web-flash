@@ -95,7 +95,7 @@ public class RoleService extends BaseService<Role,Long,RoleRepository> {
         }
         return nodes;
     }
-
+    @Override
     public Role get(Long id) {
         Optional<Role> optional = roleRepository.findById(id);
         if (optional.isPresent()) {

@@ -6,6 +6,21 @@
           <el-input v-model="listQuery.title" placeholder="标题"></el-input>
         </el-col>
         <el-col :span="6">
+          <el-input v-model="listQuery.author" placeholder="作者"></el-input>
+        </el-col>
+        <el-col :span="8">
+          <el-date-picker
+            v-model="rangeDate"
+            type="datetimerange"
+            :picker-options="pickerOptions"
+            range-separator="至"
+            start-placeholder="发布起始日期"
+            end-placeholder="发布截至日期"
+            value-format="yyyyMMddHHmmss"
+            align="right">
+          </el-date-picker>
+        </el-col>
+        <el-col :span="4">
           <el-button type="success" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
           <el-button type="primary" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
         </el-col>

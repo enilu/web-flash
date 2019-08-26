@@ -4,15 +4,16 @@ import cn.enilu.flash.api.utils.ApiConstants;
 import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.vo.front.Rets;
-import cn.enilu.flash.bean.vo.node.MenuNode;
-import cn.enilu.flash.cache.TokenCache;
-import cn.enilu.flash.dao.system.MenuRepository;
+import cn.enilu.flash.security.JwtUtil;
+import cn.enilu.flash.security.ShiroFactroy;
 import cn.enilu.flash.service.system.AccountService;
 import cn.enilu.flash.service.system.MenuService;
 import cn.enilu.flash.service.system.UserService;
-import cn.enilu.flash.utils.*;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
+import cn.enilu.flash.utils.HttpKit;
+import cn.enilu.flash.utils.MD5;
+import cn.enilu.flash.utils.Maps;
+import cn.enilu.flash.utils.StringUtils;
+import org.nutz.mapl.Mapl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * AccountController
@@ -44,10 +44,6 @@ public class AccountController extends BaseController{
     private AccountService accountService;
     @Autowired
     private MenuService menuService;
-    @Autowired
-    private TokenCache tokenCache;
-    @Autowired
-    private MenuRepository menuRepository;
     /**
      * 用户登录<br>
      * 1，验证没有注册<br>
@@ -73,7 +69,7 @@ public class AccountController extends BaseController{
                 return Rets.failure("输入的密码错误");
             }
 
-            String token = accountService.login(Long.valueOf(user.getId()));
+            String token = JwtUtil.sign(user);
             Map<String, String> result = new HashMap<>(1);
             logger.info("token:{}",token);
             result.put("token", token);
@@ -110,18 +106,16 @@ public class AccountController extends BaseController{
             if(StringUtils.isEmpty(user.getRoleid())){
                 return Rets.failure("该用户未配置权限");
             }
-            String token = getToken(request);
-            ShiroUser shiroUser = tokenCache.getUser(token);
+            ShiroUser shiroUser = ShiroFactroy.me().shiroUser(user);
             Map map = Maps.newHashMap("name",user.getName(),"role","admin","roles", shiroUser.getRoleCodes());
 
             List menus = menuService.getMenusByRoleIds(shiroUser.getRoleList());
             map.put("menus",menus);
-            //获取用户可以操作的菜单列表
-//            List<MenuNode> menuNodes =  menuService.getMenusTreeByRoleIds(shiroUser.getRoleList());
-            //返回（根据拥有操作权限的菜单列表构造）路由信息
-//            map.put("routers",generateRouters(menuNodes));
-            //返回所有可操作的功能列表，用作进行按钮级别权限控制
-            map.put("permissions",generatePermissions(shiroUser.getRoleList()));
+            map.put("permissions",shiroUser.getUrls());
+            Map profile = (Map) Mapl.toMaplist(user);
+            profile.put("dept",shiroUser.getDeptName());
+            profile.put("roles",shiroUser.getRoleNames());
+            map.put("profile",profile);
 
             return Rets.success(map);
         }
@@ -151,46 +145,4 @@ public class AccountController extends BaseController{
         return Rets.failure("更改密码失败");
     }
 
-    private List<String> generatePermissions(List<Long> roleList) {
-        Set<String> permissionSet = Sets.newHashSet();
-        for (Long roleId : roleList) {
-            List<String> permissions =     menuService.getResUrlsByRoleId(roleId.intValue());
-            if (permissions != null) {
-                for (String permission : permissions) {
-                    if (ToolUtil.isNotEmpty(permission)) {
-                        permissionSet.add(permission);
-                    }
-                }
-            }
-        }
-        return Lists.newArrayList(permissionSet.iterator());
-    }
-
-    private List<Map> generateRouters(List<MenuNode> list){
-        List<Map> result = Lists.newArrayList();
-        for(MenuNode menuNode:list){
-            Map map = com.google.common.collect.Maps.newHashMap();
-            map.put("path",menuNode.getUrl());
-            map.put("component","Layout");
-            map.put("redirect","#");
-            map.put("name",menuNode.getName());
-            map.put("alwaysShow",true);
-            List<Map> children = Lists.newArrayList();
-            if(!menuNode.getChildren().isEmpty()){
-                for(MenuNode child:menuNode.getChildren()) {
-                    if(child.getIsmenu().intValue() != 1){
-                        continue;
-                    }
-                    Map map1 = com.google.common.collect.Maps.newHashMap();
-                    map1.put("path", child.getUrl());
-                    map1.put("name", child.getName());
-                    map1.put("meta", Maps.newHashMap("title",child.getName()));
-                    children.add(map1);
-                }
-                map.put("children",children);
-            }
-            result.add(map);
-        }
-        return result;
-    }
 }
