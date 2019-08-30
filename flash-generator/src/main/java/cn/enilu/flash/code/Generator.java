@@ -119,13 +119,7 @@ public class Generator {
             if(commandLine.hasOption("basePath")){
                 basePath =commandLine.getOptionValue("basePath")+File.separator;
             }
-            if(commandLine.hasOption("module")){
-                module =  commandLine.getOptionValue("module");
-                controllerPackageName = "api.controller."+module;
-                servicePackageName = "service."+module;
-                repositoryPackageName = "dao."+module;
-                modelPackageName = "bean.entity."+module;
-            }
+
             if (commandLine.hasOption("p")) {
                 basePackageName = commandLine.getOptionValue("p");
             }
@@ -136,7 +130,12 @@ public class Generator {
                 servicePackageName = commandLine.getOptionValue("sev");
             }
             if (commandLine.hasOption("mod")) {
-                modelPackageName = commandLine.getOptionValue("mod");
+                module =  commandLine.getOptionValue("mod");
+                module = module.split("\\.")[module.split("\\.").length-1];
+                controllerPackageName = "api.controller."+module;
+                servicePackageName = "service."+module;
+                repositoryPackageName = "dao."+module;
+                modelPackageName = "bean.entity."+module;
             }
 
             if (commandLine.hasOption("repo")) {
@@ -230,13 +229,13 @@ public class Generator {
                                       String[] pages)
             throws IOException {
         //生成vue版本相关文件
-        File apiFile = new File(basePath+codeConfig.getViewModel()+"/src/api/"+table.getViewBasePath()+".js");
+        File apiFile = new File(basePath+codeConfig.getViewModel()+"/src/api/"+table.getLastPackageName()+".js");
         generator.generate(null,  "code/view/api.js.vm", apiFile, force);
 
-        File vueFile = new File(basePath+codeConfig.getViewModel()+"/src/views/"+table.getViewBasePath()+File.separator+"index.vue");
+        File vueFile = new File(basePath+codeConfig.getViewModel()+"/src/views/"+table.getLastPackageName()+File.separator+"index.vue");
         generator.generate(null,  "code/view/index.vue.vm", vueFile, force);
 
-        File jsFile = new File(basePath+codeConfig.getViewModel()+"/src/views/"+table.getViewBasePath()+File.separator+table.getName()+".js");
+        File jsFile = new File(basePath+codeConfig.getViewModel()+"/src/views/"+table.getLastPackageName()+File.separator+table.getName()+".js");
         generator.generate(null,  "code/view/index.js.vm", jsFile, force);
 
     }

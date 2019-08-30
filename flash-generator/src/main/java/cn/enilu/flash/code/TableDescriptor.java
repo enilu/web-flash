@@ -34,8 +34,10 @@ public class TableDescriptor {
     private String serPackageName;
     //models包名
     private String modPackageName;
-    //repository报名
+    //repository包名
     private String repoPackageName;
+    //最后一层包的报名
+    private String lastPackageName;
 
 
     public TableDescriptor(String name, String entityName, String basePackageName, String baseUri, String serPackageName,
@@ -47,7 +49,7 @@ public class TableDescriptor {
         this.serPackageName = serPackageName;
         this.repoPackageName = repoPackageName;
         this.modPackageName = modPackageName;
-
+        this.lastPackageName =      modPackageName.split("\\.")[modPackageName.split("\\.").length-1];
         if (!baseUri.endsWith("/")) {
             baseUri = baseUri + "/";
         }
@@ -149,6 +151,13 @@ public class TableDescriptor {
         return basePackageName + "." + getRepoPackageName() + "." + getRepositoryClassName();
     }
 
+    public String getLastPackageName() {
+        return lastPackageName;
+    }
+
+    public void setLastPackageName(String lastPackageName) {
+        this.lastPackageName = lastPackageName;
+    }
 
     public String getEntityInstanceName() {
         return Utils.lowerCamel(name);
