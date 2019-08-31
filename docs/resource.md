@@ -1,12 +1,12 @@
 # 资源
-本节会整理提供一些助于开发的相关资源文档，在开发过程中学会恰当的里用这些资源将会是开发过程如虎添翼，事半功倍！。
+本节会整理提供一些助于开发的相关资源文档，在开发过程中学会恰当的里用这些资源将会使开发过程如虎添翼，事半功倍！。
 
 
 ## 前端
 
 ### 阿里巴巴矢量图库
 - [https://iconfont.cn](https://iconfont.cn)
-- 这个站点是阿里巴巴维护的一个图标站点，里面有极其丰富的图标，如果开发过程中如果在Fontawesome和Bootstrap中的找不到合适的图标，可以来这里看看，应该不会让你失望。
+- 这个站点是阿里巴巴维护的一个图标站点，里面有极其丰富的图标，如果开发过程中需要一些图标而又不想麻烦设计师，那么可以来这里找找，应该不会让你失望。
 
 ### vue-element-admin
 - [https://panjiachen.gitee.io/vue-element-admin-site/zh/](https://panjiachen.gitee.io/vue-element-admin-site/zh/)
@@ -18,7 +18,7 @@
 
 ## vuejs
 - [https://vuejs.org](https://vuejs.org)
-- vuejs官方文档
+- vuejs官方文档，不说了，你懂得
 
 ## 后端
 

@@ -9,53 +9,57 @@
 
 ## 缓存应用
 
-目前web-flash中使用到缓存的地方有两个，一个是系统参数的管理，一个是字典管理。
-具体用法也很简单，分为以下几个步骤
-- 系统启动的时候通过CacheListener将数据加载到缓存
-- 具体的功能中使用的时候注入对应的缓存类使用即可。
-- 数据更新的时候重新刷新缓存
-
-这里摘录一些关键代码：
-- CacheListner 缓存监听器，启动的时候将数据从数据库加载到缓存中
+web-flash中有两种使用缓存的方法，
+- 一种是通过@Cacheable注解自动缓存查询的数据，避免应用频繁从从数据库读取数据，影响性能。
 ```java
-@Component
-public class CacheListener implements CommandLineRunner {
-    @Autowired
-    private ConfigCache configCache;
-    @Autowired
-    private DictCache dictCache;
-    public void loadCache() {
-        configCache.cache();
-        dictCache.cache();
-    }
-
-    @Override
-    public void run(String... strings) throws Exception {
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                loadCache();
-            }
-        });
-        thread.start();
-    }
-}
+@Cacheable(value = Cache.APPLICATION ,key = "#root.targetClass.simpleName+':'+#id")
 ```
-- Cache顶级缓存接口，定义了缓存基本的三个方法
-```java
-
-public interface Cache {
-	void cache();
-	Object get(String key);
-	void set(String key, Object val);
-}
-```
+- 另一种是手动维护缓存数据，比如针对系统参数和字典数据的维护和使用。
+    - 系统启动的时候通过CacheListener将数据加载到缓存
+    - 具体的功能中使用的时候注入对应的缓存类使用即可。
+    - 数据更新的时候重新刷新缓存
+    - 这里摘录一些关键代码：
+    - CacheListner 缓存监听器，启动的时候将数据从数据库加载到缓存中
+    ```java
+    @Component
+    public class CacheListener implements CommandLineRunner {
+        @Autowired
+        private ConfigCache configCache;
+        @Autowired
+        private DictCache dictCache;
+        public void loadCache() {
+            configCache.cache();
+            dictCache.cache();
+        }
+    
+        @Override
+        public void run(String... strings) throws Exception {
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    loadCache();
+                }
+            });
+            thread.start();
+        }
+    }
+    ```
+    - Cache顶级缓存接口，定义了缓存基本的三个方法
+    ```java
+    
+    public interface Cache {
+        void cache();
+        Object get(String key);
+        void set(String key, Object val);
+    }
+    ```
 
 
 ## 备注
 **为什么选用Ehcahce**
 - 目前最流行的缓存中间件非Redis莫属。而且我司大多数产品和项目也是使用redis，但是考虑到Ehcahe的开箱即用（直接整合到项目中，不需要部署专门的缓存服务），所以在web-flash
 默认支持Ehcache，
+- 而且Ehcache也提供了良好的本地缓存方案
 - 想用Redis也很简单，参考EhcacheDao实现一个RedisCacheDao即可。
 
 **当数据库中数据变化的时候缓存中的数据如何做到更新**

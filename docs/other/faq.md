@@ -13,3 +13,5 @@ java -Dfile.encoding=utf-8 -jar xxxxxxx.jar
 npm install --registry=https://registry.npm.taobao.org
 ```
 
+## 使用代码生成器的时候生成不了代码
+下载项目好，首先运行mvn package -DskipTestss将项目打包成功，然后再生成，代码生成器读取实体类的class文件进行生成，所以必须构建生成class文件

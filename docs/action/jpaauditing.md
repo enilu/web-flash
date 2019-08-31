@@ -63,25 +63,23 @@ public class ApiApplication extends SpringBootServletInitializer {
 ```java
 @Configuration
 public class UserIDAuditorConfig implements AuditorAware<Long> {
-    @Autowired
-    private TokenCache tokenCache;
     @Override
     public Optional<Long> getCurrentAuditor() {
         try {
             String token = HttpKit.getRequest().getHeader("Authorization");
             if (StringUtils.isNotEmpty(token)) {
-                return Optional.of(tokenCache.get(token));
+                return Optional.of(JwtUtil.getUserId(token));
             }
         }catch (Exception e){
             //返回系统用户id
-            return Optional.of(-1L);
+            return Optional.of(Constants.SYSTEM_USER_ID);
         }
         //返回系统用户id
-        return Optional.of(-1L);
+        return Optional.of(Constants.SYSTEM_USER_ID);
     }
 }
 ```
 - 正常情况下用户通过浏览器进行系统管理操作，后台可以可以获取请求的request对象进而获取当前操作用户id，
-但是有时候后台系统线程（比如定时任务）进行更改系统数据的时候并没有对应的request，
-所以指定当前操作用户id为-1，即认定位系统自身对数据进行操作。
+但是有时候后台系统线程（比如定时任务）更新数据的时候并没有对应的request，
+所以指定当前操作用户id为-1，即认定为系统自身对数据进行操作。
 

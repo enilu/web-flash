@@ -34,7 +34,7 @@ module.exports = {
             {text: '捐赠',link:'/donate'},
             {text: '资源',link:'/resource'},
 
-            {text: '项目主页', link: 'https://github.com/enilu/web-flash'},
+            {text: 'Gitee', link: 'https://gitee.com/enilu/web-flash'},
 
 
         ],

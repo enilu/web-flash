@@ -45,7 +45,7 @@
         return Rets.success(fileInfo);
     }
 ```
-- 页面用法为，首先调用导出功能生成excel，后台返回生成的文件id，前台使用改文件id下载生成好的excel文件
+- 页面用法为，首先调用上述"export"地址生成excel，后台返回生成的excel文件id，前台使用改文件id下载生成好的excel文件
 ```js
 exportXls(this.listQuery).then(response => {
     window.location.href= getApiUrl() + '/file/download?idFile='+response.data.id
