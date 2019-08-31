@@ -32,7 +32,10 @@ public class EhcacheDao implements CacheDao {
     public Serializable hget(Serializable key, Serializable k) {
         Cache cache = cacheManager.getCache(String.valueOf(key));
         return cache.get(k,String.class);
+
     }
+
+
     @Override
     public <T>T hget(Serializable key, Serializable k,Class<T> klass) {
         Cache cache = cacheManager.getCache(String.valueOf(key));

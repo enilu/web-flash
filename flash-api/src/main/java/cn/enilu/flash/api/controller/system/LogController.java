@@ -11,7 +11,6 @@ import cn.enilu.flash.service.system.OperationLogService;
 import cn.enilu.flash.utils.BeanUtil;
 import cn.enilu.flash.utils.DateUtil;
 import cn.enilu.flash.utils.HttpKit;
-import cn.enilu.flash.utils.StringUtils;
 import cn.enilu.flash.utils.factory.Page;
 import cn.enilu.flash.warpper.LogWarpper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -43,15 +42,9 @@ public class LogController extends BaseController {
                        @RequestParam(required = false) String logName,
                        @RequestParam(required = false) Integer logType) {
         Page<OperationLog> page = new PageFactory<OperationLog>().defaultPage();
-        if (StringUtils.isNotEmpty(beginTime)) {
-            page.addFilter(SearchFilter.build("createTime", SearchFilter.Operator.GTE, DateUtil.parseDate(beginTime)));
-        }
-        if (StringUtils.isNotEmpty(endTime)) {
-            page.addFilter(SearchFilter.build("createTime", SearchFilter.Operator.LTE, DateUtil.parseDate(endTime)));
-        }
-        if (StringUtils.isNotEmpty(logName)) {
-            page.addFilter(SearchFilter.build("logname", SearchFilter.Operator.LIKE, logName));
-        }
+        page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parseDate(beginTime));
+        page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parseDate(endTime));
+        page.addFilter( "logname", SearchFilter.Operator.LIKE, logName);
         if (logType != null) {
             page.addFilter(SearchFilter.build("logtype", SearchFilter.Operator.EQ, BizLogType.valueOf(logType)));
         }
