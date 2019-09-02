@@ -12,6 +12,7 @@ import cn.enilu.flash.bean.exception.GunsException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.node.Node;
 import cn.enilu.flash.bean.vo.node.ZTreeNode;
+import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.system.LogObjectHolder;
 import cn.enilu.flash.service.system.RoleService;
 import cn.enilu.flash.service.system.UserService;
@@ -74,10 +75,13 @@ public class RoleController extends BaseController {
         if(roleId.intValue()<2){
             return Rets.failure("不能删除初始角色");
         }
-
+        List<User> userList = userService.queryAll(SearchFilter.build("roleid", SearchFilter.Operator.EQ,String.valueOf(roleId)));
+        if(!userList.isEmpty()){
+            return Rets.failure("有用户使用该角色，禁止删除");
+        }
         //不能删除超级管理员角色
-        if(roleId.equals(Const.ADMIN_ROLE_ID)){
-            throw new GunsException(BizExceptionEnum.CANT_DELETE_ADMIN);
+        if(roleId.intValue() ==Const.ADMIN_ROLE_ID){
+            return Rets.failure("禁止删除超级管理员角色");
         }
         //缓存被删除的角色名称
         LogObjectHolder.me().set(ConstantFactory.me().getSingleRoleName(roleId));
