@@ -57,5 +57,5 @@ Serving book on http://localhost:4000
 
 ![table](./doc/table.jpg)
 
-- 另外还可以生成word文档哦;虽然有点简陋:
+- 另外还可以生成word文档哦;word文档是通过html页面作为模板而生成的，你可以通过调整html模板来调整word模板的生成样式。
 ![word](./doc/word.jpg)

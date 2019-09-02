@@ -13,20 +13,21 @@ web-flash项目本身有readme文件，如果你有丰富的spring boot的和vue
  
 ## 目录说明
 - flash-api 后台api服务
-- flash-vue-admin 基于vuejs的后台管理系统
+- flash-vue-admin 基于vuejs的前端界面
 - flash-vue-h5 移动端内容系统，基于后台管理CMS内容管理模块的内容进行展示。
 - flash-core 基础模块，包括工具类，dao，service，bean等内容
-- flash-generator 代码生成模块
+- flash-generator 代码生成模块，IDEA插件需要配合该模块进行代码生成，如果在代码生成方面你有什么特殊需求，可以直接调整该模块
 
 ## 演示
 - 后台管理(vue版本) [http://flash-admin.enilu.cn](http://flash-admin.enilu.cn)
 - 手机端 [http://flash-mobile.enilu.cn/#/index](http://flash-mobile.enilu.cn/#/index) 打开浏览器后使用debug模式的手机视图模式浏览
+- **建议** 开发之前先将上面两个演示系统的功能查看一遍，这样后续开发可以知道参考哪些功能；查看演示系统请温柔操作，不要随意删改关键数据。
 
 
 ## 技术选型
-- 核心框架：Spring Boot
+- 核心框架：Spring Boot 2
 - 数据库层：Spring data jpa
-- 安全框架：Shiro
+- 权限认证：Shiro+Jwt
 - 数据库连接池：Druid
 - 缓存：Ehcache
 - 前端：基于Vue.js的element和vux 
@@ -54,12 +55,12 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 - 导入idea或者eclipse
 - 创建数据库：web-flash
 - 在开发环境中配置了系统启动后自动创建数据库和初始化数据，所以不需要开发人员手动初始化数据库
-- 确保开发工具下载了lombok插件
+- 确保开发工具下载了[lombok](https://www.zhihu.com/question/42348457)插件
 - 修改flash-api中数据库连接配置
 - 启动flash-api，访问http://localhost:8082/swagger-ui.html，保证api服务启动成功
 - 进入flash-vue-admin目录
-    - 运行 npm install --registry=https://registry.npm.taobao.org
-    - 运行npm run dev
+    - 运行 npm install --registry=https://registry.npm.taobao.org 安装依赖
+    - 运行npm run dev 启动项目
     - 启动成功后访问 http://localhost:9528,登录，用户名密码:admin/admin 
 - ![vue](../vuejs.gif)
 
@@ -72,4 +73,6 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 - QQ: 欢迎加入qq交流群 752844606
 - Gitter: [Gitter channel](https://gitter.im/web-flash/community)
 
-也欢迎你在github给该项目点个赞：[https://github.com/enilu/web-flash](https://github.com/enilu/web-flash)
+也欢迎你给该项目点个赞：
+- Github:[https://github.com/enilu/web-flash](https://github.com/enilu/web-flash)
+- Gitee: [https://gitee.com/enilu/web-flash](https://gitee.com/enilu/web-flash)

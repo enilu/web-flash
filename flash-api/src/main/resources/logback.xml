@@ -15,7 +15,7 @@
 	<!-- 向文件输出日志 -->
 	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>/data/web-flash/runtime/log/api_%d{yyyy-MM-dd}.log</fileNamePattern>
+			<fileNamePattern>/Users/maggie/app/web-flash/runtime/log/api_%d{yyyy-MM-dd}.log</fileNamePattern>
 			<maxHistory>1000</maxHistory>
 		</rollingPolicy>
 		<encoder>
@@ -25,7 +25,7 @@
 	</appender>
 
 	<!-- druid连接池的日志级别 -->
-	<logger name="com.alibaba.druid" level="INFO" />
+	<logger name="com.alibaba.druid" level="DEBUG" />
 
 	<!-- snow_credit的日志级别 -->
 	<logger name="cn.enilu.flash" level="DEBUG" />
