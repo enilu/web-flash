@@ -4,6 +4,9 @@
     <breadcrumb></breadcrumb>
     <div class="right-menu">
       <template>
+        <a target="_blank" href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=alts44ap" style="vertical-align: text-bottom;color:lightblue;">2000元阿里云产品代金券</a>
+      </template>
+      <template>
         <lang-select class="international right-menu-item"/>
       </template>
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
