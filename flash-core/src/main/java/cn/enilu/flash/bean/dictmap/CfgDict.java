@@ -12,7 +12,7 @@ public class CfgDict extends AbstractDictMap {
 
     @Override
     public void init() {
-        put("cfgId","参数id");
+        put("id","参数id");
         put("cfgName","参数名称");
         put("cfgDesc","备注");
     }

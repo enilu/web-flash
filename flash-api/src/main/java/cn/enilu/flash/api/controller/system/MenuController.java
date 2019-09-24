@@ -64,7 +64,11 @@ public class MenuController extends BaseController {
 
         //设置父级菜单编号
         menuService.menuSetPcode(menu);
-        menuService.saveOrUpdate(menu);
+        if(menu.getId()==null){
+            menuService.insert(menu);
+        }else {
+            menuService.update(menu);
+        }
         return Rets.success();
     }
 

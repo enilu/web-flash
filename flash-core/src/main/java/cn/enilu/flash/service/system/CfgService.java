@@ -21,9 +21,12 @@ public class CfgService  extends BaseService<Cfg,Long,CfgRepository> {
     @Autowired
     private ConfigCache configCache;
 
-    @Override
     public Cfg saveOrUpdate(Cfg cfg) {
-        super.saveOrUpdate(cfg);
+        if(cfg.getId()==null){
+            insert(cfg);
+        }else{
+            update(cfg);
+        }
         configCache.cache();
         return cfg;
     }

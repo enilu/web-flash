@@ -29,7 +29,11 @@ public class BannerMgrController extends BaseController {
     @BussinessLog(value = "编辑banner", key = "title", dict = CommonDict.class)
     @RequiresPermissions(value = {Permission.BANNER_EDIT})
     public Object save(@ModelAttribute @Valid Banner banner) {
-        bannerService.saveOrUpdate(banner);
+        if(banner.getId()==null){
+            bannerService.insert(banner);
+        }else {
+            bannerService.update(banner);
+        }
         return Rets.success();
     }
 

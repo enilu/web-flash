@@ -38,8 +38,12 @@ public class MessagetemplateController {
     @RequestMapping(method = RequestMethod.POST)
     @BussinessLog(value = "编辑消息模板", key = "name", dict = CommonDict.class)
     @RequiresPermissions(value = {Permission.MSG_TPL_EDIT})
-    public Object save(@ModelAttribute @Valid MessageTemplate tMessageTemplate) {
-        messagetemplateService.saveOrUpdate(tMessageTemplate);
+    public Object save(@ModelAttribute @Valid MessageTemplate messageTemplate) {
+        if(messageTemplate.getId()==null){
+            messagetemplateService.insert(messageTemplate);
+        }else {
+            messagetemplateService.update(messageTemplate);
+        }
         return Rets.success();
     }
 

@@ -94,7 +94,7 @@ public class UserController extends BaseController {
         }
         User user = userService.get(userId);
         user.setStatus(ManagerStatus.DELETED.getCode());
-        userService.saveOrUpdate(user);
+        userService.update(user);
         return Rets.success();
     }
     @BussinessLog(value="设置用户角色",key="userId",dict=UserDict.class)
@@ -110,7 +110,7 @@ public class UserController extends BaseController {
         }
         User user = userService.get(userId);
         user.setRoleid(roleIds);
-        userService.saveOrUpdate(user);
+        userService.update(user);
         return Rets.success();
     }
 

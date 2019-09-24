@@ -61,7 +61,11 @@ public class RoleController extends BaseController {
     @BussinessLog(value = "编辑角色", key = "name", dict = RoleDict.class)
     @RequiresPermissions(value = {Permission.ROLE_EDIT})
     public Object save(@Valid Role role){
-        roleService.saveOrUpdate(role);
+        if(role.getId()==null) {
+            roleService.insert(role);
+        }else{
+            roleService.update(role);
+        }
         return Rets.success();
     }
     @RequestMapping(method = RequestMethod.DELETE)

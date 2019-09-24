@@ -13,10 +13,4 @@ public interface UpdateService <T, ID> {
      * @return 返回修改的记录
      */
     T update(T record);
-    /**
-     * 添加或修改记录
-     * @param record 要添加或修改的对象
-     * @return 返回添加或修改的记录
-     */
-    T saveOrUpdate(T record);
 }

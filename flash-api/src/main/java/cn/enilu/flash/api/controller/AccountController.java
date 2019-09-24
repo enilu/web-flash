@@ -137,7 +137,7 @@ public class AccountController extends BaseController{
                 return Rets.failure("新密码前后不一致");
             }
             user.setPassword(MD5.md5(password, user.getSalt()));
-            userService.saveOrUpdate(user);
+            userService.update(user);
             return Rets.success();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);

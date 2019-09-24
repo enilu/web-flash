@@ -128,12 +128,6 @@ public abstract  class BaseService<T, ID extends Serializable, R extends BaseRep
     }
 
     @Override
-    @CacheEvict(value = Cache.APPLICATION ,key = "#root.targetClass.simpleName+':'+#record.id")
-    public T saveOrUpdate(T record) {
-        return dao.save(record);
-    }
-
-    @Override
     public void clear() {
         dao.deleteAllInBatch();
     }
