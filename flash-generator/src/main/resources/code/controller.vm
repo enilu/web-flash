@@ -36,7 +36,7 @@ public class ${table.ControllerClassName} {
 	@RequestMapping(method = RequestMethod.POST)
 	@BussinessLog(value = "编辑${table.Label}", key = "name",dict= CommonDict.class)
 	public Object save(@ModelAttribute ${table.EntityClassName} ${table.EntityInstanceName}){
-		if(messageTemplate.getId()==null){
+		if(${table.EntityInstanceName}.getId()==null){
 			${table.ServiceInstanceName}.insert(${table.EntityInstanceName});
 		}else {
 			${table.ServiceInstanceName}.update(${table.EntityInstanceName});
