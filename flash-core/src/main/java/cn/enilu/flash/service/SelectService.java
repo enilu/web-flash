@@ -70,4 +70,17 @@ public interface SelectService <T, ID> {
      * @return
      */
     List<T> queryAll(SearchFilter filter,Sort sort);
+    /**
+     * 查询记录数
+     * @param filter
+     * @return
+     */
+    long count(SearchFilter filter);
+
+    /**
+     * 查询记录数
+     * @param filters
+     * @return
+     */
+    long count(List<SearchFilter> filters);
 }
