@@ -6,3 +6,8 @@
 package-lock.json
 docs/.vuepress/dist
 **/dist
+.classpath
+.factorypath
+.vscode
+.settings
+.project
