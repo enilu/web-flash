@@ -137,9 +137,9 @@ public class JobService {
      * 删除任务
      */
 
-    public boolean deleteJob(QuartzJob job) {
-        logger.info("删除任务：{}", job.getJobName());
-        JobKey jobKey = JobKey.jobKey(job.getJobName(), job.getJobGroup());
+    public boolean deleteJob(QuartzJob record) {
+        logger.info("删除任务：{}", record.getJobName());
+        JobKey jobKey = JobKey.jobKey(record.getJobName(), record.getJobGroup());
         try {
             scheduler.deleteJob(jobKey);
             return true;

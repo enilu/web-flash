@@ -4,6 +4,8 @@ import cn.enilu.flash.api.utils.ApiConstants;
 import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.vo.front.Rets;
+import cn.enilu.flash.core.log.LogManager;
+import cn.enilu.flash.core.log.LogTaskFactory;
 import cn.enilu.flash.security.JwtUtil;
 import cn.enilu.flash.security.ShiroFactroy;
 import cn.enilu.flash.service.system.AccountService;
@@ -73,7 +75,7 @@ public class AccountController extends BaseController{
             Map<String, String> result = new HashMap<>(1);
             logger.info("token:{}",token);
             result.put("token", token);
-
+            LogManager.me().executeLog(LogTaskFactory.loginLog(user.getId(), HttpKit.getIp()));
             return Rets.success(result);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
@@ -90,6 +92,8 @@ public class AccountController extends BaseController{
     public Object logout(HttpServletRequest request){
         String token = this.getToken(request);
         accountService.logout(token);
+        Long idUser = getIdUser(request);
+        LogManager.me().executeLog(LogTaskFactory.exitLog(idUser, HttpKit.getIp()));
         return Rets.success();
     }
 
