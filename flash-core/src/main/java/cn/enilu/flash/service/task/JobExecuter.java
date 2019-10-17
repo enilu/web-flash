@@ -4,6 +4,7 @@ import cn.enilu.flash.bean.entity.system.Task;
 import cn.enilu.flash.bean.entity.system.TaskLog;
 import cn.enilu.flash.bean.vo.QuartzJob;
 import cn.enilu.flash.dao.system.TaskLogRepository;
+import cn.enilu.flash.dao.system.TaskRepository;
 import cn.enilu.flash.utils.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
@@ -24,6 +25,8 @@ public abstract class JobExecuter {
 
     @Autowired
     private TaskLogRepository taskLogRepository;
+    @Autowired
+    private TaskRepository taskRepository;
 
     private QuartzJob job;
 
@@ -58,7 +61,7 @@ public abstract class JobExecuter {
         task.setExecResult(exeResult);
         task.setExecAt(exeAt);
         taskLogRepository.save(taskLog);
-        taskService.update(task);
+        taskRepository.save(task);
         log.info(">>>>>>>>>>>>>>>>>执行定时任务[" + taskName + "]结束<<<<<<<<<<<<<<<<<<<");
     }
 
