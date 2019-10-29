@@ -1,7 +1,7 @@
 package cn.enilu.flash.core.factory;
 
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
-import cn.enilu.flash.bean.exception.GunsException;
+import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.service.system.IConstantFactory;
 import cn.enilu.flash.service.system.impl.ConstantFactory;
 
@@ -32,7 +32,7 @@ public class DictFieldWarpperFactory {
                     Object result = method.invoke(me, Integer.parseInt(field.toString()));
                     return result;
                 } catch (Exception e2) {
-                    throw new GunsException(BizExceptionEnum.ERROR_WRAPPER_FIELD);
+                    throw new ApplicationException(BizExceptionEnum.ERROR_WRAPPER_FIELD);
                 }
             }
         }

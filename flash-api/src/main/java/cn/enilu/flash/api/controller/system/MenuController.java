@@ -7,7 +7,7 @@ import cn.enilu.flash.bean.dictmap.MenuDict;
 import cn.enilu.flash.bean.entity.system.Menu;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
-import cn.enilu.flash.bean.exception.GunsException;
+import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.node.MenuNode;
 import cn.enilu.flash.bean.vo.node.Node;
@@ -57,7 +57,7 @@ public class MenuController extends BaseController {
         if(menu.getId()==null) {
             String existedMenuName = ConstantFactory.me().getMenuNameByCode(menu.getCode());
             if (ToolUtil.isNotEmpty(existedMenuName)) {
-                throw new GunsException(BizExceptionEnum.EXISTED_THE_MENU);
+                throw new ApplicationException(BizExceptionEnum.EXISTED_THE_MENU);
             }
             menu.setStatus(MenuStatus.ENABLE.getCode());
         }
@@ -78,7 +78,7 @@ public class MenuController extends BaseController {
     public Object remove(@RequestParam Long id) {
         logger.info("id:{}", id);
         if (ToolUtil.isEmpty(id)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         //演示环境不允许删除初始化的菜单
         if(id.intValue()<70){

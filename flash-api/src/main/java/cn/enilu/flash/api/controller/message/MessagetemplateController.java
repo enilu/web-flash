@@ -6,7 +6,7 @@ import cn.enilu.flash.bean.dictmap.CommonDict;
 import cn.enilu.flash.bean.entity.message.MessageTemplate;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
-import cn.enilu.flash.bean.exception.GunsException;
+import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.service.message.MessagetemplateService;
 import cn.enilu.flash.utils.ToolUtil;
@@ -52,7 +52,7 @@ public class MessagetemplateController {
     @RequiresPermissions(value = {Permission.MSG_TPL_DEL})
     public Object remove(Long id) {
         if (ToolUtil.isEmpty(id)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         messagetemplateService.delete(id);
         return Rets.success();

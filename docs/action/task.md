@@ -58,9 +58,8 @@ CREATE TABLE `t_sys_task_log` (
 
 比如我创建一个测试任务类
 ```java
-package cn.enilu.guns.service.task.job;
-import cn.enilu.guns.service.task.JobExecuter;
-import com.alibaba.fastjson.JSON;
+package cn.enilu.flash.service.task.job;
+import cn.enilu.flash.service.task.JobExecuter;
 import org.springframework.stereotype.Component;
 @Component
 public class HelloJob extends JobExecuter {

@@ -6,7 +6,7 @@ import cn.enilu.flash.bean.dictmap.DeptDict;
 import cn.enilu.flash.bean.entity.system.Dept;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
-import cn.enilu.flash.bean.exception.GunsException;
+import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.node.DeptNode;
 import cn.enilu.flash.service.system.DeptService;
@@ -45,7 +45,7 @@ public class DeptContoller extends BaseController {
     @RequiresPermissions(value = {Permission.DEPT_EDIT})
     public Object save(@ModelAttribute @Valid Dept dept){
         if (ToolUtil.isOneEmpty(dept, dept.getSimplename())) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         if(dept.getId()!=null){
             Dept old = deptService.get(dept.getId());
@@ -69,7 +69,7 @@ public class DeptContoller extends BaseController {
     public Object remove(@RequestParam  Long id){
         logger.info("id:{}",id);
         if (ToolUtil.isEmpty(id)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         deptService.deleteDept(id);
         return Rets.success();

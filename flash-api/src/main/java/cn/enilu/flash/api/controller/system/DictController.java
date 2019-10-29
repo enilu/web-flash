@@ -6,7 +6,7 @@ import cn.enilu.flash.bean.dictmap.DictMap;
 import cn.enilu.flash.bean.entity.system.Dict;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
-import cn.enilu.flash.bean.exception.GunsException;
+import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.service.system.DictService;
 import cn.enilu.flash.utils.BeanUtil;
@@ -54,7 +54,7 @@ public class DictController extends BaseController {
     @RequiresPermissions(value = {Permission.DICT_EDIT})
     public Object add(String dictName, String dictValues) {
         if (ToolUtil.isOneEmpty(dictName, dictValues)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         dictService.addDict(dictName, dictValues);
         return Rets.success();
@@ -65,7 +65,7 @@ public class DictController extends BaseController {
     @RequiresPermissions(value = {Permission.DICT_EDIT})
     public Object update(Long id,String dictName, String dictValues) {
         if (ToolUtil.isOneEmpty(dictName, dictValues)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         dictService.editDict(id,dictName, dictValues);
         return Rets.success();

@@ -1,8 +1,8 @@
 package cn.enilu.flash.service.task;
 
 import cn.enilu.flash.bean.entity.system.Task;
-import cn.enilu.flash.bean.exception.GunsException;
-import cn.enilu.flash.bean.exception.GunsExceptionEnum;
+import cn.enilu.flash.bean.exception.ApplicationException;
+import cn.enilu.flash.bean.exception.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.vo.QuartzJob;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import com.alibaba.fastjson.JSON;
@@ -85,7 +85,7 @@ public class JobService {
                     Map<String, Object> dataMap = JSON.parseObject( task.getData(),Map.class);
                     job.setDataMap(dataMap);
                 } catch (Exception e) {
-                    throw  new GunsException(GunsExceptionEnum.TASK_CONFIG_ERROR);
+                    throw  new ApplicationException(ApplicationExceptionEnum.TASK_CONFIG_ERROR);
                 }
             }
         }

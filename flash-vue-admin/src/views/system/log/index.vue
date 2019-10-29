@@ -35,7 +35,7 @@
     <el-table :data="list" v-loading="listLoading" element-loading-text="Loading" border fit highlight-current-row>
      <el-table-column type="expand">
        <template slot-scope="props">
-         <el-form label-position="left" inline class="guns-table-expand">
+         <el-form label-position="left" inline class="flash-table-expand">
            <el-form-item label="日志类型">
              <span>{{ props.row.logtype }}</span>
            </el-form-item>

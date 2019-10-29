@@ -8,7 +8,7 @@ import cn.enilu.flash.bean.entity.system.Cfg;
 import cn.enilu.flash.bean.entity.system.FileInfo;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
-import cn.enilu.flash.bean.exception.GunsException;
+import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.system.CfgService;
@@ -100,7 +100,7 @@ public class CfgController extends BaseController {
     public Object remove(@RequestParam Long id){
         logger.info("id:{}",id);
         if (ToolUtil.isEmpty(id)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         cfgService.delete(id);
         return Rets.success();

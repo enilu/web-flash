@@ -4,7 +4,7 @@
     <breadcrumb></breadcrumb>
     <div class="right-menu">
       <template>
-        <a target="_blank" href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=alts44ap" style="vertical-align: text-bottom;color:lightblue;">2000元阿里云产品代金券</a>
+        <a target="_blank" href="https://www.aliyun.com/1111/2019/home?userCode=alts44ap" style="vertical-align: text-bottom;color:lightblue;">2019双11All in cloud低至一折</a>
       </template>
       <template>
         <lang-select class="international right-menu-item"/>

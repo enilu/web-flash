@@ -7,7 +7,7 @@ import ${table.basePackageName}.bean.core.BussinessLog;
 import ${table.basePackageName}.bean.constant.factory.PageFactory;
 import ${table.basePackageName}.bean.dictmap.CommonDict;
 import ${table.basePackageName}.bean.enumeration.BizExceptionEnum;
-import ${table.basePackageName}.bean.exception.GunsException;
+import ${table.basePackageName}.bean.exception.ApplicationException;
 import ${table.basePackageName}.bean.vo.front.Rets;
 
 import ${table.basePackageName}.utils.Maps;
@@ -47,7 +47,7 @@ public class ${table.ControllerClassName} {
 	@BussinessLog(value = "删除${table.Label}", key = "id",dict= CommonDict.class)
 	public Object remove(Long id){
 		if (ToolUtil.isEmpty(id)) {
-			throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+			throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
 		}
 		${table.ServiceInstanceName}.delete(id);
 		return Rets.success();

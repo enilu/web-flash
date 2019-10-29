@@ -61,14 +61,40 @@
 
     <el-row :gutter="20" >
       <el-col :span="12">
-        <v-chart :options="pieData" class="chart section"/>
+        <el-collapse   class="section">
+          <el-collapse-item title="2019双11All in cloud低至一折" name="1">
+            <div><a href="https://www.aliyun.com/1111/2019/home?userCode=alts44ap" target="_blank">点击查看详情</a></div>
+          </el-collapse-item>
+          <el-collapse-item title="主机爆款限时优惠" name="2">
+            <div><a href="https://www.aliyun.com/acts/hotsale?userCode=alts44ap" target="_blank">点击查看详情</a> </div>
+          </el-collapse-item>
+          <el-collapse-item title="企业级云服务器五折优惠" name="3">
+            <div><a href="https://promotion.aliyun.com/ntms/act/enterprise-discount.html?userCode=alts44ap" target="_blank">点击查看详情</a> </div>
+          </el-collapse-item>
+          <el-collapse-item title="全民云计算云主机低至4折" name="4">
+            <div><a href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=alts44ap" target="_blank">点击查看详情</a> </div>
+          </el-collapse-item>
+          <el-collapse-item title="商标注册服务低至8折" name="5">
+            <div><a href="https://tm.aliyun.com/?userCode=alts44ap" target="_blank">点击查看详情</a> </div>
+          </el-collapse-item>
+          <el-collapse-item title="云短信产品低至8折" name="6">
+            <div><a href="https://www.aliyun.com/acts/alicomcloud/new-discount?userCode=alts44ap" target="_blank">点击查看详情</a> </div>
+          </el-collapse-item>
+
+
+
+        </el-collapse>
       </el-col>
+
       <el-col :span="12">
         <v-chart :options="barData" class="chart section"/>
       </el-col>
     </el-row>
 
     <el-row :gutter="20" >
+      <el-col :span="12">
+        <v-chart :options="pieData" class="chart section"/>
+      </el-col>
       <el-col :span="12">
         <el-table :data="tableData" class="section">
           <el-table-column
@@ -88,31 +114,7 @@
         </el-table>
 
       </el-col>
-      <el-col :span="12">
-        <el-collapse   class="section">
-          <el-collapse-item title="一致性 Consistency" name="1">
-            <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-            <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
-          </el-collapse-item>
-          <el-collapse-item title="反馈 Feedback" name="2">
-            <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
-            <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
-          </el-collapse-item>
-          <el-collapse-item title="效率 Efficiency" name="3">
-            <div>简化流程：设计简洁直观的操作流程；</div>
-            <div>清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；</div>
-            <div>帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>
-          </el-collapse-item>
-          <el-collapse-item title="可控 Controllability" name="4">
-            <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
-            <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
-          </el-collapse-item>
-          <el-collapse-item title="可控 Controllability" name="4">
-            <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
-            <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
-          </el-collapse-item>
-        </el-collapse>
-      </el-col>
+
     </el-row>
   </div>
 </template>

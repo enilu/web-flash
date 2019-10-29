@@ -57,7 +57,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       template: 'index.html',
       inject: true,
       favicon: resolve('favicon.ico'),
-      title: 'guns-admin-vuejs',
+      title: 'web-flash admin',
       templateParameters: {
         BASE_URL: config.dev.assetsPublicPath + config.dev.assetsSubDirectory,
       }

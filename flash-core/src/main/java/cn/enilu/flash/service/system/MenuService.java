@@ -5,7 +5,7 @@ import cn.enilu.flash.service.BaseService;
 import cn.enilu.flash.utils.Lists;
 import cn.enilu.flash.bean.entity.system.Menu;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
-import cn.enilu.flash.bean.exception.GunsException;
+import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.node.MenuNode;
 import cn.enilu.flash.bean.vo.node.Node;
 import cn.enilu.flash.bean.vo.node.ZTreeNode;
@@ -184,7 +184,7 @@ public class MenuService  extends BaseService<Menu,Long,MenuRepository> {
 
             //如果编号和父编号一致会导致无限递归
             if (menu.getCode().equals(menu.getPcode())) {
-                throw new GunsException(BizExceptionEnum.MENU_PCODE_COINCIDENCE);
+                throw new ApplicationException(BizExceptionEnum.MENU_PCODE_COINCIDENCE);
             }
 
             menu.setLevels(pLevels + 1);

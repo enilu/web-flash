@@ -10,7 +10,7 @@ import cn.enilu.flash.bean.dto.UserDto;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
-import cn.enilu.flash.bean.exception.GunsException;
+import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.core.factory.UserFactory;
@@ -68,7 +68,7 @@ public class UserController extends BaseController {
             // 判断账号是否重复
             User theUser = userService.findByAccount(user.getAccount());
             if (theUser != null) {
-                throw new GunsException(BizExceptionEnum.USER_ALREADY_REG);
+                throw new ApplicationException(BizExceptionEnum.USER_ALREADY_REG);
             }
             // 完善账号信息
             user.setSalt(ToolUtil.getRandomString(5));
@@ -87,7 +87,7 @@ public class UserController extends BaseController {
     @RequiresPermissions(value = {Permission.USER_DEL})
     public Object remove(@RequestParam Long userId){
         if (ToolUtil.isEmpty(userId)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         if(userId.intValue()<=2){
             return Rets.failure("不能删除初始用户");
@@ -102,11 +102,11 @@ public class UserController extends BaseController {
     @RequiresPermissions(value = {Permission.USER_EDIT})
     public Object setRole(@RequestParam("userId") Long userId, @RequestParam("roleIds") String roleIds) {
         if (ToolUtil.isOneEmpty(userId, roleIds)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         //不能修改超级管理员
         if (userId.equals(Const.ADMIN_ID)) {
-            throw new GunsException(BizExceptionEnum.CANT_CHANGE_ADMIN);
+            throw new ApplicationException(BizExceptionEnum.CANT_CHANGE_ADMIN);
         }
         User user = userService.get(userId);
         user.setRoleid(roleIds);

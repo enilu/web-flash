@@ -2,8 +2,8 @@ package cn.enilu.flash.service.task;
 
 
 import cn.enilu.flash.bean.entity.system.Task;
-import cn.enilu.flash.bean.exception.GunsException;
-import cn.enilu.flash.bean.exception.GunsExceptionEnum;
+import cn.enilu.flash.bean.exception.ApplicationException;
+import cn.enilu.flash.bean.exception.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.vo.QuartzJob;
 import cn.enilu.flash.dao.system.TaskRepository;
 import cn.enilu.flash.service.BaseService;
@@ -88,7 +88,7 @@ public class TaskService extends BaseService<Task,Long,TaskRepository> {
 				jobService.addJob(jobService.getJob(task));
 			}
 		} catch (SchedulerException e) {
-			throw  new GunsException(GunsExceptionEnum.TASK_CONFIG_ERROR);
+			throw  new ApplicationException(ApplicationExceptionEnum.TASK_CONFIG_ERROR);
 		}
 		return task;
 	}

@@ -26,7 +26,7 @@ flash-api是一个标准的是后台数据接口服务
 
 - src/main/java  java源码
 - src/main/resources  配置文件
-这里介绍下guns-admin的基本目录和开发流程
+这里介绍下web-flash的基本目录和开发流程
 
 ### src/main/java/ 源代码
 
