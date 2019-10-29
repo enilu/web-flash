@@ -10,8 +10,7 @@ import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.service.system.DictService;
 import cn.enilu.flash.utils.BeanUtil;
-import cn.enilu.flash.utils.StringUtils;
-import cn.enilu.flash.utils.ToolUtil;
+import cn.enilu.flash.utils.StringUtil;
 import cn.enilu.flash.warpper.DictWarpper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,7 @@ public class DictController extends BaseController {
     @RequiresPermissions(value = {Permission.DICT})
     public Object list(String name) {
 
-        if(StringUtils.isNotEmpty(name)){
+        if(StringUtil.isNotEmpty(name)){
             List<Dict> list = dictService.findByNameLike(name);
             return Rets.success(new DictWarpper(BeanUtil.objectsToMaps(list)).warp());
         }
@@ -53,7 +52,7 @@ public class DictController extends BaseController {
     @BussinessLog(value = "添加字典", key = "dictName",dict=DictMap.class)
     @RequiresPermissions(value = {Permission.DICT_EDIT})
     public Object add(String dictName, String dictValues) {
-        if (ToolUtil.isOneEmpty(dictName, dictValues)) {
+        if (BeanUtil.isOneEmpty(dictName, dictValues)) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         dictService.addDict(dictName, dictValues);
@@ -64,7 +63,7 @@ public class DictController extends BaseController {
     @BussinessLog(value = "修改字典", key = "dictName",dict=DictMap.class)
     @RequiresPermissions(value = {Permission.DICT_EDIT})
     public Object update(Long id,String dictName, String dictValues) {
-        if (ToolUtil.isOneEmpty(dictName, dictValues)) {
+        if (BeanUtil.isOneEmpty(dictName, dictValues)) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         dictService.editDict(id,dictName, dictValues);

@@ -15,8 +15,7 @@ import cn.enilu.flash.service.system.CfgService;
 import cn.enilu.flash.service.system.FileService;
 import cn.enilu.flash.service.system.LogObjectHolder;
 import cn.enilu.flash.utils.Maps;
-import cn.enilu.flash.utils.StringUtils;
-import cn.enilu.flash.utils.ToolUtil;
+import cn.enilu.flash.utils.StringUtil;
 import cn.enilu.flash.utils.factory.Page;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
@@ -48,10 +47,10 @@ public class CfgController extends BaseController {
     @RequiresPermissions(value = {Permission.CFG})
     public Object list(@RequestParam(required = false) String cfgName, @RequestParam(required = false) String cfgValue) {
         Page<Cfg> page = new PageFactory<Cfg>().defaultPage();
-        if(StringUtils.isNotEmpty(cfgName)){
+        if(StringUtil.isNotEmpty(cfgName)){
             page.addFilter(SearchFilter.build("cfgName", SearchFilter.Operator.LIKE, cfgName));
         }
-        if(StringUtils.isNotEmpty(cfgValue)){
+        if(StringUtil.isNotEmpty(cfgValue)){
             page.addFilter(SearchFilter.build("cfgValue", SearchFilter.Operator.LIKE, cfgValue));
         }
         page = cfgService.queryPage(page);
@@ -68,10 +67,10 @@ public class CfgController extends BaseController {
     @RequiresPermissions(value = {Permission.CFG})
     public Object export(@RequestParam(required = false) String cfgName, @RequestParam(required = false) String cfgValue) {
         Page<Cfg> page = new PageFactory<Cfg>().defaultPage();
-        if(StringUtils.isNotEmpty(cfgName)){
+        if(StringUtil.isNotEmpty(cfgName)){
             page.addFilter(SearchFilter.build("cfgName", SearchFilter.Operator.LIKE, cfgName));
         }
-        if(StringUtils.isNotEmpty(cfgValue)){
+        if(StringUtil.isNotEmpty(cfgValue)){
             page.addFilter(SearchFilter.build("cfgValue", SearchFilter.Operator.LIKE, cfgValue));
         }
         page = cfgService.queryPage(page);
@@ -99,7 +98,7 @@ public class CfgController extends BaseController {
     @RequiresPermissions(value = {Permission.CFG_DEL})
     public Object remove(@RequestParam Long id){
         logger.info("id:{}",id);
-        if (ToolUtil.isEmpty(id)) {
+        if (id == null) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         cfgService.delete(id);

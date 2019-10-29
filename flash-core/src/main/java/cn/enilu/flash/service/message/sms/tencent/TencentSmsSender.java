@@ -3,7 +3,7 @@ package cn.enilu.flash.service.message.sms.tencent;
 import cn.enilu.flash.bean.enumeration.ConfigKeyEnum;
 import cn.enilu.flash.cache.ConfigCache;
 import cn.enilu.flash.service.message.sms.SmsSender;
-import cn.enilu.flash.utils.StringUtils;
+import cn.enilu.flash.utils.StringUtil;
 import com.github.qcloudsms.SmsSingleSender;
 import com.github.qcloudsms.SmsSingleSenderResult;
 import org.slf4j.Logger;
@@ -24,7 +24,7 @@ public class TencentSmsSender implements SmsSender {
         SmsSingleSender ssender = new SmsSingleSender(appid, appkey);
         SmsSingleSenderResult result = null;
         try{
-            if(StringUtils.isNotEmpty(tplCode)){
+            if(StringUtil.isNotEmpty(tplCode)){
                 //根据指定模板id发送短信
                 // 签名参数未提供或者为空时，会使用默认签名发送短信
                 result = ssender.sendWithParam("86", receiver,

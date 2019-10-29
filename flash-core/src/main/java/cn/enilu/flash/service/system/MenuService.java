@@ -1,8 +1,6 @@
 package cn.enilu.flash.service.system;
 
 
-import cn.enilu.flash.service.BaseService;
-import cn.enilu.flash.utils.Lists;
 import cn.enilu.flash.bean.entity.system.Menu;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.exception.ApplicationException;
@@ -10,7 +8,9 @@ import cn.enilu.flash.bean.vo.node.MenuNode;
 import cn.enilu.flash.bean.vo.node.Node;
 import cn.enilu.flash.bean.vo.node.ZTreeNode;
 import cn.enilu.flash.dao.system.MenuRepository;
-import cn.enilu.flash.utils.ToolUtil;
+import cn.enilu.flash.service.BaseService;
+import cn.enilu.flash.utils.Lists;
+import cn.enilu.flash.utils.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -172,7 +172,7 @@ public class MenuService  extends BaseService<Menu,Long,MenuRepository> {
     }
 
     public void menuSetPcode(Menu menu) {
-        if (ToolUtil.isEmpty(menu.getPcode()) || "0".equals(menu.getPcode())) {
+        if (StringUtil.isEmpty(menu.getPcode()) || "0".equals(menu.getPcode())) {
             menu.setPcode("0");
             menu.setPcodes("[0],");
             menu.setLevels(1);

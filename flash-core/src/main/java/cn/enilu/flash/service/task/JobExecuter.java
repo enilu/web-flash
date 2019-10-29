@@ -5,7 +5,7 @@ import cn.enilu.flash.bean.entity.system.TaskLog;
 import cn.enilu.flash.bean.vo.QuartzJob;
 import cn.enilu.flash.dao.system.TaskLogRepository;
 import cn.enilu.flash.dao.system.TaskRepository;
-import cn.enilu.flash.utils.StringUtils;
+import cn.enilu.flash.utils.StringUtil;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -79,9 +79,9 @@ public abstract class JobExecuter {
         Map<String, Object> dataMap = job.getDataMap();
         String toEmail = null;
         if (dataMap != null && dataMap.containsKey("email")) {
-            toEmail = StringUtils.sNull(dataMap.get("email"));
+            toEmail = StringUtil.sNull(dataMap.get("email"));
         }
-        if (StringUtils.isEmpty(toEmail)) {
+        if (StringUtil.isEmpty(toEmail)) {
             toEmail = defaultEmail;
         }
         return toEmail;

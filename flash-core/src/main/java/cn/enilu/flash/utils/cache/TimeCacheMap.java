@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Map;
 
 /**
- * Created by zt on 2017/4/12 0012.
+ * Created by enilu on 2017/4/12 0012.
  */
 public class TimeCacheMap<K, V> {
     private static final int DEFAULT_NUM_BUCKETS = 3;

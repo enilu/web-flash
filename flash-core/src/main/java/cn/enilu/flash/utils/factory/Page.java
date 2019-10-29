@@ -2,7 +2,7 @@ package cn.enilu.flash.utils.factory;
 
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.utils.Lists;
-import cn.enilu.flash.utils.StringUtils;
+import cn.enilu.flash.utils.StringUtil;
 import org.springframework.data.domain.Sort;
 
 import java.util.Collections;
@@ -222,7 +222,7 @@ public class Page<T>  {
         filters.add(filter);
     }
     public void addFilter(String fieldName, SearchFilter.Operator operator, Object value){
-        if(!StringUtils.isNullOrEmpty(value)){
+        if(!StringUtil.isNullOrEmpty(value)){
             addFilter(SearchFilter.build(fieldName,operator,value));
         }
     }

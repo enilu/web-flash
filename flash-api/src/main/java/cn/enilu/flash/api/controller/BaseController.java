@@ -3,8 +3,8 @@ package cn.enilu.flash.api.controller;
 
 import cn.enilu.flash.api.utils.ApiConstants;
 import cn.enilu.flash.security.JwtUtil;
-import cn.enilu.flash.utils.HttpKit;
-import cn.enilu.flash.utils.StringUtils;
+import cn.enilu.flash.utils.HttpUtil;
+import cn.enilu.flash.utils.StringUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
@@ -52,7 +52,7 @@ public class BaseController {
     }
 
     public String getToken() {
-        return HttpKit.getRequest().getHeader("Authorization");
+        return HttpUtil.getRequest().getHeader("Authorization");
     }
 
     /**
@@ -87,7 +87,7 @@ public class BaseController {
      */
     public String getjsonReq() {
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(HttpKit.getRequest().getInputStream()));
+            BufferedReader br = new BufferedReader(new InputStreamReader(HttpUtil.getRequest().getInputStream()));
             String line = null;
             StringBuilder sb = new StringBuilder();
             while ((line = br.readLine()) != null) {
@@ -114,7 +114,7 @@ public class BaseController {
 
     public <T> T getFromJson(Class<T> klass) {
         String jsonStr = getjsonReq();
-        if (StringUtils.isEmpty(jsonStr)) {
+        if (StringUtil.isEmpty(jsonStr)) {
             return null;
         }
         JSONObject json = JSONObject.parseObject(jsonStr);

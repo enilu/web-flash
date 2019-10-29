@@ -2,8 +2,8 @@ package cn.enilu.flash.api.config;
 
 import cn.enilu.flash.security.JwtUtil;
 import cn.enilu.flash.utils.Constants;
-import cn.enilu.flash.utils.HttpKit;
-import cn.enilu.flash.utils.StringUtils;
+import cn.enilu.flash.utils.HttpUtil;
+import cn.enilu.flash.utils.StringUtil;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 
@@ -20,8 +20,8 @@ public class UserIDAuditorConfig implements AuditorAware<Long> {
     @Override
     public Optional<Long> getCurrentAuditor() {
         try {
-            String token = HttpKit.getRequest().getHeader("Authorization");
-            if (StringUtils.isNotEmpty(token)) {
+            String token = HttpUtil.getRequest().getHeader("Authorization");
+            if (StringUtil.isNotEmpty(token)) {
                 return Optional.of(JwtUtil.getUserId(token));
             }
         }catch (Exception e){

@@ -5,7 +5,6 @@ import cn.enilu.flash.bean.vo.node.DeptNode;
 import cn.enilu.flash.bean.vo.node.ZTreeNode;
 import cn.enilu.flash.dao.system.DeptRepository;
 import cn.enilu.flash.service.BaseService;
-import cn.enilu.flash.utils.ToolUtil;
 import com.google.common.base.Strings;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +66,7 @@ public class DeptService extends BaseService<Dept,Long,DeptRepository> {
     }
 
     public void deptSetPids(Dept dept) {
-        if (ToolUtil.isEmpty(dept.getPid()) || dept.getPid().equals(0)) {
+        if ( dept.getPid() ==null || dept.getPid().intValue() == 0) {
             dept.setPid(0L);
             dept.setPids("[0],");
         } else {

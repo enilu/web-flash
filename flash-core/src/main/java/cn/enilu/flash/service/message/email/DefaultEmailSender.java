@@ -1,6 +1,6 @@
 package cn.enilu.flash.service.message.email;
 
-import cn.enilu.flash.utils.StringUtils;
+import cn.enilu.flash.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamSource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -32,7 +32,7 @@ public class DefaultEmailSender implements EmailSender{
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             helper.setFrom(from);
             helper.setTo(to);
-            if(StringUtils.isNotEmpty(cc)) {
+            if(StringUtil.isNotEmpty(cc)) {
                 helper.setCc(cc);
             }
             helper.setSubject(title);

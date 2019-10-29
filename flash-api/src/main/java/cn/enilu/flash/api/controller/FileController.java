@@ -4,10 +4,10 @@ import cn.enilu.flash.bean.entity.system.FileInfo;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.service.system.FileService;
-import cn.enilu.flash.utils.CryptUtils;
-import cn.enilu.flash.utils.HttpKit;
+import cn.enilu.flash.utils.CryptUtil;
+import cn.enilu.flash.utils.HttpUtil;
 import cn.enilu.flash.utils.Maps;
-import cn.enilu.flash.utils.StringUtils;
+import cn.enilu.flash.utils.StringUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,8 +53,8 @@ public class FileController extends BaseController {
     public void download(@RequestParam("idFile") Long idFile,
                            @RequestParam(value = "fileName",required = false) String fileName){
         FileInfo fileInfo = fileService.get(idFile);
-        fileName = StringUtils.isEmpty(fileName)? fileInfo.getOriginalFileName():fileName;
-        HttpServletResponse response = HttpKit.getResponse();
+        fileName = StringUtil.isEmpty(fileName)? fileInfo.getOriginalFileName():fileName;
+        HttpServletResponse response = HttpUtil.getResponse();
         response.setContentType("application/x-download");
         try {
             fileName = new String(fileName.getBytes(), "ISO-8859-1");
@@ -107,7 +107,7 @@ public class FileController extends BaseController {
             fis = new FileInputStream(file);
             BufferedInputStream bis = new BufferedInputStream(fis);
             bis.read(bytes);
-            String base64 = CryptUtils.encodeBASE64(bytes);
+            String base64 = CryptUtil.encodeBASE64(bytes);
             return Rets.success(Maps.newHashMap("imgContent", base64));
         } catch (Exception e) {
             logger.error("get img error",e);

@@ -125,7 +125,7 @@ public class DateUtil {
 
 	public static String formatDate(Date date, String pattern) {
 		String formatDate = null;
-		if (StringUtils.isNotEmpty(pattern)) {
+		if (StringUtil.isNotEmpty(pattern)) {
 			formatDate = DateFormatUtils.format(date, pattern);
 		} else {
 			formatDate = DateFormatUtils.format(date, "yyyy-MM-dd");

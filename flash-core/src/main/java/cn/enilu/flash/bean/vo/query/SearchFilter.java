@@ -1,7 +1,7 @@
 package cn.enilu.flash.bean.vo.query;
 
 import cn.enilu.flash.utils.Maps;
-import cn.enilu.flash.utils.StringUtils;
+import cn.enilu.flash.utils.StringUtil;
 
 import java.util.Map;
 
@@ -30,7 +30,7 @@ public class SearchFilter {
         this.operator = operator;
     }
     public SearchFilter(String fieldName, Operator operator, Object value) {
-        if(!StringUtils.isNullOrEmpty(value)) {
+        if(!StringUtil.isNullOrEmpty(value)) {
             this.fieldName = fieldName;
             this.value = value;
             this.operator = operator;
@@ -52,7 +52,7 @@ public class SearchFilter {
 			}*/
 
             // 拆分operator与filedAttribute
-            String[] names = StringUtils.split(key, "_");
+            String[] names = StringUtil.split(key, "_");
             if (names.length != 2) {
                 throw new IllegalArgumentException(key + " is not a valid search filter name");
             }

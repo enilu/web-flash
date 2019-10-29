@@ -8,7 +8,7 @@ import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.cms.BannerService;
-import cn.enilu.flash.utils.StringUtils;
+import cn.enilu.flash.utils.StringUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -49,7 +49,7 @@ public class BannerMgrController extends BaseController {
     @RequiresPermissions(value = {Permission.BANNER})
     public Object list(@RequestParam(required = false) String title) {
         SearchFilter filter = null;
-        if(StringUtils.isNotEmpty(title)){
+        if(StringUtil.isNotEmpty(title)){
              filter =  SearchFilter.build("title", SearchFilter.Operator.LIKE,title);
         }
         List<Banner> list = bannerService.queryAll(filter);

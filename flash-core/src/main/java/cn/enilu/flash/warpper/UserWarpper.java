@@ -1,7 +1,7 @@
 package cn.enilu.flash.warpper;
 
 import cn.enilu.flash.service.system.impl.ConstantFactory;
-import cn.enilu.flash.utils.StringUtils;
+import cn.enilu.flash.utils.StringUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -21,10 +21,10 @@ public class UserWarpper extends BaseControllerWarpper {
     @Override
     public void warpTheMap(Map<String, Object> map) {
         map.put("sexName", ConstantFactory.me().getSexName((Integer) map.get("sex")));
-        if(StringUtils.isNotNullOrEmpty(map.get("roleid"))) {
+        if(StringUtil.isNotNullOrEmpty(map.get("roleid"))) {
             map.put("roleName", ConstantFactory.me().getRoleName((String) map.get("roleid")));
         }
-        if(StringUtils.isNotNullOrEmpty(map.get("deptid"))) {
+        if(StringUtil.isNotNullOrEmpty(map.get("deptid"))) {
             map.put("deptName", ConstantFactory.me().getDeptName((Long) map.get("deptid")));
         }
         map.put("statusName", ConstantFactory.me().getStatusName((Integer) map.get("status")));

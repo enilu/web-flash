@@ -12,7 +12,7 @@ import cn.enilu.flash.dao.system.*;
 import cn.enilu.flash.service.system.IConstantFactory;
 import cn.enilu.flash.service.system.LogObjectHolder;
 import cn.enilu.flash.utils.Convert;
-import cn.enilu.flash.utils.StringUtils;
+import cn.enilu.flash.utils.StringUtil;
 import cn.enilu.flash.utils.cache.TimeCacheMap;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.context.annotation.DependsOn;
@@ -65,7 +65,7 @@ public class ConstantFactory implements IConstantFactory {
     @Override
     public String getUserNameById(Long userId) {
         String val = get(CacheKey.SYS_USER_NAME + userId);
-        if (StringUtils.isNotEmpty(val)) {
+        if (StringUtil.isNotEmpty(val)) {
             return val;
         }
 
@@ -111,18 +111,18 @@ public class ConstantFactory implements IConstantFactory {
     @Override
     public String getRoleName(String roleIds) {
         String val = get(CacheKey.ROLES_NAME + roleIds);
-        if (StringUtils.isNotEmpty(val)) {
+        if (StringUtil.isNotEmpty(val)) {
             return val;
         }
         Integer[] roles = Convert.toIntArray(roleIds);
         StringBuilder sb = new StringBuilder();
         for (Integer role : roles) {
             Role roleObj = getRole(Long.valueOf(role));
-            if (StringUtils.isNotNullOrEmpty(roleObj) && StringUtils.isNotEmpty(roleObj.getName())) {
+            if (StringUtil.isNotNullOrEmpty(roleObj) && StringUtil.isNotEmpty(roleObj.getName())) {
                 sb.append(roleObj.getName()).append(",");
             }
         }
-        val = StringUtils.removeSuffix(sb.toString(), ",");
+        val = StringUtil.removeSuffix(sb.toString(), ",");
         set(CacheKey.ROLES_NAME + roleIds, val);
         return val;
     }
@@ -136,7 +136,7 @@ public class ConstantFactory implements IConstantFactory {
             return "--";
         }
         Role roleObj = getRole(roleId);
-        if (StringUtils.isNotNullOrEmpty(roleObj) && StringUtils.isNotEmpty(roleObj.getName())) {
+        if (StringUtil.isNotNullOrEmpty(roleObj) && StringUtil.isNotEmpty(roleObj.getName())) {
             return roleObj.getName();
         }
         return "";
@@ -151,7 +151,7 @@ public class ConstantFactory implements IConstantFactory {
             return "--";
         }
         Role roleObj = getRole(roleId);
-        if (StringUtils.isNotNullOrEmpty(roleObj) && StringUtils.isNotEmpty(roleObj.getName())) {
+        if (StringUtil.isNotNullOrEmpty(roleObj) && StringUtil.isNotEmpty(roleObj.getName())) {
             return roleObj.getTips();
         }
         return "";
@@ -166,11 +166,11 @@ public class ConstantFactory implements IConstantFactory {
             return null;
         }
         String val = get(CacheKey.DEPT_NAME + deptId);
-        if (StringUtils.isNotEmpty(val)) {
+        if (StringUtil.isNotEmpty(val)) {
             return val;
         }
         Dept dept = getDept(deptId);
-        if (StringUtils.isNotNullOrEmpty(dept) && StringUtils.isNotEmpty(dept.getFullname())) {
+        if (StringUtil.isNotNullOrEmpty(dept) && StringUtil.isNotEmpty(dept.getFullname())) {
             val = dept.getFullname();
             set(CacheKey.DEPT_NAME + deptId, val);
             return val;
@@ -187,11 +187,11 @@ public class ConstantFactory implements IConstantFactory {
         StringBuilder sb = new StringBuilder();
         for (int menuId : menuArray) {
             Menu menuObj = getMenu(Long.valueOf(menuId));
-            if (StringUtils.isNotNullOrEmpty(menuObj) && StringUtils.isNotEmpty(menuObj.getName())) {
+            if (StringUtil.isNotNullOrEmpty(menuObj) && StringUtil.isNotEmpty(menuObj.getName())) {
                 sb.append(menuObj.getName()).append(",");
             }
         }
-        return StringUtils.removeSuffix(sb.toString(), ",");
+        return StringUtil.removeSuffix(sb.toString(), ",");
     }
 
     /**
@@ -245,7 +245,7 @@ public class ConstantFactory implements IConstantFactory {
     public String getDictName(Long dictId) {
 
         String val = get(CacheKey.DICT_NAME + dictId);
-        if (StringUtils.isNotEmpty(val)) {
+        if (StringUtil.isNotEmpty(val)) {
             return val;
         }
         val = dictCache.getDict(dictId);
@@ -275,7 +275,7 @@ public class ConstantFactory implements IConstantFactory {
     @Override
     public String getDictsByName(String name, String val) {
         String result = get(CacheKey.DICT_NAME + name + val);
-        if (StringUtils.isNotEmpty(result)) {
+        if (StringUtil.isNotEmpty(result)) {
             return result;
         }
         List<Dict> dicts = dictCache.getDictsByPname(name);
@@ -375,7 +375,7 @@ public class ConstantFactory implements IConstantFactory {
         String[] split = pids.split(",");
         ArrayList<Integer> parentDeptIds = new ArrayList<>();
         for (String s : split) {
-            parentDeptIds.add(Integer.valueOf(StringUtils.removeSuffix(StringUtils.removePrefix(s, "["), "]")));
+            parentDeptIds.add(Integer.valueOf(StringUtil.removeSuffix(StringUtil.removePrefix(s, "["), "]")));
         }
         return parentDeptIds;
     }
@@ -389,7 +389,7 @@ public class ConstantFactory implements IConstantFactory {
     @Override
     public String getCfg(String cfgName) {
         String val = get(CacheKey.CFG + cfgName);
-        if (StringUtils.isNotEmpty(val)) {
+        if (StringUtil.isNotEmpty(val)) {
             return val;
         }
         val = (String) configCache.get(cfgName);

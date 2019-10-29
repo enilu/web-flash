@@ -7,7 +7,7 @@ import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.system.FileService;
-import cn.enilu.flash.utils.StringUtils;
+import cn.enilu.flash.utils.StringUtil;
 import cn.enilu.flash.utils.factory.Page;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class FileMgrController extends BaseController {
     public Object list(@RequestParam(required = false) String originalFileName
     ) {
         Page<FileInfo> page = new PageFactory<FileInfo>().defaultPage();
-        if (StringUtils.isNotEmpty(originalFileName)) {
+        if (StringUtil.isNotEmpty(originalFileName)) {
             page.addFilter(SearchFilter.build("originalFileName", SearchFilter.Operator.LIKE, originalFileName));
         }
         page = fileService.queryPage(page);

@@ -11,7 +11,7 @@ import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.node.DeptNode;
 import cn.enilu.flash.service.system.DeptService;
 import cn.enilu.flash.service.system.LogObjectHolder;
-import cn.enilu.flash.utils.ToolUtil;
+import cn.enilu.flash.utils.BeanUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +44,7 @@ public class DeptContoller extends BaseController {
     @BussinessLog(value = "编辑部门", key = "simplename", dict = DeptDict.class)
     @RequiresPermissions(value = {Permission.DEPT_EDIT})
     public Object save(@ModelAttribute @Valid Dept dept){
-        if (ToolUtil.isOneEmpty(dept, dept.getSimplename())) {
+        if (BeanUtil.isOneEmpty(dept, dept.getSimplename())) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         if(dept.getId()!=null){
@@ -68,7 +68,7 @@ public class DeptContoller extends BaseController {
     @RequiresPermissions(value = {Permission.DEPT_DEL})
     public Object remove(@RequestParam  Long id){
         logger.info("id:{}",id);
-        if (ToolUtil.isEmpty(id)) {
+        if (id == null) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         deptService.deleteDept(id);

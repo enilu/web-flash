@@ -15,10 +15,7 @@ import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.core.factory.UserFactory;
 import cn.enilu.flash.service.system.UserService;
-import cn.enilu.flash.utils.BeanUtil;
-import cn.enilu.flash.utils.MD5;
-import cn.enilu.flash.utils.StringUtils;
-import cn.enilu.flash.utils.ToolUtil;
+import cn.enilu.flash.utils.*;
 import cn.enilu.flash.utils.factory.Page;
 import cn.enilu.flash.warpper.UserWarpper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -48,10 +45,10 @@ public class UserController extends BaseController {
     public Object list(@RequestParam(required = false) String account,
                        @RequestParam(required = false) String name){
         Page page = new PageFactory().defaultPage();
-        if(StringUtils.isNotEmpty(name)){
+        if(StringUtil.isNotEmpty(name)){
             page.addFilter(SearchFilter.build("name", SearchFilter.Operator.LIKE, name));
         }
-        if(StringUtils.isNotEmpty(account)){
+        if(StringUtil.isNotEmpty(account)){
             page.addFilter(SearchFilter.build("account", SearchFilter.Operator.LIKE, account));
         }
         page.addFilter(SearchFilter.build("status",SearchFilter.Operator.GT,0));
@@ -71,7 +68,7 @@ public class UserController extends BaseController {
                 throw new ApplicationException(BizExceptionEnum.USER_ALREADY_REG);
             }
             // 完善账号信息
-            user.setSalt(ToolUtil.getRandomString(5));
+            user.setSalt(RandomUtil.getRandomString(5));
             user.setPassword(MD5.md5(user.getPassword(), user.getSalt()));
             user.setStatus(ManagerStatus.OK.getCode());
             userService.insert(UserFactory.createUser(user, new User()));
@@ -86,7 +83,7 @@ public class UserController extends BaseController {
     @RequestMapping(method = RequestMethod.DELETE)
     @RequiresPermissions(value = {Permission.USER_DEL})
     public Object remove(@RequestParam Long userId){
-        if (ToolUtil.isEmpty(userId)) {
+        if (userId==null) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         if(userId.intValue()<=2){
@@ -101,7 +98,7 @@ public class UserController extends BaseController {
     @RequestMapping(value="/setRole",method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.USER_EDIT})
     public Object setRole(@RequestParam("userId") Long userId, @RequestParam("roleIds") String roleIds) {
-        if (ToolUtil.isOneEmpty(userId, roleIds)) {
+        if (BeanUtil.isOneEmpty(userId, roleIds)) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         //不能修改超级管理员

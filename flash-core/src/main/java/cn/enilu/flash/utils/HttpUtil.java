@@ -30,10 +30,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HttpKit {
+public class HttpUtil {
 
     public static String getIp(){
-       return HttpKit.getRequest().getRemoteHost();
+       return HttpUtil.getRequest().getRemoteHost();
     }
 
     /**
@@ -41,7 +41,7 @@ public class HttpKit {
      */
     public static Map<String, String> getRequestParameters() {
         HashMap<String, String> values = new HashMap<>(20);
-        HttpServletRequest request = HttpKit.getRequest();
+        HttpServletRequest request = HttpUtil.getRequest();
         Enumeration enums = request.getParameterNames();
         while ( enums.hasMoreElements()){
             String paramName = (String) enums.nextElement();

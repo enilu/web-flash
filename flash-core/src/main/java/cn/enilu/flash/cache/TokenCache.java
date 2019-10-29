@@ -2,7 +2,7 @@ package cn.enilu.flash.cache;
 
 import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.cache.impl.EhcacheDao;
-import cn.enilu.flash.utils.HttpKit;
+import cn.enilu.flash.utils.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public   class TokenCache {
         return ehcacheDao.hget(EhcacheDao.SESSION,token,Long.class);
     }
     public Long getIdUser(){
-        return ehcacheDao.hget(EhcacheDao.SESSION,HttpKit.getToken(),Long.class );
+        return ehcacheDao.hget(EhcacheDao.SESSION, HttpUtil.getToken(),Long.class );
     }
 
     public   void remove(String token) {

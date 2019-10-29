@@ -1,7 +1,6 @@
 package cn.enilu.flash.warpper;
 
 import cn.enilu.flash.service.system.impl.ConstantFactory;
-import cn.enilu.flash.utils.ToolUtil;
 
 import java.util.Map;
 
@@ -22,7 +21,7 @@ public class DeptWarpper extends BaseControllerWarpper {
 
         Long pid = (Long) map.get("pid");
 
-        if (ToolUtil.isEmpty(pid) || pid.equals(0)) {
+        if (pid ==null ||pid.intValue() == 0) {
             map.put("pName", "--");
         } else {
             map.put("pName", ConstantFactory.me().getDeptName(pid));

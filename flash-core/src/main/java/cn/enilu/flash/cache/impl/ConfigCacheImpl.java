@@ -4,7 +4,7 @@ import cn.enilu.flash.bean.entity.system.Cfg;
 import cn.enilu.flash.cache.CacheDao;
 import cn.enilu.flash.cache.ConfigCache;
 import cn.enilu.flash.dao.system.CfgRepository;
-import cn.enilu.flash.utils.StringUtils;
+import cn.enilu.flash.utils.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +46,7 @@ public class ConfigCacheImpl implements ConfigCache {
     @Override
     public String get(String key, String def) {
         String ret = (String) get(key);
-        if(StringUtils.isEmpty(ret)){
+        if(StringUtil.isEmpty(ret)){
             return ret;
         }
         return ret;
@@ -69,7 +69,7 @@ public class ConfigCacheImpl implements ConfigCache {
         List<Cfg> list = cfgRepository.findAll();
         if (list != null && !list.isEmpty()) {
             for (Cfg cfg : list) {
-                if (StringUtils.isNotEmpty(cfg.getCfgName()) && StringUtils.isNotEmpty(cfg.getCfgValue())) {
+                if (StringUtil.isNotEmpty(cfg.getCfgName()) && StringUtil.isNotEmpty(cfg.getCfgValue())) {
                     set(cfg.getCfgName(),cfg.getCfgValue());
                 }
             }

@@ -17,10 +17,7 @@ import cn.enilu.flash.service.system.LogObjectHolder;
 import cn.enilu.flash.service.system.RoleService;
 import cn.enilu.flash.service.system.UserService;
 import cn.enilu.flash.service.system.impl.ConstantFactory;
-import cn.enilu.flash.utils.BeanUtil;
-import cn.enilu.flash.utils.Convert;
-import cn.enilu.flash.utils.Maps;
-import cn.enilu.flash.utils.ToolUtil;
+import cn.enilu.flash.utils.*;
 import cn.enilu.flash.warpper.RoleWarpper;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -73,7 +70,7 @@ public class RoleController extends BaseController {
     @RequiresPermissions(value = {Permission.ROLE_DEL})
     public Object remove(@RequestParam Long roleId){
         logger.info("id:{}",roleId);
-        if (ToolUtil.isEmpty(roleId)) {
+        if (roleId==null) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         if(roleId.intValue()<2){
@@ -98,7 +95,7 @@ public class RoleController extends BaseController {
     @RequiresPermissions(value = {Permission.ROLE_EDIT})
     public Object setAuthority(Long roleId, String
             permissions) {
-        if (ToolUtil.isOneEmpty(roleId)) {
+        if (BeanUtil.isOneEmpty(roleId)) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         roleService.setAuthority(roleId, permissions);
@@ -115,7 +112,7 @@ public class RoleController extends BaseController {
         User user = userService.get(idUser);
         String roleIds = user.getRoleid();
         List<ZTreeNode> roleTreeList = null;
-        if (ToolUtil.isEmpty(roleIds)) {
+        if (StringUtil.isEmpty(roleIds)) {
             roleTreeList = roleService.roleTreeList();
         } else {
             Long[] roleArray = Convert.toLongArray(",", roleIds);

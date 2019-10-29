@@ -11,7 +11,7 @@ import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.task.TaskLogService;
 import cn.enilu.flash.service.task.TaskService;
-import cn.enilu.flash.utils.StringUtils;
+import cn.enilu.flash.utils.StringUtil;
 import cn.enilu.flash.utils.factory.Page;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class TaskController extends BaseController {
     @RequestMapping(value = "/list")
     @RequiresPermissions(value = {Permission.TASK})
     public Object list(String name) {
-        if(StringUtils.isNullOrEmpty(name)) {
+        if(StringUtil.isNullOrEmpty(name)) {
             return Rets.success(taskService.queryAll());
         }else{
             return Rets.success(taskService.queryAllByNameLike(name));

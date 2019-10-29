@@ -2,13 +2,13 @@ package cn.enilu.flash.core.aop;
 
 import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.dictmap.base.AbstractDictMap;
-import cn.enilu.flash.core.factory.Contrast;
 import cn.enilu.flash.core.log.LogManager;
 import cn.enilu.flash.core.log.LogTaskFactory;
 import cn.enilu.flash.security.JwtUtil;
 import cn.enilu.flash.service.system.LogObjectHolder;
-import cn.enilu.flash.utils.HttpKit;
-import cn.enilu.flash.utils.StringUtils;
+import cn.enilu.flash.utils.BeanUtil;
+import cn.enilu.flash.utils.HttpUtil;
+import cn.enilu.flash.utils.StringUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -69,9 +69,9 @@ public class LogAop {
 
         //获取用户id，admin和api模块获取idUser方式不同
         Long idUser = null;
-        HttpServletRequest request = HttpKit.getRequest();
+        HttpServletRequest request = HttpUtil.getRequest();
         String token = request.getHeader("Authorization");
-        if(StringUtils.isNotEmpty(token)) {
+        if(StringUtil.isNotEmpty(token)) {
             idUser = JwtUtil.getUserId(token);
         }
         if(idUser==null) {
@@ -98,16 +98,16 @@ public class LogAop {
         String msg="";
         if (bussinessName.indexOf("修改") != -1 || bussinessName.indexOf("编辑") != -1) {
             Object obj1 = LogObjectHolder.me().get();
-            Map<String, String> obj2 = HttpKit.getRequestParameters();
+            Map<String, String> obj2 = HttpUtil.getRequestParameters();
             try {
-                msg = Contrast.contrastObj(dictClass, key, obj1, obj2);
+                msg = BeanUtil.contrastObj(dictClass, key, obj1, obj2);
             }catch (Exception e){
 
             }
         } else {
-            Map<String, String> parameters = HttpKit.getRequestParameters();
+            Map<String, String> parameters = HttpUtil.getRequestParameters();
             AbstractDictMap dictMap = (AbstractDictMap) dictClass.newInstance();
-            msg = Contrast.parseMutiKey(dictMap,key,parameters);
+            msg = BeanUtil.parseMutiKey(dictMap,key,parameters);
         }
 
         LogManager.me().executeLog(LogTaskFactory.bussinessLog(idUser, bussinessName, className, methodName, msg));

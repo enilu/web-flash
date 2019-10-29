@@ -1,7 +1,7 @@
 package cn.enilu.flash.security;
 
 import cn.enilu.flash.bean.entity.system.User;
-import cn.enilu.flash.utils.HttpKit;
+import cn.enilu.flash.utils.HttpUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -52,7 +52,7 @@ public class JwtUtil {
     }
 
     public static Long getUserId() {
-       return getUserId(HttpKit.getToken());
+       return getUserId(HttpUtil.getToken());
     }
     public static Long getUserId(String token) {
         try {

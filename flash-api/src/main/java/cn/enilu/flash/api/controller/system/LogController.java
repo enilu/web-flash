@@ -10,7 +10,7 @@ import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.system.OperationLogService;
 import cn.enilu.flash.utils.BeanUtil;
 import cn.enilu.flash.utils.DateUtil;
-import cn.enilu.flash.utils.HttpKit;
+import cn.enilu.flash.utils.HttpUtil;
 import cn.enilu.flash.utils.factory.Page;
 import cn.enilu.flash.warpper.LogWarpper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -61,7 +61,7 @@ public class LogController extends BaseController {
     @RequiresPermissions(value = {Permission.LOG})
     public Object list() {
         Page<OperationLog> page = new Page<OperationLog>();
-        page.addFilter(SearchFilter.build("userid", SearchFilter.Operator.EQ, getIdUser(HttpKit.getRequest())));
+        page.addFilter(SearchFilter.build("userid", SearchFilter.Operator.EQ, getIdUser(HttpUtil.getRequest())));
         Page<OperationLog> pageResult = operationLogService.queryPage(page);
         return Rets.success(pageResult.getRecords());
     }
