@@ -39,7 +39,7 @@
         <guava.version>20.0</guava.version>
         <mail.version>1.4.7</mail.version>
         <httpcomponents.version>4.4.1</httpcomponents.version>
-        <jackson.version>2.9.0</jackson.version>
+        <jackson.version>2.10.0</jackson.version>
         <fastjson.version>1.2.44</fastjson.version>
         <velocity.version>1.7</velocity.version>
         <quartz.version>2.2.1</quartz.version>
