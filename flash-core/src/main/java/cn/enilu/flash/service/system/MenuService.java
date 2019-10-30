@@ -4,9 +4,7 @@ package cn.enilu.flash.service.system;
 import cn.enilu.flash.bean.entity.system.Menu;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.exception.ApplicationException;
-import cn.enilu.flash.bean.vo.node.MenuNode;
-import cn.enilu.flash.bean.vo.node.Node;
-import cn.enilu.flash.bean.vo.node.ZTreeNode;
+import cn.enilu.flash.bean.vo.node.*;
 import cn.enilu.flash.dao.system.MenuRepository;
 import cn.enilu.flash.service.BaseService;
 import cn.enilu.flash.utils.Lists;
@@ -24,7 +22,7 @@ import java.util.*;
  * @author enilu
  */
 @Service
-public class MenuService  extends BaseService<Menu,Long,MenuRepository> {
+public class MenuService extends BaseService<Menu, Long, MenuRepository> {
 
     private Logger logger = LoggerFactory.getLogger(MenuService.class);
     @Autowired
@@ -48,6 +46,7 @@ public class MenuService  extends BaseService<Menu,Long,MenuRepository> {
         delete(menuId);
 
     }
+
     public List getMenusByRoleIds(List<Long> roleList) {
         List menus = menuRepository.getMenusByRoleIds(roleList);
         return menus;
@@ -56,12 +55,12 @@ public class MenuService  extends BaseService<Menu,Long,MenuRepository> {
 
     public List<MenuNode> getMenusTreeByRoleIds(List<Long> roleList) {
         List menus = menuRepository.getMenusByRoleIds(roleList);
-        List<MenuNode> result =  generateTree(transferMenuNode(menus));
-        for(MenuNode menuNode:result){
-            if(!menuNode.getChildren().isEmpty()){
+        List<MenuNode> result = generateTree(transferMenuNode(menus));
+        for (MenuNode menuNode : result) {
+            if (!menuNode.getChildren().isEmpty()) {
                 sortTree(menuNode.getChildren());
-                for(MenuNode menuNode1: menuNode.getChildren()){
-                    if(!menuNode1.getChildren().isEmpty()) {
+                for (MenuNode menuNode1 : menuNode.getChildren()) {
+                    if (!menuNode1.getChildren().isEmpty()) {
                         sortTree(menuNode1.getChildren());
                     }
                 }
@@ -72,13 +71,13 @@ public class MenuService  extends BaseService<Menu,Long,MenuRepository> {
     }
 
     public List<MenuNode> getMenus() {
-        List<MenuNode> list =  transferMenuNode(menuRepository.getMenus());
-        List<MenuNode> result =  generateTree(list);
-        for(MenuNode menuNode:result){
-            if(!menuNode.getChildren().isEmpty()){
+        List<MenuNode> list = transferMenuNode(menuRepository.getMenus());
+        List<MenuNode> result = generateTree(list);
+        for (MenuNode menuNode : result) {
+            if (!menuNode.getChildren().isEmpty()) {
                 sortTree(menuNode.getChildren());
-                for(MenuNode menuNode1: menuNode.getChildren()){
-                    if(!menuNode1.getChildren().isEmpty()) {
+                for (MenuNode menuNode1 : menuNode.getChildren()) {
+                    if (!menuNode1.getChildren().isEmpty()) {
                         sortTree(menuNode1.getChildren());
                     }
                 }
@@ -87,34 +86,80 @@ public class MenuService  extends BaseService<Menu,Long,MenuRepository> {
         sortTree(result);
         return result;
     }
-    private void sortTree(List<MenuNode> list){
+
+    public List<RouterMenu> getSideBarMenus() {
+        List<RouterMenu> list = transferRouteMenu(menuRepository.getMenus());
+        List<RouterMenu> result = generateRouterTree(list);
+        for (RouterMenu menuNode : result) {
+            if (!menuNode.getChildren().isEmpty()) {
+                sortRouterTree(menuNode.getChildren());
+                for (RouterMenu menuNode1 : menuNode.getChildren()) {
+                    if (!menuNode1.getChildren().isEmpty()) {
+                        sortRouterTree(menuNode1.getChildren());
+                    }
+                }
+            }
+        }
+        sortRouterTree(result);
+        return result;
+    }
+
+    private void sortTree(List<MenuNode> list) {
         Collections.sort(list, new Comparator<MenuNode>() {
             @Override
             public int compare(MenuNode o1, MenuNode o2) {
-                return o1.getNum()-o2.getNum();
+                return o1.getNum() - o2.getNum();
             }
         });
     }
-    private List<MenuNode> generateTree(List<MenuNode> list){
+
+    private void sortRouterTree(List<RouterMenu> list) {
+        Collections.sort(list, new Comparator<RouterMenu>() {
+            @Override
+            public int compare(RouterMenu o1, RouterMenu o2) {
+                return o1.getNum() - o2.getNum();
+            }
+        });
+    }
+
+    private List<MenuNode> generateTree(List<MenuNode> list) {
         List<MenuNode> result = new ArrayList<>(20);
-        Map<Long,MenuNode> map = Lists.toMap(list,"id");
-        for(Map.Entry<Long,MenuNode> entry:map.entrySet()){
+        Map<Long, MenuNode> map = Lists.toMap(list, "id");
+        for (Map.Entry<Long, MenuNode> entry : map.entrySet()) {
             MenuNode menuNode = entry.getValue();
 
-            if(menuNode.getParentId().intValue()!=0){
+            if (menuNode.getParentId().intValue() != 0) {
                 MenuNode parentNode = map.get(menuNode.getParentId());
                 parentNode.getChildren().add(menuNode);
-            }else{
+            } else {
                 result.add(menuNode);
             }
         }
         return result;
 
     }
-    private List<MenuNode> transferMenuNode(List menus){
+
+    private List<RouterMenu> generateRouterTree(List<RouterMenu> list) {
+        List<RouterMenu> result = new ArrayList<>(20);
+        Map<Long, RouterMenu> map = Lists.toMap(list, "id");
+        for (Map.Entry<Long, RouterMenu> entry : map.entrySet()) {
+            RouterMenu menuNode = entry.getValue();
+
+            if (menuNode.getParentId().intValue() != 0) {
+                RouterMenu parentNode = map.get(menuNode.getParentId());
+                parentNode.getChildren().add(menuNode);
+            } else {
+                result.add(menuNode);
+            }
+        }
+        return result;
+
+    }
+
+    private List<MenuNode> transferMenuNode(List menus) {
         List<MenuNode> menuNodes = new ArrayList<>();
         try {
-            for(int i=0;i<menus.size();i++){
+            for (int i = 0; i < menus.size(); i++) {
                 Object[] source = (Object[]) menus.get(i);
                 MenuNode menuNode = new MenuNode();
                 menuNode.setId(Long.valueOf(source[0].toString()));
@@ -127,17 +172,63 @@ public class MenuService  extends BaseService<Menu,Long,MenuRepository> {
                 menuNode.setNum(Integer.valueOf(source[7].toString()));
                 menuNode.setCode(String.valueOf(source[8]));
                 menuNode.setStatus(Integer.valueOf(source[9].toString()));
+                if (source[10] != null) {
+                    menuNode.setComponent(source[10].toString());
+                }
                 menuNodes.add(menuNode);
 
             }
-        }catch (Exception e){
-            logger.error(e.getMessage(),e);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
         }
         return menuNodes;
     }
+
+    private List<RouterMenu> transferRouteMenu(List menus) {
+        List<RouterMenu> routerMenus = new ArrayList<>();
+        try {
+            for (int i = 0; i < menus.size(); i++) {
+                Object[] source = (Object[]) menus.get(i);
+                if (source[10] == null) {
+                    continue;
+                }
+
+                RouterMenu menu = new RouterMenu();
+                menu.setPath(String.valueOf(source[4]));
+                menu.setName(String.valueOf(source[3]));
+                MenuMeta meta = new MenuMeta();
+                meta.setIcon(String.valueOf(source[1]));
+                meta.setTitle(String.valueOf(source[3]));
+                menu.setNum(Integer.valueOf(source[7].toString()));
+                menu.setParentId(Long.valueOf(source[2].toString()));
+                menu.setComponent(source[10].toString());
+                menu.setId(Long.valueOf(source[0].toString()));
+                menu.setMeta(meta);
+//                MenuNode menuNode = new MenuNode();
+//                menuNode.setId(Long.valueOf(source[0].toString()));
+//                menuNode.setIcon(String.valueOf(source[1]));
+//                menuNode.setParentId(Long.valueOf(source[2].toString()));
+//                menuNode.setName(String.valueOf(source[3]));
+//                menuNode.setUrl(String.valueOf(source[4]));
+//                menuNode.setLevels(Integer.valueOf(source[5].toString()));
+//                menuNode.setIsmenu(Integer.valueOf(source[6].toString()));
+//                menuNode.setNum(Integer.valueOf(source[7].toString()));
+//                menuNode.setCode(String.valueOf(source[8]));
+//                menuNode.setStatus(Integer.valueOf(source[9].toString()));
+
+//                    menuNode.setComponent(source[10].toString());
+                routerMenus.add(menu);
+
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return routerMenus;
+    }
+
     public List<ZTreeNode> menuTreeList(List<Long> menuIds) {
         List<ZTreeNode> nodes = new ArrayList<>();
-        if(menuIds==null) {
+        if (menuIds == null) {
             List list = menuRepository.menuTreeList();
 
             for (int i = 0; i < list.size(); i++) {
@@ -149,7 +240,7 @@ public class MenuService  extends BaseService<Menu,Long,MenuRepository> {
                 node.setIsOpen(Boolean.valueOf(source[3].toString()));
                 nodes.add(node);
             }
-        }else{
+        } else {
             nodes = menuTreeListByMenuIds(menuIds);
         }
         return nodes;
@@ -157,8 +248,8 @@ public class MenuService  extends BaseService<Menu,Long,MenuRepository> {
 
     private List<ZTreeNode> menuTreeListByMenuIds(List<Long> menuIds) {
         List list = menuRepository.menuTreeListByMenuIds(menuIds);
-        List<ZTreeNode> nodes  =new ArrayList<>();
-        for(int i=0;i<list.size();i++){
+        List<ZTreeNode> nodes = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
             Object[] source = (Object[]) list.get(i);
             ZTreeNode node = new ZTreeNode();
             node.setId(Long.valueOf(source[0].toString()));
@@ -192,10 +283,10 @@ public class MenuService  extends BaseService<Menu,Long,MenuRepository> {
         }
     }
 
-    public List<Node> generateMenuTreeForRole(List<ZTreeNode> list){
+    public List<Node> generateMenuTreeForRole(List<ZTreeNode> list) {
 
         List<Node> nodes = new ArrayList<>(20);
-        for(ZTreeNode menu:list){
+        for (ZTreeNode menu : list) {
             Node permissionNode = new Node();
             permissionNode.setId(menu.getId());
             permissionNode.setName(menu.getName());
@@ -203,16 +294,16 @@ public class MenuService  extends BaseService<Menu,Long,MenuRepository> {
             permissionNode.setChecked(menu.getChecked());
             nodes.add(permissionNode);
         }
-        for(Node permissionNode:nodes){
-            for(Node child:nodes){
-                if(child.getPid().intValue() == permissionNode.getId().intValue()){
+        for (Node permissionNode : nodes) {
+            for (Node child : nodes) {
+                if (child.getPid().intValue() == permissionNode.getId().intValue()) {
                     permissionNode.getChildren().add(child);
                 }
             }
         }
         List<Node> result = new ArrayList<>(20);
-        for(Node node:nodes){
-            if(node.getPid().intValue() == 0){
+        for (Node node : nodes) {
+            if (node.getPid().intValue() == 0) {
                 result.add(node);
             }
         }

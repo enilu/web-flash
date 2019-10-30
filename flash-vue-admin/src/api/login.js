@@ -11,12 +11,6 @@ export function login(username, password) {
   })
 }
 
-export function getInfo(token) {
-  return request({
-    url: '/account/info',
-    method: 'get'
-  })
-}
 
 export function logout() {
   console.log('logout')

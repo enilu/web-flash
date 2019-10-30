@@ -66,8 +66,7 @@
 
 <script src="./t_message_sender.js"></script>
 
-
 <style rel="stylesheet/scss" lang="scss" scoped>
-    @import "src/styles/common.scss";
+    @import "@/styles/common.scss";
 </style>
 

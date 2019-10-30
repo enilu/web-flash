@@ -11,3 +11,6 @@ docs/.vuepress/dist
 .vscode
 .settings
 .project
+vue-element-admin/
+vue-admin-template/
+vue-admin-template-tabnav/

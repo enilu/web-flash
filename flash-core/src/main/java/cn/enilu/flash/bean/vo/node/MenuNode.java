@@ -50,6 +50,7 @@ public class MenuNode implements Comparable {
      * 节点的url
      */
     private String url;
+     private String path;
 
     /**
      * 节点图标
@@ -59,6 +60,10 @@ public class MenuNode implements Comparable {
      * 菜单编码
      */
     private String code;
+    /**
+     * 組件配置
+     */
+    private String component;
     /**
      * 子节点的集合
      */
@@ -139,6 +144,14 @@ public class MenuNode implements Comparable {
         this.url = url;
     }
 
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     public List<MenuNode> getChildren() {
         return children;
     }
@@ -178,6 +191,14 @@ public class MenuNode implements Comparable {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getComponent() {
+        return component;
+    }
+
+    public void setComponent(String component) {
+        this.component = component;
     }
 
     public String getStatusName() {
