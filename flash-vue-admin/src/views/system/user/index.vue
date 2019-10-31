@@ -3,29 +3,29 @@
     <div class="block">
       <el-row  :gutter="20">
         <el-col :span="6">
-          <el-input v-model="listQuery.account" placeholder="请输入帐号"></el-input>
+          <el-input v-model="listQuery.account" size="mini" placeholder="请输入帐号"></el-input>
         </el-col>
         <el-col :span="6">
-          <el-input v-model="listQuery.name" placeholder="请输入姓名"></el-input>
+          <el-input v-model="listQuery.name" size="mini" placeholder="请输入姓名"></el-input>
         </el-col>
         <el-col :span="6">
-          <el-button type="success" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
-          <el-button type="primary" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
+          <el-button type="success" size="mini" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
+          <el-button type="primary" size="mini" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
         </el-col>
       </el-row>
       <br>
       <el-row>
         <el-col :span="24">
-          <el-button type="success" icon="el-icon-plus" @click.native="add" v-permission="['/mgr/add']">
+          <el-button type="success" size="mini" icon="el-icon-plus" @click.native="add" v-permission="['/mgr/add']">
             {{$t('button.add') }}
           </el-button>
-          <el-button type="primary" icon="el-icon-edit" @click.native="edit" v-permission="['/mgr/edit']">
+          <el-button type="primary" size="mini" icon="el-icon-edit" @click.native="edit" v-permission="['/mgr/edit']">
             {{$t('button.edit') }}
           </el-button>
-          <el-button type="danger" icon="el-icon-delete" @click.native="remove" v-permission="['/mgr/delete']">
+          <el-button type="danger" size="mini" icon="el-icon-delete" @click.native="remove" v-permission="['/mgr/delete']">
             {{$t('button.delete') }}
           </el-button>
-          <el-button type="info" icon="el-icon-role" @click.native="openRole">角色分配</el-button>
+          <el-button type="info" size="mini" icon="el-icon-role" @click.native="openRole">角色分配</el-button>
         </el-col>
       </el-row>
     </div>

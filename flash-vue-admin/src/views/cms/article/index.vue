@@ -3,14 +3,15 @@
     <div class="block">
       <el-row  :gutter="20">
         <el-col :span="6">
-          <el-input v-model="listQuery.title" placeholder="标题"></el-input>
+          <el-input v-model="listQuery.title" size="mini" placeholder="标题"></el-input>
         </el-col>
         <el-col :span="6">
-          <el-input v-model="listQuery.author" placeholder="作者"></el-input>
+          <el-input v-model="listQuery.author" size="mini" placeholder="作者"></el-input>
         </el-col>
         <el-col :span="8">
           <el-date-picker
             v-model="rangeDate"
+            size="mini"
             type="datetimerange"
             :picker-options="pickerOptions"
             range-separator="至"
@@ -21,16 +22,16 @@
           </el-date-picker>
         </el-col>
         <el-col :span="4">
-          <el-button type="success" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
-          <el-button type="primary" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
+          <el-button type="success" size="mini" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
+          <el-button type="primary" size="mini" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
         </el-col>
       </el-row>
       <br>
       <el-row>
         <el-col :span="24">
-          <el-button type="success" icon="el-icon-plus" @click.native="add">{{ $t('button.add') }}</el-button>
-          <el-button type="primary" icon="el-icon-edit" @click.native="edit">{{ $t('button.edit') }}</el-button>
-          <el-button type="danger" icon="el-icon-delete" @click.native="remove">{{ $t('button.delete') }}</el-button>
+          <el-button type="success" size="mini" icon="el-icon-plus" @click.native="add">{{ $t('button.add') }}</el-button>
+          <el-button type="primary" size="mini"  icon="el-icon-edit" @click.native="edit">{{ $t('button.edit') }}</el-button>
+          <el-button type="danger" size="mini"  icon="el-icon-delete" @click.native="remove">{{ $t('button.delete') }}</el-button>
         </el-col>
       </el-row>
     </div>

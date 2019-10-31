@@ -208,9 +208,6 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
                 menu.setComponent(source[10].toString());
                 menu.setId(Long.valueOf(source[0].toString()));
                 menu.setMeta(meta);
-                if("/taskLog".equals(menu.getPath())){
-                    menu.setHidden(true);
-                }
 //                MenuNode menuNode = new MenuNode();
 //                menuNode.setId(Long.valueOf(source[0].toString()));
 //                menuNode.setIcon(String.valueOf(source[1]));

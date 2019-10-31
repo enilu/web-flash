@@ -250,7 +250,6 @@ public class TableDescriptor {
         return result;
     }
 
-    //todo
     public String getQueryColumns(String op) {
         List<String> result = new ArrayList<String>();
         for (ColumnDescriptor column : columns) {

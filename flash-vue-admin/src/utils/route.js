@@ -14,7 +14,6 @@ export function traverseRoutes(menus){
   let routes = menus.map( menu =>{
     if(menu.component){
       let name = menu.component;
-      console.log(name,menu.component)
       menu.component = ()=> import(`@/${name}`)
     }
 

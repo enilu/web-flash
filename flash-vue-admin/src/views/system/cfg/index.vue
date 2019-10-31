@@ -3,14 +3,14 @@
     <div class="block">
       <el-row  :gutter="20">
         <el-col :span="6">
-          <el-input v-model="listQuery.cfgName" :placeholder="$t('config.name')"></el-input>
+          <el-input v-model="listQuery.cfgName" size="mini" :placeholder="$t('config.name')"></el-input>
         </el-col>
         <el-col :span="6">
-          <el-input v-model="listQuery.cfgValue"  :placeholder="$t('config.value')"></el-input>
+          <el-input v-model="listQuery.cfgValue" size="mini"  :placeholder="$t('config.value')"></el-input>
         </el-col>
         <el-col :span="6">
-          <el-button type="success" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
-          <el-button type="primary" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
+          <el-button type="success" size="mini" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
+          <el-button type="primary" size="mini" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
         </el-col>
       </el-row>
       <br>

@@ -77,33 +77,23 @@ export const constantRoutes = [
     component: () => import('@/views/account/updatePwd.vue'),
     hidden: true,
     meta: { title: '修改密码' }
-  }
+  },
 
   // {
-  //   path: '/system',
-  //   component: Layout,
-  //   redirect: '#',
-  //   children: [ {
-  //     path: 'taskLog',
+  //     path: '/taskLog',
   //     name: 'taskLog',
-  //     component: () => import('@/views/system/task/taskLog.vue'),
+  //     component: () => import('@/views/system/taskLog/index'),
   //     hidden: true,
   //     meta: { title: 'taskLog' }
-  //   }]
-  // },
-
-  // {
-  //   path: '/cms',
-  //   component: Layout,
-  //   redirect: '#',
-  //   children: [   {
-  //     path: 'article/edit',
+  //   } ,
+  //
+  //    {
+  //     path: '/cms/article/edit',
   //     name: 'Edit Article',
   //     component: () => import('@/views/cms/article/edit.vue'),
   //     hidden: true,
   //     meta: { title: 'editArticle' }
-  //   }]
-  // },
+  //   }
 
 ]
 

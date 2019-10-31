@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="block">
-      <el-button type="success" icon="el-icon-plus"  @click.native="add">{{ $t('button.add') }}</el-button>
+      <el-button type="success" size="mini" icon="el-icon-plus"  @click.native="add">{{ $t('button.add') }}</el-button>
     </div>
 
     <tree-table

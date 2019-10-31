@@ -10,53 +10,53 @@ public interface Permission {
 
     //系统管理
     String CFG = "cfg";
-    String CFG_EDIT = "cfg.edit";
-    String CFG_DEL = "cfg.delete";
+    String CFG_EDIT = "cfgEdit";
+    String CFG_DEL = "cfgDelete";
     String DICT = "dict";
-    String DICT_EDIT = "dict.edit";
+    String DICT_EDIT = "dictEdit";
     String LOG = "log";
-    String LOG_CLEAR = "log.clear";
+    String LOG_CLEAR = "logClear";
     String LOGIN_LOG = "loginLog";
-    String LOGIN_LOG_CLEAR = "loginLog.clear";
+    String LOGIN_LOG_CLEAR = "loginLogClear";
     String ROLE = "role";
-    String ROLE_EDIT = "role.edit";
-    String ROLE_DEL = "role.delete";
+    String ROLE_EDIT = "roleEdit";
+    String ROLE_DEL = "roleDelete";
     String TASK = "task";
-    String TASK_EDIT = "task.edit";
-    String TASK_DEL = "task.delete";
+    String TASK_EDIT = "taskEdit";
+    String TASK_DEL = "taskDelete";
     String MENU = "menu";
-    String MENU_EDIT = "menu.edit";
-    String MENU_DEL = "menu.delete";
+    String MENU_EDIT = "menuEdit";
+    String MENU_DEL = "menuDelete";
     String USER = "mgr";
-    String USER_EDIT = "mgr.edit";
-    String USER_DEL = "mgr.delete";
+    String USER_EDIT = "mgrEdit";
+    String USER_DEL = "mgrEelete";
     String DEPT = "dept";
-    String DEPT_EDIT = "dept.edit";
-    String DEPT_DEL = "dept.delete";
+    String DEPT_EDIT = "deptEdit";
+    String DEPT_DEL = "deptEelete";
 
     //消息管理
     String MSG = "msg";
-    String MSG_CLEAR = "msg.clear";
+    String MSG_CLEAR = "msgClear";
     String MSG_SENDER = "msgSender";
-    String MSG_SENDER_EDIT = "msgSender.edit";
-    String MSG_SENDER_DEL = "msgSender.delete";
+    String MSG_SENDER_EDIT = "msgSenderEdit";
+    String MSG_SENDER_DEL = "msgSenderDelete";
     String MSG_TPL = "msgTpl";
-    String MSG_TPL_EDIT = "msgTpl.edit";
-    String MSG_TPL_DEL = "msgTpl.delete";
+    String MSG_TPL_EDIT = "msgTplEdit";
+    String MSG_TPL_DEL = "msgTplDelete";
 
     //CMS管理
     String ARTICLE = "article";
-    String ARTICLE_EDIT = "article.edit";
-    String ARTICLE_DEL = "article.delete";
+    String ARTICLE_EDIT = "editArticle";
+    String ARTICLE_DEL = "deleteArticle";
     String BANNER = "banner";
-    String BANNER_EDIT = "banner.edit";
-    String BANNER_DEL = "banner.delete";
+    String BANNER_EDIT = "bannerEdit";
+    String BANNER_DEL = "bannerDelete";
     String CHANNEL = "channel";
-    String CHANNEL_EDIT = "channel.edit";
-    String CHANNEL_DEL = "channel.delete";
+    String CHANNEL_EDIT = "channelEdit";
+    String CHANNEL_DEL = "channelDelete";
     String CONTACTS = "contacts";
     String FILE = "file";
-    String FILE_UPLOAD = "file.upload";
+    String FILE_UPLOAD = "fileUpload";
 
 
 }

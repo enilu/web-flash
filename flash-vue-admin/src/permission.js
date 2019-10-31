@@ -33,7 +33,6 @@ router.beforeEach(async(to, from, next) => {
           // get user info
           await store.dispatch('user/getInfo')
           const accessRoutes  = await store.dispatch('menu/getSideMenus');
-          console.log(accessRoutes);
           router.addRoutes(accessRoutes)
           next({ ...to, replace: true })
         } catch (error) {

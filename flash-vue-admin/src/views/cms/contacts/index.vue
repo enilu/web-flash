@@ -3,14 +3,15 @@
     <div class="block">
       <el-row  :gutter="20">
         <el-col :span="6">
-          <el-input v-model="listQuery.userName" placeholder="姓名"></el-input>
+          <el-input v-model="listQuery.userName" size="mini" placeholder="姓名"></el-input>
         </el-col>
         <el-col :span="6">
-          <el-input v-model="listQuery.mobile"  placeholder="手机号"></el-input>
+          <el-input v-model="listQuery.mobile" size="mini"  placeholder="手机号"></el-input>
         </el-col>
         <el-col :span="8">
           <el-date-picker
             v-model="rangeDate"
+            size="mini"
             type="datetimerange"
             :picker-options="pickerOptions"
             range-separator="至"
@@ -21,8 +22,8 @@
           </el-date-picker>
         </el-col>
         <el-col :span="4">
-          <el-button type="success" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
-          <el-button type="primary" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
+          <el-button type="success" size="mini" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
+          <el-button type="primary" size="mini" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
         </el-col>
       </el-row>
       <br>

@@ -6,6 +6,7 @@
             <el-col :span="8">
               <el-date-picker
                 v-model="rangeDate"
+                size="mini"
                 type="datetimerange"
                 range-separator="至"
                 start-placeholder="发送起始日期"
@@ -15,14 +16,14 @@
               </el-date-picker>
             </el-col>
             <el-col :span="6">
-              <el-button type="success" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
-              <el-button type="primary" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
+              <el-button type="success" size="mini" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
+              <el-button type="primary" size="mini" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
             </el-col>
           </el-row>
           <br>
             <el-row>
                 <el-col :span="24">
-                    <el-button type="danger" icon="el-icon-delete" @click.native="clear">{{ $t('button.clear') }}</el-button>
+                    <el-button type="danger" size="mini" icon="el-icon-delete" @click.native="clear">{{ $t('button.clear') }}</el-button>
                 </el-col>
             </el-row>
         </div>

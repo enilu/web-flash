@@ -36,7 +36,6 @@ public class ColumnDescriptor {
 		typeMapping.put("bool", boolean.class);
 		typeMapping.put("decimal", BigDecimal.class);
 	}
-	//todo
 //	private static Map<String, Class<?>> validationRules = new HashMap<String,Class<?>>();
 
 	static {
@@ -285,7 +284,6 @@ public class ColumnDescriptor {
 		}
 		return "\"" + getDefaultValue().toString() + "\"";
 	}
-	//TODO
 	public String getValidationFormClass() {
 		 return "";
 	}

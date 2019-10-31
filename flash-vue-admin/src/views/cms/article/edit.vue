@@ -6,8 +6,8 @@
         <el-input type="hidden" ref="content" v-model="form.content"></el-input>
         <el-row :gutter="20">
             <el-col :span="24">
-              <el-button icon="el-icon-plus" type="primary" @click="save">{{ $t('button.submit') }}</el-button>
-              <el-button icon="el-icon-back" @click.native="back">{{ $t('button.back') }}</el-button>
+              <el-button icon="el-icon-plus" size="mini" type="primary" @click="save">{{ $t('button.submit') }}</el-button>
+              <el-button icon="el-icon-back" size="mini" @click.native="back">{{ $t('button.back') }}</el-button>
             </el-col>
           <el-col :span="12">
             <el-row :gutter="20">

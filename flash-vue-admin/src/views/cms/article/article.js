@@ -135,7 +135,7 @@ export default {
       this.selRow = currentRow
     },
     add() {
-      this.$router.push({ path: '/cms/article/edit' })
+      this.$router.push({ path: '/cms/articleEdit' })
     },
     checkSel() {
       if (this.selRow && this.selRow.id) {
@@ -149,7 +149,7 @@ export default {
     },
     edit() {
       if (this.checkSel()) {
-        this.$router.push({ path: '/cms/article/edit', query: { id: this.selRow.id }})
+        this.$router.push({ path: '/cms/articleEdit', query: { id: this.selRow.id }})
       }
     },
     remove() {
