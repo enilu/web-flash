@@ -46,7 +46,7 @@
   </div>
 </template>
 
-<script src="./taskLog.js"></script>
+<script src="./log.js"></script>
 
 
 <style rel="stylesheet/scss" lang="scss" scoped>

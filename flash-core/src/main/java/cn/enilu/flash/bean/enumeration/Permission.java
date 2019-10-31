@@ -16,8 +16,8 @@ public interface Permission {
     String DICT_EDIT = "dict.edit";
     String LOG = "log";
     String LOG_CLEAR = "log.clear";
-    String LOGIN_LOG = "login.log";
-    String LOGIN_LOG_CLEAR = "login.log.clear";
+    String LOGIN_LOG = "loginLog";
+    String LOGIN_LOG_CLEAR = "loginLog.clear";
     String ROLE = "role";
     String ROLE_EDIT = "role.edit";
     String ROLE_DEL = "role.delete";
@@ -37,12 +37,12 @@ public interface Permission {
     //消息管理
     String MSG = "msg";
     String MSG_CLEAR = "msg.clear";
-    String MSG_SENDER = "msg.sender";
-    String MSG_SENDER_EDIT = "msg.sender.edit";
-    String MSG_SENDER_DEL = "msg.sender.delete";
-    String MSG_TPL = "msg.tpl";
-    String MSG_TPL_EDIT = "msg.tpl.edit";
-    String MSG_TPL_DEL = "msg.tpl.delete";
+    String MSG_SENDER = "msgSender";
+    String MSG_SENDER_EDIT = "msgSender.edit";
+    String MSG_SENDER_DEL = "msgSender.delete";
+    String MSG_TPL = "msgTpl";
+    String MSG_TPL_EDIT = "msgTpl.edit";
+    String MSG_TPL_DEL = "msgTpl.delete";
 
     //CMS管理
     String ARTICLE = "article";

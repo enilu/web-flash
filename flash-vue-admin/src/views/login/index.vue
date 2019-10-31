@@ -3,7 +3,8 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">{{ $t('login.title') }}</h3>
+        <lang-select class="set-language"/>
       </div>
 
       <el-form-item prop="username">
@@ -13,7 +14,7 @@
         <el-input
           ref="username"
           v-model="loginForm.username"
-          placeholder="Username"
+          :placeholder="$t('login.username')"
           name="username"
           type="text"
           tabindex="1"
@@ -30,7 +31,7 @@
           ref="password"
           v-model="loginForm.password"
           :type="passwordType"
-          placeholder="Password"
+          :placeholder="$t('login.password')"
           name="password"
           tabindex="2"
           auto-complete="on"
@@ -41,21 +42,29 @@
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">{{ $t('login.logIn') }}</el-button>
 
       <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: any</span>
+        <span>{{ $t('login.username') }} : admin</span>
+        <span>{{ $t('login.password') }} : admin</span>
+      </div>
+      <div class="tips">
+        <span style="margin-right:18px;">{{ $t('login.username') }} : developer</span>
+        <span>{{ $t('login.password') }} : developer</span>
       </div>
 
     </el-form>
   </div>
 </template>
+<script src="./login.js"></script>
 
+<style rel="stylesheet/scss" lang="scss" src="./login.scss"></style>
 <script>
 import { validUsername } from '@/utils/validate'
+import LangSelect from '@/components/LangSelect'
 export default {
   name: 'Login',
+  components: { LangSelect },
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {

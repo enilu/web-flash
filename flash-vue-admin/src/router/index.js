@@ -51,7 +51,7 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+      meta: { title: 'dashboard', icon: 'dashboard', affix: true }
     }]
   },
 
@@ -78,6 +78,32 @@ export const constantRoutes = [
     hidden: true,
     meta: { title: '修改密码' }
   }
+
+  // {
+  //   path: '/system',
+  //   component: Layout,
+  //   redirect: '#',
+  //   children: [ {
+  //     path: 'taskLog',
+  //     name: 'taskLog',
+  //     component: () => import('@/views/system/task/taskLog.vue'),
+  //     hidden: true,
+  //     meta: { title: 'taskLog' }
+  //   }]
+  // },
+
+  // {
+  //   path: '/cms',
+  //   component: Layout,
+  //   redirect: '#',
+  //   children: [   {
+  //     path: 'article/edit',
+  //     name: 'Edit Article',
+  //     component: () => import('@/views/cms/article/edit.vue'),
+  //     hidden: true,
+  //     meta: { title: 'editArticle' }
+  //   }]
+  // },
 
 ]
 

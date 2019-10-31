@@ -167,8 +167,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'name',
-      'roles'
+      'name'
+
     ])
   },
   created() {

@@ -156,7 +156,7 @@ export default {
       })
     },
     viewLog(taskId) {
-      this.$router.push({ path: '/system/taskLog', query: { taskId: taskId }})
+      this.$router.push({ path: '/taskLog', query: { taskId: taskId }})
     },
     edit() {
       if (this.checkSel()) {

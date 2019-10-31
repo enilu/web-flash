@@ -20,9 +20,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       getList().then(response => {
         const menus = response.data
-        // let menus = [{"path":"/product","component":"layout","children":[{"path":"index","name":"product","component":"views/product/index","meta":{"title":"Product","icon":"form"}}]},{"path":"*","redirect":"/404","hidden":true}]
         let remoteroutes = traverseRoutes(menus)
-        console.log('remoteroutes',remoteroutes)
         commit('SET_ROUTES',remoteroutes);
         resolve(remoteroutes);
       }).catch(error => {

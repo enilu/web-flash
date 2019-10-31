@@ -198,12 +198,19 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
                 menu.setName(String.valueOf(source[3]));
                 MenuMeta meta = new MenuMeta();
                 meta.setIcon(String.valueOf(source[1]));
-                meta.setTitle(String.valueOf(source[3]));
+                //如果使用前端vue-i18n对菜单进行国际化，则title这只code，且code需要与国际化资源文件中的key值一致
+                meta.setTitle(String.valueOf(source[8]));
+                //如果不需要做国际化，则title直接设置后台管理配置的菜单标题即可
+//                meta.setTitle(String.valueOf(source[3]));
+
                 menu.setNum(Integer.valueOf(source[7].toString()));
                 menu.setParentId(Long.valueOf(source[2].toString()));
                 menu.setComponent(source[10].toString());
                 menu.setId(Long.valueOf(source[0].toString()));
                 menu.setMeta(meta);
+                if("/taskLog".equals(menu.getPath())){
+                    menu.setHidden(true);
+                }
 //                MenuNode menuNode = new MenuNode();
 //                menuNode.setId(Long.valueOf(source[0].toString()));
 //                menuNode.setIcon(String.valueOf(source[1]));

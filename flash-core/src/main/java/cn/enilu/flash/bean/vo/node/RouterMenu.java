@@ -17,6 +17,7 @@ public class RouterMenu {
     private String component;
     private String name;
     private Integer num;
+    private Boolean hidden=false;
 //    private String redirect;
 //    private Boolean alwaysShow;
     private MenuMeta meta;
