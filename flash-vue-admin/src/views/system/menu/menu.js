@@ -14,7 +14,7 @@ export default {
       },
 
       listLoading: true,
-      expandAll: false,
+      expandAll: true,
       formTitle: '',
       formVisible: false,
       isAdd: false,

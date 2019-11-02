@@ -9,6 +9,7 @@ import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Rets;
+import cn.enilu.flash.bean.vo.node.MenuNode;
 import cn.enilu.flash.bean.vo.node.Node;
 import cn.enilu.flash.bean.vo.node.RouterMenu;
 import cn.enilu.flash.bean.vo.node.ZTreeNode;
@@ -42,15 +43,18 @@ public class MenuController extends BaseController {
     @Autowired
     private MenuService menuService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/listForRouter", method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.MENU})
-    public Object list() {
-        String json = "{\"code\":20000,\"data\":{\"menus\":[{\"id\":1,\"parentId\":0,\"path\":\"/product\",\"component\":\"layout\",\"children\":[{\"path\":\"index\",\"name\":\"product\",\"component\":\"views/product/index\",\"meta\":{\"title\":\"Product2\",\"icon\":\"form\"}}]},{\"path\":\"*\",\"redirect\":\"/404\",\"hidden\":true}]}}";
-//        return Rets.success(Json.fromJson(Map.class,json));
+    public Object listForRouter() {
         List<RouterMenu> list = menuService.getSideBarMenus();
         return Rets.success(list);
     }
-
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequiresPermissions(value = {Permission.MENU})
+    public Object list() {
+        List<MenuNode> list = menuService.getMenus();
+        return Rets.success(list);
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     @BussinessLog(value = "编辑菜单", key = "name", dict = MenuDict.class)

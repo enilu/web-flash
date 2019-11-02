@@ -28,7 +28,7 @@ public class Menu  extends BaseEntity {
     @Column(columnDefinition = "VARCHAR(128) COMMENT '递归父级菜单编号'")
     private String pcodes;
     @Column(columnDefinition = "VARCHAR(64) COMMENT '名称'",nullable = false)
-    @NotBlank(message = "名称并能为空")
+    @NotBlank(message = "名称不能为空")
     private String name;
     @Column(columnDefinition = "VARCHAR(32) COMMENT '图标'")
     private String icon;
@@ -48,5 +48,7 @@ public class Menu  extends BaseEntity {
     private Integer isopen;
     @Column(columnDefinition = "VARCHAR(64) COMMENT '組件配置'")
     private String component;
+    @Column(columnDefinition = "tinyint COMMENT '是否隐藏'")
+    private Boolean hidden=false;
 
 }

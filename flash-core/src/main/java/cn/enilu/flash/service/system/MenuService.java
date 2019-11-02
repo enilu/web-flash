@@ -47,29 +47,10 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
 
     }
 
-    public List getMenusByRoleIds(List<Long> roleList) {
-        List menus = menuRepository.getMenusByRoleIds(roleList);
-        return menus;
-
-    }
-
-    public List<MenuNode> getMenusTreeByRoleIds(List<Long> roleList) {
-        List menus = menuRepository.getMenusByRoleIds(roleList);
-        List<MenuNode> result = generateTree(transferMenuNode(menus));
-        for (MenuNode menuNode : result) {
-            if (!menuNode.getChildren().isEmpty()) {
-                sortTree(menuNode.getChildren());
-                for (MenuNode menuNode1 : menuNode.getChildren()) {
-                    if (!menuNode1.getChildren().isEmpty()) {
-                        sortTree(menuNode1.getChildren());
-                    }
-                }
-            }
-        }
-        sortTree(result);
-        return result;
-    }
-
+    /**
+     * 获取菜单列表
+     * @return
+     */
     public List<MenuNode> getMenus() {
         List<MenuNode> list = transferMenuNode(menuRepository.getMenus());
         List<MenuNode> result = generateTree(list);
@@ -87,6 +68,10 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
         return result;
     }
 
+    /**
+     * 获取左侧菜单树
+     * @return
+     */
     public List<RouterMenu> getSideBarMenus() {
         List<RouterMenu> list = transferRouteMenu(menuRepository.getMenus());
         List<RouterMenu> result = generateRouterTree(list);
@@ -198,29 +183,18 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
                 menu.setName(String.valueOf(source[3]));
                 MenuMeta meta = new MenuMeta();
                 meta.setIcon(String.valueOf(source[1]));
-                //如果使用前端vue-i18n对菜单进行国际化，则title这只code，且code需要与国际化资源文件中的key值一致
+                //如果使用前端vue-i18n对菜单进行国际化，则title設置为code，且code需要与国际化资源文件中的key值一致
                 meta.setTitle(String.valueOf(source[8]));
                 //如果不需要做国际化，则title直接设置后台管理配置的菜单标题即可
 //                meta.setTitle(String.valueOf(source[3]));
-
                 menu.setNum(Integer.valueOf(source[7].toString()));
                 menu.setParentId(Long.valueOf(source[2].toString()));
                 menu.setComponent(source[10].toString());
                 menu.setId(Long.valueOf(source[0].toString()));
                 menu.setMeta(meta);
-//                MenuNode menuNode = new MenuNode();
-//                menuNode.setId(Long.valueOf(source[0].toString()));
-//                menuNode.setIcon(String.valueOf(source[1]));
-//                menuNode.setParentId(Long.valueOf(source[2].toString()));
-//                menuNode.setName(String.valueOf(source[3]));
-//                menuNode.setUrl(String.valueOf(source[4]));
-//                menuNode.setLevels(Integer.valueOf(source[5].toString()));
-//                menuNode.setIsmenu(Integer.valueOf(source[6].toString()));
-//                menuNode.setNum(Integer.valueOf(source[7].toString()));
-//                menuNode.setCode(String.valueOf(source[8]));
-//                menuNode.setStatus(Integer.valueOf(source[9].toString()));
-
-//                    menuNode.setComponent(source[10].toString());
+                if("1".equals(source[11].toString())){
+                    menu.setHidden(true);
+                }
                 routerMenus.add(menu);
 
             }

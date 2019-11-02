@@ -1,9 +1,7 @@
 import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
-import { getList } from '@/api/menu'
-import router from '@/router'
-//import permission from './permission'
+import { listForRouter } from '@/api/system/menu'
 
 const state = {
   token: getToken(),
@@ -43,9 +41,10 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
+      getInfo().then(response => {
+        console.log('response',response)
         const { data } = response
-
+        console.log('data',data)
         if (!data) {
           reject('Verification failed, please Login again.')
         }

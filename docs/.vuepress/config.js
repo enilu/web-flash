@@ -25,10 +25,11 @@ module.exports = {
                     {text: 'CMS',link:'/feature/cms'}
                 ]
             },
-            {text: '周边',
+            {text: '更多',
                 items:[
                     {text: '代码生成',link:'/ecosystem/code-generator'},
                     {text: '数据库文档生成',link:'/ecosystem/database-doc-generator'},
+                    {text:'ChangeLog',link:'https://github.com/enilu/web-flash/blob/master/CHANGELOG.md'}
                 ]
             },
             {text: '捐赠',link:'/donate'},
@@ -59,7 +60,7 @@ module.exports = {
                 ]
             },
             {
-                title: '基本功能介绍',
+                title: '基础',
                 collapsable: false,
                 children: [
                     '/feature/modules',
@@ -74,6 +75,17 @@ module.exports = {
                     '/feature/messageCenter',
                     '/feature/cms.md'
                 ]
+            },
+            {
+                title: '配置',
+                collapsable: false,
+                children: [
+                    '/config/application',
+                    '/config/beetl',
+                    '/config/ehcache',
+                    '/config/logback',
+                    '/config/swagger',
+                ]
             },{
                 title: '进阶',
                 collapsable: false,
@@ -82,7 +94,8 @@ module.exports = {
                     '/action/cache',
                     '/action/task',
                     '/action/jpaauditing.md',
-                    '/action/validator'
+                    '/action/validator',
+                    '/action/deploy'
 
 
                 ]

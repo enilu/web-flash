@@ -12,7 +12,11 @@
  ![vue](../vuejs.gif)
 
 ## 启动flash-vue-h5
-- 启动步骤和flash-vue-admin类似，这里不再赘述
- ![h5](../img/h5.jpg)
+- 启动步骤和flash-vue-admin类似
+- 进入flash-vue-h5目录
+    - 运行 npm install --registry=https://registry.npm.taobao.org
+    - 运行npm run dev
+    - 启动成功后访问 http://localhost:8088/#/index    
+ ![h5](../flash-mobile.gif)
 
 so，是不是很简单!

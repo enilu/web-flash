@@ -54,61 +54,50 @@ export const constantRoutes = [
       meta: { title: 'dashboard', icon: 'dashboard', affix: true }
     }]
   },
-
   {
-    path: '/account/profile',
-    name: '个人资料',
-    component: () => import('@/views/account/profile.vue'),
+    path: '/account',
+    component: Layout,
     hidden: true,
-    meta: { title: '个人资料' }
+    redirect: 'noredirect',
+    children: [
+      {
+        path: 'profile',
+        name: '个人资料',
+        component: () => import('@/views/account/profile.vue'),
 
-  },
-  {
-    path: '/account/timeline',
-    name: '最近活动',
-    component: () => import('@/views/account/timeline.vue'),
-    hidden: true,
-    meta: { title: '最近活动' }
+        meta: { title: '个人资料' }
 
-  },
-  {
-    path: '/account/updatePwd',
-    name: '修改密码',
-    component: () => import('@/views/account/updatePwd.vue'),
-    hidden: true,
-    meta: { title: '修改密码' }
-  },
+      },
+      {
+        path: 'timeline',
+        name: '最近活动',
+        component: () => import('@/views/account/timeline.vue'),
+        hidden: true,
+        meta: { title: '最近活动' }
 
-  // {
-  //     path: '/taskLog',
-  //     name: 'taskLog',
-  //     component: () => import('@/views/system/taskLog/index'),
-  //     hidden: true,
-  //     meta: { title: 'taskLog' }
-  //   } ,
-  //
-  //    {
-  //     path: '/cms/article/edit',
-  //     name: 'Edit Article',
-  //     component: () => import('@/views/cms/article/edit.vue'),
-  //     hidden: true,
-  //     meta: { title: 'editArticle' }
-  //   }
+      },
+      {
+        path: 'updatePwd',
+        name: '修改密码',
+        component: () => import('@/views/account/updatePwd.vue'),
+        hidden: true,
+        meta: { title: '修改密码' }
+      }
+    ]
+  }
 
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })
 
 const router = createRouter()
 
-// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
   const newRouter = createRouter()
-  router.matcher = newRouter.matcher // reset router
+  router.matcher = newRouter.matcher
 }
 
 export default router

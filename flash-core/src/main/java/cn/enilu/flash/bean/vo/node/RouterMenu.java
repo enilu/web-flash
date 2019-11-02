@@ -18,8 +18,6 @@ public class RouterMenu {
     private String name;
     private Integer num;
     private Boolean hidden=false;
-//    private String redirect;
-//    private Boolean alwaysShow;
     private MenuMeta meta;
     private List<RouterMenu> children = Lists.newArrayList();
 

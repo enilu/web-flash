@@ -7,6 +7,14 @@ export function getList() {
   })
 }
 
+export function listForRouter(params) {
+  return request({
+    url: '/menu/listForRouter',
+    method: 'get',
+    params
+  })
+}
+
 export function save(params) {
   return request({
     url: '/menu',

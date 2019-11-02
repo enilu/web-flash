@@ -54,9 +54,13 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 - 进入flash-vue-admin目录
     - 运行 npm install --registry=https://registry.npm.taobao.org
     - 运行npm run dev
-    - 启动成功后访问 http://localhost:9528 ,登录，用户名密码:admin/admin 
+    - 启动成功后访问 http://localhost:9528 ,登录，用户名密码:admin/admin     
 - 后台管理运行效果图：
     ![admin](docs/vuejs.gif)
+- 进入flash-vue-h5目录
+    - 运行 npm install --registry=https://registry.npm.taobao.org
+    - 运行npm run dev
+    - 启动成功后访问 http://localhost:8088/#/index
 - 手机端运行效果图：
     ![mobile](docs/flash-mobile.gif)
 

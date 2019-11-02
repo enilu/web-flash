@@ -31,11 +31,14 @@ router.beforeEach(async(to, from, next) => {
       } else {
         try {
           // get user info
+          console.log('start getuserinfo')
           await store.dispatch('user/getInfo')
+          console.log('start getSideMenus')
           const accessRoutes  = await store.dispatch('menu/getSideMenus');
           router.addRoutes(accessRoutes)
           next({ ...to, replace: true })
         } catch (error) {
+          console.log('error1',error)
           // remove token and go to login page to re-login
           await store.dispatch('user/resetToken')
           Message.error(error || 'Has Error')
