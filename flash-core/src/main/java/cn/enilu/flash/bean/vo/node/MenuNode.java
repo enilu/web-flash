@@ -73,6 +73,7 @@ public class MenuNode implements Comparable {
      * 查询子节点时候的临时集合
      */
     private List<MenuNode> linkedList = new ArrayList<MenuNode>();
+    private Boolean hidden;
 
     public MenuNode() {
         super();
@@ -207,6 +208,14 @@ public class MenuNode implements Comparable {
 
     public void setStatusName(String statusName) {
        this.statusName = statusName;
+    }
+
+    public Boolean getHidden() {
+        return hidden;
+    }
+
+    public void setHidden(Boolean hidden) {
+        this.hidden = hidden;
     }
 
     @Override

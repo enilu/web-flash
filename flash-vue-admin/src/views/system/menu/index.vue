@@ -20,9 +20,9 @@
           <span >{{scope.row.code}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="ID" >
+      <el-table-column label="组件" >
         <template slot-scope="scope">
-          <span >{{scope.row.id}}</span>
+          <span >{{scope.row.component}}</span>
         </template>
       </el-table-column>
       <el-table-column label="是否是菜单" >
@@ -38,6 +38,11 @@
       <el-table-column label="是否启用">
         <template slot-scope="scope">
           <span >{{scope.row.statusName}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="是否隐藏">
+        <template slot-scope="scope">
+          <span >{{scope.row.hidden}}</span>
         </template>
       </el-table-column>
       <el-table-column label="顺序">
@@ -91,7 +96,19 @@
                 <el-input v-model="form.code"></el-input>
               </el-form-item>
             </el-col>
-
+            <el-col :span="12">
+              <el-form-item label="组件" prop="num">
+                <el-input v-model="form.component"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="是否隐藏">
+                <el-radio-group v-model="form.hidden">
+                  <el-radio :label="true">是</el-radio>
+                  <el-radio :label="false">否</el-radio>
+                </el-radio-group>
+              </el-form-item>
+            </el-col>
             <el-col :span="12">
               <el-form-item label="图标" >
                 <el-input v-model="form.icon"></el-input>

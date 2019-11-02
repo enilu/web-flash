@@ -11,10 +11,12 @@ export function isExternal(path) {
 }
 
 /**
+ * 校验用户名,必须是5-32位
  * @param {string} str
  * @returns {Boolean}
  */
 export function isvalidUsername(str) {
-  const valid_map = ['admin', 'editor']
-  return valid_map.indexOf(str.trim()) >= 0
+  console.log(str)
+  var reg=/^[0-9A-Za-z]{5,32}$/;
+  return reg.test(str)
 }

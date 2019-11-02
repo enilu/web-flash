@@ -7,6 +7,9 @@
 - 文档增加章节：“手把手教你开发一个增删改查功能”
 - 优化页面样式
 
+### Bug Fixes
+- 保存菜单出现异常：Converting circular structure to JSON
+
 ## 1.2 
 
 - Change 删除角色时判断是有用户使用该角色，如果有则不允许删除

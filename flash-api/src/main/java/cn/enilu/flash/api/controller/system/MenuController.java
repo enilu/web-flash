@@ -3,6 +3,7 @@ package cn.enilu.flash.api.controller.system;
 import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.constant.state.MenuStatus;
 import cn.enilu.flash.bean.core.BussinessLog;
+import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.dictmap.MenuDict;
 import cn.enilu.flash.bean.entity.system.Menu;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
@@ -13,9 +14,11 @@ import cn.enilu.flash.bean.vo.node.MenuNode;
 import cn.enilu.flash.bean.vo.node.Node;
 import cn.enilu.flash.bean.vo.node.RouterMenu;
 import cn.enilu.flash.bean.vo.node.ZTreeNode;
+import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.service.system.LogObjectHolder;
 import cn.enilu.flash.service.system.MenuService;
 import cn.enilu.flash.service.system.impl.ConstantFactory;
+import cn.enilu.flash.utils.HttpUtil;
 import cn.enilu.flash.utils.Maps;
 import cn.enilu.flash.utils.StringUtil;
 import com.google.common.collect.Lists;
@@ -42,15 +45,17 @@ public class MenuController extends BaseController {
     private Logger logger = LoggerFactory.getLogger(MenuController.class);
     @Autowired
     private MenuService menuService;
+    @Autowired
+    private TokenCache tokenCache;
 
     @RequestMapping(value = "/listForRouter", method = RequestMethod.GET)
-    @RequiresPermissions(value = {Permission.MENU})
     public Object listForRouter() {
-        List<RouterMenu> list = menuService.getSideBarMenus();
+        ShiroUser shiroUser = tokenCache.getUser(HttpUtil.getToken());
+
+        List<RouterMenu> list = menuService.getSideBarMenus(shiroUser.getRoleList());
         return Rets.success(list);
     }
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @RequiresPermissions(value = {Permission.MENU})
     public Object list() {
         List<MenuNode> list = menuService.getMenus();
         return Rets.success(list);

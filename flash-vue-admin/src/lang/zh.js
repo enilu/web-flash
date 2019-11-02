@@ -39,6 +39,8 @@ export default {
   },
   login: {
     title: 'web-flash',
+    errorAccount:'请输入5到32位的数字和字母',
+    errorPassword:'密码至少位5位',
     logIn: '登录',
     username: '账号',
     password: '密码'

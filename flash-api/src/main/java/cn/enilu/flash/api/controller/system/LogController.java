@@ -58,7 +58,6 @@ public class LogController extends BaseController {
      */
     @RequestMapping("/queryByUser")
     @ResponseBody
-    @RequiresPermissions(value = {Permission.LOG})
     public Object list() {
         Page<OperationLog> page = new Page<OperationLog>();
         page.addFilter(SearchFilter.build("userid", SearchFilter.Operator.EQ, getIdUser(HttpUtil.getRequest())));

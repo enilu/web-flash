@@ -72,8 +72,16 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
      * 获取左侧菜单树
      * @return
      */
-    public List<RouterMenu> getSideBarMenus() {
-        List<RouterMenu> list = transferRouteMenu(menuRepository.getMenus());
+    public List<RouterMenu> getSideBarMenus(List<Long> roleIds) {
+        StringBuilder builder  = new StringBuilder();
+         for(int i=0;i<roleIds.size();i++){
+             if(i==roleIds.size()-1){
+                 builder.append(roleIds.get(i));
+             }else {
+                 builder.append(roleIds.get(i)).append(",");
+             }
+         }
+        List<RouterMenu> list = transferRouteMenu(menuRepository.getMenusByRoleids(builder.toString()));
         List<RouterMenu> result = generateRouterTree(list);
         for (RouterMenu menuNode : result) {
             if (!menuNode.getChildren().isEmpty()) {
@@ -159,6 +167,11 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
                 menuNode.setStatus(Integer.valueOf(source[9].toString()));
                 if (source[10] != null) {
                     menuNode.setComponent(source[10].toString());
+                }
+                if("1".equals(source[11].toString())){
+                    menuNode.setHidden(true);
+                }else{
+                    menuNode.setHidden(false);
                 }
                 menuNodes.add(menuNode);
 

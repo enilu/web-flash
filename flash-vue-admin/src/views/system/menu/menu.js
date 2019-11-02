@@ -54,11 +54,16 @@ export default {
   methods: {
     init() {
       this.fetchData()
+      var a = {a:1,b:2,parent:3}
+      console.log('a1',a)
+      a.parent = 4
+      console.log('a2',a)
     },
     fetchData() {
       this.listLoading = true
       getList().then(response => {
         this.data = response.data
+        console.log('data',response.data)
         this.listLoading = false
       })
     },
@@ -88,8 +93,8 @@ export default {
       this.$refs['form'].validate((valid) => {
         if (valid) {
           const menuData = self.form
-          menuData.parent = null
-          menuData.children = null
+          delete menuData.parent
+          delete menuData.children
           save(menuData).then(response => {
             this.$message({
               message: '提交成功',
@@ -125,7 +130,6 @@ export default {
       this.isAdd = false
     },
     remove(row) {
-      console.log(row)
       this.$confirm('确定删除该记录?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',

@@ -40,20 +40,7 @@ public class Boy extends BaseEntity {
 
 以Boy实体为例,执行代码生成后将会生成如下文件：
 ![code_add](./doc/code_add.jpg)
-
-代码生成后，在flash-vue-admin的路由配置文件中flash-vue-admin/src/router/index.js，增加如下内容：
-```javascript
-      {
-        path: 'boy',
-        name: 'Boy',
-        component:  () => import('@/views/test/boy/index'),
-        meta: {
-          title: '男孩管理'
-        }
-      }
-```
-如下图所示
-![run router](./doc/router.jpg)
+ 
 
 启动flash-api和flash-vue-admin,配置和菜单和角色权限后就可以访问刚刚生成的代码功能了
 ![run code_result](./doc/code_result.jpg)
