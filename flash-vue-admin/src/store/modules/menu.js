@@ -18,11 +18,8 @@ const actions = {
   getSideMenus({ commit, state }) {
     return new Promise((resolve, reject) => {
       listForRouter().then(response => {
-        console.log('response-menu',response)
         const menus = response.data
-        console.log('menus',menus)
         let remoteroutes = traverseRoutes(menus)
-        console.log('remoteroutes',remoteroutes)
         commit('SET_ROUTES',remoteroutes);
         resolve(remoteroutes);
       }).catch(error => {

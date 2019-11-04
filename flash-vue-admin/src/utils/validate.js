@@ -16,7 +16,6 @@ export function isExternal(path) {
  * @returns {Boolean}
  */
 export function isvalidUsername(str) {
-  console.log(str)
   var reg=/^[0-9A-Za-z]{5,32}$/;
   return reg.test(str)
 }

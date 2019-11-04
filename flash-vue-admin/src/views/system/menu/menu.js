@@ -54,16 +54,11 @@ export default {
   methods: {
     init() {
       this.fetchData()
-      var a = {a:1,b:2,parent:3}
-      console.log('a1',a)
-      a.parent = 4
-      console.log('a2',a)
     },
     fetchData() {
       this.listLoading = true
       getList().then(response => {
         this.data = response.data
-        console.log('data',response.data)
         this.listLoading = false
       })
     },

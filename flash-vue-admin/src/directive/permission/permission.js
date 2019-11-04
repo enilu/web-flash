@@ -5,10 +5,8 @@ export default{
   inserted(el, binding, vnode) {
     const { value } = binding
     const permissions = store.getters && store.getters.permissions
-    console.log(permissions)
     if (value && value instanceof Array && value.length > 0) {
       const permissionRoles = value
-
       const hasPermission = permissions.some(permission => {
         return permissionRoles.includes(permission)
       })
