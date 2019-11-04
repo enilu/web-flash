@@ -58,7 +58,7 @@
     </div>
 </template>
 
-<script src="./${table.name}.js"></script>
+<script src="./${table.entityNameLowerFirstChar}.js"></script>
 
 
 <style rel="stylesheet/scss" lang="scss" scoped>
