@@ -76,17 +76,7 @@ module.exports = {
                     '/feature/cms.md'
                 ]
             },
-            {
-                title: '配置',
-                collapsable: false,
-                children: [
-                    '/config/application',
-                    '/config/beetl',
-                    '/config/ehcache',
-                    '/config/logback',
-                    '/config/swagger',
-                ]
-            },{
+           {
                 title: '进阶',
                 collapsable: false,
                 children: [

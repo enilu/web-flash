@@ -1,10 +1,9 @@
 
 ## 1.3-alpha
 ### Features
-- 升级至最新版[vue-admin-template](https://github.com/PanJiaChen/vue-admin-template)
 - 页面导航增加多标签页的方式
 - 左侧菜单完全通过后台配置动态生成
-- 文档增加章节：“手把手教你开发一个增删改查功能”
+- 基于vue-cli3构建脚手架，更精简合理的配置方式
 - 优化页面样式
 
 ### Bug Fixes

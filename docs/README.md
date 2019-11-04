@@ -17,7 +17,7 @@ footer: MIT Licensed | Copyright © 2018-present enilu
   </div>
   <div class="feature">
     <h2>功能完善</h2>
-    <p>封装完善的后台管理功能，包括用户、部门、权限、日志、字典、定时任务等基础功能。</p>
+    <p>封装完善的后台管理功能，包括用户、部门、权限、日志、字典、消息,cms,定时任务等基础功能。</p>
   </div>
   <div class="feature">
     <h2>支持齐全</h2>
@@ -25,7 +25,7 @@ footer: MIT Licensed | Copyright © 2018-present enilu
   </div>
   <div class="feature">
       <h2>最新技术栈</h2>
-      <p>使用spring boot+jpa构建后端服务，<br>vue/element/vux构建前端</p>
+      <p>使用Spring Boot2+JPA构建后端服务，<br>vue/element/vux构建前端界面</p>
    </div>
    <div class="feature">
       <h2>前后端分离</h2>
