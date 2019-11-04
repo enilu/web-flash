@@ -232,7 +232,7 @@ public class Generator {
         File apiFile = new File(basePath+codeConfig.getViewModel()+"/src/api/"+table.getLastPackageName()+File.separator+table.getEntityNameLowerFirstChar()+".js");
         generator.generate(null,  "code/view/api.js.vm", apiFile, force);
 
-        File vueFile = new File(basePath+codeConfig.getViewModel()+"/src/views/"+table.getLastPackageName()+File.separator+"index.vue");
+        File vueFile = new File(basePath+codeConfig.getViewModel()+"/src/views/"+table.getLastPackageName()+File.separator+table.getEntityNameLowerFirstChar()+File.separator+"index.vue");
         generator.generate(null,  "code/view/index.vue.vm", vueFile, force);
 
         File jsFile = new File(basePath+codeConfig.getViewModel()+"/src/views/"+table.getLastPackageName()+File.separator+table.getEntityNameLowerFirstChar()+".js");

@@ -1,5 +1,5 @@
 #set($refForm = "this.$refs['form']")
-        import { remove, getList, save } from '@/api/${table.lastPackageName}/${table.entityNameLowerFirstChar}'
+import { remove, getList, save } from '@/api/${table.lastPackageName}/${table.entityNameLowerFirstChar}'
 
 export default {
   data() {
