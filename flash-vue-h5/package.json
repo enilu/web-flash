@@ -78,7 +78,7 @@
     "vue-template-compiler": "^2.5.2",
     "vux-loader": "^1.0.56",
     "webpack": "^3.6.0",
-    "webpack-bundle-analyzer": "^2.9.0",
+    "webpack-bundle-analyzer": "^3.6.0",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-dev-server": "^2.9.1",
     "webpack-hot-middleware": "^2.16.1",
