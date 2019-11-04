@@ -1,4 +1,14 @@
+---
+pageClass: getting-started
+---
 # 前言
+[![Spring Boot](https://img.shields.io/badge/spring--boot-2.1.1.1.RELEASE-brightgreen)](https://github.com/spring-projects/spring-boot)
+[![vue](https://img.shields.io/badge/vue-2.6.10-brightgreen.svg)](https://github.com/vuejs/vue)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/enilu/web-flash/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/enilu/web-flash.svg)](https://github.com/enilu/web-flash/releases)
+[![donate](https://img.shields.io/badge/%24-donate-ff69b4.svg)](../donate.md)
+[![GitHub stars](https://img.shields.io/github/stars/enilu/web-flash.svg?style=social&label=Stars)](https://github.com/enilu/web-flash)
+
 本文档以向导的方式引导用户使用web-flash系统做二次开发，
 web-flash项目本身有readme文件，如果你有丰富的spring boot的和vuejs的开发经验，那么基本上你是用不上本文档了，
 有什么问题直接看代码即可。大多数功能都可以参考代码，即使找不到的google和百度也能帮到你。
