@@ -6,7 +6,8 @@ import { listForRouter } from '@/api/system/menu'
 const state = {
   token: getToken(),
   name: '',
-  avatar: ''
+  avatar: '',
+  permissions:null,
 }
 
 const mutations = {
@@ -21,6 +22,9 @@ const mutations = {
   },
   SET_PROFILE:(state,profile) => {
     state.profile = profile
+  },
+  SET_PERMISSIONS:(state,permissions) => {
+    state.permissions = permissions
   }
 }
 
@@ -49,12 +53,13 @@ const actions = {
         if (!data) {
           reject('Verification failed, please Login again.')
         }
-
-        const { name, avatar,profile } = data
+        console.log('data',data)
+        const { name, avatar,profile,permissions } = data
 
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
         commit('SET_PROFILE',profile)
+        commit('SET_PERMISSIONS',permissions)
         resolve(data)
       }).catch(error => {
         reject(error)
