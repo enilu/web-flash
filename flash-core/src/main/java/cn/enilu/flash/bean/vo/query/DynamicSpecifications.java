@@ -51,7 +51,11 @@ public class DynamicSpecifications {
                                 predicates.add(builder.lessThanOrEqualTo(expression, (Comparable) filter.value));
                                 break;
                             case IN:
-                                predicates.add(expression.in((ArrayList)filter.value));
+                                if(filter.value.getClass().isArray()){
+                                    predicates.add(expression.in((Object[]) filter.value));
+                                }else {
+                                    predicates.add(expression.in((ArrayList) filter.value));
+                                }
                                 break;
                             case ISNULL:
                                 predicates.add(expression.isNull());
