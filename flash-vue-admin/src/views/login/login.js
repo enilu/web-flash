@@ -48,10 +48,6 @@ export default {
             this.loading = false
             this.$router.push({ path: '/' })
           }).catch((err) => {
-            this.$message({
-              message: err,
-              type: 'error'
-            })
             this.loading = false
           })
         } else {

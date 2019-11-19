@@ -1,4 +1,3 @@
-import { updatePwd } from '@/api/login'
 
 export default {
   data() {

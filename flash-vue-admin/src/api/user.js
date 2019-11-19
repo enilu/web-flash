@@ -18,9 +18,18 @@ export function getInfo() {
   })
 }
 
-export function logout() {
+export function logout(token) {
   return request({
-    url: '/account/logout',
+    url: '/logout',
     method: 'post'
   })
 }
+
+export function updatePwd(params) {
+  return request({
+    url: '/account/updatePwd',
+    method: 'post',
+    params
+  })
+}
+

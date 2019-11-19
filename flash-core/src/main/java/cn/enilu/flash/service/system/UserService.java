@@ -32,4 +32,10 @@ public class UserService  extends BaseService<User,Long,UserRepository> {
         return user;
     }
 
+    @Override
+    public User update(User record) {
+        User user =  super.update(record);
+        ehcacheDao.hset(EhcacheDao.SESSION,user.getAccount(),user);
+        return user;
+    }
 }

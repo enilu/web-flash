@@ -1,6 +1,5 @@
 package cn.enilu.flash.api.controller;
 
-import cn.enilu.flash.api.utils.ApiConstants;
 import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.vo.front.Rets;
@@ -79,20 +78,6 @@ public class AccountController extends BaseController{
         return Rets.failure("登录时失败");
     }
 
-    /**
-     * 退出登录
-     * @return
-     */
-    @RequestMapping(value = "/logout",method = RequestMethod.POST)
-    public Object logout(){
-        HttpServletRequest request = HttpUtil.getRequest();
-        String token = this.getToken(HttpUtil.getRequest());
-        accountService.logout(token);
-        Long idUser = getIdUser(request);
-        LogManager.me().executeLog(LogTaskFactory.exitLog(idUser, HttpUtil.getIp()));
-        return Rets.success();
-    }
-
     @RequestMapping(value = "/info",method = RequestMethod.GET)
     public Object info( ){
         HttpServletRequest request = HttpUtil.getRequest();
@@ -122,18 +107,22 @@ public class AccountController extends BaseController{
     @RequestMapping(value = "/updatePwd",method = RequestMethod.POST)
     public Object updatePwd( String oldPassword,String password, String rePassword){
         try {
-            User user = userService.get(getIdUser(HttpUtil.getRequest()));
-            if(ApiConstants.ADMIN_ACCOUNT.equals(user.getAccount())){
-                return Rets.failure("不能修改超级管理员密码");
-            }
-            logger.info("oldPassword:{},password:{},rePassword:{}",MD5.md5(oldPassword, user.getSalt()),password,rePassword);
 
-            if(!MD5.md5(oldPassword, user.getSalt()).equals(user.getPassword())){
-                return Rets.failure("旧密码输入错误");
+            if(StringUtil.isEmpty(password) || StringUtil.isEmpty(rePassword)){
+                return Rets.failure("密码不能为空");
             }
             if(!password.equals(rePassword)){
                 return Rets.failure("新密码前后不一致");
             }
+            User user = userService.get(getIdUser(HttpUtil.getRequest()));
+//            if(ApiConstants.ADMIN_ACCOUNT.equals(user.getAccount())){
+//                return Rets.failure("不能修改超级管理员密码");
+//            }
+            logger.info("oldPassword:{},password:{},rePassword:{}",MD5.md5(oldPassword, user.getSalt()),password,rePassword);
+            if(!MD5.md5(oldPassword, user.getSalt()).equals(user.getPassword())){
+                return Rets.failure("旧密码输入错误");
+            }
+
             user.setPassword(MD5.md5(password, user.getSalt()));
             userService.update(user);
             return Rets.success();
