@@ -82,3 +82,5 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 
 
 也欢迎你在github给该项目点个赞：[https://github.com/enilu/web-flash](https://github.com/enilu/web-flash)
+
+[Change Log](CHANGELOG.md)

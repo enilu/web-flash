@@ -1,5 +1,6 @@
 package cn.enilu.flash.api.controller;
 
+import cn.enilu.flash.api.utils.ApiConstants;
 import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.vo.front.Rets;
@@ -7,7 +8,6 @@ import cn.enilu.flash.core.log.LogManager;
 import cn.enilu.flash.core.log.LogTaskFactory;
 import cn.enilu.flash.security.JwtUtil;
 import cn.enilu.flash.security.ShiroFactroy;
-import cn.enilu.flash.service.system.AccountService;
 import cn.enilu.flash.service.system.UserService;
 import cn.enilu.flash.utils.HttpUtil;
 import cn.enilu.flash.utils.MD5;
@@ -39,8 +39,6 @@ public class AccountController extends BaseController{
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private AccountService accountService;
     /**
      * 用户登录<br>
      * 1，验证没有注册<br>
@@ -115,9 +113,9 @@ public class AccountController extends BaseController{
                 return Rets.failure("新密码前后不一致");
             }
             User user = userService.get(getIdUser(HttpUtil.getRequest()));
-//            if(ApiConstants.ADMIN_ACCOUNT.equals(user.getAccount())){
-//                return Rets.failure("不能修改超级管理员密码");
-//            }
+            if(ApiConstants.ADMIN_ACCOUNT.equals(user.getAccount())){
+                return Rets.failure("不能修改超级管理员密码");
+            }
             logger.info("oldPassword:{},password:{},rePassword:{}",MD5.md5(oldPassword, user.getSalt()),password,rePassword);
             if(!MD5.md5(oldPassword, user.getSalt()).equals(user.getPassword())){
                 return Rets.failure("旧密码输入错误");

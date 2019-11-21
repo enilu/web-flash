@@ -1,13 +1,15 @@
 
-## 1.3-alpha
-### Features
-- 页面导航增加多标签页的方式
-- 左侧菜单完全通过后台配置动态生成
-- 基于vue-cli3构建脚手架，更精简合理的配置方式
-- 优化页面样式
+## 1.3
+- Add 页面导航增加多标签页的方式
+- Add 左侧菜单完全通过后台配置动态生成
+- Add 基于vue-cli3构建脚手架，更精简合理的配置方式
+- Change 优化页面样式
+- Change 完善密码修改功能
+- Change 完善退出登录功能
+- Change 查询in条件中无法使用数组作为参数的问题
+- Fix 保存菜单出现异常：Converting circular structure to JSON
+- Fix 权限编码配置错误的问题
 
-### Bug Fixes
-- 保存菜单出现异常：Converting circular structure to JSON
 
 ## 1.2 
 

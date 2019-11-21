@@ -29,10 +29,10 @@ public interface Permission {
     String MENU_DEL = "menuDelete";
     String USER = "mgr";
     String USER_EDIT = "mgrEdit";
-    String USER_DEL = "mgrEelete";
+    String USER_DEL = "mgrDelete";
     String DEPT = "dept";
     String DEPT_EDIT = "deptEdit";
-    String DEPT_DEL = "deptEelete";
+    String DEPT_DEL = "deptDelete";
 
     //消息管理
     String MSG = "msg";
