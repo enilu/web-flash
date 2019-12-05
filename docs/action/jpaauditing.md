@@ -15,7 +15,7 @@
 ### 实体类添加注解
 
 - 首先在实体中对应的字段加上上述4个注解
-- 在web-flash中我们提取了一个基础实体类BaseEntity，并将对应的字段添加上述4个注解,所有需要记录维护信息的表对应的实体都集成该类
+- 在web-flash中我们抽象了了一个基础实体类BaseEntity，并将对应的字段添加上述4个注解,所有需要记录维护信息的表对应的实体都继承该类
 ```java
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
