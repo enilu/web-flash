@@ -20,7 +20,7 @@ public class Ret<T> {
         this.code = code;
         this.msg = msg;
         this.data = data;
-        this.success = "0000".equals(code);
+        this.success = Rets.SUCCESS.intValue() == code.intValue();
     }
 
     @Override
