@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
 import javax.servlet.Filter;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -59,8 +60,9 @@ public class ShiroConfig {
         /*
          * 自定义url规则
          * http://shiro.apache.org/web.html#urls-
+         * 这里最好用LinkedHashMap,否则可能回出现anon配置无效的情况
          */
-        Map<String, String> filterRuleMap =  Maps.newHashMap();
+        Map<String, String> filterRuleMap = new LinkedHashMap<String,String>();
         // 所有请求通过我们自己的JWT Filter
         filterRuleMap.put("/**", "jwt");
         filterRuleMap.put("/logout", "logout");
