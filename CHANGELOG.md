@@ -1,6 +1,10 @@
 ## latest
 - Fix bug 权限拦截器中配置front目录下请求地址不拦截
 - Fix bug 返回数据success状态逻辑错误
+- Chane 完善文档
+- Add ShiroConfig权限拦截过滤连添加swagger相关资源配置为：anon
+- Fix bug 权限FilterChainDefinitionManager试用LinkedHashMap代替HashMap避免anon配置可能无效的情况
+- Add MIT license文件
 ## 1.3
 - Add 页面导航增加多标签页的方式
 - Add 左侧菜单完全通过后台配置动态生成
