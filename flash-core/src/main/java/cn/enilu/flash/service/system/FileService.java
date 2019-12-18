@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -108,11 +107,10 @@ public class FileService extends BaseService<FileInfo,Long,FileInfoRepository> {
     public FileInfo save(String originalFileName,File file){
         try {
             FileInfo fileInfo = new FileInfo();
-            fileInfo.setCreateTime(new Date());
             fileInfo.setCreateBy(JwtUtil.getUserId());
             fileInfo.setOriginalFileName(originalFileName);
             fileInfo.setRealFileName(file.getName());
-            fileInfoRepository.save(fileInfo);
+            insert(fileInfo);
             return fileInfo;
         } catch (Exception e) {
             e.printStackTrace();
