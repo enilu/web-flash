@@ -15,9 +15,10 @@ module.exports = {
         editLinks: true,
         editLinkText: '编辑此页面！',
         nav: [
-            {text: '文档', link: '/'},
+            {text: '指南', link: '/'},
             {text: '功能',
                 items:[
+                    {text: '国际化',link:'/action/i18n'},
                     {text: '导出excel',link:'/feature/exportExcel'},
                     {text: '定时任务',link:'/action/task'},
                     {text: '缓存',link:'/action/cache'},
@@ -41,9 +42,10 @@ module.exports = {
         ],
         sidebar: [
             {
-                title: '基本准备',
+                title: '基础',
                 collapsable: false,
                 children: [
+                    '/base/preface',
                     '/base/jdkAndMaven',
                     '/base/modules'
                 ]
