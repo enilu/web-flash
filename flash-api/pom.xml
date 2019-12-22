@@ -30,6 +30,7 @@
 
     <build>
         <plugins>
+            <!--以war形式运行 配置开始-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -38,6 +39,27 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+            <!-- 以war形式运行 配置结束-->
+
+            <!--以jar包形式单独部署 配置开始-->
+            <!--<plugin>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<mainClass>cn.enilu.flash.api.ApiApplication</mainClass>-->
+                    <!--<layout>ZIP</layout>-->
+                    <!--<finalName>flash-api</finalName>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<goals>-->
+                            <!--<goal>repackage</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+            <!--以jar包形式单独部署 配置结束-->
+
         </plugins>
     </build>
 </project>
