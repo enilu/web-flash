@@ -9,7 +9,7 @@
 spring.datasource.url=jdbc:mysql://localhost:3306/web-flash?useUnicode=true&characterEncoding=UTF8
 spring.datasource.username=root
 spring.datasource.password=root
-## 系统启动自动创建数据库和初始化测试语句
+## 系统启动自动创建数据库和导入测试语句
 spring.jpa.hibernate.ddl-auto=create
 
 ```

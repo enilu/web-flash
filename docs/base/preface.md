@@ -19,7 +19,7 @@ web-flash项目本身有readme文件，如果你有丰富的spring boot的和vue
 ## 版本说明
 - web-flash提供了一个后台管理系统和前端h5站点系统
 - web-flash是一个基于[Spring Boot](https://spring.io/projects/spring-boot/)和[Vue.js](https://cn.vuejs.org)的web系统，包含了基于[element](https://element.eleme.cn/#/zh-CN)搭建的后台管理系统和基于[vux](https://vux.li)搭建的手机端h5站点
-- web-flash具备后台管理类系统的通用的基础功能，而且提供了基于idea intellij的的代码生成插件，可以一键生成前后端页面。
+- web-flash具备后台管理类系统的通用的基础功能，而且提供了基于idea intellij的的代码生成插件，可以一键生成后台代码（service,dao,controller)和管理系统（ash-vue-admin)的前端界面。
  
 ## 目录说明
 - flash-api 后台api服务
@@ -31,7 +31,7 @@ web-flash项目本身有readme文件，如果你有丰富的spring boot的和vue
 ## 演示
 - 后台管理(vue版本) [http://flash-admin.enilu.cn](http://flash-admin.enilu.cn)
 - 手机端 [http://flash-mobile.enilu.cn/#/index](http://flash-mobile.enilu.cn/#/index) 打开浏览器后使用debug模式的手机视图模式浏览
-- **建议** 开发之前先将上面两个演示系统的功能查看一遍，这样后续开发可以知道参考哪些功能；查看演示系统请温柔操作，不要随意删改关键数据。
+- **建议** 开发之前先将上面两个演示系统的功能查看一遍，这样后续开发可以知道参考哪些功能；演示系统为方便演示给出的权限比较大。过程中请请温柔操作，不要随意删改关键数据。
 
 
 ## 技术选型
@@ -73,6 +73,12 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
     - 运行npm run dev 启动项目
     - 启动成功后访问 http://localhost:9528,登录，用户名密码:admin/admin 
 - ![vue](../vuejs.gif)
+- 进入flash-vue-h5目录
+    - 运行 npm install --registry=https://registry.npm.taobao.org
+    - 运行npm run dev
+    - 启动成功后访问 http://localhost:8088/#/index
+- 手机端运行效果图：
+    ![mobile](../flash-mobile.gif)
 
 ## 在线文档
 - [http://enilu.github.io/web-flash](http://enilu.github.io/web-flash)
@@ -81,6 +87,7 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 ## 交流
 - Bugs: [Issues](https://github.com/enilu/web-flash/issues/new)
 - QQ: 欢迎加入qq交流群 752844606
+- 微信交流群:请添加myenilu后进群，添加好友备注：web-flash
 - Gitter: [Gitter channel](https://gitter.im/web-flash/community)
 
 也欢迎你给该项目点个赞：
