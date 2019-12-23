@@ -36,7 +36,16 @@ map.put("menus",menus);
 ## 页面功能（按钮）的权限控制
 
 页面按钮的控制用到[vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)封装的一个指令权限[v-permission](https://github.com/PanJiaChen/vue-element-admin/tree/master/src/directive/permission)，具体用法如下：
+```javascript
+// js代码
+import permission from '@/directive/permission/index.js'
+export default {
+  directives: { permission },
+  .....
+```
+
 ```html
+<!-- vue代码-->
 <el-button type="success" icon="el-icon-plus" @click.native="add" v-permission="['/mgr/add']">
            {{$t('button.add') }}
 </el-button>
@@ -44,3 +53,5 @@ map.put("menus",menus);
  {{$t('button.edit') }}
 </el-button> 
 ```  
+
+完整的示例参考"系统管理"->"用户管理"的代码[/user/index.vue](https://github.com/enilu/web-flash/tree/master/flash-vue-admin/src/views/system/user)
