@@ -58,7 +58,7 @@ public class UserController extends BaseController {
         return Rets.success(page);
     }
     @RequestMapping(method = RequestMethod.POST)
-    @BussinessLog(value = "编辑管理员", key = "name", dict = UserDict.class)
+    @BussinessLog(value = "编辑账号", key = "name", dict = UserDict.class)
     @RequiresPermissions(value = {Permission.USER_EDIT})
     public Object save( @Valid UserDto user,BindingResult result){
         if(user.getId()==null) {
@@ -79,7 +79,7 @@ public class UserController extends BaseController {
         return Rets.success();
     }
 
-    @BussinessLog(value = "删除管理员", key = "userId", dict = UserDict.class)
+    @BussinessLog(value = "删除账号", key = "userId", dict = UserDict.class)
     @RequestMapping(method = RequestMethod.DELETE)
     @RequiresPermissions(value = {Permission.USER_DEL})
     public Object remove(@RequestParam Long userId){
@@ -94,7 +94,7 @@ public class UserController extends BaseController {
         userService.update(user);
         return Rets.success();
     }
-    @BussinessLog(value="设置用户角色",key="userId",dict=UserDict.class)
+    @BussinessLog(value="设置账号角色",key="userId",dict=UserDict.class)
     @RequestMapping(value="/setRole",method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.USER_EDIT})
     public Object setRole(@RequestParam("userId") Long userId, @RequestParam("roleIds") String roleIds) {
@@ -107,6 +107,18 @@ public class UserController extends BaseController {
         }
         User user = userService.get(userId);
         user.setRoleid(roleIds);
+        userService.update(user);
+        return Rets.success();
+    }
+    @BussinessLog(value = "冻结/解冻账号", key = "userId", dict = UserDict.class)
+    @RequestMapping(value="changeStatus",method = RequestMethod.GET)
+    @RequiresPermissions(value = {Permission.USER_EDIT})
+    public Object changeStatus(@RequestParam Long userId){
+        if (userId==null) {
+            throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
+        }
+        User user = userService.get(userId);
+        user.setStatus(user.getStatus().intValue() == ManagerStatus.OK.getCode()?ManagerStatus.FREEZED.getCode():ManagerStatus.OK.getCode());
         userService.update(user);
         return Rets.success();
     }

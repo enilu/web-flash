@@ -71,12 +71,12 @@
       </el-table-column>
       <el-table-column label="创建时间">
         <template slot-scope="scope">
-          {{scope.row.createtime}}
+          {{scope.row.createTime}}
         </template>
       </el-table-column>
       <el-table-column label="状态">
         <template slot-scope="scope">
-          {{scope.row.statusName}}
+          <el-switch v-model="scope.row.status==1" @change="changeUserStatus(scope.row)"></el-switch>
         </template>
       </el-table-column>
 
