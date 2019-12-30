@@ -47,26 +47,18 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         return true;
     }
 
-    /**
-     * 这里我们详细说明下为什么最终返回的都是true，即允许访问
-     * 例如我们提供一个地址 GET /article
-     * 登入用户和游客看到的内容是不同的
-     * 如果在这里返回了false，请求会被直接拦截，用户看不到任何东西
-     * 所以我们在这里返回true，Controller中可以通过 subject.isAuthenticated() 来判断用户是否登入
-     * 如果有些资源只有登入用户才能访问，我们只需要在方法上面加上 @RequiresAuthentication 注解即可
-     * 但是这样做有一个缺点，就是不能够对GET,POST等请求进行分别过滤鉴权(因为我们重写了官方的方法)，但实际上对应用影响不大
-     */
+
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
         if (isLoginAttempt(request, response)) {
             try {
-                executeLogin(request, response);
+                return executeLogin(request, response);
             } catch (Exception e) {
                 response401(request, response);
-                return true;
+                return false;
             }
         }
-        return true;
+        return false;
     }
 
     /**
@@ -88,15 +80,28 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
     }
 
     /**
-     * 将非法请求跳转到 /401
+     * 将非法请求返回httpcode:401
      */
     private void response401(ServletRequest req, ServletResponse resp) {
         try {
             HttpServletResponse httpServletResponse = (HttpServletResponse) resp;
-//            httpServletResponse.sendRedirect("/401");
             httpServletResponse.setStatus(401);
         } catch (Exception e) {
             logger.error(e.getMessage(),e);
         }
+    }
+
+    /**
+     * 重新该方法直接返回false，因为走到这个方法的请求都是因为401过来的，所以拒绝继续访问
+     * 如果不重写该方法，父类的方法回返回WWW-Authenticate 头信息导致浏览器自身弹出验证框，影响用户使用体验。本项目的业务要求前端自行判断401的话往登录页面跳转，不需要浏览器自己弹框。
+     * @param request
+     * @param response
+     * @param mappedValue
+     * @return
+     * @throws Exception
+     */
+    @Override
+    protected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
+        return false;
     }
 }
