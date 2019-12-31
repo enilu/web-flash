@@ -99,7 +99,7 @@
       :title="formTitle"
       :visible.sync="formVisible"
       width="70%">
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="120px" label-position="right">
         <el-row>
           <el-col :span="12">
             <el-form-item label="账户" prop="account">

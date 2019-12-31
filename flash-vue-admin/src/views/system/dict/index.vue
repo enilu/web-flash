@@ -46,7 +46,7 @@
       :title="formTitle"
       :visible.sync="formVisible"
       width="60%">
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="120px">
 
         <el-form-item label="名称" prop="name">
           <el-input v-model="form.name"  minlength=1></el-input>
