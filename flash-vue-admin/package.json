@@ -15,7 +15,7 @@
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml"
   },
   "dependencies": {
-    "axios": "0.18.0",
+    "axios": "0.19.0",
     "element-ui": "2.11.0",
     "js-cookie": "2.2.0",
     "normalize.css": "7.0.0",
