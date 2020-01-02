@@ -29,10 +29,21 @@ export default {
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       loading: false,
-      pwdType: 'password'
+      pwdType: 'password',
+      redirect:'/'
     }
   },
+  mounted(){
+    this.init()
+  },
   methods: {
+    init(){
+      let redirect = this.$route.query.redirect
+      console.log('redirect',redirect)
+      if(redirect){
+        this.redirect = redirect
+      }
+    },
     showPwd() {
       if (this.pwdType === 'password') {
         this.pwdType = ''
@@ -46,7 +57,7 @@ export default {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => {
             this.loading = false
-            this.$router.push({ path: '/' })
+            this.$router.push({ path: this.redirect })
           }).catch((err) => {
             this.loading = false
           })

@@ -89,6 +89,11 @@ const actions = {
       removeToken()
       resolve()
     })
+  },
+  updateToken({commit},{token}){
+    console.log('newToken',token)
+    commit('SET_TOKEN', token)
+    setToken(token)
   }
 }
 

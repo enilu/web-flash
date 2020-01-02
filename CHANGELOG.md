@@ -1,8 +1,10 @@
 ## latest
+- Fix bug npm run dev之后，会启动两次，浏览器打开两个相同的后台项目
 - Fix bug 菜单修改后创建人和创建时间为空的问题
 - Fix bug 权限拦截器中配置front目录下请求地址不拦截
 - Fix bug 返回数据success状态逻辑错误
 - Fix bug 权限FilterChainDefinitionManager试用LinkedHashMap代替HashMap避免anon配置可能无效的情况
+- Issue Token过期刷新
 - Chane 完善文档
 - Change 表单样式
 - Add MIT license文件
