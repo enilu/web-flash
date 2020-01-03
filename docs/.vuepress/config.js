@@ -15,7 +15,7 @@ module.exports = {
         editLinks: true,
         editLinkText: '编辑此页面！',
         nav: [
-            {text: '指南', link: '/'},
+            {text: '指南', link: '/base/preface'},
             {text: '功能',
                 items:[
                     {text: '国际化',link:'/action/i18n'},
@@ -76,6 +76,7 @@ module.exports = {
                     '/feature/exportExcel',
                     '/feature/messageCenter',
                     '/feature/cms.md'
+
                 ]
             },
            {

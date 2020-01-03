@@ -29,7 +29,7 @@ public class ConfigCacheImpl implements ConfigCache {
 
     @Override
     public Object get(String key) {
-        return (String) cacheDao.hget(EhcacheDao.CONSTANT,key);
+        return (String) cacheDao.hget(CacheDao.CONSTANT,key);
     }
 
     @Override
@@ -61,12 +61,12 @@ public class ConfigCacheImpl implements ConfigCache {
 
     @Override
     public void set(String key, Object val) {
-        cacheDao.hset(EhcacheDao.CONSTANT,key,val);
+        cacheDao.hset(CacheDao.CONSTANT,key,val);
     }
 
     @Override
     public void del(String key, String val) {
-        cacheDao.hdel(EhcacheDao.CONSTANT,val);
+        cacheDao.hdel(CacheDao.CONSTANT,val);
     }
 
     @Override

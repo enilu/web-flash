@@ -25,7 +25,7 @@ public class DictCacheImpl implements DictCache {
 
     @Override
     public List<Dict> getDictsByPname(String dictName) {
-        return (List<Dict>) cacheDao.hget(EhcacheDao.CONSTANT,CacheKey.DICT+dictName,List.class);
+        return (List<Dict>) cacheDao.hget(CacheDao.CONSTANT,CacheKey.DICT+dictName,List.class);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class DictCacheImpl implements DictCache {
         set(String.valueOf(dict.getId()), children);
         set(dict.getName(), children);
         for(Dict child:children){
-            set(CacheKey.DICT_NAME+String.valueOf(child.getId()),child.getName());
+            set(CacheKey.DICT_NAME+child.getId(),child.getName());
         }
 
     }
@@ -53,12 +53,12 @@ public class DictCacheImpl implements DictCache {
 
     @Override
     public Object get(String key) {
-        return cacheDao.hget(EhcacheDao.CONSTANT,CacheKey.DICT+key);
+        return cacheDao.hget(CacheDao.CONSTANT,CacheKey.DICT+key);
     }
 
     @Override
     public void set(String key, Object val) {
-        cacheDao.hset(EhcacheDao.CONSTANT,CacheKey.DICT+key,val);
+        cacheDao.hset(CacheDao.CONSTANT,CacheKey.DICT+key,val);
 
     }
 }
