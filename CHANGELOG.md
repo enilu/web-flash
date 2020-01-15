@@ -1,10 +1,12 @@
+##latest
+- Fix 业务日志中如果获取不到字段值对应的中文名称则返回字段名本身，代替之前的null
 ## 1.4
 - Issue Token过期刷新
-- Fix bug npm run dev之后，会启动两次，浏览器打开两个相同的后台项目
-- Fix bug 菜单修改后创建人和创建时间为空的问题
-- Fix bug 权限拦截器中配置front目录下请求地址不拦截
-- Fix bug 返回数据success状态逻辑错误
-- Fix bug 权限FilterChainDefinitionManager试用LinkedHashMap代替HashMap避免anon配置可能无效的情况
+- Fix npm run dev之后，会启动两次，浏览器打开两个相同的后台项目
+- Fix 菜单修改后创建人和创建时间为空的问题
+- Fix 权限拦截器中配置front目录下请求地址不拦截
+- Fix 返回数据success状态逻辑错误
+- Fix 权限FilterChainDefinitionManager试用LinkedHashMap代替HashMap避免anon配置可能无效的情况
 - Chane 完善文档
 - Change 表单样式
 - Change 业务类使用CacheDao代替使用EhcacheDao
