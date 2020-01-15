@@ -1,5 +1,7 @@
 ##latest
+- Issue 压缩svg图标文件
 - Fix 业务日志中如果获取不到字段值对应的中文名称则返回字段名本身，代替之前的null
+- Fix 超级管理员判断错误
 ## 1.4
 - Issue Token过期刷新
 - Fix npm run dev之后，会启动两次，浏览器打开两个相同的后台项目
