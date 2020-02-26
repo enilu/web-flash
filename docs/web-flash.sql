@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-12-23 10:48:09
+Date: 2020-02-26 11:50:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -63,7 +63,7 @@ CREATE TABLE `t_cms_banner` (
   `type` varchar(32) DEFAULT NULL COMMENT '类型',
   `url` varchar(128) DEFAULT NULL COMMENT '点击banner跳转到url',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='文章';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='Banner';
 
 -- ----------------------------
 -- Records of t_cms_banner
@@ -368,7 +368,7 @@ CREATE TABLE `t_sys_menu` (
   `modify_by` bigint(20) DEFAULT NULL COMMENT '最后更新人',
   `modify_time` datetime DEFAULT NULL COMMENT '最后更新时间',
   `code` varchar(32) NOT NULL COMMENT '编号',
-  `component` varchar(64) DEFAULT NULL COMMENT '組件配置',
+  `component` varchar(64) DEFAULT NULL COMMENT '页面组件',
   `hidden` tinyint(4) DEFAULT NULL COMMENT '是否隐藏',
   `icon` varchar(32) DEFAULT NULL COMMENT '图标',
   `ismenu` int(11) NOT NULL COMMENT '是否是菜单1:菜单,0:按钮',
@@ -380,7 +380,7 @@ CREATE TABLE `t_sys_menu` (
   `pcodes` varchar(128) DEFAULT NULL COMMENT '递归父级菜单编号',
   `status` int(11) NOT NULL COMMENT '状态1:启用,0:禁用',
   `tips` varchar(32) DEFAULT NULL COMMENT '鼠标悬停提示信息',
-  `url` varchar(32) DEFAULT NULL COMMENT '链接',
+  `url` varchar(32) DEFAULT NULL COMMENT '链接标识',
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_s37unj3gh67ujhk83lqva8i1t` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8 COMMENT='菜单';
@@ -478,7 +478,7 @@ CREATE TABLE `t_sys_notice` (
 -- ----------------------------
 -- Records of t_sys_notice
 -- ----------------------------
-INSERT INTO `t_sys_notice` VALUES ('1', '1', '2017-01-11 08:53:20', '1', '2019-01-08 23:30:58', '欢迎使用web-flash后台管理系统', '世界', '10');
+INSERT INTO `t_sys_notice` VALUES ('1', '1', '2017-01-11 08:53:20', '1', '2019-01-08 23:30:58', '欢迎使用web-flash后台管理系统', '欢迎光临', '10');
 
 -- ----------------------------
 -- Table structure for `t_sys_operation_log`
