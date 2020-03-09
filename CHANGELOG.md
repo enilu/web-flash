@@ -1,10 +1,20 @@
 ##latest
+### Issues 
 - Issue 压缩svg图标文件
-- Fix 业务日志中如果获取不到字段值对应的中文名称则返回字段名本身，代替之前的null
-- Fix 超级管理员判断错误
 - Issue 完善权限管理
 - Issue 修改管理员密码后自动退出登录
+- Issue BaseRepository封装根据原生sql查询数据返回Map或List<Map>
+- 添加关联查询示范用法
+
+### Fixes
+- Fix 业务日志中如果获取不到字段值对应的中文名称则返回字段名本身，代替之前的null
+- Fix 超级管理员判断错误
+- Fix SearchFilter构建查询条件中的问题 bug
+
 ## 1.4
+[gitee](https://gitee.com/enilu/web-flash/releases/1.4)
+[github](https://github.com/enilu/web-flash/releases/tag/1.4)
+
 - Issue Token过期刷新
 - Fix npm run dev之后，会启动两次，浏览器打开两个相同的后台项目
 - Fix 菜单修改后创建人和创建时间为空的问题
@@ -17,6 +27,8 @@
 - Add MIT license文件
 
 ## 1.3
+[gitee](https://gitee.com/enilu/web-flash/releases/1.3)
+[github](https://github.com/enilu/web-flash/releases/tag/1.3)
 - Add 页面导航增加多标签页的方式
 - Add 左侧菜单完全通过后台配置动态生成
 - Add 基于vue-cli3构建脚手架，更精简合理的配置方式
@@ -29,6 +41,8 @@
 
 
 ## 1.2 
+[gitee](https://gitee.com/enilu/web-flash/releases/1.2)
+[github](https://github.com/enilu/web-flash/releases/tag/1.2)
 
 - Change 删除角色时判断是有用户使用该角色，如果有则不允许删除
 - Change 简化手机站点api地址配置
@@ -39,17 +53,19 @@
 - Fix bug
 
 ## 1.1
-### Features
+[github](https://github.com/enilu/web-flash/releases/tag/1.1)
+### Issues
 - 封装公共的[service](https://github.com/enilu/web-flash/issues/11)和[dao](https://github.com/enilu/web-flash/issues/9)
 - [使用shiro和jwt针对后台接口完成权限认证](https://github.com/enilu/web-flash/issues/15)
 - 使用Validator实现后台对数据的校验
 - 同步更新代码生成功能
-### Bug Fixes
+### Fixes
 - [权限管理中，父子权限级联选择问题](https://github.com/enilu/web-flash/issues/14)
 - [import的utils报错：Module is not installed ](https://github.com/enilu/web-flash/issues/6)
 
 ## 1.0
-### Features
+[github](https://github.com/enilu/web-flash/releases/tag/v1.0)
+### Issues
 - add 部门管理
 - add 用户管理
 - add 角色管理
