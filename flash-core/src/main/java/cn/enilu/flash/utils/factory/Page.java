@@ -226,8 +226,8 @@ public class Page<T>  {
             addFilter(SearchFilter.build(fieldName,operator,value));
         }
     }
-    public void addFilter(String fieldName, SearchFilter.Operator operator){
-        addFilter(SearchFilter.build(fieldName,operator));
+    public void addFilter(String fieldName, Object val){
+        addFilter( fieldName, SearchFilter.Operator.EQ, val);
     }
 
     @Override

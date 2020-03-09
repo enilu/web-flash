@@ -20,14 +20,20 @@ public class SearchFilter {
     public Object value;
     public Operator operator;
     public  static SearchFilter build(String fieldName, Operator operator, Object value){
+        if(StringUtil.isNullOrEmpty(value)){
+            return null;
+        }
         return  new SearchFilter(fieldName,operator,value);
     }
-    public  static SearchFilter build(String fieldName, Operator operator){
-        return  new SearchFilter(fieldName,operator);
+    public  static SearchFilter build(String fieldName, Object val){
+        return build(fieldName,Operator.EQ,val);
     }
-    public SearchFilter(String fieldName, Operator operator) {
-        this.fieldName = fieldName;
-        this.operator = operator;
+    public SearchFilter(String fieldName, Object val) {
+        if(!StringUtil.isNullOrEmpty(value)) {
+            this.fieldName = fieldName;
+            this.operator = Operator.EQ;
+            this.value = val;
+        }
     }
     public SearchFilter(String fieldName, Operator operator, Object value) {
         if(!StringUtil.isNullOrEmpty(value)) {
