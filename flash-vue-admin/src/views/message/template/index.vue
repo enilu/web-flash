@@ -1,6 +1,28 @@
 <template>
     <div class="app-container">
         <div class="block">
+          <el-row  :gutter="20">
+
+            <el-col :span="4">
+                <el-select    size="mini" v-model="listQuery.idMessageSender" filterable placeholder="请选择发送器">
+                  <el-option
+                    v-for="item in sendList"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  >
+                  </el-option>
+                </el-select>
+            </el-col>
+            <el-col :span="4">
+              <el-input v-model="listQuery.title" size="mini" placeholder="请输入标题"></el-input>
+            </el-col>
+            <el-col :span="6">
+              <el-button type="success" size="mini" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
+              <el-button type="primary" size="mini" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
+            </el-col>
+          </el-row>
+          <br>
             <el-row>
                 <el-col :span="24">
                     <el-button type="success" size="mini" icon="el-icon-plus" @click.native="add">{{ $t('button.add') }}</el-button>
