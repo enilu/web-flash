@@ -1,5 +1,6 @@
 package cn.enilu.flash.dao;
 
+import cn.enilu.flash.bean.vo.query.SearchFilter;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
@@ -7,6 +8,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 封装基础的dao接口
@@ -18,12 +20,9 @@ import java.util.List;
 public interface BaseRepository<T, ID extends Serializable> extends JpaRepository<T, ID>
         , PagingAndSortingRepository<T, ID>
         , JpaSpecificationExecutor<T> {
-    /**
-     * 根据原生sql语句查询数据列表
-     * @param sql
-     * @return
-     */
-    List<Object[]> queryBySql(String sql);
+    List<Map> queryBySql(String sql);
+    Map queryBysql(String sql,List<SearchFilter> filters);
+    List<Map> queryBySql(String sql, List<SearchFilter> filters);
 
     /**
      * 根据原生sql查询对象列表
