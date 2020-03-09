@@ -7,6 +7,7 @@ pageClass: getting-started
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/enilu/web-flash/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/enilu/web-flash.svg)](https://github.com/enilu/web-flash/releases)
 [![donate](https://img.shields.io/badge/%24-donate-ff69b4.svg)](../donate.md)
+[![Gitee stars](https://gitee.com/enilu/web-flash/badge/star.svg?theme=social)](https://gitee.com/enilu/web-flash)
 [![GitHub stars](https://img.shields.io/github/stars/enilu/web-flash.svg?style=social&label=Stars)](https://github.com/enilu/web-flash)
 
 本文档以向导的方式引导用户使用web-flash系统做二次开发，
