@@ -4,6 +4,7 @@ import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.utils.Lists;
 import org.hibernate.query.internal.NativeQueryImpl;
 import org.hibernate.transform.Transformers;
+import org.nutz.mapl.Mapl;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
@@ -37,6 +38,23 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
     @Override
     public List<Map> queryBySql(String sql) {
         return queryBySql(sql, Lists.newArrayList());
+    }
+
+    @Override
+    public List<?> queryBySql(String sql, Class<?> klass) {
+        List<Map> list = queryBySql(sql);
+        if(list.isEmpty()){
+            return null;
+        }
+        List result = Lists.newArrayList();
+        for(Map map :list){
+                try {
+                    Object bean = Mapl.maplistToObj(map,klass);
+                    result.add(bean);
+                }catch (Exception e){
+                }
+        }
+        return result;
     }
 
     @Override

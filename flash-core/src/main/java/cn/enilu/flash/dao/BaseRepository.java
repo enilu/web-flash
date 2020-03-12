@@ -21,7 +21,9 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
         , PagingAndSortingRepository<T, ID>
         , JpaSpecificationExecutor<T> {
     List<Map> queryBySql(String sql);
+    List<?> queryBySql(String sql,Class<?> klass);
     Map queryBysql(String sql,List<SearchFilter> filters);
+
     List<Map> queryBySql(String sql, List<SearchFilter> filters);
 
     /**
