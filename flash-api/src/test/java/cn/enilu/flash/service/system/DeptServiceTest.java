@@ -1,6 +1,6 @@
 package cn.enilu.flash.service.system;
 
-import cn.enilu.flash.service.BaseApplicationStartTest;
+import cn.enilu.flash.BaseApplicationStartTest;
 import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author enilu
  */
-public class DeptServiceTest  extends BaseApplicationStartTest {
+public class DeptServiceTest extends BaseApplicationStartTest {
     @Autowired
     private DeptService deptService;
     @Test
