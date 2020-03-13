@@ -1,10 +1,16 @@
-##latest
+# change log
+
+## latest
 ### Issues 
 - Issue 压缩svg图标文件
 - Issue 完善权限管理
 - Issue 修改管理员密码后自动退出登录
-- Issue BaseRepository封装根据原生sql查询数据返回Map或List<Map>
-- 添加关联查询示范用法
+- Issue BaseRepository封装根据原生sql查询数据返回Map或List方法
+- Issue 添加关联查询示范用法
+- Issue 升级lombok从1.16.20到1.18.6
+- Issue 支持or查询
+- Issue 添加单元测试支持
+- Issue BaseRepository封装根据sql查询返回指定对象（列表）方法
 
 ### Fixes
 - Fix 业务日志中如果获取不到字段值对应的中文名称则返回字段名本身，代替之前的null

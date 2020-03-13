@@ -82,4 +82,4 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 - Gitter: [Gitter channel](https://gitter.im/web-flash/community)
 
 
-[Change Log](CHANGELOG.md)
+[Change Log](http://enilu.gitee.io/web-flash/other/changeLog.html)
