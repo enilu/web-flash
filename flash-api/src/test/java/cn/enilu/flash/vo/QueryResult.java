@@ -1,4 +1,4 @@
-package cn.enilu.flash;
+package cn.enilu.flash.vo;
 
 /**
  * @author ：enilu

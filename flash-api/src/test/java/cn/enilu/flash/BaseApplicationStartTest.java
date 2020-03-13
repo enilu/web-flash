@@ -13,10 +13,10 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * Name: ApplicationStartTest<br>
- * User: Yao<br>
- * Date: 2018/1/24<br>
- * Time: 16:26<br>
+ * 测试模块基类<br>
+ * 不要直接在该类中编写测试代码，而是通过继承该类。 参考DeptServiceTest,BaseRepositoryTest等
+ * Created  on 2018/3/21 0021.
+ * @author enilu
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = ApiApplication.class)

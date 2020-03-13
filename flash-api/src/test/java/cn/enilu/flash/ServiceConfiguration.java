@@ -8,10 +8,9 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
- * Name: ServiceConfiguration<br>
- * User: Yao<br>
- * Date: 2018/2/27<br>
- * Time: 13:54<br>
+ * 测试模块基础配置
+ * Created  on 2018/3/21 0021.
+ * @author enilu
  */
 @EnableCaching
 @SpringBootApplication

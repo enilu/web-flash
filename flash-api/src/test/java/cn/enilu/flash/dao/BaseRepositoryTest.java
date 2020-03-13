@@ -1,7 +1,7 @@
 package cn.enilu.flash.dao;
 
 import cn.enilu.flash.BaseApplicationStartTest;
-import cn.enilu.flash.QueryResult;
+import cn.enilu.flash.vo.QueryResult;
 import cn.enilu.flash.dao.system.UserRepository;
 import org.junit.Test;
 import org.nutz.json.Json;
@@ -16,11 +16,18 @@ import java.util.List;
 public class BaseRepositoryTest  extends BaseApplicationStartTest {
     @Autowired
     private UserRepository userRepository;
+
     @Test
     public void queryBySql(){
         String sql = "select sex,count(1) as count from t_sys_user group by sex";
         List list = userRepository.queryBySql(sql,QueryResult.class);
         System.out.println(Json.toJson(list));
+    }
+    @Test
+    public void getBySql(){
+        String sql = "select sex,count(1) as count from t_sys_user group by sex  having sex=1";
+        QueryResult ret = (QueryResult) userRepository.getBySql(sql,QueryResult.class);
+        System.out.println(Json.toJson(ret));
     }
 
 }
