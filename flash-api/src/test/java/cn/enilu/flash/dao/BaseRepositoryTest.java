@@ -30,4 +30,5 @@ public class BaseRepositoryTest  extends BaseApplicationStartTest {
         System.out.println(Json.toJson(ret));
     }
 
+
 }
