@@ -89,14 +89,13 @@ module.exports = {
                     '/action/jpaauditing.md',
                     '/action/validator',
                     '/action/deploy'
-
-
                 ]
             },{
                 title: '其他',
                 collapsable: false,
                 children:[
-                    '/other/faq'
+                    '/other/faq',
+                    '/other/changeLog'
                 ]
             }
         ]

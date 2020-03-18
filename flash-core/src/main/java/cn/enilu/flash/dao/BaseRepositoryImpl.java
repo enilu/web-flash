@@ -1,6 +1,5 @@
 package cn.enilu.flash.dao;
 
-import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.utils.Lists;
 import org.hibernate.query.internal.NativeQueryImpl;
 import org.hibernate.transform.Transformers;
@@ -35,10 +34,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
     }
 
 
-    @Override
-    public List<Map> queryBySql(String sql) {
-        return queryBySql(sql, Lists.newArrayList());
-    }
+
 
     @Override
     public List<?> queryBySql(String sql, Class<?> klass) {
@@ -56,24 +52,9 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
         }
         return result;
     }
-
     @Override
-    public Map queryBysql(String sql, List<SearchFilter> filters) {
-        List<Map> list = queryBySql(sql,filters);
-        if(list!=null&&!list.isEmpty()){
-            list.get(0);
-        }
-        return null;
-    }
-
-    @Override
-    public List<Map> queryBySql(String sql, List<SearchFilter> filters) {
+    public List<Map> queryBySql(String sql) {
         Query query = entityManager.createNativeQuery(sql);
-        if(filters!=null&&!filters.isEmpty()){
-            for(SearchFilter filter:filters){
-                query.setParameter(filter.fieldName, filter.value);
-            }
-        }
         query.unwrap(NativeQueryImpl.class)
                 .setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
         List list = query.getResultList();

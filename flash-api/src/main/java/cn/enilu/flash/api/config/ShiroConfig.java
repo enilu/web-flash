@@ -73,7 +73,7 @@ public class ShiroConfig {
         filterRuleMap.put("/configuration/security","anon");
         filterRuleMap.put("/configuration/ui","anon");
 
-
+        filterRuleMap.put("/file/download","anon");
         filterRuleMap.put("/file/getImgStream","anon");
         filterRuleMap.put("/file/getImgBase64","anon");
 

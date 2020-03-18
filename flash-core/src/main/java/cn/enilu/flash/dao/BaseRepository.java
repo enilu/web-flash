@@ -1,6 +1,5 @@
 package cn.enilu.flash.dao;
 
-import cn.enilu.flash.bean.vo.query.SearchFilter;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
@@ -21,10 +20,15 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
         , PagingAndSortingRepository<T, ID>
         , JpaSpecificationExecutor<T> {
     List<Map> queryBySql(String sql);
-    List<?> queryBySql(String sql,Class<?> klass);
-    Map queryBysql(String sql,List<SearchFilter> filters);
 
-    List<Map> queryBySql(String sql, List<SearchFilter> filters);
+    /**
+     * 根据原生sql查询数组对象
+     * @param sql
+     * @return
+     */
+    Map getBySql(String sql);
+    List<?> queryBySql(String sql,Class<?> klass);
+
 
     /**
      * 根据原生sql查询对象列表
@@ -33,12 +37,6 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
      */
     List<T> query(String sql);
 
-    /**
-     * 根据原生sql查询数组对象
-     * @param sql
-     * @return
-     */
-    Map getBySql(String sql);
     Object getBySql(String sql,Class<?> klass);
 
     /**
