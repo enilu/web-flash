@@ -30,7 +30,8 @@ module.exports = {
                 items:[
                     {text: '代码生成',link:'/ecosystem/code-generator'},
                     {text: '数据库文档生成',link:'/ecosystem/database-doc-generator'},
-                    {text:'ChangeLog',link:'/other/changeLog'}
+                    {text:'ChangeLog',link:'/other/changeLog'},
+                    {text:'问答社区',link:'/other/xiaomiquan'}
                 ]
             },
             {text: '捐赠',link:'/donate'},

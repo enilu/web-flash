@@ -87,9 +87,12 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 
 ## 交流
 - Bugs: [Issues](https://github.com/enilu/web-flash/issues/new)
-- QQ: 欢迎加入qq交流群 752844606
-- 微信交流群:请添加myenilu后进群，添加好友备注：web-flash
 - Gitter: [Gitter channel](https://gitter.im/web-flash/community)
+- 关注公众号：嗨客帝国，点击对应的项目菜单进群交流。
+
+![公众号二维码](../img/haike.jpg)
+
+- [问答社区](http://enilu.gitee.io/web-flash/other/xiaomiquan.html)
 
 也欢迎你给该项目点个赞：
 - Github:[https://github.com/enilu/web-flash](https://github.com/enilu/web-flash)
