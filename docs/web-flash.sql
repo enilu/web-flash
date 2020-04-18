@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-11-04 10:23:51
+Date: 2020-02-26 11:50:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -63,7 +63,7 @@ CREATE TABLE `t_cms_banner` (
   `type` varchar(32) DEFAULT NULL COMMENT '类型',
   `url` varchar(128) DEFAULT NULL COMMENT '点击banner跳转到url',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='文章';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='Banner';
 
 -- ----------------------------
 -- Records of t_cms_banner
@@ -221,7 +221,7 @@ CREATE TABLE `t_sys_cfg` (
 -- ----------------------------
 -- Records of t_sys_cfg
 -- ----------------------------
-INSERT INTO `t_sys_cfg` VALUES ('1', null, null, '-1', '2019-11-04 10:00:00', 'update by 2019-11-04 10:00:00', 'system.app.name', 'web-flash');
+INSERT INTO `t_sys_cfg` VALUES ('1', null, null, '1', '2019-04-15 21:36:07', '应用名称update by 2019-03-27 11:47:04', 'system.app.name', 'web-flash');
 INSERT INTO `t_sys_cfg` VALUES ('2', null, null, '1', '2019-04-15 21:36:17', '系统默认上传文件路径', 'system.file.upload.path', '/data/web-flash/runtime/upload');
 INSERT INTO `t_sys_cfg` VALUES ('3', null, null, '1', '2019-04-15 21:36:17', '腾讯sms接口appid', 'api.tencent.sms.appid', '1400219425');
 INSERT INTO `t_sys_cfg` VALUES ('4', null, null, '1', '2019-04-15 21:36:17', '腾讯sms接口appkey', 'api.tencent.sms.appkey', '5f71ed5325f3b292946530a1773e997a');
@@ -349,15 +349,13 @@ CREATE TABLE `t_sys_login_log` (
   `succeed` varchar(255) DEFAULT NULL,
   `userid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8 COMMENT='登录日志';
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COMMENT='登录日志';
 
 -- ----------------------------
 -- Records of t_sys_login_log
 -- ----------------------------
 INSERT INTO `t_sys_login_log` VALUES ('71', '2019-05-10 13:17:43', '127.0.0.1', '登录日志', null, '成功', '1');
 INSERT INTO `t_sys_login_log` VALUES ('72', '2019-05-12 13:36:56', '127.0.0.1', '登录日志', null, '成功', '1');
-INSERT INTO `t_sys_login_log` VALUES ('73', '2019-11-03 11:11:09', '127.0.0.1', '登录日志', null, '成功', '1');
-INSERT INTO `t_sys_login_log` VALUES ('74', '2019-11-03 14:10:54', '127.0.0.1', '登录日志', null, '成功', '1');
 
 -- ----------------------------
 -- Table structure for `t_sys_menu`
@@ -370,7 +368,7 @@ CREATE TABLE `t_sys_menu` (
   `modify_by` bigint(20) DEFAULT NULL COMMENT '最后更新人',
   `modify_time` datetime DEFAULT NULL COMMENT '最后更新时间',
   `code` varchar(32) NOT NULL COMMENT '编号',
-  `component` varchar(64) DEFAULT NULL COMMENT '組件配置',
+  `component` varchar(64) DEFAULT NULL COMMENT '页面组件',
   `hidden` tinyint(4) DEFAULT NULL COMMENT '是否隐藏',
   `icon` varchar(32) DEFAULT NULL COMMENT '图标',
   `ismenu` int(11) NOT NULL COMMENT '是否是菜单1:菜单,0:按钮',
@@ -382,7 +380,7 @@ CREATE TABLE `t_sys_menu` (
   `pcodes` varchar(128) DEFAULT NULL COMMENT '递归父级菜单编号',
   `status` int(11) NOT NULL COMMENT '状态1:启用,0:禁用',
   `tips` varchar(32) DEFAULT NULL COMMENT '鼠标悬停提示信息',
-  `url` varchar(32) DEFAULT NULL COMMENT '链接',
+  `url` varchar(32) DEFAULT NULL COMMENT '链接标识',
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_s37unj3gh67ujhk83lqva8i1t` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8 COMMENT='菜单';
@@ -480,7 +478,7 @@ CREATE TABLE `t_sys_notice` (
 -- ----------------------------
 -- Records of t_sys_notice
 -- ----------------------------
-INSERT INTO `t_sys_notice` VALUES ('1', '1', '2017-01-11 08:53:20', '1', '2019-01-08 23:30:58', '欢迎使用web-flash后台管理系统', '世界', '10');
+INSERT INTO `t_sys_notice` VALUES ('1', '1', '2017-01-11 08:53:20', '1', '2019-01-08 23:30:58', '欢迎使用web-flash后台管理系统', '欢迎光临', '10');
 
 -- ----------------------------
 -- Table structure for `t_sys_operation_log`
@@ -656,7 +654,7 @@ CREATE TABLE `t_sys_task` (
 -- ----------------------------
 -- Records of t_sys_task
 -- ----------------------------
-INSERT INTO `t_sys_task` VALUES ('1', '1', '2018-12-28 09:54:00', '-1', '2019-11-04 10:00:00', '0', '0 0/30 * * * ?', '{\n\"appname\": \"web-flash\",\n\"version\":1\n}\n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            ', '0', '2019-11-04 10:00:00', '执行成功', 'cn.enilu.flash.service.task.job.HelloJob', 'default', '测试任务', '测试任务,每30分钟执行一次');
+INSERT INTO `t_sys_task` VALUES ('1', '1', '2018-12-28 09:54:00', '-1', '2019-03-27 11:47:11', '0', '0 0/30 * * * ?', '{\n\"appname\": \"web-flash\",\n\"version\":1\n}\n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            ', '0', '2019-03-27 11:47:00', '执行成功', 'cn.enilu.flash.service.task.job.HelloJob', 'default', '测试任务', '测试任务,每30分钟执行一次');
 
 -- ----------------------------
 -- Table structure for `t_sys_task_log`
@@ -670,31 +668,11 @@ CREATE TABLE `t_sys_task_log` (
   `job_exception` varchar(500) DEFAULT NULL COMMENT '抛出异常',
   `name` varchar(50) DEFAULT NULL COMMENT '任务名',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='定时任务日志';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='定时任务日志';
 
 -- ----------------------------
 -- Records of t_sys_task_log
 -- ----------------------------
-INSERT INTO `t_sys_task_log` VALUES ('1', '2019-11-03 11:30:00', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('2', '2019-11-03 12:00:00', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('3', '2019-11-03 12:30:00', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('4', '2019-11-03 13:00:00', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('5', '2019-11-03 14:10:42', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('6', '2019-11-03 14:30:00', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('7', '2019-11-03 15:00:00', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('8', '2019-11-03 23:37:57', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('9', '2019-11-04 00:00:00', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('10', '2019-11-04 00:30:00', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('11', '2019-11-04 01:00:00', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('12', '2019-11-04 01:30:00', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('13', '2019-11-04 02:00:00', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('14', '2019-11-04 02:30:00', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('15', '2019-11-04 03:00:00', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('16', '2019-11-04 03:30:00', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('17', '2019-11-04 08:26:16', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('18', '2019-11-04 08:30:00', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('19', '2019-11-04 09:42:03', '1', '1', null, '测试任务');
-INSERT INTO `t_sys_task_log` VALUES ('20', '2019-11-04 10:00:00', '1', '1', null, '测试任务');
 
 -- ----------------------------
 -- Table structure for `t_sys_user`

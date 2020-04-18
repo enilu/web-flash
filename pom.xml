@@ -51,7 +51,7 @@
         <commons-lang3.version>3.6</commons-lang3.version>
         <kaptcha.version>2.3.2</kaptcha.version>
         <github.kaptcha.version>1.0.0</github.kaptcha.version>
-        <lombok.version>1.16.20</lombok.version>
+        <lombok.version>1.18.6</lombok.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -74,8 +74,6 @@
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
                 <version>${spring.boot.version}</version>
             </dependency>
-
-
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
@@ -315,6 +313,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>

@@ -4,7 +4,7 @@
 启动flash-api后访问http://localhost:8082/druid
 ![monitor](./img/monitor.jpg)
 
-耕细粒度的监控配置可以在application.properties中配置
+更细粒度的监控配置可以在application.properties中配置
 ```properties
 
 ###监控配置 begin###

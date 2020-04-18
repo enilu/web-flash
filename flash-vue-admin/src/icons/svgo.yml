@@ -1,5 +1,5 @@
 # replace default config
-
+# 基于svgo对svg文件进行压缩：https://panjiachen.github.io/vue-element-admin-site/zh/feature/script/svgo.html
 # multipass: true
 # full: true
 

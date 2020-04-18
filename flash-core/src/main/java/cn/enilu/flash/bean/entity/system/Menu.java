@@ -32,7 +32,10 @@ public class Menu  extends BaseEntity {
     private String name;
     @Column(columnDefinition = "VARCHAR(32) COMMENT '图标'")
     private String icon;
-    @Column(columnDefinition = "VARCHAR(32) COMMENT '链接'")
+    /**
+     * 如果当前配置为非菜单（按钮）也需要配置链接，v-permission使用该配置，且不能与其他url重复
+     */
+    @Column(columnDefinition = "VARCHAR(32) COMMENT '链接标识'")
     private String url;
     @Column(columnDefinition = "INT COMMENT '顺序'",nullable = false)
     private Integer num;
@@ -46,7 +49,7 @@ public class Menu  extends BaseEntity {
     private Integer status;
     @Column(columnDefinition = "INT  COMMENT '是否默认打开1:是,0:否'")
     private Integer isopen;
-    @Column(columnDefinition = "VARCHAR(64) COMMENT '組件配置'")
+    @Column(columnDefinition = "VARCHAR(64) COMMENT '页面组件'")
     private String component;
     @Column(columnDefinition = "tinyint COMMENT '是否隐藏'")
     private Boolean hidden=false;

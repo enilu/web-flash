@@ -64,11 +64,30 @@ public class ShiroConfig {
          */
         Map<String, String> filterRuleMap = new LinkedHashMap<String,String>();
         // 所有请求通过我们自己的JWT Filter
-        filterRuleMap.put("/**", "jwt");
+        //swagger资源不拦截
+        filterRuleMap.put("/swagger-ui.html","anon");
+        filterRuleMap.put("/v2/api-docs/**", "anon");
+        filterRuleMap.put("/webjars/**", "anon");
+        filterRuleMap.put("/swagger-resources","anon");
+        filterRuleMap.put("/images/**","anon");
+        filterRuleMap.put("/configuration/security","anon");
+        filterRuleMap.put("/configuration/ui","anon");
+
+        filterRuleMap.put("/file/download","anon");
+        filterRuleMap.put("/file/getImgStream","anon");
+        filterRuleMap.put("/file/getImgBase64","anon");
+
+
+        //druid监控地址不拦截
+        filterRuleMap.put("/druid/**","anon");
+        //登录登出不拦截
+        filterRuleMap.put("/account/login","anon");
         filterRuleMap.put("/logout", "logout");
-        filterRuleMap.put("/offcialsite","anon");
+        //H5前端不拦截
+        filterRuleMap.put("/offcialsite/**","anon");
         // 访问401和404页面不通过我们的Filter
         filterRuleMap.put("/401", "anon");
+        filterRuleMap.put("/**", "jwt");
         factoryBean.setFilterChainDefinitionMap(filterRuleMap);
         return factoryBean;
     }

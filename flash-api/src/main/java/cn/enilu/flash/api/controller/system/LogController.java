@@ -11,6 +11,7 @@ import cn.enilu.flash.service.system.OperationLogService;
 import cn.enilu.flash.utils.BeanUtil;
 import cn.enilu.flash.utils.DateUtil;
 import cn.enilu.flash.utils.HttpUtil;
+import cn.enilu.flash.utils.StringUtil;
 import cn.enilu.flash.utils.factory.Page;
 import cn.enilu.flash.warpper.LogWarpper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -42,8 +43,12 @@ public class LogController extends BaseController {
                        @RequestParam(required = false) String logName,
                        @RequestParam(required = false) Integer logType) {
         Page<OperationLog> page = new PageFactory<OperationLog>().defaultPage();
-        page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parseDate(beginTime));
-        page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parseDate(endTime));
+        if(StringUtil.isNotEmpty(beginTime)) {
+            page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parseDate(beginTime));
+        }
+        if(StringUtil.isNotEmpty(endTime)) {
+            page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parseDate(endTime));
+        }
         page.addFilter( "logname", SearchFilter.Operator.LIKE, logName);
         if (logType != null) {
             page.addFilter(SearchFilter.build("logtype", SearchFilter.Operator.EQ, BizLogType.valueOf(logType)));

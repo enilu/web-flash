@@ -5,6 +5,7 @@
 - 启动成功后访问http://localhost:8082/swagger-ui.html
 ![api](../img/flash-api.jpg)
 ## 启动flash-vue-admin
+- 本项目使用Node.js，而Node.js采用gyp作为项目生成工具，所以也需要安装python，请保证妥善安装了Node.js和Python
 - 进入flash-vue-admin目录
     - 命令行窗口运行 npm install --registry=https://registry.npm.taobao.org
     - 运行  npm run dev

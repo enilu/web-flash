@@ -9,16 +9,14 @@ import javax.annotation.Resource;
 import java.io.Serializable;
 
 /**
- * EhcacheDao
+ * Ehcache缓存实现类<br>
+ *     请不要直接使用该类，而是使用其接口CacheDao，以方便实际应用中往其他缓存服务切换（比如redis,ssdb等)
  *
  * @author enilu
  * @version 2018/9/12 0012
  */
 @Component
 public class EhcacheDao implements CacheDao {
-    //缓存常量，永不过期
-    public static  final String CONSTANT = "CONSTANT";
-    public static  final String SESSION = "SESSION";
     @Resource
     private CacheManager cacheManager;
 

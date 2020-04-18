@@ -5,6 +5,7 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/enilu/web-flash/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/enilu/web-flash.svg)](https://github.com/enilu/web-flash/releases)
 [![donate](https://img.shields.io/badge/%24-donate-ff69b4.svg)](./docs/donate.md)
+[![Gitee stars](https://gitee.com/enilu/web-flash/badge/star.svg?theme=social)](https://gitee.com/enilu/web-flash)
 [![GitHub stars](https://img.shields.io/github/stars/enilu/web-flash.svg?style=social&label=Stars)](https://github.com/enilu/web-flash)
 [![Join the chat at https://gitter.im/web-flash/community](https://badges.gitter.im/web-flash/community.svg)](https://gitter.im/web-flash/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -75,12 +76,13 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 - 国内加速版：[http://enilu.gitee.io/web-flash](http://enilu.gitee.io/web-flash)
 
 ## 交流
-- Bugs: [Issues](https://github.com/enilu/web-flash/issues/new)
-- QQ: 欢迎加入qq交流群 752844606
-- 微信:myenilu
+- 关注公众号：嗨客帝国，点击对应的项目菜单进群交流。
+
+![公众号二维码](docs/img/haike.jpg)
+
+- [问答社区](http://enilu.gitee.io/web-flash/other/xiaomiquan.html)
+
 - Gitter: [Gitter channel](https://gitter.im/web-flash/community)
 
 
-也欢迎你在github给该项目点个赞：[https://github.com/enilu/web-flash](https://github.com/enilu/web-flash)
-
-[Change Log](CHANGELOG.md)
+[Change Log](http://enilu.gitee.io/web-flash/other/changeLog.html)

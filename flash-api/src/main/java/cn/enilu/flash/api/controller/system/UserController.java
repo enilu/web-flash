@@ -43,22 +43,20 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.USER})
     public Object list(@RequestParam(required = false) String account,
-                       @RequestParam(required = false) String name){
+                       @RequestParam(required = false) String name,
+                       @RequestParam(required = false) String idDept){
         Page page = new PageFactory().defaultPage();
-        if(StringUtil.isNotEmpty(name)){
-            page.addFilter(SearchFilter.build("name", SearchFilter.Operator.LIKE, name));
-        }
-        if(StringUtil.isNotEmpty(account)){
-            page.addFilter(SearchFilter.build("account", SearchFilter.Operator.LIKE, account));
-        }
-        page.addFilter(SearchFilter.build("status",SearchFilter.Operator.GT,0));
+        page.addFilter( "name", SearchFilter.Operator.LIKE, name);
+        page.addFilter( "account", SearchFilter.Operator.LIKE, account);
+
+        page.addFilter( "status",SearchFilter.Operator.GT,0);
         page = userService.queryPage(page);
         List list = (List) new UserWarpper(BeanUtil.objectsToMaps(page.getRecords())).warp();
         page.setRecords(list);
         return Rets.success(page);
     }
     @RequestMapping(method = RequestMethod.POST)
-    @BussinessLog(value = "编辑管理员", key = "name", dict = UserDict.class)
+    @BussinessLog(value = "编辑账号", key = "name", dict = UserDict.class)
     @RequiresPermissions(value = {Permission.USER_EDIT})
     public Object save( @Valid UserDto user,BindingResult result){
         if(user.getId()==null) {
@@ -79,7 +77,7 @@ public class UserController extends BaseController {
         return Rets.success();
     }
 
-    @BussinessLog(value = "删除管理员", key = "userId", dict = UserDict.class)
+    @BussinessLog(value = "删除账号", key = "userId", dict = UserDict.class)
     @RequestMapping(method = RequestMethod.DELETE)
     @RequiresPermissions(value = {Permission.USER_DEL})
     public Object remove(@RequestParam Long userId){
@@ -94,7 +92,7 @@ public class UserController extends BaseController {
         userService.update(user);
         return Rets.success();
     }
-    @BussinessLog(value="设置用户角色",key="userId",dict=UserDict.class)
+    @BussinessLog(value="设置账号角色",key="userId",dict=UserDict.class)
     @RequestMapping(value="/setRole",method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.USER_EDIT})
     public Object setRole(@RequestParam("userId") Long userId, @RequestParam("roleIds") String roleIds) {
@@ -102,11 +100,23 @@ public class UserController extends BaseController {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         //不能修改超级管理员
-        if (userId.equals(Const.ADMIN_ID)) {
+        if (userId.intValue() == Const.ADMIN_ID.intValue()) {
             throw new ApplicationException(BizExceptionEnum.CANT_CHANGE_ADMIN);
         }
         User user = userService.get(userId);
         user.setRoleid(roleIds);
+        userService.update(user);
+        return Rets.success();
+    }
+    @BussinessLog(value = "冻结/解冻账号", key = "userId", dict = UserDict.class)
+    @RequestMapping(value="changeStatus",method = RequestMethod.GET)
+    @RequiresPermissions(value = {Permission.USER_EDIT})
+    public Object changeStatus(@RequestParam Long userId){
+        if (userId==null) {
+            throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
+        }
+        User user = userService.get(userId);
+        user.setStatus(user.getStatus().intValue() == ManagerStatus.OK.getCode()?ManagerStatus.FREEZED.getCode():ManagerStatus.OK.getCode());
         userService.update(user);
         return Rets.success();
     }

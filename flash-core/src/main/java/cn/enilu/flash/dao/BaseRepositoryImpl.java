@@ -1,11 +1,17 @@
 package cn.enilu.flash.dao;
 
+import cn.enilu.flash.utils.Lists;
+import org.hibernate.query.internal.NativeQueryImpl;
+import org.hibernate.transform.Transformers;
+import org.nutz.mapl.Mapl;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 基础dao实现类
@@ -27,19 +33,52 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
         this.klass = (Class<T>) entityInformation.getJavaType();
     }
 
+
+
+
     @Override
-    public List<Object[]> queryBySql(String sql) {
-        return entityManager.createNativeQuery(sql).getResultList();
+    public List<?> queryBySql(String sql, Class<?> klass) {
+        List<Map> list = queryBySql(sql);
+        if(list.isEmpty()){
+            return null;
+        }
+        List result = Lists.newArrayList();
+        for(Map map :list){
+                try {
+                    Object bean = Mapl.maplistToObj(map,klass);
+                    result.add(bean);
+                }catch (Exception e){
+                }
+        }
+        return result;
+    }
+    @Override
+    public List<Map> queryBySql(String sql) {
+        Query query = entityManager.createNativeQuery(sql);
+        query.unwrap(NativeQueryImpl.class)
+                .setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+        List list = query.getResultList();
+        return list;
     }
 
     @Override
-    public Object getBySql(String sql) {
-        List list = entityManager.createNativeQuery(sql).getResultList();
+    public Map getBySql(String sql) {
+        List<Map> list = queryBySql(sql);
         if(list.isEmpty()){
             return null;
         }
         return list.get(0);
     }
+
+    @Override
+    public Object getBySql(String sql, Class<?> klass) {
+       List list = queryBySql(sql,klass);
+        if(list.isEmpty()){
+            return null;
+        }
+        return list.get(0);
+    }
+
     @Override
     public T getOne(ID id){
         return findById(id).get();

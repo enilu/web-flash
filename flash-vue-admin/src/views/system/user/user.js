@@ -1,4 +1,4 @@
-import { deleteUser, getList, saveUser, remove, setRole } from '@/api/system/user'
+import { deleteUser, getList, saveUser, remove, setRole, changeStatus } from '@/api/system/user'
 import { list as deptList } from '@/api/system/dept'
 import { parseTime } from '@/utils/index'
 import { roleTreeListByIdUser } from '@/api/system/role'
@@ -153,6 +153,15 @@ export default {
       this.formTitle = '添加用户'
       this.formVisible = true
       this.isAdd = true
+    },
+    changeUserStatus(record){
+      changeStatus(record.id).then(response => {
+        this.$message({
+          message: '提交成功',
+          type: 'success'
+        })
+        this.fetchData()
+      })
     },
     validPasswd() {
       if (!this.isAdd) {
