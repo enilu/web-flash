@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -44,7 +43,7 @@ public class FileService extends BaseService<FileInfo,Long,FileInfoRepository> {
         String realFileName =   uuid +"."+ multipartFile.getOriginalFilename().split("\\.")[1];
         try {
 
-            File file = new File(configCache.get(ConfigKeyEnum.SYSTEM_FILE_UPLOAD_PATH.getValue()) + File.separator+realFileName);
+            File file = new File(configCache.get(ConfigKeyEnum.SYSTEM_FILE_UPLOAD_PATH) + File.separator+realFileName);
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdirs();
             }
@@ -65,7 +64,7 @@ public class FileService extends BaseService<FileInfo,Long,FileInfoRepository> {
      */
     public FileInfo createExcel(String template, String fileName, Map<String, Object> data){
         FileOutputStream outputStream = null;
-        File file = new File(configCache.get(ConfigKeyEnum.SYSTEM_FILE_UPLOAD_PATH.getValue()) + File.separator+UUID.randomUUID().toString()+".xlsx");
+        File file = new File(configCache.get(ConfigKeyEnum.SYSTEM_FILE_UPLOAD_PATH) + File.separator+UUID.randomUUID().toString()+".xlsx");
         try {
 
             // 定义输出类型
@@ -108,11 +107,10 @@ public class FileService extends BaseService<FileInfo,Long,FileInfoRepository> {
     public FileInfo save(String originalFileName,File file){
         try {
             FileInfo fileInfo = new FileInfo();
-            fileInfo.setCreateTime(new Date());
             fileInfo.setCreateBy(JwtUtil.getUserId());
             fileInfo.setOriginalFileName(originalFileName);
             fileInfo.setRealFileName(file.getName());
-            fileInfoRepository.save(fileInfo);
+            insert(fileInfo);
             return fileInfo;
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,7 +122,7 @@ public class FileService extends BaseService<FileInfo,Long,FileInfoRepository> {
     @Cacheable(value = Cache.APPLICATION, key = "'" + CacheKey.FILE_INFO + "'+#id")
     public FileInfo get(Long id){
         FileInfo fileInfo = fileInfoRepository.getOne(id);
-        fileInfo.setAblatePath(configCache.get(ConfigKeyEnum.SYSTEM_FILE_UPLOAD_PATH.getValue()) + File.separator+fileInfo.getRealFileName());
+        fileInfo.setAblatePath(configCache.get(ConfigKeyEnum.SYSTEM_FILE_UPLOAD_PATH) + File.separator+fileInfo.getRealFileName());
         return fileInfo;
     }
 }

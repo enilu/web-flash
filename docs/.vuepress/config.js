@@ -15,9 +15,10 @@ module.exports = {
         editLinks: true,
         editLinkText: '编辑此页面！',
         nav: [
-            {text: '文档', link: '/'},
+            {text: '指南', link: '/base/preface'},
             {text: '功能',
                 items:[
+                    {text: '国际化',link:'/action/i18n'},
                     {text: '导出excel',link:'/feature/exportExcel'},
                     {text: '定时任务',link:'/action/task'},
                     {text: '缓存',link:'/action/cache'},
@@ -29,7 +30,8 @@ module.exports = {
                 items:[
                     {text: '代码生成',link:'/ecosystem/code-generator'},
                     {text: '数据库文档生成',link:'/ecosystem/database-doc-generator'},
-                    {text:'ChangeLog',link:'https://github.com/enilu/web-flash/blob/master/CHANGELOG.md'}
+                    {text:'ChangeLog',link:'/other/changeLog'},
+                    {text:'问答社区',link:'/other/xiaomiquan'}
                 ]
             },
             {text: '捐赠',link:'/donate'},
@@ -41,9 +43,10 @@ module.exports = {
         ],
         sidebar: [
             {
-                title: '基本准备',
+                title: '基础',
                 collapsable: false,
                 children: [
+                    '/base/preface',
                     '/base/jdkAndMaven',
                     '/base/modules'
                 ]
@@ -74,6 +77,7 @@ module.exports = {
                     '/feature/exportExcel',
                     '/feature/messageCenter',
                     '/feature/cms.md'
+
                 ]
             },
            {
@@ -86,14 +90,13 @@ module.exports = {
                     '/action/jpaauditing.md',
                     '/action/validator',
                     '/action/deploy'
-
-
                 ]
             },{
                 title: '其他',
                 collapsable: false,
                 children:[
-                    '/other/faq'
+                    '/other/faq',
+                    '/other/changeLog'
                 ]
             }
         ]

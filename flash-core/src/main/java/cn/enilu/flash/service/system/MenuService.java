@@ -140,7 +140,9 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
 
             if (menuNode.getParentId().intValue() != 0) {
                 RouterMenu parentNode = map.get(menuNode.getParentId());
-                parentNode.getChildren().add(menuNode);
+                if(parentNode!=null) {
+                    parentNode.getChildren().add(menuNode);
+                }
             } else {
                 result.add(menuNode);
             }

@@ -152,7 +152,7 @@ public class BeanUtil {
                         Object o2Warpper = DictFieldWarpperFactory.createFieldWarpper(o2, fieldWarpperMethodName);
                         str += "字段名称:" + fieldName + ",旧值:" + o1Warpper + ",新值:" + o2Warpper;
                     } else {
-                        str += "字段名称:" + fieldName + ",旧值:" + o1 + ",新值:" + o2;
+                        str += "字段名称:" + field.getName() + ",旧值:" + o1 + ",新值:" + o2;
                     }
                     i++;
                 }

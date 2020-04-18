@@ -1,7 +1,6 @@
 package cn.enilu.flash.cache;
 
 import cn.enilu.flash.bean.core.ShiroUser;
-import cn.enilu.flash.cache.impl.EhcacheDao;
 import cn.enilu.flash.utils.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,27 +12,27 @@ import org.springframework.stereotype.Service;
 public   class TokenCache {
 
     @Autowired
-    private EhcacheDao ehcacheDao;
+    private CacheDao cacheDao;
 
     public   void put(String token, Long idUser) {
-        ehcacheDao.hset(EhcacheDao.SESSION,token, idUser);
+        cacheDao.hset(CacheDao.SESSION,token, idUser);
     }
 
     public   Long get(String token) {
-        return ehcacheDao.hget(EhcacheDao.SESSION,token,Long.class);
+        return cacheDao.hget(CacheDao.SESSION,token,Long.class);
     }
     public Long getIdUser(){
-        return ehcacheDao.hget(EhcacheDao.SESSION, HttpUtil.getToken(),Long.class );
+        return cacheDao.hget(CacheDao.SESSION, HttpUtil.getToken(),Long.class );
     }
 
     public   void remove(String token) {
-        ehcacheDao.hdel(EhcacheDao.SESSION,token+"user");
+        cacheDao.hdel(CacheDao.SESSION,token+"user");
     }
 
     public void setUser(String token, ShiroUser shiroUser){
-        ehcacheDao.hset(EhcacheDao.SESSION,token+"user",shiroUser);
+        cacheDao.hset(CacheDao.SESSION,token+"user",shiroUser);
     }
     public ShiroUser getUser(String token){
-        return ehcacheDao.hget(EhcacheDao.SESSION,token+"user",ShiroUser.class);
+        return cacheDao.hget(CacheDao.SESSION,token+"user",ShiroUser.class);
     }
 }

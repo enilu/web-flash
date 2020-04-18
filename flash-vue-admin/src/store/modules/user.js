@@ -8,6 +8,7 @@ const state = {
   name: '',
   avatar: '',
   permissions:null,
+  roles:[]
 }
 
 const mutations = {
@@ -25,6 +26,9 @@ const mutations = {
   },
   SET_PERMISSIONS:(state,permissions) => {
     state.permissions = permissions
+  },
+  SET_ROLES:(state,roles) => {
+    state.roles = roles
   }
 }
 
@@ -54,11 +58,11 @@ const actions = {
           reject('Verification failed, please Login again.')
         }
         console.log('data',data)
-        const { name, avatar,profile,permissions } = data
-
+        const { name, profile,permissions,roles } = data
         commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
+        commit('SET_AVATAR', profile.avatar)
         commit('SET_PROFILE',profile)
+        commit('SET_ROLES',roles)
         commit('SET_PERMISSIONS',permissions)
         resolve(data)
       }).catch(error => {
@@ -73,6 +77,10 @@ const actions = {
       logout(state.token).then(() => {
         commit('SET_TOKEN', '')
         commit('SET_NAME', '')
+        commit('SET_AVATAR', '')
+        commit('SET_PROFILE',{})
+        commit('SET_ROLES',[])
+        commit('SET_PERMISSIONS',[])
         removeToken()
         resetRouter()
         resolve()
@@ -89,6 +97,11 @@ const actions = {
       removeToken()
       resolve()
     })
+  },
+  updateToken({commit},{token}){
+    console.log('newToken',token)
+    commit('SET_TOKEN', token)
+    setToken(token)
   }
 }
 

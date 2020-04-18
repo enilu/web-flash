@@ -8,6 +8,8 @@
 ```
 - 用户通过浏览器debug看到的api地址是http://localhost:9528/dev-api，但是实际上会被proxy代理到http://localhost:8082
 
+
+
 ## 生产部署
 
 - 运行：npm run build:prod可以构建出生产环境的前端部署文件
@@ -50,4 +52,42 @@ server {
 
 }
 
+```
+
+### api服务打包
+系统默认提供了打包为war以便部署到web容器（例如tomcat）的配置
+flash-api/pom.xml
+```xml
+<!--以war形式运行 配置开始-->
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-war-plugin</artifactId>
+    <configuration>
+        <warName>api</warName>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+    </configuration>
+</plugin>
+<!-- 以war形式运行 配置结束-->
+```
+
+如果你想打包成jar，直接使用jar命令运行该api服务，可以将使用下面配置替换掉上面
+```xml
+<!--以jar包形式单独部署 配置开始-->
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <configuration>
+        <mainClass>cn.enilu.flash.api.ApiApplication</mainClass>
+        <layout>ZIP</layout>
+        <finalName>flash-api</finalName>
+    </configuration>
+    <executions>
+        <execution>
+            <goals>
+                <goal>repackage</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+<!--以jar包形式单独部署 配置结束-->
 ```
