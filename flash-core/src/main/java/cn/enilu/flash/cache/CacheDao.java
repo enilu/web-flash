@@ -3,14 +3,13 @@ package cn.enilu.flash.cache;
 import java.io.Serializable;
 
 /**
- * 缓存接口
+ * CacheDao
  *
  * @author enilu
  * @version 2018/9/12 0012
  */
 public interface CacheDao {
-    String CONSTANT = "CONSTANT";
-    String SESSION = "SESSION";
+
 
     /**
      * 设置hash key值

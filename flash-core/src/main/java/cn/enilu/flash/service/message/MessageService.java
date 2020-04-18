@@ -116,6 +116,7 @@ public class MessageService extends BaseService<Message,Long,MessageRepository> 
         message.setType(0);
         message.setState(sendResult ? 1 : 2);
         message.setReceiver(receiver);
+        message.setCreateTime(new Date());
         message.setContent(content);
         messageRepository.save(message);
 

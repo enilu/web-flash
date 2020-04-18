@@ -8,12 +8,14 @@ import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Rets;
-import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.message.MessagetemplateService;
 import cn.enilu.flash.utils.factory.Page;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
@@ -25,14 +27,8 @@ public class MessagetemplateController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.MSG_TPL})
-    public Object list(@RequestParam(name = "idMessageSender",required = false) Long idMessageSender,
-                       @RequestParam(name = "title",required = false) String title) {
+    public Object list() {
         Page<MessageTemplate> page = new PageFactory<MessageTemplate>().defaultPage();
-//        page.addFilter("idMessageSender",idMessageSender);
-        //也可以通过下面关联查询的方式
-        page.addFilter("messageSender.id",idMessageSender);
-        page.addFilter("title", SearchFilter.Operator.LIKE,title);
-
         page = messagetemplateService.queryPage(page);
         page.setRecords(page.getRecords());
         return Rets.success(page);

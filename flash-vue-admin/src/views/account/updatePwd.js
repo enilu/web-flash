@@ -45,13 +45,6 @@ export default {
               message: '密码修改成功',
               type: 'success'
             })
-            //退出登录，该操作是个异步操作，所以后面跳转到登录页面延迟1s再执行（如果有更好的方法再调整）
-            this.$store.dispatch('user/logout')
-            const self = this
-            setTimeout(function(){
-              self.$router.push(`/login`)
-            },1000)
-
           }).catch((err) => {
           })
         } else {

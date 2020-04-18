@@ -6,6 +6,7 @@ import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.core.log.LogManager;
 import cn.enilu.flash.core.log.LogTaskFactory;
+import cn.enilu.flash.security.JwtUtil;
 import cn.enilu.flash.security.ShiroFactroy;
 import cn.enilu.flash.service.system.UserService;
 import cn.enilu.flash.utils.HttpUtil;
@@ -38,7 +39,6 @@ public class AccountController extends BaseController{
 
     @Autowired
     private UserService userService;
-
     /**
      * 用户登录<br>
      * 1，验证没有注册<br>
@@ -64,8 +64,9 @@ public class AccountController extends BaseController{
                 return Rets.failure("输入的密码错误");
             }
 
-            String token = userService.loginForToken(user);
+            String token = JwtUtil.sign(user);
             Map<String, String> result = new HashMap<>(1);
+            logger.info("token:{}",token);
             result.put("token", token);
             LogManager.me().executeLog(LogTaskFactory.loginLog(user.getId(), HttpUtil.getIp()));
             return Rets.success(result);

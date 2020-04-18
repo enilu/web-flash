@@ -1,7 +1,6 @@
 package cn.enilu.flash.cache.impl;
 
 import cn.enilu.flash.bean.entity.system.Cfg;
-import cn.enilu.flash.bean.enumeration.ConfigKeyEnum;
 import cn.enilu.flash.cache.CacheDao;
 import cn.enilu.flash.cache.ConfigCache;
 import cn.enilu.flash.dao.system.CfgRepository;
@@ -29,7 +28,7 @@ public class ConfigCacheImpl implements ConfigCache {
 
     @Override
     public Object get(String key) {
-        return (String) cacheDao.hget(CacheDao.CONSTANT,key);
+        return (String) cacheDao.hget(EhcacheDao.CONSTANT,key);
     }
 
     @Override
@@ -53,20 +52,15 @@ public class ConfigCacheImpl implements ConfigCache {
         return ret;
     }
 
-    @Override
-    public String get(ConfigKeyEnum configKeyEnum) {
-        return get(configKeyEnum.getValue(),null);
-    }
-
 
     @Override
     public void set(String key, Object val) {
-        cacheDao.hset(CacheDao.CONSTANT,key,val);
+        cacheDao.hset(EhcacheDao.CONSTANT,key,val);
     }
 
     @Override
     public void del(String key, String val) {
-        cacheDao.hdel(CacheDao.CONSTANT,val);
+        cacheDao.hdel(EhcacheDao.CONSTANT,val);
     }
 
     @Override

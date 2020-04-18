@@ -70,12 +70,9 @@ public class ApiRealm extends AuthorizingRealm {
         if (userBean == null) {
             throw new AuthenticationException("User didn't existed!");
         }
-        try {
-            if (!JwtUtil.verify(token, username, userBean.getPassword())) {
-                throw new AuthenticationException("Username or password error");
-            }
-        }catch (Exception e){
-            throw  new AuthenticationException(e.getMessage());
+
+        if (! JwtUtil.verify(token, username, userBean.getPassword())) {
+            throw new AuthenticationException("Username or password error");
         }
 
         return new SimpleAuthenticationInfo(token, token, "my_realm");

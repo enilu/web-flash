@@ -14,5 +14,5 @@
 @Autowired
 private ConfigCache ConfigCache;
 //获取系统文件默认上传目录
-configCache.get(ConfigKeyEnum.SYSTEM_FILE_UPLOAD_PATH);
+configCache.get(ConfigKeyEnum.SYSTEM_FILE_UPLOAD_PATH.getValue());
 ```

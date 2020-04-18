@@ -6,54 +6,34 @@ import cn.enilu.flash.utils.StringUtil;
 import java.util.Map;
 
 /**
- * 查询条件封装类
+ * descript
  *
  * @author ：enilu
  * @date ：Created in 2019/6/30 16:02
  */
 public class SearchFilter {
     public enum Operator {
-        EQ, NE, LIKE, LIKEL, LIKER, GT, LT, GTE, LTE, IN, NOTIN, ISNULL, ISNOTNULL, BETWEEN
+        EQ, LIKE, GT, LT, GTE, LTE,IN,ISNULL,ISNOTNULL
     }
 
-    public enum Join {
-        and, or
-    }
-
-    public Join join = Join.and;
     public String fieldName;
     public Object value;
     public Operator operator;
-
-    public static SearchFilter build(String fieldName, Object value) {
-        return new SearchFilter(fieldName, Operator.EQ, value);
+    public  static SearchFilter build(String fieldName, Operator operator, Object value){
+        return  new SearchFilter(fieldName,operator,value);
     }
-
-
-    public static SearchFilter build(String fieldName, Operator operator, Object value) {
-        return new SearchFilter(fieldName, operator, value);
+    public  static SearchFilter build(String fieldName, Operator operator){
+        return  new SearchFilter(fieldName,operator);
     }
-
-
-    public static SearchFilter build(String fieldName, Object value, Join join) {
-        return new SearchFilter(fieldName, Operator.EQ, value, join);
-
+    public SearchFilter(String fieldName, Operator operator) {
+        this.fieldName = fieldName;
+        this.operator = operator;
     }
-
     public SearchFilter(String fieldName, Operator operator, Object value) {
-        if (!StringUtil.isNullOrEmpty(value)) {
+        if(!StringUtil.isNullOrEmpty(value)) {
             this.fieldName = fieldName;
             this.value = value;
             this.operator = operator;
-        }
-    }
-
-    public SearchFilter(String fieldName, Operator operator, Object value, Join join) {
-        if (!StringUtil.isNullOrEmpty(value)) {
-            this.fieldName = fieldName;
-            this.value = value;
-            this.operator = operator;
-            this.join = join;
         }
     }
 
@@ -67,7 +47,7 @@ public class SearchFilter {
             // 过滤掉空值
             String key = entry.getKey();
             Object value = entry.getValue();
-			/*if (StringUtil.isBlank((String) value)) {
+			/*if (StringUtils.isBlank((String) value)) {
 				continue;
 			}*/
 

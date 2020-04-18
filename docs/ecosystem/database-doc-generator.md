@@ -8,32 +8,31 @@
 
 ```bash
 choose database:
-1:MySQL
-2:Oracle
+1:mysql
+2:oracle
 3:PostgreSQL
-4:SQLServer
 Select the appropriate numbers choose database type
-(Enter 'c' to cancel):
- 1
+(Enter 'c' to cancel): 3
 input database name:
-web-flash
+gunslite
 input host:
 localhost
-input port(default 3306):
-
+input port:
+5432
 input username:
-root
+enilu
 input password:
-root
+123456
 
 ```
-- 输入完成后回车，即可生成数据库文档目录${dbname}-doc,目录中包括markdown文件和word文档：
+- 输入完成后回车，即可生成数据库文档目录${dbname}-doc,目录中文档以markdown文件为载体：
 
 ![doc](./doc/doc.jpg)
 
-- 将markdown生成html：确保安装了gitbook后，进入上述文件目录的命令行窗口运行：gitbook serve
+- 确保安装了gitbook后，进入上述文件目录的命令行窗口运行：gitbook serve
 ```bash
 E:\\database-doc-generator-20181006100721\web-flash-doc>gitbook serve
+openssl config failed: error:02001003:system library:fopen:No such process
 Live reload server started on port: 35729
 Press CTRL+C to quit ...
 
@@ -45,9 +44,9 @@ info: loading plugin "lunr"... OK
 info: loading plugin "sharing"... OK
 info: loading plugin "fontsettings"... OK
 info: loading plugin "theme-default"... OK
-info: found 23 pages
-info: found 2 asset files
-info: >> generation finished with success in 3.0s !
+info: found 15 pages
+info: found 0 asset files
+info: >> generation finished with success in 1.6s !
 
 Starting server ...
 Serving book on http://localhost:4000
@@ -58,5 +57,5 @@ Serving book on http://localhost:4000
 
 ![table](./doc/table.jpg)
 
-- word文档是通过html页面作为模板而生成的，你可以通过调整html模板来调整word模板的生成样式。
+- 另外还可以生成word文档哦;word文档是通过html页面作为模板而生成的，你可以通过调整html模板来调整word模板的生成样式。
 ![word](./doc/word.jpg)

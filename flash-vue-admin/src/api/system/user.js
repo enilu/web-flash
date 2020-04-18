@@ -33,13 +33,3 @@ export function setRole(params) {
     params
   })
 }
-
-export function changeStatus(userId) {
-  return request({
-    url: '/user/changeStatus',
-    method: 'get',
-    params:{
-      userId
-    }
-  })
-}
