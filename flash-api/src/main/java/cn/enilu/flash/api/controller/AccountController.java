@@ -52,16 +52,15 @@ public class AccountController extends BaseController{
     public Object login(@RequestParam("username") String userName,
                         @RequestParam("password") String password){
         try {
-            logger.info("用户登录:" + userName + ",密码:" + password);
             //1,
             User user = userService.findByAccount(userName);
             if (user == null) {
-                return Rets.failure("该用户不存在");
+                return Rets.failure("用户名或密码错误");
             }
             String passwdMd5 = MD5.md5(password, user.getSalt());
             //2,
             if (!user.getPassword().equals(passwdMd5)) {
-                return Rets.failure("输入的密码错误");
+                return Rets.failure("用户名或密码错误");
             }
 
             String token = userService.loginForToken(user);
