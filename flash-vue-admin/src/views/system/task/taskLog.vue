@@ -26,7 +26,7 @@
       </el-table-column>
       <el-table-column label="异常信息">
         <template slot-scope="scope">
-          {{scope.row.jobExecption}}
+          {{scope.row.jobException}}
         </template>
       </el-table-column>
 
