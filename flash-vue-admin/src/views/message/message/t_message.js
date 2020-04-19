@@ -40,6 +40,7 @@ export default {
   },
   methods: {
     init() {
+      const type =  this.$route.query.type
       this.fetchData()
     },
     fetchData() {
