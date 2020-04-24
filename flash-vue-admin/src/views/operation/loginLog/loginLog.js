@@ -3,13 +3,9 @@ import { clear, getList } from '@/api/system/loginLog'
 export default {
   data() {
     return {
-      form: {
-        logname: ''
-      },
       listQuery: {
         page: 1,
         limit: 20,
-        logname: undefined,
         beginTime: undefined,
         endTime: undefined
       },
@@ -35,12 +31,13 @@ export default {
       })
     },
     search() {
+      this.listQuery.page = 1
       this.fetchData()
     },
     reset() {
-      this.listQuery.logname = ''
       this.listQuery.beginTime = ''
       this.listQuery.endTime = ''
+      this.listQuery.page = 1
       this.fetchData()
     },
     handleFilter() {

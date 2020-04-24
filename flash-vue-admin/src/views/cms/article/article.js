@@ -98,6 +98,7 @@ export default {
       })
     },
     search() {
+      this.listQuery.page = 1
       this.fetchData()
     },
     reset() {
@@ -106,6 +107,7 @@ export default {
       this.listQuery.startDate = undefined
       this.listQuery.endDate = undefined
       this.rangeDate = ''
+      this.listQuery.page = 1
       this.fetchData()
     },
     handleFilter() {

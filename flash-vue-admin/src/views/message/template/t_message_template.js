@@ -58,12 +58,14 @@ export default {
       })
     },
     search() {
+      this.listQuery.page = 1
       this.fetchData()
     },
     reset() {
       this.listQuery.id = ''
       this.listQuery.idMessageSender = ''
       this.listQuery.title = ''
+      this.listQuery.page = 1
       this.fetchData()
     },
     handleFilter() {

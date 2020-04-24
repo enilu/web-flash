@@ -10,9 +10,6 @@
           <el-date-picker type="date" size="mini" placeholder="结束日期" v-model="listQuery.endTime"  value-format="yyyy-MM-dd"
                           style="width: 100%;"></el-date-picker>
         </el-col>
-        <el-col :span="4">
-          <el-input v-model="listQuery.logname" size="mini" placeholder="日志名称"></el-input>
-        </el-col>
 
         <el-col :span="8">
           <el-button type="success" size="mini" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
@@ -77,6 +74,7 @@
       :page-sizes="[10, 20, 50, 100,500]"
       :page-size="listQuery.limit"
       :total="total"
+      :current-page.sync="listQuery.page"
       @size-change="changeSize"
       @current-change="fetchPage"
       @prev-click="fetchPrev"
