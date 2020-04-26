@@ -14,7 +14,7 @@ export function traverseRoutes(menus){
   let routes = menus.map( menu =>{
     if(menu.component){
       let name = menu.component;
-	  menu.component = (resolve)=> require([`@/${name}`],resolve)
+	    menu.component = (resolve)=> require([`@/${name}`],resolve)
     }
 
     if(menu.children && menu.children.length){
