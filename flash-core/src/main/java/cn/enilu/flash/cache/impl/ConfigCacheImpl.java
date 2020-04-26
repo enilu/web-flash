@@ -2,6 +2,7 @@ package cn.enilu.flash.cache.impl;
 
 import cn.enilu.flash.bean.entity.system.Cfg;
 import cn.enilu.flash.bean.enumeration.ConfigKeyEnum;
+import cn.enilu.flash.cache.BaseCache;
 import cn.enilu.flash.cache.CacheDao;
 import cn.enilu.flash.cache.ConfigCache;
 import cn.enilu.flash.dao.system.CfgRepository;
@@ -20,7 +21,7 @@ import java.util.List;
  * @version 2018/12/20 0020
  */
 @Service
-public class ConfigCacheImpl implements ConfigCache {
+public class ConfigCacheImpl extends BaseCache implements ConfigCache {
     private static  final Logger logger = LoggerFactory.getLogger(ConfigCacheImpl.class);
     @Autowired
     private CfgRepository cfgRepository;
@@ -29,7 +30,7 @@ public class ConfigCacheImpl implements ConfigCache {
 
     @Override
     public Object get(String key) {
-        return (String) cacheDao.hget(CacheDao.CONSTANT,key);
+        return  cacheDao.hget(CacheDao.CONSTANT,key);
     }
 
     @Override
@@ -71,7 +72,7 @@ public class ConfigCacheImpl implements ConfigCache {
 
     @Override
     public void cache() {
-        logger.info("reset config cache");
+        super.cache();
         List<Cfg> list = cfgRepository.findAll();
         if (list != null && !list.isEmpty()) {
             for (Cfg cfg : list) {
