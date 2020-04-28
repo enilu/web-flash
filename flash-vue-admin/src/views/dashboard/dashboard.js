@@ -17,7 +17,7 @@ import 'echarts/lib/component/visualMap'
 import 'echarts/lib/component/dataset'
 import 'echarts/map/js/world'
 import 'zrender/lib/svg/svg'
-
+import elementResizeDetectorMaker from "element-resize-detector"
 export default {
 
   name: 'dashboard',
@@ -173,6 +173,18 @@ export default {
   },
   created() {
     this.fetchData()
+  },
+  mounted(){
+    //绑定echart图表跟随窗口大小自动缩放
+    let that = this
+    let erd = elementResizeDetectorMaker()
+    erd.listenTo(document.getElementById("dashboard"),(element)=>{
+      that.$nextTick(()=>{
+        that.$refs.lineChart.resize()
+        that.$refs.barChart.resize()
+        that.$refs.pieChart.resize()
+      })
+    })
   },
   methods: {
     fetchData() {

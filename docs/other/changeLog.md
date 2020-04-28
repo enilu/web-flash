@@ -1,6 +1,9 @@
 # change log
 
-## latest
+
+## 1.5
+[gitee](https://gitee.com/enilu/web-flash/releases/1.5)
+[github](https://github.com/enilu/web-flash/releases/tag/1.5)
 ### Issues 
 - Issue 压缩svg图标文件
 - Issue 完善权限管理
@@ -12,11 +15,13 @@
 - Issue BaseRepository封装根据sql查询数据返回Map或List方法
 - Issue BaseRepository封装根据sql查询返回指定对象（列表）方法
 - Change BaseRepository 去掉根据sql查询返回Object数组的方法 
+- Issue echarts随着窗口缩放自适应
 
 ### Fixes
 - Fix 业务日志中如果获取不到字段值对应的中文名称则返回字段名本身，代替之前的null
 - Fix 超级管理员判断错误
 - Fix SearchFilter构建查询条件中的问题 bug
+- Fix 更新缓存的时候连带更新常量工具类中使用的本地(TimeCacheMap)缓存
 
 ## 1.4
 [gitee](https://gitee.com/enilu/web-flash/releases/1.4)

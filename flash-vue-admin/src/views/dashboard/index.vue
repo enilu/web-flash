@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard-container">
+  <div class="dashboard-container" id="dashboard">
     <div class="dashboard-text">欢迎光临:{{name}} </div>
 
     <el-row :gutter="20">
@@ -54,7 +54,7 @@
     <el-row>
       <el-col :span="24">
         <div class="chart section">
-        <v-chart :options="lineData"/>
+        <v-chart :options="lineData" ref="lineChart"/>
         </div>
       </el-col>
     </el-row>
@@ -87,13 +87,13 @@
       </el-col>
 
       <el-col :span="12">
-        <v-chart :options="barData" class="chart section"/>
+        <v-chart :options="barData" class="chart section" ref="barChart"/>
       </el-col>
     </el-row>
 
     <el-row :gutter="20" >
       <el-col :span="12">
-        <v-chart :options="pieData" class="chart section"/>
+        <v-chart :options="pieData" class="chart section" ref="pieChart"/>
       </el-col>
       <el-col :span="12">
         <el-table :data="tableData" class="section">
