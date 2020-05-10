@@ -37,18 +37,22 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
 
 
     @Override
-    public List<?> queryBySql(String sql, Class<?> klass) {
+    public List<T> queryBySql(String sql, Class<T> klass) {
+         return (List<T>) queryObjBySql(sql,klass);
+    }
+    @Override
+    public List<?> queryObjBySql(String sql, Class<?> klass) {
         List<Map> list = queryBySql(sql);
         if(list.isEmpty()){
             return null;
         }
         List result = Lists.newArrayList();
         for(Map map :list){
-                try {
-                    Object bean = Mapl.maplistToObj(map,klass);
-                    result.add(bean);
-                }catch (Exception e){
-                }
+            try {
+                Object bean = Mapl.maplistToObj(map,klass);
+                result.add(bean);
+            }catch (Exception e){
+            }
         }
         return result;
     }
@@ -62,7 +66,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
     }
 
     @Override
-    public Map getBySql(String sql) {
+    public Map getMapBySql(String sql) {
         List<Map> list = queryBySql(sql);
         if(list.isEmpty()){
             return null;
@@ -71,8 +75,8 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
     }
 
     @Override
-    public Object getBySql(String sql, Class<?> klass) {
-       List list = queryBySql(sql,klass);
+    public T getBySql(String sql) {
+       List<T> list = queryBySql(sql,klass);
         if(list.isEmpty()){
             return null;
         }

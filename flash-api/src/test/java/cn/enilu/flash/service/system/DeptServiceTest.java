@@ -14,10 +14,12 @@ import java.util.List;
  * @author enilu
  */
 public class DeptServiceTest extends BaseApplicationStartTest {
+
+
     @Autowired
     private DeptService deptService;
     @Test
-    public void tree() throws Exception {
+    public void tree()     {
         List<ZTreeNode> list = deptService.tree();
         for(ZTreeNode treeNode:list) {
             System.out.println(Json.toJson(treeNode));

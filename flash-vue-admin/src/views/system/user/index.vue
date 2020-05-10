@@ -56,7 +56,7 @@
       </el-table-column>
       <el-table-column label="部门">
         <template slot-scope="scope">
-          {{scope.row.deptName}}
+          {{scope.row.dept.simplename}}
         </template>
       </el-table-column>
       <el-table-column label="邮箱">

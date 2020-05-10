@@ -25,7 +25,7 @@ public class DeptService extends BaseService<Dept,Long,DeptRepository> {
 
     public List<ZTreeNode> tree() {
         String sql = "SELECT id, pid AS pId, simplename AS NAME, ( CASE WHEN (pId = 0 OR pId IS NULL) THEN 'true' ELSE 'false' END ) AS open FROM t_sys_dept";
-        List nodes = deptRepository.queryBySql(sql,ZTreeNode.class);
+        List nodes = deptRepository.queryObjBySql(sql,ZTreeNode.class);
         return nodes;
     }
 

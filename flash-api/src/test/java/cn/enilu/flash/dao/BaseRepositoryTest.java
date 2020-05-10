@@ -1,10 +1,14 @@
 package cn.enilu.flash.dao;
 
 import cn.enilu.flash.BaseApplicationStartTest;
-import cn.enilu.flash.bean.entity.system.User;
-import cn.enilu.flash.dao.system.UserRepository;
-import cn.enilu.flash.vo.UserVo;
+import cn.enilu.flash.bean.entity.test.Boy;
+import cn.enilu.flash.bean.vo.node.ZTreeNode;
+import cn.enilu.flash.dao.test.BoyRepository;
+import cn.enilu.flash.utils.Lists;
+import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import org.nutz.json.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,43 +16,96 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 测试BaseRepository
+ *
  * @author ：enilu
  * @date ：Created in 2020/3/13 0:01
  */
-public class BaseRepositoryTest  extends BaseApplicationStartTest {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class BaseRepositoryTest extends BaseApplicationStartTest {
+
+    /**
+     * 使用BoyRepository 来测试BaseRepository的所有接口
+     */
     @Autowired
-    private UserRepository userRepository;
+    private BoyRepository boyRepository;
 
     @Test
-    public void queryListMapBySql(){
-        String sql = "select sex,count(1) as count from t_sys_user group by sex";
-        List<Map> list = userRepository.queryBySql(sql);
+    public void test_00_prepareData() {
+        List<Boy> boyList = Lists.newArrayList();
+        for (int i = 0; i < 10; i++) {
+            Boy boy = new Boy();
+            boy.setBirthday("199" + i + "-02-10");
+            boy.setHasGirFriend(i % 3 == 0);
+            boy.setAge(30 - i);
+            boy.setName("张三" + i);
+            boyList.add(boy);
+        }
+        boyRepository.saveAll(boyList);
+    }
+
+    @Test
+    public void test_01_queryBySql() {
+        List<Map> list = boyRepository.queryBySql("select name,age from t_test_boy where age>25");
         System.out.println(Json.toJson(list));
+        Assert.assertTrue(list.get(0) instanceof Map);
+
     }
+
     @Test
-    public void getMapBySql(){
-        String sql = "select sex,count(1) as count from t_sys_user group by sex  having sex=1";
-        Map ret =  userRepository.getBySql(sql);
-        System.out.println(Json.toJson(ret));
-    }
-    @Test
-    public void queryListBySql(){
-        String sql = "select sex,count(1) as count from t_sys_user group by sex";
-        List list = userRepository.queryBySql(sql, UserVo.class);
+    public void test_02_queryBySql() {
+        List<Boy> list =  boyRepository.queryBySql("select * from t_test_boy where age>25", Boy.class);
         System.out.println(Json.toJson(list));
+        Assert.assertTrue(list.get(0) instanceof Boy);
+
+    }
+
+    @Test
+    public void test_03_getBySql() {
+        Map map = boyRepository.getMapBySql("select name,age from t_test_boy where age=25");
+        System.out.println(Json.toJson(map));
+        Assert.assertTrue(map.get("age").toString().equals("25"));
+    }
+
+    @Test
+    public void test_04_getBySql() {
+        Boy boy = boyRepository.getBySql("select * from t_test_boy where age=25");
+        Assert.assertTrue(boy.getAge() == 25);
     }
     @Test
-    public void getObjectBySql(){
-        String sql = "select sex,count(1) as count from t_sys_user group by sex  having sex=1";
-        UserVo ret = (UserVo) userRepository.getBySql(sql, UserVo.class);
-        System.out.println(Json.toJson(ret));
+    public void test_05_getOne() {
+        Boy boy = boyRepository.getOne(1L);
+        Assert.assertTrue(boy.getAge()==18);
     }
 
-    public void query(   ){
-        String sql = "select * from t_sys_user where id in (1,2,3)";
-        List<User> list = userRepository.query(sql);
+    @Test
+    public void test_06_get() {
+        Boy boy = boyRepository.get("select * from t_test_boy where age=30");
+        Assert.assertTrue(boy.getAge() == 30 );
+    }
+
+    //todo 测试有问题
+    @Test
+    public void test_07_execute() {
+//        int count = boyRepository.execute("update t_test_boy set name='李四'");
+//        System.out.println(count);
+//        Assert.assertTrue(count>0);
+    }
+
+    @Test
+    public void test_08_query() {
+        List<Boy> list = boyRepository.query("select * from t_test_boy where name like '张三%'");
+        Assert.assertTrue(!list.isEmpty());
+
+    }
+
+
+    @Test
+    public void test_09_queryObjBySql() {
+        String sql = "SELECT id, pid AS pId, simplename AS NAME, ( CASE WHEN (pId = 0 OR pId IS NULL) THEN 'true' ELSE 'false' END ) AS open FROM t_sys_dept";
+        List<ZTreeNode> list = (List<ZTreeNode>) boyRepository.queryObjBySql(sql, ZTreeNode.class);
         System.out.println(Json.toJson(list));
+        Assert.assertTrue(list.get(0) instanceof ZTreeNode);
+
     }
-
-
 }

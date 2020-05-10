@@ -2,7 +2,6 @@ package cn.enilu.flash;
 
 import cn.enilu.flash.api.ApiApplication;
 import cn.enilu.flash.dao.BaseRepositoryFactoryBean;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -30,9 +29,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class BaseApplicationStartTest {
     protected final Logger log= LoggerFactory.getLogger(getClass());
 
+
     @Test
     public void makeTestPass() {
-        
+
     }
 
 }

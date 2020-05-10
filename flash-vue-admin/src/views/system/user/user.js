@@ -192,6 +192,7 @@ export default {
             }
             form.birthday = parseTime(form.birthday, '{y}-{m}-{d}')
             form.createtime = parseTime(form.createtime)
+            form.dept = null
             saveUser(form).then(response => {
               this.$message({
                 message: '提交成功',

@@ -26,8 +26,16 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
      * @param sql
      * @return
      */
-    Map getBySql(String sql);
-    List<?> queryBySql(String sql,Class<?> klass);
+    Map getMapBySql(String sql);
+
+    /**
+     * 根据原生sql查询对象列表
+     * @param sql
+     * @param klass
+     * @return
+     */
+    List<T> queryBySql(String sql,Class<T> klass);
+    List<?> queryObjBySql(String sql,Class<?> klass);
 
 
     /**
@@ -37,7 +45,7 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
      */
     List<T> query(String sql);
 
-    Object getBySql(String sql,Class<?> klass);
+    T getBySql(String sql);
 
     /**
      * 根据原生sql查询对象

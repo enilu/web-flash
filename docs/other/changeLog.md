@@ -1,5 +1,8 @@
 # change log
+## Latest
+### Issues
 
+### Fixes
 
 ## 1.5
 [gitee](https://gitee.com/enilu/web-flash/releases/1.5)

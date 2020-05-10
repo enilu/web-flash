@@ -307,7 +307,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                    <skip>true</skip>
+                    <skip>false</skip>
                 </configuration>
             </plugin>
         </plugins>
