@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.nutz.json.Json;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -86,15 +87,16 @@ public class BaseRepositoryTest extends BaseApplicationStartTest {
 
     //todo 测试有问题
     @Test
+    @Transactional(readOnly = false)
     public void test_07_execute() {
-//        int count = boyRepository.execute("update t_test_boy set name='李四'");
-//        System.out.println(count);
-//        Assert.assertTrue(count>0);
+        int ret = boyRepository.execute("update t_test_boy set name='李四'");
+        System.out.println(ret);
+        Assert.assertTrue(ret>0);
     }
 
     @Test
     public void test_08_query() {
-        List<Boy> list = boyRepository.query("select * from t_test_boy where name like '张三%'");
+        List<Boy> list = boyRepository.query("select * from t_test_boy where name is not null");
         Assert.assertTrue(!list.isEmpty());
 
     }
