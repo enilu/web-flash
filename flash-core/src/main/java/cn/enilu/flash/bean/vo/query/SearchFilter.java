@@ -29,7 +29,9 @@ public class SearchFilter {
         return new SearchFilter(fieldName, Operator.EQ, value);
     }
 
-
+    public static SearchFilter build(String fieldName,Operator operator) {
+        return new SearchFilter(fieldName,operator);
+    }
     public static SearchFilter build(String fieldName, Operator operator, Object value) {
         return new SearchFilter(fieldName, operator, value);
     }
@@ -39,7 +41,11 @@ public class SearchFilter {
         return new SearchFilter(fieldName, Operator.EQ, value, join);
 
     }
+    public SearchFilter(String fieldName, Operator operator) {
+            this.fieldName = fieldName;
+            this.operator = operator;
 
+    }
     public SearchFilter(String fieldName, Operator operator, Object value) {
         if (!StringUtil.isNullOrEmpty(value)) {
             this.fieldName = fieldName;
