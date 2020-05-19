@@ -235,7 +235,7 @@ public class Generator {
         File vueFile = new File(basePath+codeConfig.getViewModel()+"/src/views/"+table.getLastPackageName()+File.separator+table.getEntityNameLowerFirstChar()+File.separator+"index.vue");
         generator.generate(null,  "code/view/index.vue.vm", vueFile, force);
 
-        File jsFile = new File(basePath+codeConfig.getViewModel()+"/src/views/"+table.getLastPackageName()+File.separator+table.getEntityNameLowerFirstChar()+".js");
+        File jsFile = new File(basePath+codeConfig.getViewModel()+"/src/views/"+table.getLastPackageName()+File.separator+table.getEntityNameLowerFirstChar()+File.separator+table.getEntityNameLowerFirstChar()+".js");
         generator.generate(null,  "code/view/index.js.vm", jsFile, force);
 
     }
