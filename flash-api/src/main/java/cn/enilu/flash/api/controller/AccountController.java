@@ -62,7 +62,9 @@ public class AccountController extends BaseController{
             if (!user.getPassword().equals(passwdMd5)) {
                 return Rets.failure("用户名或密码错误");
             }
-
+            if(StringUtil.isEmpty(user.getRoleid())){
+                return Rets.failure("该用户未配置权限");
+            }
             String token = userService.loginForToken(user);
             Map<String, String> result = new HashMap<>(1);
             result.put("token", token);
