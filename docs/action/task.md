@@ -65,7 +65,7 @@ import org.springframework.stereotype.Component;
 public class HelloJob extends JobExecuter {
     @Override
     public void execute(Map<String, Object> dataMap) throws Exception {
-        System.out.println("输出配置参数如下 :"+JSON.toJSONString(dataMap));
+        System.out.println("输出配置参数如下 :"+JsonUtil.toJson(dataMap));
         System.out.println("这里可以编写任意其他业务逻辑");
     }
 }

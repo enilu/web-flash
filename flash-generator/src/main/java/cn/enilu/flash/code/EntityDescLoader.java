@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
  * 创建日期: 16-7-10<br>
  */
 public class EntityDescLoader extends AbstractLoader {
-    
+
     private static final Log log = Logs.get();
     public static  final Pattern COLUMN_DEFINITION_PATTERN  =  Pattern.compile("([A-Za-z]+)(?:\\(\\d+\\))?\\s*(?:(?:COMMENT|[Cc]omment)\\s+'(.*?)')?");
 
@@ -119,8 +119,6 @@ public class EntityDescLoader extends AbstractLoader {
                         table.setPkType(column.getSimpleJavaTypeName());
                         column.columnName =fieldName;
                     }
-
-
                 }
                 if(Strings.isEmpty(column.getLabel())){
                     column.setLabel(fieldName);

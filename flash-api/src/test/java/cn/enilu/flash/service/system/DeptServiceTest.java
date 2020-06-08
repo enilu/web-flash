@@ -2,8 +2,8 @@ package cn.enilu.flash.service.system;
 
 import cn.enilu.flash.BaseApplicationStartTest;
 import cn.enilu.flash.bean.vo.node.ZTreeNode;
+import cn.enilu.flash.utils.JsonUtil;
 import org.junit.Test;
-import org.nutz.json.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class DeptServiceTest extends BaseApplicationStartTest {
     public void tree()     {
         List<ZTreeNode> list = deptService.tree();
         for(ZTreeNode treeNode:list) {
-            System.out.println(Json.toJson(treeNode));
+            System.out.println(JsonUtil.toJson(treeNode));
         }
     }
 

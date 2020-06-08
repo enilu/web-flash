@@ -1,5 +1,5 @@
 <template>
-  <div class="login-container"  style=" background-image: url(/img/bg.jpg);">
+  <div class="login-container"  style=" background-image: url(./img/bg.jpg);">
 
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
