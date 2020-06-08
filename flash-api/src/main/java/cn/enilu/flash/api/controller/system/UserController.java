@@ -51,6 +51,7 @@ public class UserController extends BaseController {
 
         page.addFilter( "status",SearchFilter.Operator.GT,0);
         page = userService.queryPage(page);
+        System.out.println(JsonUtil.toJson(page));
         List list = (List) new UserWarpper(BeanUtil.objectsToMaps(page.getRecords())).warp();
         page.setRecords(list);
         return Rets.success(page);

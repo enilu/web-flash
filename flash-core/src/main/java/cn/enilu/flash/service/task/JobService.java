@@ -5,7 +5,7 @@ import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.exception.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.vo.QuartzJob;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
-import com.alibaba.fastjson.JSON;
+import cn.enilu.flash.utils.JsonUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.quartz.*;
 import org.slf4j.Logger;
@@ -82,7 +82,7 @@ public class JobService {
             job.setDisabled(task.isDisabled());
             if (StringUtils.isNotBlank(task.getData())) {
                 try {
-                    Map<String, Object> dataMap = JSON.parseObject( task.getData(),Map.class);
+                    Map<String, Object> dataMap =  JsonUtil.fromJson(Map.class, task.getData());
                     job.setDataMap(dataMap);
                 } catch (Exception e) {
                     throw  new ApplicationException(ApplicationExceptionEnum.TASK_CONFIG_ERROR);
