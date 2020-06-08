@@ -2,7 +2,7 @@ import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 import { listForRouter } from '@/api/system/menu'
-
+import router from '@/router'
 const state = {
   token: getToken(),
   name: '',
@@ -66,7 +66,13 @@ const actions = {
         commit('SET_PERMISSIONS',permissions)
         resolve(data)
       }).catch(error => {
-        reject(error)
+        console.log('user',error)
+        reject('Verification failed, please Login again.')
+        router.replace({
+          path: '/login',
+          query:{redirect:router.currentRoute.path}
+        })
+        //reject(error)
       })
     })
   },

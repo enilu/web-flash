@@ -1,6 +1,7 @@
 import { listForRouter } from '@/api/system/menu'
 import { traverseRoutes } from '@/utils/route'
 import { constantRoutes } from '@/router'
+import router from '@/router'
 const state = {
   routes: [],
   addRoutes: []
@@ -23,7 +24,12 @@ const actions = {
         commit('SET_ROUTES',remoteroutes);
         resolve(remoteroutes);
       }).catch(error => {
-        reject(error)
+        console.log('list',error)
+        router.replace({
+          path: '/login',
+          query:{redirect:router.currentRoute.path}
+        })
+        // reject(error)
       })
     })
   }
