@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.StringWriter;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 封装json工具类<br>
@@ -21,8 +22,8 @@ public class JsonUtil {
         try {
             return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
         } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        return "";
     }
     public static  String toJson(Object obj){
         StringWriter sw = new StringWriter();
@@ -30,6 +31,7 @@ public class JsonUtil {
         try {
             mapper.writeValue(sw, obj);
         } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         return sw.toString();
     }
@@ -40,6 +42,7 @@ public class JsonUtil {
             mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
             mapper.writeValue(sw, obj);
         } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         return sw.toString();
     }
@@ -50,6 +53,7 @@ public class JsonUtil {
         try {
             obj = mapper.readValue(jsonStr, klass);
         } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         return obj;
     }
@@ -61,10 +65,28 @@ public class JsonUtil {
                     List.class, klass);
             objList = mapper.readValue(jsonStr, t);
         } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         return objList;
     }
 
+    /**
+     * 判断给定的字符串是否是json格式
+     * @param jsonStr
+     * @return
+     */
+    public static boolean isJson(String jsonStr) {
+        try {
+            if (jsonStr.startsWith("{")) {
+                fromJson(Map.class, jsonStr);
+            } else {
+                fromJsonAsList(Map.class, jsonStr);
+            }
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
     public static void main(String[] args) {
         User user = new User();
         user.setAccount("admin");
@@ -92,6 +114,9 @@ public class JsonUtil {
         System.out.println("转换为集合后的集合长度：=======》");
         System.out.println(users2.size());
 
+        System.out.println(isJson(json));
+        System.out.println(isJson(jsons));
+        System.out.println(isJson("{\"aaaa\":}"));
     }
 
 }
