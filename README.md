@@ -80,7 +80,7 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 
 ![公众号二维码](docs/img/haike.jpg)
 
-- [问答社区](http://enilu.gitee.io/web-flash/other/xiaomiquan.html)
+- [社区提问](http://bbs.enilu.cn)
 
 - Gitter: [Gitter channel](https://gitter.im/web-flash/community)
 

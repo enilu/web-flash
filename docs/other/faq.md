@@ -14,7 +14,7 @@ npm install --registry=https://registry.npm.taobao.org
 ```
 
 ## 使用代码生成器的时候生成不了代码
-下载项目好，首先运行mvn package -DskipTestss将项目打包成功，然后再生成，代码生成器读取实体类的class文件进行生成，所以必须构建生成class文件
+下载项目好，首先在项目根目录下运行mvn install -DskipTestss将项目打包成功，然后再生成，代码生成器读取实体类的class文件进行生成，所以必须构建生成class文件
 
 
 ##  Invalid character found in the request target. The valid characters are defined in RFC 3986
