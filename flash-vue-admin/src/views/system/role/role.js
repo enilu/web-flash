@@ -1,8 +1,10 @@
 import { remove, getList, save, savePermissons } from '@/api/system/role'
 import { list as getDeptList } from '@/api/system/dept'
 import { menuTreeListByRoleId } from '@/api/system/menu'
+import permission from '@/directive/permission/index.js'
 
 export default {
+  directives: { permission },
   data() {
     return {
       formVisible: false,

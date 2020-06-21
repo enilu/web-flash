@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="block">
-      <el-button type="success" size="mini" icon="el-icon-plus"  @click.native="add">{{ $t('button.add') }}</el-button>
+      <el-button type="success" size="mini" icon="el-icon-plus"  @click.native="add" v-permission="['/menu/add']">{{ $t('button.add') }}</el-button>
     </div>
     <el-table
       :data="data"
@@ -25,9 +25,9 @@
           <span >{{scope.row.component}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="是否是菜单" >
+      <el-table-column label="类型" >
         <template slot-scope="scope">
-          <span >{{scope.row.isMenuName}}</span>
+          <span >{{scope.row.ismenu==1?'菜单':'按钮'}}</span>
         </template>
       </el-table-column>
       <el-table-column label="URL">
@@ -52,8 +52,8 @@
       </el-table-column>
       <el-table-column label="操作" >
         <template slot-scope="scope">
-          <el-button type="text" size="mini" icon="el-icon-edit" @click="edit(scope.row)">{{ $t('button.edit') }}</el-button>
-          <el-button type="text" size="mini" icon="el-icon-delete" @click="remove(scope.row)">{{ $t('button.delete') }}</el-button>
+          <el-button type="text" size="mini" icon="el-icon-edit" @click="edit(scope.row)" v-permission="['/menu/edit']">{{ $t('button.edit') }}</el-button>
+          <el-button type="text" size="mini" icon="el-icon-delete" @click="remove(scope.row)" v-permission="['/menu/remove']">{{ $t('button.delete') }}</el-button>
         </template>
       </el-table-column>
     </el-table>

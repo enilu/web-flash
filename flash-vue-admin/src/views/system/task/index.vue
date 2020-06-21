@@ -13,9 +13,9 @@
       <br>
       <el-row>
         <el-col :span="24">
-          <el-button type="success" size="mini" icon="el-icon-plus" @click.native="add">{{ $t('button.add') }}</el-button>
-          <el-button type="primary" size="mini" icon="el-icon-edit" @click.native="edit">{{ $t('button.edit') }}</el-button>
-          <el-button type="danger" size="mini" icon="el-icon-delete" @click.native="remove">{{ $t('button.delete') }}</el-button>
+          <el-button type="success" size="mini" icon="el-icon-plus" @click.native="add" v-permission="['/task/add']">{{ $t('button.add') }}</el-button>
+          <el-button type="primary" size="mini" icon="el-icon-edit" @click.native="edit" v-permission="['/task/update']">{{ $t('button.edit') }}</el-button>
+          <el-button type="danger" size="mini" icon="el-icon-delete" @click.native="remove" v-permission="['/task/delete']">{{ $t('button.delete') }}</el-button>
         </el-col>
       </el-row>
     </div>
@@ -59,12 +59,12 @@
       <el-table-column label="操作" width="280" align="center">
         <template slot-scope="scope">
 
-          <el-button type="text" size="mini" icon="el-icon-edit" @click.native="editItem(scope.row)">{{ $t('button.edit') }}</el-button>
-          <el-button type="text" size="mini" icon="el-icon-delete" @click.native="removeItem(scope.row)">{{ $t('button.delete') }}</el-button>
+          <el-button type="text" size="mini" icon="el-icon-edit" @click.native="editItem(scope.row)" v-permission="['/task/update']">{{ $t('button.edit') }}</el-button>
+          <el-button type="text" size="mini" icon="el-icon-delete" @click.native="removeItem(scope.row)" v-permission="['/task/delete']">{{ $t('button.delete') }}</el-button>
         <el-button type="text" icon="el-icon-tickets" size="mini" @click.native="viewLog(scope.row.id)">查看日志</el-button>
-          <el-button type="text" icon="el-icon-turn-off" size="mini" @click.native="enable(scope.row.id)"
+          <el-button type="text" icon="el-icon-turn-off" size="mini" @click.native="enable(scope.row.id)" v-permission="['/task/update']"
                      v-if="scope.row.disabled===true" style="color:gray;">启用</el-button>
-          <el-button type="text" icon="el-icon-open" size="mini" @click.native="disable(scope.row.id)"
+          <el-button type="text" icon="el-icon-open" size="mini" @click.native="disable(scope.row.id)" v-permission="['/task/update']"
                      v-if="scope.row.disabled===false" style="color:green;">禁用</el-button>
         </template>
       </el-table-column>

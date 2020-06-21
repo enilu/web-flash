@@ -14,7 +14,7 @@
         <el-col :span="8">
           <el-button type="success" size="mini" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
           <el-button type="primary" size="mini" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
-          <el-button type="danger" size="mini" icon="el-icon-delete" @click.native="clear">{{ $t('button.clear') }}</el-button>
+          <el-button type="danger" size="mini" icon="el-icon-delete" @click.native="clear" v-permission="['/loginLog/delLoginLog']">{{ $t('button.clear') }}</el-button>
         </el-col>
       </el-row>
       <br>

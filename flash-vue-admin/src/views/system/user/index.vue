@@ -25,7 +25,7 @@
           <el-button type="danger" size="mini" icon="el-icon-delete" @click.native="remove" v-permission="['/mgr/delete']">
             {{$t('button.delete') }}
           </el-button>
-          <el-button type="info" size="mini" icon="el-icon-s-operation" @click.native="openRole">角色分配</el-button>
+          <el-button type="info" size="mini" icon="el-icon-s-operation" @click.native="openRole" v-permission="['/mgr/setRole']">角色分配</el-button>
         </el-col>
       </el-row>
     </div>
@@ -75,7 +75,7 @@
           <el-button type="text" size="mini" icon="el-icon-delete" @click.native="removeItem(scope.row)" v-permission="['/mgr/delete']">
             {{$t('button.delete') }}
           </el-button>
-          <el-button type="text" size="mini" icon="el-icon-s-operation" @click.native="openRoleItem(scope.row)">角色分配</el-button>
+          <el-button type="text" size="mini" icon="el-icon-s-operation" @click.native="openRoleItem(scope.row)" v-permission="['/mgr/setRole']">角色分配</el-button>
         </template>
       </el-table-column>
 

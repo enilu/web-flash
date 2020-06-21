@@ -1,7 +1,9 @@
 import treeTable from '@/components/TreeTable'
 import { getList, save, delMenu } from '@/api/system/menu'
+import permission from '@/directive/permission/index.js'
 
 export default {
+  directives: { permission },
   name: 'treeTableDemo',
   components: { treeTable },
   data() {

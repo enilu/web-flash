@@ -18,15 +18,10 @@
             <el-col :span="6">
               <el-button type="success" size="mini" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
               <el-button type="primary" size="mini" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
+              <el-button type="danger" size="mini" icon="el-icon-delete" @click.native="clear" v-permission="['/message/clear']">{{ $t('button.clear') }}</el-button>
             </el-col>
           </el-row>
-          <br>
-            <el-row>
-                <el-col :span="24">
-                    <el-button type="danger" size="mini" icon="el-icon-delete" @click.native="clear">{{ $t('button.clear') }}</el-button>
-                </el-col>
-            </el-row>
-        </div>
+          </div>
 
 
         <el-table :data="list" v-loading="listLoading" element-loading-text="Loading" border fit highlight-current-row

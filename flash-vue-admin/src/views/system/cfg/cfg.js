@@ -1,7 +1,9 @@
 import { remove, getList, save, exportXls } from '@/api/system/cfg'
 import { getApiUrl } from '@/utils/utils'
+import permission from '@/directive/permission/index.js'
 
 export default {
+  directives: { permission },
   data() {
     return {
       formVisible: false,

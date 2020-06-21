@@ -1,6 +1,8 @@
 import { remove, getList, save, update } from '@/api/system/dict'
+import permission from '@/directive/permission/index.js'
 
 export default {
+  directives: { permission },
   data() {
     return {
       formVisible: false,

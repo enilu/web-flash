@@ -14,8 +14,8 @@
       <br>
       <el-row>
         <el-col :span="24">
-          <el-button type="success" size="mini" icon="el-icon-plus" @click.native="add">{{ $t('button.add') }}</el-button>
-          <el-button type="danger" size="mini" icon="el-icon-delete" @click.native="remove">{{ $t('button.delete') }}</el-button>
+          <el-button type="success" size="mini" icon="el-icon-plus" @click.native="add" v-permission="['/banner/edit']">{{ $t('button.add') }}</el-button>
+          <el-button type="danger" size="mini" icon="el-icon-delete" @click.native="remove" v-permission="['/banner/remove']">{{ $t('button.delete') }}</el-button>
         </el-col>
       </el-row>
     </div>
@@ -52,7 +52,7 @@
 
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button type="text" size="mini" icon="el-icon-delete" @click.native="removeItem(scope.row)">{{ $t('button.delete') }}</el-button>
+          <el-button type="text" size="mini" icon="el-icon-delete" @click.native="removeItem(scope.row)" v-permission="['/banner/remove']">{{ $t('button.delete') }}</el-button>
         </template>
       </el-table-column>
     </el-table>

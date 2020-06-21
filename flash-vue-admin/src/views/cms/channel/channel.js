@@ -1,6 +1,8 @@
 import { remove, getList, save } from '@/api/cms/channel'
+import permission from '@/directive/permission/index.js'
 
 export default {
+  directives: { permission },
   data() {
     return {
       formVisible: false,

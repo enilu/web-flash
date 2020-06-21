@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
     <div class="block">
-      <el-button type="success" size="mini" icon="el-icon-plus"  @click.native="add">{{ $t('button.add') }}</el-button>
-      <el-button type="primary" size="mini" icon="el-icon-edit"  @click.native="edit">{{ $t('button.edit') }}</el-button>
-      <el-button type="danger" size="mini" icon="el-icon-delete"  @click.native="remove">{{ $t('button.edit') }}</el-button>
+      <el-button type="success" size="mini" icon="el-icon-plus"  @click.native="add" v-permission="['/dept/add']">{{ $t('button.add') }}</el-button>
+      <el-button type="primary" size="mini" icon="el-icon-edit"  @click.native="edit" v-permission="['/dept/update']">{{ $t('button.edit') }}</el-button>
+      <el-button type="danger" size="mini" icon="el-icon-delete"  @click.native="remove" v-permission="['/dept/delete']">{{ $t('button.edit') }}</el-button>
     </div>
 
     <tree-table
@@ -13,7 +13,7 @@
     border>
       <el-table-column label="简称" >
         <template slot-scope="scope">
-          <el-button type="text" @click="edit(scope.row)">{{scope.row.simplename}}</el-button>
+          <el-button type="text" @click="editItem(scope.row)">{{scope.row.simplename}}</el-button>
 
         </template>
       </el-table-column>
@@ -29,8 +29,8 @@
       </el-table-column>
       <el-table-column label="操作" >
         <template slot-scope="scope">
-          <el-button type="text" size="mini" icon="el-icon-edit"  @click.native="editItem(scope.row)">{{ $t('button.edit') }}</el-button>
-          <el-button type="text" size="mini" icon="el-icon-delete" @click="removeItem(scope.row)">删除</el-button>
+          <el-button type="text" size="mini" icon="el-icon-edit"  @click.native="editItem(scope.row)" v-permission="['/dept/update']">{{ $t('button.edit') }}</el-button>
+          <el-button type="text" size="mini" icon="el-icon-delete" @click="removeItem(scope.row)" v-permission="['/dept/delete']">删除</el-button>
         </template>
       </el-table-column>
     </tree-table>

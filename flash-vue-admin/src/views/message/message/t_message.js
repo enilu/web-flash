@@ -1,6 +1,8 @@
 import { clear, getList, save } from '@/api/message/message'
+import permission from '@/directive/permission/index.js'
 
 export default {
+  directives: { permission },
   data() {
     return {
       formVisible: false,
