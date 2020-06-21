@@ -36,7 +36,7 @@
       </el-table-column>
       <el-table-column labe="下载">
         <template slot-scope="scope">
-          <el-button icon="el-icon-log" size="mini" @click.native="download(scope.row.id,scope.row.originalFileName)">下载</el-button>
+          <el-button type="text" icon="el-icon-download" size="mini" @click.native="download(scope.row.id,scope.row.originalFileName)">下载</el-button>
         </template>
       </el-table-column>
 

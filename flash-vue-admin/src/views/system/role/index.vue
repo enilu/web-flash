@@ -45,6 +45,13 @@
           {{scope.row.pName}}
         </template>
       </el-table-column>
+      <el-table-column label="操作">
+        <template slot-scope="scope">
+          <el-button type="text" size="mini" icon="el-icon-edit" @click.native="editItem(scope.row)">{{ $t('button.edit') }}</el-button>
+          <el-button type="text" size="mini" icon="el-icon-delete" @click.native="removeItem(scope.row)">{{ $t('button.delete') }}</el-button>
+          <el-button type="text" size="mini" icon="el-icon-setting" @click.native="openPermissionsItem(scope.row)">权限配置</el-button>
+        </template>
+      </el-table-column>
 
     </el-table>
 

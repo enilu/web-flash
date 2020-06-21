@@ -56,13 +56,16 @@
           {{scope.row.execResult}}
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="200">
+      <el-table-column label="操作" width="280" align="center">
         <template slot-scope="scope">
-        <el-button icon="el-icon-log" size="mini" @click.native="viewLog(scope.row.id)">查看日志</el-button>
-          <el-button type="success" icon="el-icon-log" size="mini" @click.native="enable(scope.row.id)"
-                     v-if="scope.row.disabled===true">启用</el-button>
-          <el-button type="danger" icon="el-icon-log" size="mini" @click.native="disable(scope.row.id)"
-                     v-if="scope.row.disabled===false">禁用</el-button>
+
+          <el-button type="text" size="mini" icon="el-icon-edit" @click.native="editItem(scope.row)">{{ $t('button.edit') }}</el-button>
+          <el-button type="text" size="mini" icon="el-icon-delete" @click.native="removeItem(scope.row)">{{ $t('button.delete') }}</el-button>
+        <el-button type="text" icon="el-icon-tickets" size="mini" @click.native="viewLog(scope.row.id)">查看日志</el-button>
+          <el-button type="text" icon="el-icon-turn-off" size="mini" @click.native="enable(scope.row.id)"
+                     v-if="scope.row.disabled===true" style="color:gray;">启用</el-button>
+          <el-button type="text" icon="el-icon-open" size="mini" @click.native="disable(scope.row.id)"
+                     v-if="scope.row.disabled===false" style="color:green;">禁用</el-button>
         </template>
       </el-table-column>
     </el-table>

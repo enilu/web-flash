@@ -3,13 +3,13 @@
     <div class="block">
       <el-button type="success" size="mini" icon="el-icon-plus"  @click.native="add">{{ $t('button.add') }}</el-button>
     </div>
-
-    <tree-table
-    :data="data"
-    :expandAll="expandAll"
-    highlight-current-row
-    border>
-
+    <el-table
+      :data="data"
+      style="width: 100%;margin-bottom: 20px;"
+      row-key="id"
+      border
+      :default-expand-all="false"
+      :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
       <el-table-column label="名称" >
         <template slot-scope="scope">
           <el-button type="text" @click="edit(scope.row)">{{scope.row.name}}</el-button>
@@ -30,10 +30,10 @@
           <span >{{scope.row.isMenuName}}</span>
         </template>
       </el-table-column>
-        <el-table-column label="URL">
-          <template slot-scope="scope">
-            <span >{{scope.row.url}}</span>
-          </template>
+      <el-table-column label="URL">
+        <template slot-scope="scope">
+          <span >{{scope.row.url}}</span>
+        </template>
       </el-table-column>
       <el-table-column label="是否启用">
         <template slot-scope="scope">
@@ -52,11 +52,11 @@
       </el-table-column>
       <el-table-column label="操作" >
         <template slot-scope="scope">
-          <el-button type="text" @click="remove(scope.row)">删除</el-button>
+          <el-button type="text" size="mini" icon="el-icon-edit" @click="edit(scope.row)">{{ $t('button.edit') }}</el-button>
+          <el-button type="text" size="mini" icon="el-icon-delete" @click="remove(scope.row)">{{ $t('button.delete') }}</el-button>
         </template>
       </el-table-column>
-
-    </tree-table>
+    </el-table>
 
       <el-dialog
         :title="formTitle"

@@ -96,31 +96,45 @@ export default {
         }
       })
     },
-    edit(row) {
-      this.form = row
-
-      if (row.parent) {
-        this.form.pid = row.parent.id
-        this.form.pname = row.parent.simplename
-      }
-      this.formTitle = '编辑部门'
-      this.formVisible = true
-      this.isAdd = false
+    editItem(record){
+      this.selRow = record
+      this.edit()
     },
-    remove(row) {
-      this.$confirm('确定删除该记录?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        del(row.id).then(response => {
-          this.$message({
-            message: '删除成功',
-            type: 'success'
+    edit() {
+      if(this.checkSel()) {
+        const row = this.selRow
+        this.form = row
+
+        if (row.parent) {
+          this.form.pid = row.parent.id
+          this.form.pname = row.parent.simplename
+        }
+        this.formTitle = '编辑部门'
+        this.formVisible = true
+        this.isAdd = false
+      }
+    },
+    removeItem(record){
+      this.selRow = record
+      this.remove()
+    },
+    remove() {
+      if(this.checkSel()) {
+        this.$confirm('确定删除该记录?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          const row = this.selRow
+          del(row.id).then(response => {
+            this.$message({
+              message: '删除成功',
+              type: 'success'
+            })
+            this.fetchData()
           })
-          this.fetchData()
         })
-      })
+      }
     }
   }
 }

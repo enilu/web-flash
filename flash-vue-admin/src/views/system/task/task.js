@@ -160,6 +160,10 @@ export default {
     viewLog(taskId) {
       this.$router.push({ path: '/taskLog', query: { taskId: taskId }})
     },
+    editItem(record){
+      this.selRow = record
+      this.edit()
+    },
     edit() {
       if (this.checkSel()) {
         this.isAdd = false
@@ -167,6 +171,10 @@ export default {
         this.formTitle = '修改任务'
         this.formVisible = true
       }
+    },
+    removeItem(record){
+      this.selRow = record
+      this.remove()
     },
     remove() {
       if (this.checkSel()) {

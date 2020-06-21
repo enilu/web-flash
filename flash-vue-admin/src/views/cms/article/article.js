@@ -149,10 +149,18 @@ export default {
       })
       return false
     },
+    editItem(record){
+      this.selRow = record
+      this.edit()
+    },
     edit() {
       if (this.checkSel()) {
         this.$router.push({ path: '/cms/articleEdit', query: { id: this.selRow.id }})
       }
+    },
+    removeItem(record){
+      this.selRow = record
+      this.remove()
     },
     remove() {
       if (this.checkSel()) {

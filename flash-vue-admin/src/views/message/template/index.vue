@@ -35,7 +35,30 @@
 
         <el-table :data="list" v-loading="listLoading" element-loading-text="Loading" border fit highlight-current-row
                   @current-change="handleCurrentChange">
-            <el-table-column label="编号">
+          <el-table-column type="expand">
+            <template slot-scope="props">
+              <el-form label-position="left" inline class="flash-table-expand">
+                <el-form-item label="编号">
+                  <span>{{ props.row.code }}</span>
+                </el-form-item>
+                <el-form-item label="标题">
+                  <span>{{ props.row.title }}</span>
+                </el-form-item>
+                <el-form-item label="内容">
+                  <span>{{ props.row.content }}</span>
+                </el-form-item>
+                <el-form-item label="发送条件">
+                  <span>{{ props.row.cond }}</span>
+                </el-form-item>
+                <el-form-item label="发送器">
+                  <span>{{ props.row.messageSender.name }}</span>
+                </el-form-item>
+              </el-form>
+            </template>
+          </el-table-column>
+
+
+          <el-table-column label="编号">
                 <template slot-scope="scope">
                     {{scope.row.code}}
                 </template>
@@ -45,11 +68,7 @@
                     {{scope.row.title}}
                 </template>
             </el-table-column>
-            <el-table-column label="内容">
-                <template slot-scope="scope">
-                    {{scope.row.content}}
-                </template>
-            </el-table-column>
+
             <el-table-column label="发送条件">
                 <template slot-scope="scope">
                     {{scope.row.cond}}
@@ -60,6 +79,13 @@
                     {{scope.row.messageSender.name}}
                 </template>
             </el-table-column>
+          <el-table-column label="操作">
+            <template slot-scope="scope">
+
+              <el-button type="text" size="mini" icon="el-icon-edit" @click.native="editItem(scope.row)">{{ $t('button.edit') }}</el-button>
+              <el-button type="text" size="mini" icon="el-icon-delete" @click.native="removeItem(scope.row)">{{ $t('button.delete') }}</el-button>
+            </template>
+          </el-table-column>
         </el-table>
 
         <el-pagination

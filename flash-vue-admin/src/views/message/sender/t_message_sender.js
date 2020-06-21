@@ -137,6 +137,10 @@ export default {
       })
       return false
     },
+    editItem(record){
+      this.selRow = record
+      this.edit()
+    },
     edit() {
       if (this.checkSel()) {
         this.isAdd = false
@@ -144,6 +148,10 @@ export default {
         this.formTitle = '编辑消息发送者'
         this.formVisible = true
       }
+    },
+    removeItem(record){
+      this.selRow = record
+      this.remove()
     },
     remove() {
       if (this.checkSel()) {

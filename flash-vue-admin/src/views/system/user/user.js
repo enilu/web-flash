@@ -223,16 +223,23 @@ export default {
       })
       return false
     },
+    editItem(record){
+      this.selRow = record
+      this.edit()
+    },
     edit() {
       if (this.checkSel()) {
         this.isAdd = false
-
         this.form = this.selRow
         this.form.status = this.selRow.statusName === '启用'
         this.form.password = ''
         this.formTitle = '修改用户'
         this.formVisible = true
       }
+    },
+    removeItem(record){
+      this.selRow = record
+      this.remove()
     },
     remove() {
       if (this.checkSel()) {
@@ -264,7 +271,10 @@ export default {
       this.form.deptName = data.simplename
       this.deptTree.show = false
     },
-
+    openRoleItem(record){
+      this.selRow = record
+      this.openRole()
+    },
     openRole() {
       if (this.checkSel()) {
         roleTreeListByIdUser(this.selRow.id).then(response => {

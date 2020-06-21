@@ -179,6 +179,10 @@ export default {
       })
       return false
     },
+    editItem(record){
+      this.selRow = record
+      this.edit()
+    },
     edit() {
       if (this.checkSel()) {
         this.isAdd = false
@@ -188,6 +192,10 @@ export default {
         this.formTitle = '修改角色'
         this.formVisible = true
       }
+    },
+    removeItem(record){
+      this.selRow = record
+      this.remove()
     },
     remove() {
       if (this.checkSel()) {
@@ -212,6 +220,10 @@ export default {
         }).catch(() => {
         })
       }
+    },
+    openPermissionsItem(record){
+      this.selRow = record
+      this.openPermissions()
     },
     openPermissions() {
       if (this.checkSel()) {

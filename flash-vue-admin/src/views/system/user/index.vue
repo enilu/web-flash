@@ -25,7 +25,7 @@
           <el-button type="danger" size="mini" icon="el-icon-delete" @click.native="remove" v-permission="['/mgr/delete']">
             {{$t('button.delete') }}
           </el-button>
-          <el-button type="info" size="mini" icon="el-icon-role" @click.native="openRole">角色分配</el-button>
+          <el-button type="info" size="mini" icon="el-icon-s-operation" @click.native="openRole">角色分配</el-button>
         </el-col>
       </el-row>
     </div>
@@ -44,32 +44,20 @@
           {{scope.row.name}}
         </template>
       </el-table-column>
-      <el-table-column label="性别">
-        <template slot-scope="scope">
-          {{scope.row.sexName}}
-        </template>
-      </el-table-column>
-      <el-table-column label="角色">
-        <template slot-scope="scope">
-          {{scope.row.roleName}}
-        </template>
-      </el-table-column>
+
+
       <el-table-column label="部门">
         <template slot-scope="scope">
           {{scope.row.dept.simplename}}
         </template>
       </el-table-column>
-      <el-table-column label="邮箱">
-        <template slot-scope="scope">
-          {{scope.row.email}}
-        </template>
-      </el-table-column>
+
       <el-table-column label="电话">
         <template slot-scope="scope">
           {{scope.row.phone}}
         </template>
       </el-table-column>
-      <el-table-column label="创建时间">
+      <el-table-column label="创建时间" min-width="120px">
         <template slot-scope="scope">
           {{scope.row.createTime}}
         </template>
@@ -77,6 +65,17 @@
       <el-table-column label="状态">
         <template slot-scope="scope">
           <el-switch v-model="scope.row.status==1" @change="changeUserStatus(scope.row)"></el-switch>
+        </template>
+      </el-table-column>
+      <el-table-column label="操作" min-width="150px">
+        <template slot-scope="scope">
+          <el-button type="text" size="mini" icon="el-icon-edit" @click.native="editItem(scope.row)" v-permission="['/mgr/edit']">
+            {{$t('button.edit') }}
+          </el-button>
+          <el-button type="text" size="mini" icon="el-icon-delete" @click.native="removeItem(scope.row)" v-permission="['/mgr/delete']">
+            {{$t('button.delete') }}
+          </el-button>
+          <el-button type="text" size="mini" icon="el-icon-s-operation" @click.native="openRoleItem(scope.row)">角色分配</el-button>
         </template>
       </el-table-column>
 

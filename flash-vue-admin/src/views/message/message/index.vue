@@ -31,14 +31,33 @@
 
         <el-table :data="list" v-loading="listLoading" element-loading-text="Loading" border fit highlight-current-row
                   @current-change="handleCurrentChange">
+          <el-table-column type="expand">
+            <template slot-scope="props">
+              <el-form label-position="left" inline class="flash-table-expand">
+                <el-form-item label="模板编码">
+                  <span>{{ props.row.tplCode }}</span>
+                </el-form-item>
+                <el-form-item label="消息内容">
+                  <span>{{ props.row.content }}</span>
+                </el-form-item>
+                <el-form-item label="接收者">
+                  <span>{{ props.row.receiver }}</span>
+                </el-form-item>
+                <el-form-item label="发送日期">
+                  <span>{{ props.row.createTime }}</span>
+                </el-form-item>
+                <el-form-item label="消息类型">
+                  <span>{{ props.row.type==0?"短信":"邮件" }}</span>
+                </el-form-item>
+                <el-form-item label="发送结果">
+                  <span>{{ props.row.state==1?"成功":"失败" }}</span>
+                </el-form-item>
+              </el-form>
+            </template>
+          </el-table-column>
             <el-table-column label="模板编码">
                 <template slot-scope="scope">
                     {{scope.row.tplCode}}
-                </template>
-            </el-table-column>
-            <el-table-column label="消息内容">
-                <template slot-scope="scope">
-                    {{scope.row.content}}
                 </template>
             </el-table-column>
             <el-table-column label="接收者">

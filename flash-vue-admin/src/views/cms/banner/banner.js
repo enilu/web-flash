@@ -135,6 +135,10 @@ export default {
       })
       return false
     },
+    removeItem(record){
+      this.selRow = record
+      this.remove()
+    },
     remove() {
       if (this.checkSel()) {
         var id = this.selRow.id
