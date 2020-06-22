@@ -20,6 +20,11 @@
           <span >{{scope.row.code}}</span>
         </template>
       </el-table-column>
+      <el-table-column label="图标">
+        <template slot-scope="scope">
+          <svg-icon :icon-class="scope.row.icon" />
+        </template>
+      </el-table-column>
       <el-table-column label="组件" >
         <template slot-scope="scope">
           <span >{{scope.row.component}}</span>
