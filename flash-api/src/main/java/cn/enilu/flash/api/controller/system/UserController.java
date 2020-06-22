@@ -44,14 +44,17 @@ public class UserController extends BaseController {
     @RequiresPermissions(value = {Permission.USER})
     public Object list(@RequestParam(required = false) String account,
                        @RequestParam(required = false) String name,
-                       @RequestParam(required = false) String idDept){
+                       @RequestParam(required = false) Long deptid,
+                       @RequestParam(required = false) String phone,
+                       @RequestParam(required = false) Integer status){
         Page page = new PageFactory().defaultPage();
         page.addFilter( "name", SearchFilter.Operator.LIKE, name);
         page.addFilter( "account", SearchFilter.Operator.LIKE, account);
-
+        page.addFilter("deptid",deptid);
+        page.addFilter("phone",phone);
+        page.addFilter("status",status);
         page.addFilter( "status",SearchFilter.Operator.GT,0);
         page = userService.queryPage(page);
-        System.out.println(JsonUtil.toJson(page));
         List list = (List) new UserWarpper(BeanUtil.objectsToMaps(page.getRecords())).warp();
         page.setRecords(list);
         return Rets.success(page);

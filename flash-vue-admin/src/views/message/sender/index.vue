@@ -1,6 +1,21 @@
 <template>
     <div class="app-container">
         <div class="block">
+          <el-row  :gutter="20">
+
+            <el-col :span="4">
+              <el-input v-model="listQuery.name" size="mini" placeholder="请输入名称"></el-input>
+            </el-col>
+
+            <el-col :span="4">
+              <el-input v-model="listQuery.className" size="mini" placeholder="请输入发送类"></el-input>
+            </el-col>
+            <el-col :span="6">
+              <el-button type="success" size="mini" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
+              <el-button type="primary" size="mini" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
+            </el-col>
+          </el-row>
+          <br>
             <el-row>
                 <el-col :span="24">
                     <el-button type="success" size="mini" icon="el-icon-plus" @click.native="add" v-permission="['/sender/edit']">{{ $t('button.add') }}</el-button>
@@ -23,6 +38,11 @@
                     {{scope.row.className}}
                 </template>
             </el-table-column>
+          <el-table-column label="远程模板编号">
+            <template slot-scope="scope">
+              {{scope.row.tplCode}}
+            </template>
+          </el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
               <el-button type="text" size="mini" icon="el-icon-edit" @click.native="editItem(scope.row)" v-permission="['/sender/edit']">{{ $t('button.edit') }}</el-button>

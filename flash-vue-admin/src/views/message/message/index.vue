@@ -2,7 +2,9 @@
     <div class="app-container">
         <div class="block">
           <el-row  :gutter="20">
-
+            <el-col :span="4">
+              <el-input v-model="listQuery.tplCode" size="mini" placeholder="请输入模板编号"></el-input>
+            </el-col>
             <el-col :span="8">
               <el-date-picker
                 v-model="rangeDate"

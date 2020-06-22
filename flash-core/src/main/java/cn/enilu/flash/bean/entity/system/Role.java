@@ -24,13 +24,13 @@ public class Role extends BaseEntity {
     private Integer num;
     @Column
     private Long pid;
-    @Column
+    @Column(columnDefinition = "VARCHAR(64) COMMENT '角色名称'")
     @NotBlank(message = "角色名称不能为空")
     private String name;
+    @Column(columnDefinition = "VARCHAR(64) COMMENT '角色编码'")
+    private String tips;
     @Column
     private Long deptid;
-    @Column
-    private String tips;
     @Column
     private Integer version;
 

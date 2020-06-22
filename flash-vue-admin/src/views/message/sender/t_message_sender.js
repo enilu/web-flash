@@ -16,7 +16,8 @@ export default {
       listQuery: {
         page: 1,
         limit: 20,
-        id: undefined
+        name:undefined,
+        className:undefined
       },
       total: 0,
       list: null,
@@ -32,18 +33,6 @@ export default {
         deleted: 'danger'
       }
       return statusMap[status]
-    }
-  },
-  computed: {
-
-    //表单验证
-    rules() {
-      return {
-        // cfgName: [
-        //   { required: true, message: this.$t('config.name') + this.$t('common.isRequired'), trigger: 'blur' },
-        //   { min: 3, max: 2000, message: this.$t('config.name') + this.$t('config.lengthValidation'), trigger: 'blur' }
-        // ]
-      }
     }
   },
   created() {
@@ -68,6 +57,8 @@ export default {
     reset() {
       this.listQuery.id = ''
       this.listQuery.page = 1
+      this.listQuery.name=''
+      this.listQuery.className=''
       this.fetchData()
     },
     handleFilter() {

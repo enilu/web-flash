@@ -2,10 +2,10 @@
   <div class="app-container">
     <div class="block">
       <el-row  :gutter="20">
-        <el-col :span="6">
+        <el-col :span="4">
           <el-input v-model="listQuery.cfgName" size="mini" :placeholder="$t('config.name')"></el-input>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="4">
           <el-input v-model="listQuery.cfgValue" size="mini"  :placeholder="$t('config.value')"></el-input>
         </el-col>
         <el-col :span="6">

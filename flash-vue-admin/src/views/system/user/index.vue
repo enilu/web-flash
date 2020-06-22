@@ -2,11 +2,24 @@
   <div class="app-container">
     <div class="block">
       <el-row  :gutter="20">
-        <el-col :span="6">
+        <el-col :span="4">
           <el-input v-model="listQuery.account" size="mini" placeholder="请输入帐号"></el-input>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="4">
           <el-input v-model="listQuery.name" size="mini" placeholder="请输入姓名"></el-input>
+        </el-col>
+        <el-col :span="4">
+          <el-input v-model="listQuery.phone" size="mini" placeholder="请输入手机号"></el-input>
+        </el-col>
+        <el-col :span="4">
+          <el-select v-model="listQuery.status" size="mini" placeholder="账号状态">
+            <el-option
+              v-for="item in statusList"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
         </el-col>
         <el-col :span="6">
           <el-button type="success" size="mini" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
@@ -30,8 +43,20 @@
       </el-row>
     </div>
 
-
-    <el-table :data="list" v-loading="listLoading" element-loading-text="Loading" border fit highlight-current-row
+    <el-row>
+      <el-col :span="4">
+        <el-tree
+                 empty-text="暂无数据"
+                 :expand-on-click-node="false"
+                 :default-expand-all="true"
+                 :data="deptTree.data"
+                 :props="deptTree.defaultProps"
+                 @node-click="chooseDept"
+                 class="input-tree">
+        </el-tree>
+      </el-col>
+      <el-col :span="20">
+        <el-table :data="list" v-loading="listLoading" element-loading-text="Loading" border fit highlight-current-row
     @current-change="handleCurrentChange">
 
       <el-table-column label="账号">
@@ -82,7 +107,7 @@
 
     </el-table>
 
-    <el-pagination
+        <el-pagination
       background
       layout="total, sizes, prev, pager, next, jumper"
       :page-sizes="[10, 20, 50, 100,500]"
@@ -95,6 +120,8 @@
       @next-click="fetchNext">
     </el-pagination>
 
+      </el-col>
+    </el-row>
     <el-dialog
       :title="formTitle"
       :visible.sync="formVisible"

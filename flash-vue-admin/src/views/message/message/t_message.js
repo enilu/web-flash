@@ -18,7 +18,8 @@ export default {
       listQuery: {
         page: 1,
         limit: 20,
-        id: undefined
+        id: undefined,
+        tplCode:undefined
       },
       rangeDate: undefined,
       total: 0,
@@ -67,6 +68,7 @@ export default {
       this.listQuery.startDate = undefined
       this.listQuery.endDate = undefined
       this.rangeDate = ''
+      this.tplCode = ''
       this.listQuery.page = 1
       this.fetchData()
     },

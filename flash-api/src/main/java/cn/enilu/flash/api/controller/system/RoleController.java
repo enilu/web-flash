@@ -2,6 +2,7 @@ package cn.enilu.flash.api.controller.system;
 
 import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.constant.Const;
+import cn.enilu.flash.bean.constant.factory.PageFactory;
 import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.dictmap.RoleDict;
 import cn.enilu.flash.bean.entity.system.Role;
@@ -17,9 +18,12 @@ import cn.enilu.flash.service.system.LogObjectHolder;
 import cn.enilu.flash.service.system.RoleService;
 import cn.enilu.flash.service.system.UserService;
 import cn.enilu.flash.service.system.impl.ConstantFactory;
-import cn.enilu.flash.utils.*;
+import cn.enilu.flash.utils.BeanUtil;
+import cn.enilu.flash.utils.Convert;
+import cn.enilu.flash.utils.Maps;
+import cn.enilu.flash.utils.StringUtil;
+import cn.enilu.flash.utils.factory.Page;
 import cn.enilu.flash.warpper.RoleWarpper;
-import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
@@ -44,14 +48,16 @@ public class RoleController extends BaseController {
     private UserService userService;
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.ROLE})
-    public Object list(String name){
-        List roles = null;
-        if(Strings.isNullOrEmpty(name)) {
-            roles =  roleService.queryAll();
-        }else{
-            roles = roleService.findByName(name);
-        }
-        return Rets.success(new RoleWarpper(BeanUtil.objectsToMaps(roles)).warp());
+    public Object list( @RequestParam(required = false) String name,
+                        @RequestParam(required = false) String tips){
+
+        Page page = new PageFactory().defaultPage();
+        page.addFilter("name",name);
+        page.addFilter("tips",tips);
+        page = roleService.queryPage(page);
+        List list = (List) new RoleWarpper(BeanUtil.objectsToMaps(page.getRecords())).warp();
+        page.setRecords(list);
+        return Rets.success(page);
     }
 
     @RequestMapping(method = RequestMethod.POST)

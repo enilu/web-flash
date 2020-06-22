@@ -10,10 +10,7 @@ import cn.enilu.flash.service.message.MessagesenderService;
 import cn.enilu.flash.utils.factory.Page;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -25,8 +22,11 @@ public class MessagesenderController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.MSG_SENDER})
-    public Object list() {
+    public Object list(@RequestParam(required = false)String name,
+                       @RequestParam(required = false) String className) {
         Page<MessageSender> page = new PageFactory<MessageSender>().defaultPage();
+        page.addFilter("name",name);
+        page.addFilter("className",className);
         page = messagesenderService.queryPage(page);
         page.setRecords(page.getRecords());
         return Rets.success(page);

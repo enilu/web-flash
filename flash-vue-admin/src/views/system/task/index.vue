@@ -2,7 +2,7 @@
   <div class="app-container">
     <div class="block">
       <el-row  :gutter="20">
-        <el-col :span="6">
+        <el-col :span="4">
           <el-input v-model="listQuery.name" size="mini" placeholder="请输入任务名"></el-input>
         </el-col>
         <el-col :span="6">

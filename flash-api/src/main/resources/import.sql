@@ -62,7 +62,7 @@ INSERT INTO `t_sys_cfg` VALUES ('5', null, null, '1', '2019-04-15 21:36:17', '�
 -- ----------------------------
 -- Records of t_sys_dept
 -- ----------------------------
-INSERT INTO `t_sys_dept` (`id`, `num`, `pid`, `pids`, `simplename`, `fullname`, `tips`, `version`, `create_time`, `create_by`, `modify_time`, `modify_by`) VALUES ('1', '1', '0', '[0],', '总公司', '总公司', '', null, null, null, null, null);
+INSERT INTO `t_sys_dept` (`id`, `num`, `pid`, `pids`, `simplename`, `fullname`, `tips`, `version`, `create_time`, `create_by`, `modify_time`, `modify_by`) VALUES ('1', '1', '0', '[0],', '总公司', 'One Piece集团', '', null, null, null, null, null);
 INSERT INTO `t_sys_dept` (`id`, `num`, `pid`, `pids`, `simplename`, `fullname`, `tips`, `version`, `create_time`, `create_by`, `modify_time`, `modify_by`) VALUES ('2', '2', '1', '[0],[1],', '开发部', '开发部', '', null, null, null, null, null);
 INSERT INTO `t_sys_dept` (`id`, `num`, `pid`, `pids`, `simplename`, `fullname`, `tips`, `version`, `create_time`, `create_by`, `modify_time`, `modify_by`) VALUES ('3', '3', '1', '[0],[1],', '运营部', '运营部', '', null, null, null, null, null);
 INSERT INTO `t_sys_dept` (`id`, `num`, `pid`, `pids`, `simplename`, `fullname`, `tips`, `version`, `create_time`, `create_by`, `modify_time`, `modify_by`) VALUES ('4', '4', '1', '[0],[1],', '战略部', '战略部', '', null, null, null, null, null);
@@ -329,7 +329,7 @@ INSERT INTO `t_test_boy` (`id`, `create_by`, `create_time`, `modify_by`, `modify
 -- ----------------------------
 -- Records of t_message_sender
 -- ----------------------------
-INSERT INTO `t_message_sender` VALUES ('1', null, null, null, null, 'tencentSmsSender', ' 腾讯短信服务', null);
+INSERT INTO `t_message_sender` VALUES ('1', null, null, null, null, 'tencentSmsSender', '腾讯短信服务', null);
 INSERT INTO `t_message_sender` VALUES ('2', null, null, null, null, 'defaultEmailSender', '默认邮件发送器', null);
 
 -- ----------------------------

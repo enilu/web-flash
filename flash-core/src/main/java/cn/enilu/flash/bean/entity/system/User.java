@@ -28,9 +28,9 @@ public class User  extends BaseEntity {
     private String salt;
     @Column(columnDefinition = "VARCHAR(64) COMMENT '姓名'")
     private String name;
-    @Column
+    @Column(columnDefinition = "DATE COMMENT '生日'")
     private Date birthday;
-    @Column
+    @Column(columnDefinition = "INT COMMENT '性别:1:男,2:女'")
     private Integer sex;
     @Column(columnDefinition = "VARCHAR(64) COMMENT 'email'")
     private String email;
@@ -38,9 +38,9 @@ public class User  extends BaseEntity {
     private String phone;
     @Column(columnDefinition = "VARCHAR(128) COMMENT '角色id列表，以逗号分隔'")
     private String roleid;
-    @Column
+    @Column(columnDefinition = "BITINT COMMENT '部门id'")
     private Long deptid;
-    @Column
+    @Column(columnDefinition = "INT COMMENT '状态1:启用,2:禁用'")
     private Integer status;
     @Column
     private Integer version;

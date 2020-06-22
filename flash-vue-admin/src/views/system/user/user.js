@@ -20,6 +20,10 @@ export default {
           children: 'children'
         }
       },
+      statusList:[
+        {label:'启用',value:'1'},
+        {label:'冻结',value:'2'}
+      ],
       formVisible: false,
       formTitle: '添加用户',
       deptTree: {
@@ -63,7 +67,10 @@ export default {
         page: 1,
         limit: 20,
         account: undefined,
-        name: undefined
+        name: undefined,
+        deptid:undefined,
+        phone:undefined,
+        status:undefined
       },
       total: 0,
       list: null,
@@ -107,6 +114,9 @@ export default {
       this.listQuery.account = ''
       this.listQuery.name = ''
       this.listQuery.page = 1
+      this.listQuery.deptid=''
+      this.listQuery.status =''
+      this.listQuery.phone=''
       this.fetchData()
     },
     handleFilter() {
@@ -265,6 +275,10 @@ export default {
         }).catch(() => {
         })
       }
+    },
+    chooseDept(data,node){
+      this.listQuery.deptid = data.id
+      this.search()
     },
     handleNodeClick(data, node) {
       this.form.deptid = data.id

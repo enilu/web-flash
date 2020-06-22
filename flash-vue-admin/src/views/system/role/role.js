@@ -59,7 +59,10 @@ export default {
         ]
       },
       listQuery: {
-        name: undefined
+        page: 1,
+        limit: 20,
+        name: undefined,
+        tips:undefined,
       },
       total: 0,
       list: null,
@@ -90,8 +93,7 @@ export default {
     fetchData() {
       this.listLoading = true
       getList(this.listQuery).then(response => {
-        console.log(response.data)
-        this.list = response.data
+        this.list = response.data.records
         this.listLoading = false
         this.total = response.data.total
       })
@@ -103,6 +105,7 @@ export default {
     reset() {
       this.listQuery.name = ''
       this.listQuery.page = 1
+      this.listQuery.tips = ''
       this.fetchData()
     },
     handleFilter() {
