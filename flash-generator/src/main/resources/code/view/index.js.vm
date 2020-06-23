@@ -113,7 +113,7 @@ export default {
         if (valid) {
           save({
 #foreach ($column in $table.LabeledColumns)
-      ${column.FieldName}:this.form.${column.FieldName},
+            ${column.FieldName}:this.form.${column.FieldName},
 #end
             id: this.form.id
           }).then(response => {
@@ -139,6 +139,10 @@ export default {
       })
       return false
     },
+    editItem(record){
+      this.selRow = record
+      this.edit()
+    },
     edit() {
       if (this.checkSel()) {
         this.isAdd = false
@@ -146,6 +150,10 @@ export default {
         this.formTitle = '编辑${table.Label}'
         this.formVisible = true
       }
+    },
+    removeItem(record){
+      this.selRow = record
+      this.remove()
     },
     remove() {
       if (this.checkSel()) {
