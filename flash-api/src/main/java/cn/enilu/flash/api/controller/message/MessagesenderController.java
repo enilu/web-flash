@@ -2,7 +2,6 @@ package cn.enilu.flash.api.controller.message;
 
 import cn.enilu.flash.bean.constant.factory.PageFactory;
 import cn.enilu.flash.bean.core.BussinessLog;
-import cn.enilu.flash.bean.dictmap.CommonDict;
 import cn.enilu.flash.bean.entity.message.MessageSender;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.vo.front.Rets;
@@ -39,7 +38,7 @@ public class MessagesenderController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    @BussinessLog(value = "编辑消息发送者", key = "name", dict = CommonDict.class)
+    @BussinessLog(value = "编辑消息发送者", key = "name")
     @RequiresPermissions(value = {Permission.MSG_SENDER_EDIT})
     public Object save(@ModelAttribute @Valid MessageSender tMessageSender) {
         messagesenderService.save(tMessageSender);
@@ -47,7 +46,7 @@ public class MessagesenderController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    @BussinessLog(value = "删除消息发送者", key = "id", dict = CommonDict.class)
+    @BussinessLog(value = "删除消息发送者", key = "id")
     @RequiresPermissions(value = {Permission.MSG_SENDER_DEL})
     public Object remove(Long id) {
 

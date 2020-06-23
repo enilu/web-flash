@@ -2,6 +2,7 @@ package cn.enilu.flash.api.controller.system;
 
 import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.constant.factory.PageFactory;
+import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.entity.system.LoginLog;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.vo.front.Rets;
@@ -51,6 +52,7 @@ public class LoginLogController extends BaseController {
      * 清空日志
      */
     @RequestMapping(method = RequestMethod.DELETE)
+    @BussinessLog(value = "清空登录日志")
     @RequiresPermissions(value = {Permission.LOGIN_LOG_CLEAR})
     public Object clear() {
         loginlogService.clear();

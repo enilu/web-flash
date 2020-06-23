@@ -2,7 +2,6 @@ package cn.enilu.flash.api.controller.message;
 
 import cn.enilu.flash.bean.constant.factory.PageFactory;
 import cn.enilu.flash.bean.core.BussinessLog;
-import cn.enilu.flash.bean.dictmap.CommonDict;
 import cn.enilu.flash.bean.entity.message.MessageTemplate;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
@@ -39,7 +38,7 @@ public class MessagetemplateController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    @BussinessLog(value = "编辑消息模板", key = "name", dict = CommonDict.class)
+    @BussinessLog(value = "编辑消息模板", key = "name")
     @RequiresPermissions(value = {Permission.MSG_TPL_EDIT})
     public Object save(@ModelAttribute @Valid MessageTemplate messageTemplate) {
         if(messageTemplate.getId()==null){
@@ -51,7 +50,7 @@ public class MessagetemplateController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    @BussinessLog(value = "删除消息模板", key = "id", dict = CommonDict.class)
+    @BussinessLog(value = "删除消息模板", key = "id")
     @RequiresPermissions(value = {Permission.MSG_TPL_DEL})
     public Object remove(Long id) {
         if (id==null) {

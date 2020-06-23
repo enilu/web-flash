@@ -2,7 +2,6 @@ package cn.enilu.flash.api.controller.system;
 
 import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.core.BussinessLog;
-import cn.enilu.flash.bean.dictmap.DictMap;
 import cn.enilu.flash.bean.entity.system.Dict;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
@@ -49,7 +48,7 @@ public class DictController extends BaseController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    @BussinessLog(value = "添加字典", key = "dictName",dict=DictMap.class)
+    @BussinessLog(value = "添加字典", key = "dictName")
     @RequiresPermissions(value = {Permission.DICT_EDIT})
     public Object add(String dictName, String dictValues) {
         if (BeanUtil.isOneEmpty(dictName, dictValues)) {
@@ -60,7 +59,7 @@ public class DictController extends BaseController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    @BussinessLog(value = "修改字典", key = "dictName",dict=DictMap.class)
+    @BussinessLog(value = "修改字典", key = "dictName")
     @RequiresPermissions(value = {Permission.DICT_EDIT})
     public Object update(Long id,String dictName, String dictValues) {
         if (BeanUtil.isOneEmpty(dictName, dictValues)) {
@@ -72,7 +71,7 @@ public class DictController extends BaseController {
 
 
     @RequestMapping(method = RequestMethod.DELETE)
-    @BussinessLog(value = "删除字典", key = "id",dict=DictMap.class)
+    @BussinessLog(value = "删除字典", key = "id")
     @RequiresPermissions(value = {Permission.DICT_EDIT})
     public Object delete(@RequestParam Long id) {
         dictService.delteDict(id);

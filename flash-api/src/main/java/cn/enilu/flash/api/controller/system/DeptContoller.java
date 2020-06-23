@@ -2,7 +2,6 @@ package cn.enilu.flash.api.controller.system;
 
 import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.core.BussinessLog;
-import cn.enilu.flash.bean.dictmap.DeptDict;
 import cn.enilu.flash.bean.entity.system.Dept;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
@@ -41,7 +40,7 @@ public class DeptContoller extends BaseController {
         return Rets.success(list);
     }
     @RequestMapping(method = RequestMethod.POST)
-    @BussinessLog(value = "编辑部门", key = "simplename", dict = DeptDict.class)
+    @BussinessLog(value = "编辑部门", key = "simplename")
     @RequiresPermissions(value = {Permission.DEPT_EDIT})
     public Object save(@ModelAttribute @Valid Dept dept){
         if (BeanUtil.isOneEmpty(dept, dept.getSimplename())) {
@@ -64,7 +63,7 @@ public class DeptContoller extends BaseController {
         return Rets.success();
     }
     @RequestMapping(method = RequestMethod.DELETE)
-    @BussinessLog(value = "删除部门", key = "id", dict = DeptDict.class)
+    @BussinessLog(value = "删除部门", key = "id")
     @RequiresPermissions(value = {Permission.DEPT_DEL})
     public Object remove(@RequestParam  Long id){
         logger.info("id:{}",id);

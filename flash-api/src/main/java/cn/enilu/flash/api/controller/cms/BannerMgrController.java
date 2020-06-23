@@ -2,7 +2,6 @@ package cn.enilu.flash.api.controller.cms;
 
 import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.core.BussinessLog;
-import cn.enilu.flash.bean.dictmap.CommonDict;
 import cn.enilu.flash.bean.entity.cms.Banner;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.vo.front.Rets;
@@ -26,7 +25,7 @@ public class BannerMgrController extends BaseController {
     private BannerService bannerService;
 
     @RequestMapping(method = RequestMethod.POST)
-    @BussinessLog(value = "编辑banner", key = "title", dict = CommonDict.class)
+    @BussinessLog(value = "编辑banner", key = "title")
     @RequiresPermissions(value = {Permission.BANNER_EDIT})
     public Object save(@ModelAttribute @Valid Banner banner) {
         if(banner.getId()==null){
@@ -38,7 +37,7 @@ public class BannerMgrController extends BaseController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    @BussinessLog(value = "删除banner", key = "id", dict = CommonDict.class)
+    @BussinessLog(value = "删除banner", key = "id")
     @RequiresPermissions(value = {Permission.BANNER_DEL})
     public Object remove(Long id) {
         bannerService.delete(id);

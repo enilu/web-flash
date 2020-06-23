@@ -3,7 +3,6 @@ package cn.enilu.flash.api.controller.cms;
 import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.constant.factory.PageFactory;
 import cn.enilu.flash.bean.core.BussinessLog;
-import cn.enilu.flash.bean.dictmap.CommonDict;
 import cn.enilu.flash.bean.entity.cms.Article;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.vo.front.Rets;
@@ -29,7 +28,7 @@ public class ArticleMgrController extends BaseController {
     @Autowired
     private ArticleService articleService;
     @RequestMapping(method = RequestMethod.POST)
-    @BussinessLog(value = "编辑文章",key="name",dict = CommonDict.class)
+    @BussinessLog(value = "编辑文章",key="name")
     @RequiresPermissions(value = {Permission.ARTICLE_EDIT})
     public Object save(){
         Article article = getFromJson(Article.class);
@@ -47,7 +46,7 @@ public class ArticleMgrController extends BaseController {
         return Rets.success();
     }
     @RequestMapping(method = RequestMethod.DELETE)
-    @BussinessLog(value = "删除文章",key="id",dict = CommonDict.class)
+    @BussinessLog(value = "删除文章",key="id")
     @RequiresPermissions(value = {Permission.ARTICLE_DEL})
     public Object remove(Long id){
         articleService.delete(id);

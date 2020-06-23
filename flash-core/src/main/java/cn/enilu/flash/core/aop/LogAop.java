@@ -1,7 +1,6 @@
 package cn.enilu.flash.core.aop;
 
 import cn.enilu.flash.bean.core.BussinessLog;
-import cn.enilu.flash.bean.dictmap.base.AbstractDictMap;
 import cn.enilu.flash.core.log.LogManager;
 import cn.enilu.flash.core.log.LogTaskFactory;
 import cn.enilu.flash.security.JwtUtil;
@@ -86,7 +85,6 @@ public class LogAop {
         BussinessLog annotation = currentMethod.getAnnotation(BussinessLog.class);
         String bussinessName = annotation.value();
         String key = annotation.key();
-        Class dictClass = annotation.dict();
 
         StringBuilder sb = new StringBuilder();
         for (Object param : params) {
@@ -100,14 +98,13 @@ public class LogAop {
             Object obj1 = LogObjectHolder.me().get();
             Map<String, String> obj2 = HttpUtil.getRequestParameters();
             try {
-                msg = BeanUtil.contrastObj(dictClass, key, obj1, obj2);
+                msg = BeanUtil.contrastObj( key, obj1, obj2);
             }catch (Exception e){
 
             }
         } else {
             Map<String, String> parameters = HttpUtil.getRequestParameters();
-            AbstractDictMap dictMap = (AbstractDictMap) dictClass.newInstance();
-            msg = BeanUtil.parseMutiKey(dictMap,key,parameters);
+            msg = BeanUtil.parseMutiKey( parameters);
         }
 
         LogManager.me().executeLog(LogTaskFactory.bussinessLog(idUser, bussinessName, className, methodName, msg));

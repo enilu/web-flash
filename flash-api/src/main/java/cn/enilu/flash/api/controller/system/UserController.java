@@ -5,7 +5,6 @@ import cn.enilu.flash.bean.constant.Const;
 import cn.enilu.flash.bean.constant.factory.PageFactory;
 import cn.enilu.flash.bean.constant.state.ManagerStatus;
 import cn.enilu.flash.bean.core.BussinessLog;
-import cn.enilu.flash.bean.dictmap.UserDict;
 import cn.enilu.flash.bean.dto.UserDto;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
@@ -15,7 +14,9 @@ import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.core.factory.UserFactory;
 import cn.enilu.flash.service.system.UserService;
-import cn.enilu.flash.utils.*;
+import cn.enilu.flash.utils.BeanUtil;
+import cn.enilu.flash.utils.MD5;
+import cn.enilu.flash.utils.RandomUtil;
 import cn.enilu.flash.utils.factory.Page;
 import cn.enilu.flash.warpper.UserWarpper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -60,7 +61,7 @@ public class UserController extends BaseController {
         return Rets.success(page);
     }
     @RequestMapping(method = RequestMethod.POST)
-    @BussinessLog(value = "编辑账号", key = "name", dict = UserDict.class)
+    @BussinessLog(value = "编辑账号", key = "name")
     @RequiresPermissions(value = {Permission.USER_EDIT})
     public Object save( @Valid UserDto user,BindingResult result){
         if(user.getId()==null) {
@@ -81,7 +82,7 @@ public class UserController extends BaseController {
         return Rets.success();
     }
 
-    @BussinessLog(value = "删除账号", key = "userId", dict = UserDict.class)
+    @BussinessLog(value = "删除账号", key = "userId")
     @RequestMapping(method = RequestMethod.DELETE)
     @RequiresPermissions(value = {Permission.USER_DEL})
     public Object remove(@RequestParam Long userId){
@@ -96,7 +97,7 @@ public class UserController extends BaseController {
         userService.update(user);
         return Rets.success();
     }
-    @BussinessLog(value="设置账号角色",key="userId",dict=UserDict.class)
+    @BussinessLog(value="设置账号角色",key="userId")
     @RequestMapping(value="/setRole",method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.USER_EDIT})
     public Object setRole(@RequestParam("userId") Long userId, @RequestParam("roleIds") String roleIds) {
@@ -112,7 +113,7 @@ public class UserController extends BaseController {
         userService.update(user);
         return Rets.success();
     }
-    @BussinessLog(value = "冻结/解冻账号", key = "userId", dict = UserDict.class)
+    @BussinessLog(value = "冻结/解冻账号", key = "userId")
     @RequestMapping(value="changeStatus",method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.USER_EDIT})
     public Object changeStatus(@RequestParam Long userId){

@@ -3,6 +3,7 @@ package cn.enilu.flash.api.controller.system;
 import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.constant.factory.PageFactory;
 import cn.enilu.flash.bean.constant.state.BizLogType;
+import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.entity.system.OperationLog;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.vo.front.Rets;
@@ -74,6 +75,7 @@ public class LogController extends BaseController {
      * 清空日志
      */
     @RequestMapping(method = RequestMethod.DELETE)
+    @BussinessLog(value = "清空业务日志")
     @RequiresPermissions(value = {Permission.LOG_CLEAR})
     public Object delLog() {
         operationLogService.clear();

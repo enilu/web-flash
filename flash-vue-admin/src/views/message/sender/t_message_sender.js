@@ -104,8 +104,8 @@ export default {
       this.$refs['form'].validate((valid) => {
         if (valid) {
           save({
-      name:this.form.name,
-      className:this.form.className,
+            name:this.form.name,
+            className:this.form.className,
             id: this.form.id
           }).then(response => {
             this.$message({
