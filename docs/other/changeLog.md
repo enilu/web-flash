@@ -16,7 +16,7 @@
 - Issue #I1JYAR 移除fastjson，使用jackson代替
 - Change 调整登录相关验证
 - Issue 完善查询条件为(not)null的代码封装
-- 
+
 ### Fixes
 - Fix #65 语言切换bug
 - Fix 处理延迟加载导致对象转换为json异常的问题
