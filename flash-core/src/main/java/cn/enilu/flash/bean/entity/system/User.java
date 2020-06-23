@@ -18,7 +18,7 @@ import java.util.Date;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class User  extends BaseEntity {
-    @Column
+    @Column(columnDefinition = "varchar(64) comment '头像'")
     private String avatar;
     @Column(columnDefinition = "VARCHAR(32) COMMENT '账户'")
     private String account;
@@ -38,11 +38,11 @@ public class User  extends BaseEntity {
     private String phone;
     @Column(columnDefinition = "VARCHAR(128) COMMENT '角色id列表，以逗号分隔'")
     private String roleid;
-    @Column(columnDefinition = "BITINT COMMENT '部门id'")
+    @Column(columnDefinition = "BIGINT COMMENT '部门id'")
     private Long deptid;
     @Column(columnDefinition = "INT COMMENT '状态1:启用,2:禁用'")
     private Integer status;
-    @Column
+    @Column(columnDefinition = "INT COMMENT '版本'")
     private Integer version;
     @JoinColumn(name="deptid", insertable = false, updatable = false,foreignKey = @ForeignKey(name="none",value = ConstraintMode.NO_CONSTRAINT))
     @ManyToOne(fetch = FetchType.EAGER)

@@ -1,7 +1,9 @@
 # change log
 ## Latest
 ### Issues
-
+- Issue 各个功能的列表页面完善查询条件
+- Issue 各个功能的列表页面增加操作列：包含修改，删除等操作按钮
+- Issue 用户管理页面增加部门树快速定位用户
 ### Fixes
 
 ## 1.5
