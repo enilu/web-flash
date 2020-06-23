@@ -4,7 +4,6 @@
 [gitee](https://gitee.com/enilu/web-flash/releases/1.6)
 [github](https://github.com/enilu/web-flash/releases/tag/1.6)
 ### Issues
-- Issue 
 - Issue 各个功能的列表页面完善查询条件
 - Issue 各个功能的列表页面增加操作列：包含修改，删除等操作按钮
 - Issue 完善功能按钮的权限控制
