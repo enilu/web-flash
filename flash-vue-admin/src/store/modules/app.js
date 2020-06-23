@@ -43,7 +43,10 @@ const actions = {
   },
   toggleDevice({ commit }, device) {
     commit('TOGGLE_DEVICE', device)
-  }
+  },
+  setLanguage({ commit },language) {
+    commit('SET_LANGUAGE',language)
+  },
 }
 
 export default {
