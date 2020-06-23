@@ -1,12 +1,30 @@
 # change log
-## Latest
+## 1.6
+
+[gitee](https://gitee.com/enilu/web-flash/releases/1.6)
+[github](https://github.com/enilu/web-flash/releases/tag/1.6)
 ### Issues
+- Issue 
 - Issue 各个功能的列表页面完善查询条件
 - Issue 各个功能的列表页面增加操作列：包含修改，删除等操作按钮
+- Issue 完善功能按钮的权限控制
 - Issue 用户管理页面增加部门树快速定位用户
 - Issue 重构记录业务日志功能
 - Issue 代码生成功能添加生成列表页的操作列，查询条件
+- Issue 菜单列表显示菜单图标
+- Issue 封装JsonUtil使用jackson代替nutz的json工具类
+- Issue #I1JYAR 移除fastjson，使用jackson代替
+- Change 调整登录相关验证
+- Issue 完善查询条件为(not)null的代码封装
+- 
 ### Fixes
+- Fix #65 语言切换bug
+- Fix 处理延迟加载导致对象转换为json异常的问题
+- Fix 修正初始化数据
+- Fix #58 新建用户不配置角色时登录出错
+- Fix MD5在高并发环境生成md5值错误
+- Fix 生成代码时 js文件没有和index.vue文件同级目录问题
+
 
 ## 1.5
 [gitee](https://gitee.com/enilu/web-flash/releases/1.5)
