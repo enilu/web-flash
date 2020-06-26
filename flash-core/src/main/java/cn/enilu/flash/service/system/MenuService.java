@@ -158,7 +158,7 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
                 Object[] source = (Object[]) menus.get(i);
                 MenuNode menuNode = new MenuNode();
                 menuNode.setId(Long.valueOf(source[0].toString()));
-                menuNode.setIcon(String.valueOf(source[1]));
+                menuNode.setIcon(StringUtil.sNull(source[1]));
                 menuNode.setParentId(Long.valueOf(source[2].toString()));
                 menuNode.setName(String.valueOf(source[3]));
                 menuNode.setUrl(String.valueOf(source[4]));

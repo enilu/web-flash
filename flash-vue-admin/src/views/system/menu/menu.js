@@ -20,6 +20,11 @@ export default {
       formTitle: '',
       formVisible: false,
       isAdd: false,
+      show:{
+        form:{
+          component:true
+        }
+      },
       form: {
         id: '',
         pname: '',
@@ -121,7 +126,7 @@ export default {
         this.form.pcode = row.parent.code
         this.form.pname = row.parent.name
       }
-      console.log(this.form.pcode)
+      this.show.form.component=true
       this.formTitle = '编辑菜单'
       this.formVisible = true
       this.isAdd = false
@@ -145,6 +150,20 @@ export default {
           })
         })
       })
+    },
+    componentTips(){
+      this.$notify({
+        title: '提示',
+        dangerouslyUseHTMLString:true,
+        message: '顶级目录请输入layout,<br/>左侧惨淡请根据实际组件路径输入:views/...<br/>功能按钮无需输入该值'
+      })
+    },
+    changeISmenu(val){
+      if(val===1){
+        this.show.form.component=true
+      }else{
+        this.show.form.component=false
+      }
     }
   }
 }

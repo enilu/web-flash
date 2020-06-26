@@ -81,10 +81,10 @@
             </el-col>
 
             <el-col :span="12">
-              <el-form-item label="是否是菜单">
-                <el-radio-group v-model="form.ismenu">
-                  <el-radio :label="1">是</el-radio>
-                  <el-radio :label="0">否</el-radio>
+              <el-form-item label="菜单类型">
+                <el-radio-group v-model="form.ismenu" @change="changeISmenu">
+                  <el-radio :label="1">菜单</el-radio>
+                  <el-radio :label="0">按钮</el-radio>
                 </el-radio-group>
               </el-form-item>
             </el-col>
@@ -102,32 +102,9 @@
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item label="组件" prop="num">
-                <el-input v-model="form.component"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="12">
-              <el-form-item label="是否隐藏">
-                <el-radio-group v-model="form.hidden">
-                  <el-radio :label="true">是</el-radio>
-                  <el-radio :label="false">否</el-radio>
-                </el-radio-group>
-              </el-form-item>
-            </el-col>
-            <el-col :span="12">
-              <el-form-item label="图标" >
-                <el-input v-model="form.icon"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="12">
-              <el-form-item label="排序" prop="num">
-                <el-input type="number" v-model="form.num"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="12">
               <el-form-item label="父菜单" >
                 <el-input
-                  placeholder="请选择父菜单"
+                  placeholder="请选择父菜单/顶级菜单目录无需选择"
                   v-model="form.pname"
                   readonly="readonly"
                   @click.native="showTree = !showTree">
@@ -144,6 +121,29 @@
               </el-form-item>
             </el-col>
 
+            <el-col :span="12" v-show="show.form.component">
+              <el-form-item label="组件">
+                <el-input v-model="form.component" @focus="componentTips" ></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12"   v-show="show.form.component">
+              <el-form-item label="图标">
+                <el-input v-model="form.icon" placeholder="请输入icons/svg目录下的图标文件名称"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12"  v-show="show.form.component">
+              <el-form-item label="是否隐藏">
+                <el-radio-group v-model="form.hidden">
+                  <el-radio :label="true">是</el-radio>
+                  <el-radio :label="false">否</el-radio>
+                </el-radio-group>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="排序" prop="num">
+                <el-input type="number" v-model="form.num"></el-input>
+              </el-form-item>
+            </el-col>
 
           </el-row>
           <el-form-item>
