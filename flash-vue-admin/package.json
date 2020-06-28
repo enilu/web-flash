@@ -18,6 +18,7 @@
     "axios": "0.18.0",
     "element-ui": "2.11.0",
     "element-resize-detector": "^1.2.1",
+    "fuse.js": "3.4.4",
     "js-cookie": "2.2.0",
     "normalize.css": "7.0.0",
     "nprogress": "0.2.0",
