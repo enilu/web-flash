@@ -1,10 +1,10 @@
 import defaultSettings from '@/settings'
 
-const title = defaultSettings.title || 'web-flash Admin'
+const title = defaultSettings.title
 
 export default function getPageTitle(pageTitle) {
   if (pageTitle) {
-    return `${pageTitle} - ${title}`
+    return `${pageTitle} | ${title}`
   }
   return `${title}`
 }
