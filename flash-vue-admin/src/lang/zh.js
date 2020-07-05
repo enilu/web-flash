@@ -1,5 +1,6 @@
 export default {
   route: {
+    login:'欢迎光临',
     dashboard: '首页',
     system: '系统管理',
     operationMgr: '运维管理',

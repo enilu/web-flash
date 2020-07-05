@@ -33,6 +33,10 @@ import Layout from '@/layout'
 export const constantRoutes = [
   {
     path: '/login',
+    name:'login',
+    meta:{
+      title:'login'
+    },
     component: () => import('@/views/login/index'),
     hidden: true
   },
