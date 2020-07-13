@@ -12,6 +12,9 @@
           <el-input v-model="listQuery.phone" size="mini" placeholder="请输入手机号"></el-input>
         </el-col>
         <el-col :span="4">
+          <dictselect :dictName="账号状态" :placeholder="账号状态"/>
+        </el-col>
+        <el-col :span="4">
           <el-select v-model="listQuery.status" size="mini" placeholder="账号状态">
             <el-option
               v-for="item in statusList"

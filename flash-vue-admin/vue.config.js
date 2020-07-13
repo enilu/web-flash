@@ -35,7 +35,7 @@ module.exports = {
     },
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
-        target:`http://localhost:8082`,
+        target:`http://flash-admin.enilu.cn/prod-api`,
         changeOrigin: true,
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: ''

@@ -1,3 +1,5 @@
+
+import DictSelect from '@/components/DictSelect'
 import { deleteUser, getList, saveUser, remove, setRole, changeStatus } from '@/api/system/user'
 import { list as deptList } from '@/api/system/dept'
 import { parseTime } from '@/utils/index'
@@ -6,6 +8,9 @@ import { roleTreeListByIdUser } from '@/api/system/role'
 import permission from '@/directive/permission/index.js'
 
 export default {
+  components: {
+    DictSelect,
+  },
   directives: { permission },
   data() {
     return {

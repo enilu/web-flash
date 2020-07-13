@@ -1,4 +1,11 @@
 # change log
+## latest
+## Issues
+- 前端request.js请求默认配置：withCredentials: false,(仅作开发使用，不建议生产使用改配置)
+- 优化菜单维护功能
+- 添加顶部工具栏（添加快速入口功能）
+- 优化页面标题显示（从之前的英文调整为中文）
+
 ## 1.6
 
 [gitee](https://gitee.com/enilu/web-flash/releases/1.6)
