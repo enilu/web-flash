@@ -1,4 +1,9 @@
 # change log
+## Latest
+## Issues 
+- Issue 顶部工具栏添加文档地址，快速入口搜索框
+- Issue 页面标题显示中文代替之前的英文
+- Fix 修复登陆页面标题显示错误问题
 ## 1.6
 
 [gitee](https://gitee.com/enilu/web-flash/releases/1.6)
