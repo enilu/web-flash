@@ -93,6 +93,12 @@ module.exports = {
                     '/action/deploy'
                 ]
             },{
+                title: '自定义组件',
+                collapsable: false,
+                children: [
+                    '/components/dictSelect'
+                ]
+            },{
                 title: '其他',
                 collapsable: false,
                 children:[

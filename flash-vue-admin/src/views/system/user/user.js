@@ -13,7 +13,6 @@ export default {
   directives: { permission },
   data() {
     return {
-      dictSex:'性别',
       roleDialog: {
         visible: false,
         roles: [],
