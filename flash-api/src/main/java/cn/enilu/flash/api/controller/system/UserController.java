@@ -47,7 +47,9 @@ public class UserController extends BaseController {
                        @RequestParam(required = false) String name,
                        @RequestParam(required = false) Long deptid,
                        @RequestParam(required = false) String phone,
-                       @RequestParam(required = false) Integer status){
+                       @RequestParam(required = false) Integer status,
+                       @RequestParam(required = false) Integer sex
+    ){
         Page page = new PageFactory().defaultPage();
         page.addFilter( "name", SearchFilter.Operator.LIKE, name);
         page.addFilter( "account", SearchFilter.Operator.LIKE, account);
@@ -55,6 +57,7 @@ public class UserController extends BaseController {
         page.addFilter("phone",phone);
         page.addFilter("status",status);
         page.addFilter( "status",SearchFilter.Operator.GT,0);
+        page.addFilter("sex",sex);
         page = userService.queryPage(page);
         List list = (List) new UserWarpper(BeanUtil.objectsToMaps(page.getRecords())).warp();
         page.setRecords(list);

@@ -78,7 +78,7 @@ public class DictController extends BaseController {
     }
     @RequestMapping(value = "/getDicts/{dictName}",method = RequestMethod.GET)
     public Object getDicts(@PathVariable("dictName") String dictName){
-       List<Dict> dicts = dictCache.getDictsByPname(dictName);
-        return Rets.success(dictName);
+        List<Dict> dicts = dictCache.getDictsByPname(dictName);
+        return Rets.success(dicts);
     }
 }

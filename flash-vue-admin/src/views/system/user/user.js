@@ -5,10 +5,15 @@ import { roleTreeListByIdUser } from '@/api/system/role'
 // 权限判断指令
 import permission from '@/directive/permission/index.js'
 
+import DictSelect from '@/components/DictSelect'
 export default {
+  components:{
+    DictSelect
+  },
   directives: { permission },
   data() {
     return {
+      dictSex:'性别',
       roleDialog: {
         visible: false,
         roles: [],
@@ -70,7 +75,8 @@ export default {
         name: undefined,
         deptid:undefined,
         phone:undefined,
-        status:undefined
+        status:undefined,
+        sex:undefined
       },
       total: 0,
       list: null,
@@ -92,6 +98,10 @@ export default {
     this.init()
   },
   methods: {
+    changeSexVal(val){
+      console.log('from son',val)
+      this.listQuery.sex = val
+    },
     init() {
       deptList().then(response => {
         this.deptTree.data = response.data
@@ -117,6 +127,7 @@ export default {
       this.listQuery.deptid=''
       this.listQuery.status =''
       this.listQuery.phone=''
+      this.listQuery.sex=''
       this.fetchData()
     },
     handleFilter() {

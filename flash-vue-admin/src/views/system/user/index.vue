@@ -9,6 +9,14 @@
           <el-input v-model="listQuery.name" size="mini" placeholder="请输入姓名"></el-input>
         </el-col>
         <el-col :span="4">
+          <dict-select dictName="性别"
+                       v-model="listQuery.sex"
+                       @change="changeSexVal"
+                       placeholder="请选择性别">
+          </dict-select>
+        </el-col>
+
+        <el-col :span="4">
           <el-input v-model="listQuery.phone" size="mini" placeholder="请输入手机号"></el-input>
         </el-col>
         <el-col :span="4">
@@ -21,7 +29,8 @@
             </el-option>
           </el-select>
         </el-col>
-        <el-col :span="6">
+
+        <el-col :span="4">
           <el-button type="success" size="mini" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
           <el-button type="primary" size="mini" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
         </el-col>
