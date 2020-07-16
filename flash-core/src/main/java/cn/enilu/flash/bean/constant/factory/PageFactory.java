@@ -40,10 +40,10 @@ public class PageFactory<T> {
         } else {
             Page<T> page = new Page<>((offset / limit + 1), limit, sortName);
             if (Order.ASC.getDes().equals(order)) {
-                Sort sort = Sort.by(Sort.Direction.ASC, order);
+                Sort sort = Sort.by(Sort.Direction.ASC, sortName);
                 page.setSort(sort);
             } else {
-                Sort sort = Sort.by(Sort.Direction.DESC, order);
+                Sort sort = Sort.by(Sort.Direction.DESC, sortName);
                 page.setSort(sort);
 
             }
