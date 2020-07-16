@@ -40,10 +40,13 @@ public class PageFactory<T> {
         } else {
             Page<T> page = new Page<>((offset / limit + 1), limit, sortName);
             if (Order.ASC.getDes().equals(order)) {
-                Sort sort = Sort.by(Sort.Direction.ASC, order);
+                //设置应该将order替换成sortName， 第二个参数是设置排序字段的，这里设置成了 降序控制字段，会导致报错
+               // Sort sort = Sort.by(Sort.Direction.ASC, order);
+                Sort sort = Sort.by(Sort.Direction.ASC, sortName);
                 page.setSort(sort);
             } else {
-                Sort sort = Sort.by(Sort.Direction.DESC, order);
+//                 Sort sort = Sort.by(Sort.Direction.DESC, order);
+                Sort sort = Sort.by(Sort.Direction.DESC, sortName);
                 page.setSort(sort);
 
             }
