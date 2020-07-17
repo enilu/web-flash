@@ -1,12 +1,13 @@
 # change log
 ## latest
 ## Issues
-- 前端request.js请求默认配置：withCredentials: false,(仅作开发使用，不建议生产使用改配置)
-- 优化菜单维护功能
-- 添加顶部工具栏（添加快速入口功能）
-- 优化页面标题显示（从之前的英文调整为中文）
+- Issue前端request.js请求默认配置：withCredentials: false,(仅作开发使用，不建议生产使用该配置)
+- Issue 优化菜单维护功能
+- Issue 优化页面标题显示（从之前的英文调整为中文）
 - Issue 顶部工具栏添加文档地址，快速入口搜索框
 - Issue 页面标题显示中文代替之前的英文
+- Issue 定义DictSelect 字典下拉组件
+## Fixes
 - Fix 修复登陆页面标题显示错误问题
 ## 1.6
 
