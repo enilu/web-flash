@@ -7,6 +7,12 @@ export function getList() {
   })
 }
 
+export function getMenuTree() {
+  return request({
+    url: '/menu/tree',
+    method: 'get'
+  })
+}
 export function listForRouter(params) {
   return request({
     url: '/menu/listForRouter',

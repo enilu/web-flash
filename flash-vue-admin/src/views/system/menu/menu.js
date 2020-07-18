@@ -1,5 +1,5 @@
 import treeTable from '@/components/TreeTable'
-import { getList, save, delMenu } from '@/api/system/menu'
+import { getList, save, delMenu, getMenuTree } from '@/api/system/menu'
 import permission from '@/directive/permission/index.js'
 
 export default {
@@ -27,7 +27,6 @@ export default {
       },
       form: {
         id: '',
-        pname: '',
         name: '',
         code: '',
         url: '',
@@ -52,6 +51,7 @@ export default {
         ]
       },
       data: [],
+      treeData:[],
       selRow: {}
     }
   },
@@ -61,6 +61,9 @@ export default {
   methods: {
     init() {
       this.fetchData()
+      getMenuTree().then(response => {
+        this.treeData = response.data
+      })
     },
     fetchData() {
       this.listLoading = true
@@ -68,11 +71,6 @@ export default {
         this.data = response.data
         this.listLoading = false
       })
-    },
-    handleNodeClick(data, node) {
-      this.form.pcode = data.code
-      this.form.pname = data.name
-      this.showTree = false
     },
     checkSel() {
       if (this.selRow && this.selRow.id) {
@@ -122,11 +120,11 @@ export default {
       } else {
         this.form.status = 0
       }
-      if (row.parent) {
-        this.form.pcode = row.parent.code
-        this.form.pname = row.parent.name
+      if (this.form.pcode=='0') {
+        this.form.pcode =undefined
       }
       this.show.form.component=true
+      console.log("form",this.form)
       this.formTitle = '编辑菜单'
       this.formVisible = true
       this.isAdd = false

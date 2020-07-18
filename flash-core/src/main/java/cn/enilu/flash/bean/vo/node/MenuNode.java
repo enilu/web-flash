@@ -22,6 +22,10 @@ public class MenuNode implements Comparable {
      * 父节点
      */
     private Long parentId;
+    /**
+     * 父菜单编码
+     */
+    private String pcode;
 
     /**
      * 节点名称
@@ -216,6 +220,14 @@ public class MenuNode implements Comparable {
 
     public void setHidden(Boolean hidden) {
         this.hidden = hidden;
+    }
+
+    public String getPcode() {
+        return pcode;
+    }
+
+    public void setPcode(String pcode) {
+        this.pcode = pcode;
     }
 
     @Override

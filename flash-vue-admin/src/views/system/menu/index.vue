@@ -103,20 +103,22 @@
             </el-col>
             <el-col :span="12">
               <el-form-item label="父菜单" >
-                <el-input
-                  placeholder="请选择父菜单/顶级菜单目录无需选择"
-                  v-model="form.pname"
-                  readonly="readonly"
-                  @click.native="showTree = !showTree">
-                </el-input>
-                <el-tree v-if="showTree"
-                         empty-text="暂无数据"
-                         :expand-on-click-node="false"
-                         :data="data"
-                         :props="defaultProps"
-                         @node-click="handleNodeClick"
-                         class="input-tree">
-                </el-tree>
+
+                <treeselect v-model="form.pcode"  :options="treeData"  placeholder="请选择父菜单/顶级菜单目录无需选择"/>
+<!--                <el-input-->
+<!--                  placeholder="请选择父菜单/顶级菜单目录无需选择"-->
+<!--                  v-model="form.pname"-->
+<!--                  readonly="readonly"-->
+<!--                  @click.native="showTree = !showTree">-->
+<!--                </el-input>-->
+<!--                <el-tree v-if="showTree"-->
+<!--                         empty-text="暂无数据"-->
+<!--                         :expand-on-click-node="false"-->
+<!--                         :data="data"-->
+<!--                         :props="defaultProps"-->
+<!--                         @node-click="handleNodeClick"-->
+<!--                         class="input-tree">-->
+<!--                </el-tree>-->
 
               </el-form-item>
             </el-col>

@@ -167,6 +167,7 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
                 menuNode.setNum(Integer.valueOf(source[7].toString()));
                 menuNode.setCode(String.valueOf(source[8]));
                 menuNode.setStatus(Integer.valueOf(source[9].toString()));
+
                 if (source[10] != null) {
                     menuNode.setComponent(source[10].toString());
                 }
@@ -175,6 +176,7 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
                 }else{
                     menuNode.setHidden(false);
                 }
+                menuNode.setPcode(StringUtil.sNull(source[12]));
                 menuNodes.add(menuNode);
 
             }
