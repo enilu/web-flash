@@ -74,6 +74,9 @@ export default {
       this.listQuery.limit = limit
       this.fetchData()
     },
+    changeLogType(val){
+      this.listQuery.logType = val
+    },
     clear() {
       this.$confirm('确定清空数据?', '提示', {
         confirmButtonText: '确定',

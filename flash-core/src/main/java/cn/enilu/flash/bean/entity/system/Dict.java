@@ -19,13 +19,13 @@ import javax.persistence.EntityListeners;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Dict extends BaseEntity {
-    @Column
+    @Column(columnDefinition = "VARCHAR(32) COMMENT '字典值'")
     private String num;
-    @Column
+    @Column(columnDefinition = "BIGINT COMMENT '字典记录所属组id'")
     private Long pid;
-    @Column
+    @Column(columnDefinition = "VARCHAR(32) COMMENT '字典显示值'")
     private String name;
-    @Column
+    @Column(columnDefinition = "VARCHAR(32) COMMENT '备注'")
     private String tips;
 
 }
