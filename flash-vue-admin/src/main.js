@@ -15,6 +15,11 @@ import i18n from './lang' // Internationalization
 import '@/icons' // icon
 import '@/permission' // permission control
 
+/**
+ * 自定义公共组件DictSelect
+ */
+import DictSelect from './components/DictSelect'
+Vue.component('dict-select',DictSelect)
 
 /**
  * If you don't want to use mock-server

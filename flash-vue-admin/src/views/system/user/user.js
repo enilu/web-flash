@@ -5,11 +5,7 @@ import { roleTreeListByIdUser } from '@/api/system/role'
 // 权限判断指令
 import permission from '@/directive/permission/index.js'
 
-import DictSelect from '@/components/DictSelect'
 export default {
-  components:{
-    DictSelect
-  },
   directives: { permission },
   data() {
     return {
