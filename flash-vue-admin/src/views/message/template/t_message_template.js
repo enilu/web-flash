@@ -146,7 +146,7 @@ export default {
       return false
     },
     editItem(record){
-      this.selRow = record
+      this.selRow= Object.assign({},record);
       this.edit()
     },
     edit() {

@@ -163,7 +163,7 @@ export default {
       this.$router.push({ path: '/taskLog', query: { taskId: taskId }})
     },
     editItem(record){
-      this.selRow = record
+      this.selRow= Object.assign({},record);
       this.edit()
     },
     edit() {

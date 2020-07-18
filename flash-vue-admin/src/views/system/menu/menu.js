@@ -111,7 +111,7 @@ export default {
       })
     },
     edit(row) {
-      this.form = row
+      this.form= Object.assign({},row);
       if (row.isMenuName === '是') {
         this.form.ismenu = 1
       } else {
