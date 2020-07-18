@@ -1,8 +1,8 @@
 package cn.enilu.flash.bean.vo.node;
 
 import cn.enilu.flash.bean.entity.system.Dept;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,9 +11,10 @@ import java.util.List;
  * @author enilu
  * @version 2018/9/15 0015
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class DeptNode extends Dept {
 
-    private List<DeptNode> children = new ArrayList<>(10);
+    private List<DeptNode> children = null;
 
     public List<DeptNode> getChildren() {
         return children;
@@ -21,5 +22,9 @@ public class DeptNode extends Dept {
 
     public void setChildren(List<DeptNode> children) {
         this.children = children;
+    }
+
+    public String getLabel(){
+        return getSimplename();
     }
 }

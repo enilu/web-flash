@@ -5,6 +5,7 @@ import cn.enilu.flash.bean.vo.node.DeptNode;
 import cn.enilu.flash.bean.vo.node.ZTreeNode;
 import cn.enilu.flash.dao.system.DeptRepository;
 import cn.enilu.flash.service.BaseService;
+import cn.enilu.flash.utils.Lists;
 import com.google.common.base.Strings;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,7 +81,12 @@ public class DeptService extends BaseService<Dept,Long,DeptRepository> {
         for(DeptNode deptNode:nodes){
             for(DeptNode child:nodes){
                 if(child.getPid().intValue() == deptNode.getId().intValue()){
-                    deptNode.getChildren().add(child);
+                   List<DeptNode> children =  deptNode.getChildren();
+                   if(children==null){
+                       children = Lists.newArrayList();
+                       deptNode.setChildren(children);
+                   }
+                    children.add(child);
                 }
             }
         }

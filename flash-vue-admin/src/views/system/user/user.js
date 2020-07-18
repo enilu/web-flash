@@ -27,13 +27,7 @@ export default {
       formVisible: false,
       formTitle: '添加用户',
       deptTree: {
-        show: false,
         data: [],
-        defaultProps: {
-          id: 'id',
-          label: 'simplename',
-          children: 'children'
-        }
       },
       isAdd: true,
       form: {
@@ -47,8 +41,7 @@ export default {
         rePassword: '',
         dept: '',
         status: true,
-        deptid: 1,
-        deptName: ''
+        deptid: undefined
       },
       rules: {
         account: [
@@ -163,7 +156,7 @@ export default {
         rePassword: '',
         dept: '',
         status: true,
-        deptid: 1
+        deptid: undefined
       }
     },
     add() {
@@ -240,7 +233,7 @@ export default {
       return false
     },
     editItem(record){
-      this.selRow = record
+      this.selRow= Object.assign({},record);
       this.edit()
     },
     edit() {
@@ -285,11 +278,6 @@ export default {
     chooseDept(data,node){
       this.listQuery.deptid = data.id
       this.search()
-    },
-    handleNodeClick(data, node) {
-      this.form.deptid = data.id
-      this.form.deptName = data.simplename
-      this.deptTree.show = false
     },
     openRoleItem(record){
       this.selRow = record

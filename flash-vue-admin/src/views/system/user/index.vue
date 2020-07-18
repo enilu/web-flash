@@ -178,20 +178,21 @@
           </el-col>
           <el-col :span="12">
             <el-form-item label="所属部门" >
-              <el-input
-                placeholder="请选择所属部门"
-                v-model="form.deptName"
-                readonly="readonly"
-                @click.native="deptTree.show  = !deptTree.show">
-              </el-input>
-              <el-tree v-if="deptTree.show"
-                       empty-text="暂无数据"
-                       :expand-on-click-node="false"
-                       :data="deptTree.data"
-                       :props="deptTree.defaultProps"
-                       @node-click="handleNodeClick"
-                       class="input-tree">
-              </el-tree>
+              <treeselect v-model="form.deptid"  :options="deptTree.data"  placeholder="请选择所属部门"/>
+<!--              <el-input-->
+<!--                placeholder="请选择所属部门"-->
+<!--                v-model="form.deptName"-->
+<!--                readonly="readonly"-->
+<!--                @click.native="deptTree.show  = !deptTree.show">-->
+<!--              </el-input>-->
+<!--              <el-tree v-if="deptTree.show"-->
+<!--                       empty-text="暂无数据"-->
+<!--                       :expand-on-click-node="false"-->
+<!--                       :data="deptTree.data"-->
+<!--                       :props="deptTree.defaultProps"-->
+<!--                       @node-click="handleNodeClick"-->
+<!--                       class="input-tree">-->
+<!--              </el-tree>-->
 
             </el-form-item>
           </el-col>
