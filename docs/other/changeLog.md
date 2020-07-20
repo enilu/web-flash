@@ -7,8 +7,13 @@
 - Issue 顶部工具栏添加文档地址，快速入口搜索框
 - Issue 页面标题显示中文代替之前的英文
 - Issue 定义DictSelect 字典下拉组件
+- Issue 映入vue-treeselect组件代替之前的input+el-tree的用法
+
 ## Fixes
 - Fix 修复登陆页面标题显示错误问题
+- Fix 编辑菜单默认的父菜单没有选中
+- Fix 编辑功能使用深拷贝表格记录，代替之前的直接引用
+
 ## 1.6
 
 [gitee](https://gitee.com/enilu/web-flash/releases/1.6)
