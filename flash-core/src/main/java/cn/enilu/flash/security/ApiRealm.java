@@ -24,7 +24,7 @@ import java.util.Set;
 @Service
 public class ApiRealm extends AuthorizingRealm {
 
-    private     Logger logger = LogManager.getLogger(getClass());
+    private Logger logger = LogManager.getLogger(getClass());
     @Autowired
     private UserService userService;
     @Autowired
@@ -66,16 +66,13 @@ public class ApiRealm extends AuthorizingRealm {
             throw new AuthenticationException("token invalid");
         }
 
-        ShiroUser userBean =  ShiroFactroy.me().shiroUser(userService.findByAccount(username));
+        ShiroUser userBean = ShiroFactroy.me().shiroUser(userService.findByAccount(username));
         if (userBean == null) {
             throw new AuthenticationException("User didn't existed!");
         }
-        try {
-            if (!JwtUtil.verify(token, username, userBean.getPassword())) {
-                throw new AuthenticationException("Username or password error");
-            }
-        }catch (Exception e){
-            throw  new AuthenticationException(e.getMessage());
+
+        if (!JwtUtil.verify(token, username, userBean.getPassword())) {
+            throw new AuthenticationException("Username or password error");
         }
 
         return new SimpleAuthenticationInfo(token, token, "my_realm");
