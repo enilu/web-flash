@@ -29,12 +29,12 @@ public class JwtUtil {
         JWTVerifier verifier = null;
         try {
             Algorithm algorithm = Algorithm.HMAC256(password);
-            verifier = JWT.require(algorithm)
-                    .build();
+            verifier = JWT.require(algorithm).withClaim("username", username).build();
+            DecodedJWT jwt = verifier.verify(token);
         } catch (Exception e) {
             return false;
         }
-        DecodedJWT jwt = verifier.verify(token);
+
         return true;
 
     }
