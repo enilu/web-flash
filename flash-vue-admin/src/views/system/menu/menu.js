@@ -1,11 +1,12 @@
 import treeTable from '@/components/TreeTable'
 import { getList, save, delMenu, getMenuTree } from '@/api/system/menu'
 import permission from '@/directive/permission/index.js'
+import IconSelect from '@/components/IconSelect'
 
 export default {
   directives: { permission },
   name: 'treeTableDemo',
-  components: { treeTable },
+  components: { treeTable, IconSelect },
   data() {
     return {
       showTree: false,
@@ -59,6 +60,10 @@ export default {
     this.init()
   },
   methods: {
+    // 选择图标
+    selected(name) {
+      this.form.icon = name
+    },
     init() {
       this.fetchData()
       getMenuTree().then(response => {

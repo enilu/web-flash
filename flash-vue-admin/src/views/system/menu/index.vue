@@ -128,9 +128,26 @@
                 <el-input v-model="form.component" @focus="componentTips" ></el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="12"   v-show="show.form.component">
+            <el-col :span="12" v-show="show.form.component">
               <el-form-item label="图标">
-                <el-input v-model="form.icon" placeholder="请输入icons/svg目录下的图标文件名称"></el-input>
+                <el-popover
+                  placement="bottom-start"
+                  width="460"
+                  trigger="click"
+                  @show="$refs['iconSelect'].reset()"
+                >
+                  <IconSelect ref="iconSelect" @selected="selected" />
+                  <el-input slot="reference" v-model="form.icon" placeholder="点击选择图标" readonly>
+                    <svg-icon
+                      v-if="form.icon"
+                      slot="prefix"
+                      :icon-class="form.icon"
+                      class="el-input__icon"
+                      style="height: 32px;width: 16px;"
+                    />
+                    <i v-else slot="prefix" class="el-icon-search el-input__icon" />
+                 </el-input>
+                </el-popover>
               </el-form-item>
             </el-col>
             <el-col :span="12"  v-show="show.form.component">
