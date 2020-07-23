@@ -32,7 +32,7 @@ public class OffcialSiteProductController extends BaseController {
     public Object index() {
         Map<String, Object> dataMap = Maps.newHashMap();
 
-                BannerVo banner = bannerService.queryBanner(BannerTypeEnum.SOLUTION.getValue());
+        BannerVo banner = bannerService.queryBanner(BannerTypeEnum.SOLUTION.getValue());
         dataMap.put("banner", banner);
 
         List<Product> products = new ArrayList<>();
@@ -42,7 +42,7 @@ public class OffcialSiteProductController extends BaseController {
         }
         dataMap.put("productList", products);
 
-        Map map =  Maps.newHashMap("data",dataMap);
+        Map map = Maps.newHashMap("data", dataMap);
         return Rets.success(map);
 
     }

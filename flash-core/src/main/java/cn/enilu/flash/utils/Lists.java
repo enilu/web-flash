@@ -3,7 +3,13 @@ package cn.enilu.flash.utils;
 
 import net.sf.ehcache.hibernate.management.impl.BeanUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 集合工具类
@@ -247,7 +253,6 @@ public final class Lists {
     }
 
 
-
     public static boolean containAny(Set parent, Set child) {
         if (parent == null || child == null) {
             return false;
@@ -267,7 +272,7 @@ public final class Lists {
         return list;
     }
 
-    private static Object getProperty(Object bean,String name){
-        return BeanUtils.getBeanProperty(bean,name);
+    private static Object getProperty(Object bean, String name) {
+        return BeanUtils.getBeanProperty(bean, name);
     }
 }

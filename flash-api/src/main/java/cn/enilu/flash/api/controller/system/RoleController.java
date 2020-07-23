@@ -45,14 +45,15 @@ public class RoleController extends BaseController {
     private RoleService roleService;
     @Autowired
     private UserService userService;
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.ROLE})
-    public Object list( @RequestParam(required = false) String name,
-                        @RequestParam(required = false) String tips){
+    public Object list(@RequestParam(required = false) String name,
+                       @RequestParam(required = false) String tips) {
 
         Page page = new PageFactory().defaultPage();
-        page.addFilter("name",name);
-        page.addFilter("tips",tips);
+        page.addFilter("name", name);
+        page.addFilter("tips", tips);
         page = roleService.queryPage(page);
         List list = (List) new RoleWarpper(BeanUtil.objectsToMaps(page.getRecords())).warp();
         page.setRecords(list);
@@ -62,31 +63,32 @@ public class RoleController extends BaseController {
     @RequestMapping(method = RequestMethod.POST)
     @BussinessLog(value = "编辑角色", key = "name")
     @RequiresPermissions(value = {Permission.ROLE_EDIT})
-    public Object save(@Valid Role role){
-        if(role.getId()==null) {
+    public Object save(@Valid Role role) {
+        if (role.getId() == null) {
             roleService.insert(role);
-        }else{
+        } else {
             roleService.update(role);
         }
         return Rets.success();
     }
+
     @RequestMapping(method = RequestMethod.DELETE)
     @BussinessLog(value = "删除角色", key = "roleId")
     @RequiresPermissions(value = {Permission.ROLE_DEL})
-    public Object remove(@RequestParam Long roleId){
-        logger.info("id:{}",roleId);
-        if (roleId==null) {
+    public Object remove(@RequestParam Long roleId) {
+        logger.info("id:{}", roleId);
+        if (roleId == null) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
-        if(roleId.intValue()<2){
+        if (roleId.intValue() < 2) {
             return Rets.failure("不能删除初始角色");
         }
-        List<User> userList = userService.queryAll(SearchFilter.build("roleid", SearchFilter.Operator.EQ,String.valueOf(roleId)));
-        if(!userList.isEmpty()){
+        List<User> userList = userService.queryAll(SearchFilter.build("roleid", SearchFilter.Operator.EQ, String.valueOf(roleId)));
+        if (!userList.isEmpty()) {
             return Rets.failure("有用户使用该角色，禁止删除");
         }
         //不能删除超级管理员角色
-        if(roleId.intValue() ==Const.ADMIN_ROLE_ID){
+        if (roleId.intValue() == Const.ADMIN_ROLE_ID) {
             return Rets.failure("禁止删除超级管理员角色");
         }
         //缓存被删除的角色名称
@@ -95,7 +97,7 @@ public class RoleController extends BaseController {
         return Rets.success();
     }
 
-    @RequestMapping(value = "/savePermisson",method = RequestMethod.POST)
+    @RequestMapping(value = "/savePermisson", method = RequestMethod.POST)
     @BussinessLog(value = "配置角色权限", key = "roleId")
     @RequiresPermissions(value = {Permission.ROLE_EDIT})
     public Object setAuthority(Long roleId, String

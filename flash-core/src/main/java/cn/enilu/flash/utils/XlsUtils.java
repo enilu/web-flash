@@ -7,6 +7,6 @@ public class XlsUtils {
         if (date == null) {
             return "";
         }
-        return DateUtil.formatDate(date,fmt);
+        return DateUtil.formatDate(date, fmt);
     }
 }

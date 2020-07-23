@@ -27,49 +27,53 @@ public class ArticleMgrController extends BaseController {
 
     @Autowired
     private ArticleService articleService;
+
     @RequestMapping(method = RequestMethod.POST)
-    @BussinessLog(value = "编辑文章",key="name")
+    @BussinessLog(value = "编辑文章", key = "name")
     @RequiresPermissions(value = {Permission.ARTICLE_EDIT})
-    public Object save(){
+    public Object save() {
         Article article = getFromJson(Article.class);
-        if(article.getId()!=null){
+        if (article.getId() != null) {
             Article old = articleService.get(article.getId());
             old.setAuthor(article.getAuthor());
             old.setContent(article.getContent());
             old.setIdChannel(article.getIdChannel());
             old.setImg(article.getImg());
             old.setTitle(article.getTitle());
-           articleService.update(old);
-        }else {
+            articleService.update(old);
+        } else {
             articleService.insert(article);
         }
         return Rets.success();
     }
+
     @RequestMapping(method = RequestMethod.DELETE)
-    @BussinessLog(value = "删除文章",key="id")
+    @BussinessLog(value = "删除文章", key = "id")
     @RequiresPermissions(value = {Permission.ARTICLE_DEL})
-    public Object remove(Long id){
+    public Object remove(Long id) {
         articleService.delete(id);
         return Rets.success();
     }
+
     @RequestMapping(method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.ARTICLE})
     public Object get(@Param("id") Long id) {
         Article article = articleService.get(id);
         return Rets.success(article);
     }
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.ARTICLE})
     public Object list(@RequestParam(required = false) String title,
                        @RequestParam(required = false) String author,
                        @RequestParam(required = false) String startDate,
                        @RequestParam(required = false) String endDate
-                       ) {
+    ) {
         Page<Article> page = new PageFactory<Article>().defaultPage();
-        page.addFilter("title", SearchFilter.Operator.LIKE,title);
-        page.addFilter("author", SearchFilter.Operator.EQ,author);
-        page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parse(startDate,"yyyyMMddHHmmss"));
-        page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parse(endDate,"yyyyMMddHHmmss"));
+        page.addFilter("title", SearchFilter.Operator.LIKE, title);
+        page.addFilter("author", SearchFilter.Operator.EQ, author);
+        page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parse(startDate, "yyyyMMddHHmmss"));
+        page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parse(endDate, "yyyyMMddHHmmss"));
         page = articleService.queryPage(page);
         return Rets.success(page);
     }

@@ -31,7 +31,7 @@ public class DictCacheImpl extends BaseCache implements DictCache {
 
     @Override
     public String getDict(Long dictId) {
-        return (String) get(CacheKey.DICT_NAME +dictId);
+        return (String) get(CacheKey.DICT_NAME + dictId);
     }
 
     @Override

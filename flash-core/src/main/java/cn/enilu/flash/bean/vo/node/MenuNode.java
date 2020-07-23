@@ -54,7 +54,7 @@ public class MenuNode implements Comparable {
      * 节点的url
      */
     private String url;
-     private String path;
+    private String path;
 
     /**
      * 节点图标
@@ -183,7 +183,7 @@ public class MenuNode implements Comparable {
 
     public String getIsMenuName() {
 
-        return ismenu == 1 ?"是":"否";
+        return ismenu == 1 ? "是" : "否";
     }
 
     public void setIsMenuName(String isMenuName) {
@@ -207,11 +207,11 @@ public class MenuNode implements Comparable {
     }
 
     public String getStatusName() {
-        return status == 1 ?"启用":"禁用";
+        return status == 1 ? "启用" : "禁用";
     }
 
     public void setStatusName(String statusName) {
-       this.statusName = statusName;
+        this.statusName = statusName;
     }
 
     public Boolean getHidden() {
@@ -336,7 +336,7 @@ public class MenuNode implements Comparable {
     public static List<MenuNode> clearBtn(List<MenuNode> nodes) {
         ArrayList<MenuNode> noBtns = new ArrayList<MenuNode>();
         for (MenuNode node : nodes) {
-            if(node.getIsmenu() == IsMenu.YES.getCode()){
+            if (node.getIsmenu() == IsMenu.YES.getCode()) {
                 noBtns.add(node);
             }
         }

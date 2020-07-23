@@ -15,10 +15,11 @@ import java.util.List;
  * @date ：Created in 2019/6/30 11:14
  */
 @Service
-public class NoticeService extends BaseService<Notice,Long, NoticeRepository> {
+public class NoticeService extends BaseService<Notice, Long, NoticeRepository> {
     @Autowired
     private NoticeRepository noticeRepository;
+
     public List<Notice> findByTitleLike(String title) {
-        return noticeRepository.findByTitleLike("%"+title+"%");
+        return noticeRepository.findByTitleLike("%" + title + "%");
     }
 }

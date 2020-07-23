@@ -5,16 +5,17 @@ import java.util.Base64;
 
 /**
  * 加密工具类
- * @author  enilu
+ *
+ * @author enilu
  */
 public class CryptUtil {
 
-	public static String encodeBASE64(byte[] bytes) {
+    public static String encodeBASE64(byte[] bytes) {
 
-		String encode = Base64.getEncoder().encodeToString(bytes);
-		encode = encode.replaceAll("\n", "");
-		return encode;
-	}
+        String encode = Base64.getEncoder().encodeToString(bytes);
+        encode = encode.replaceAll("\n", "");
+        return encode;
+    }
 
 
 }

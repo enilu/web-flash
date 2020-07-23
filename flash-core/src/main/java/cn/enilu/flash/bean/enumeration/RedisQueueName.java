@@ -5,7 +5,7 @@ package cn.enilu.flash.bean.enumeration;
  * Created by zt on 2017/8/25 0015.
  */
 public enum RedisQueueName {
-    CREDIT_LIMIT("credit_limit"),COLLECTION_TAG("collection_tag");
+    CREDIT_LIMIT("credit_limit"), COLLECTION_TAG("collection_tag");
 
     private String value;
 

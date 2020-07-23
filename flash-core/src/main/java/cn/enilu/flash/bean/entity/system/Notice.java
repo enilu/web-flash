@@ -16,7 +16,7 @@ import javax.persistence.EntityListeners;
  */
 
 @Entity(name = "t_sys_notice")
-@Table(appliesTo = "t_sys_notice",comment = "通知")
+@Table(appliesTo = "t_sys_notice", comment = "通知")
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Notice extends BaseEntity {

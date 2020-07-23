@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author enilu
  */
-public interface RelationRepository extends BaseRepository<Relation,Long> {
+public interface RelationRepository extends BaseRepository<Relation, Long> {
     @Transactional
     @Modifying
-    @Query(nativeQuery = true,value = "delete from t_sys_relation where roleid=?1")
+    @Query(nativeQuery = true, value = "delete from t_sys_relation where roleid=?1")
     int deleteByRoleId(Long roleId);
 }

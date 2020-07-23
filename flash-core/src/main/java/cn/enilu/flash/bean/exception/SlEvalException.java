@@ -4,26 +4,26 @@ import java.util.List;
 
 public class SlEvalException extends Exception {
 
-	private static final long serialVersionUID = 1L;
-	
-	private String errorCode;
-	private List<String> details;
-	
-	public SlEvalException(String errorCode, String errorMessage) {
-		super(errorMessage);
-		this.errorCode = errorCode;
-	}
+    private static final long serialVersionUID = 1L;
 
-	public String getErrorCode() {
-		return errorCode;
-	}
+    private String errorCode;
+    private List<String> details;
 
-	public List<String> getDetails() {
-		return details;
-	}
+    public SlEvalException(String errorCode, String errorMessage) {
+        super(errorMessage);
+        this.errorCode = errorCode;
+    }
 
-	public void setDetails(List<String> details) {
-		this.details = details;
-	}
-	
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public List<String> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<String> details) {
+        this.details = details;
+    }
+
 }

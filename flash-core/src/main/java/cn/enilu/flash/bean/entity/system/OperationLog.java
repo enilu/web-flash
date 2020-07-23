@@ -16,7 +16,7 @@ import java.util.Date;
  */
 
 @Entity(name = "t_sys_operation_log")
-@Table(appliesTo = "t_sys_operation_log",comment = "操作日志")
+@Table(appliesTo = "t_sys_operation_log", comment = "操作日志")
 @Data
 public class OperationLog {
 
@@ -33,7 +33,7 @@ public class OperationLog {
     private String classname;
     @Column
     private String method;
-    @Column(name="create_time")
+    @Column(name = "create_time")
     private Date createTime;
     @Column
     private String succeed;

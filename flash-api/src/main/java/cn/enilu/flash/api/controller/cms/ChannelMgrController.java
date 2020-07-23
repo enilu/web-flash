@@ -29,9 +29,9 @@ public class ChannelMgrController extends BaseController {
     @BussinessLog(value = "编辑栏目", key = "name")
     @RequiresPermissions(value = {Permission.CHANNEL_EDIT})
     public Object save(@ModelAttribute @Valid Channel channel) {
-        if(channel.getId()==null) {
+        if (channel.getId() == null) {
             channelService.insert(channel);
-        }else{
+        } else {
             channelService.update(channel);
         }
         return Rets.success();

@@ -7,7 +7,7 @@ public interface Constants {
     /**
      * 默认的系统用户id
      */
-    long SYSTEM_USER_ID=-1;
+    long SYSTEM_USER_ID = -1;
 
 
     String SEPARATOR = ";;;";

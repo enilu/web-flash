@@ -34,28 +34,28 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
     }
 
 
-
-
     @Override
     public List<T> queryBySql(String sql, Class<T> klass) {
-         return (List<T>) queryObjBySql(sql,klass);
+        return (List<T>) queryObjBySql(sql, klass);
     }
+
     @Override
     public List<?> queryObjBySql(String sql, Class<?> klass) {
         List<Map> list = queryBySql(sql);
-        if(list.isEmpty()){
+        if (list.isEmpty()) {
             return null;
         }
         List result = Lists.newArrayList();
-        for(Map map :list){
+        for (Map map : list) {
             try {
-                Object bean = Mapl.maplistToObj(map,klass);
+                Object bean = Mapl.maplistToObj(map, klass);
                 result.add(bean);
-            }catch (Exception e){
+            } catch (Exception e) {
             }
         }
         return result;
     }
+
     @Override
     public List<Map> queryBySql(String sql) {
         Query query = entityManager.createNativeQuery(sql);
@@ -68,7 +68,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
     @Override
     public Map getMapBySql(String sql) {
         List<Map> list = queryBySql(sql);
-        if(list.isEmpty()){
+        if (list.isEmpty()) {
             return null;
         }
         return list.get(0);
@@ -76,20 +76,21 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
 
     @Override
     public T getBySql(String sql) {
-       List<T> list = queryBySql(sql,klass);
-        if(list.isEmpty()){
+        List<T> list = queryBySql(sql, klass);
+        if (list.isEmpty()) {
             return null;
         }
         return list.get(0);
     }
 
     @Override
-    public T getOne(ID id){
+    public T getOne(ID id) {
         return findById(id).get();
     }
+
     @Override
     public T get(String sql) {
-        List<T> list =  entityManager.createNativeQuery(sql,klass).getResultList();
+        List<T> list = entityManager.createNativeQuery(sql, klass).getResultList();
         return list.get(0);
     }
 
@@ -105,6 +106,6 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
 
     @Override
     public List<T> query(String sql) {
-        return entityManager.createNativeQuery(sql,klass).getResultList();
+        return entityManager.createNativeQuery(sql, klass).getResultList();
     }
 }

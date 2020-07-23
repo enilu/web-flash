@@ -15,8 +15,8 @@ import javax.validation.constraints.NotBlank;
  *
  * @author enilu
  */
-@Entity(name="t_sys_dept")
-@Table(appliesTo = "t_sys_dept",comment = "部门")
+@Entity(name = "t_sys_dept")
+@Table(appliesTo = "t_sys_dept", comment = "部门")
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Dept extends BaseEntity {

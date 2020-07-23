@@ -18,10 +18,11 @@ public class ArticleController extends BaseController {
     private Logger logger = LoggerFactory.getLogger(ArticleController.class);
     @Autowired
     private ArticleService articleService;
+
     @RequestMapping(method = RequestMethod.GET)
-    public Object get(@Param("id") Long id,@Param("type")String type) {
-        logger.info("type:{},id:{}",type,id);
-         Article article = articleService.get(id);
+    public Object get(@Param("id") Long id, @Param("type") String type) {
+        logger.info("type:{},id:{}", type, id);
+        Article article = articleService.get(id);
         return Rets.success(article);
     }
 }

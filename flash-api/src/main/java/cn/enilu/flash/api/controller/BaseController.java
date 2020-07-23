@@ -73,7 +73,7 @@ public class BaseController {
             ip = req.getRemoteAddr();
         }
         if (ip == null || ip.length() == 0 || ApiConstants.IPV6_LOCALHOST.equals(ip)) {
-            ip =ApiConstants.IPV4_LOCALHOST;
+            ip = ApiConstants.IPV4_LOCALHOST;
         }
         return ip;
     }
@@ -116,7 +116,7 @@ public class BaseController {
         if (StringUtil.isEmpty(jsonStr)) {
             return null;
         }
-        return JsonUtil.fromJson(klass,jsonStr);
+        return JsonUtil.fromJson(klass, jsonStr);
     }
 
 

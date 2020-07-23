@@ -6,8 +6,9 @@ public class CodeConfig {
     private String serviceModel = "flash-core";
     private String controllerModel = "flash-api";
     private String viewModel = "flash-vue-admin";
-    public String getModel(String type){
-        switch (type){
+
+    public String getModel(String type) {
+        switch (type) {
             case "model":
                 return entityModel;
             case "repository":
@@ -21,6 +22,7 @@ public class CodeConfig {
         }
         return null;
     }
+
     public String getEntityModel() {
         return entityModel;
     }

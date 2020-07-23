@@ -12,12 +12,13 @@ import java.util.Map;
 
 /**
  * 封装json工具类<br>
- *  通过该类减少项目中对特定的json库依赖，方便统一切换json库，目前使用jackson
+ * 通过该类减少项目中对特定的json库依赖，方便统一切换json库，目前使用jackson
+ *
  * @author ：enilu
  * @date ：Created in 2020/5/31 21:55
  */
 public class JsonUtil {
-    public static  String toJsonForHuman(Object obj ){
+    public static String toJsonForHuman(Object obj) {
         ObjectMapper mapper = new ObjectMapper();
         try {
             return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
@@ -25,7 +26,8 @@ public class JsonUtil {
             throw new RuntimeException(e);
         }
     }
-    public static  String toJson(Object obj){
+
+    public static String toJson(Object obj) {
         StringWriter sw = new StringWriter();
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -35,7 +37,8 @@ public class JsonUtil {
         }
         return sw.toString();
     }
-    public static  String toJsonNotNull(Object obj){
+
+    public static String toJsonNotNull(Object obj) {
         StringWriter sw = new StringWriter();
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -47,7 +50,7 @@ public class JsonUtil {
         return sw.toString();
     }
 
-    public static <T> T fromJson (Class<T> klass,String jsonStr) {
+    public static <T> T fromJson(Class<T> klass, String jsonStr) {
         ObjectMapper mapper = new ObjectMapper();
         T obj = null;
         try {
@@ -57,7 +60,8 @@ public class JsonUtil {
         }
         return obj;
     }
-    public static <T> List<T> fromJsonAsList(Class<T> klass,String jsonStr){
+
+    public static <T> List<T> fromJsonAsList(Class<T> klass, String jsonStr) {
         ObjectMapper mapper = new ObjectMapper();
         List<T> objList = null;
         try {
@@ -72,6 +76,7 @@ public class JsonUtil {
 
     /**
      * 判断给定的字符串是否是json格式
+     *
      * @param jsonStr
      * @return
      */
@@ -83,10 +88,11 @@ public class JsonUtil {
                 fromJsonAsList(Map.class, jsonStr);
             }
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
+
     public static void main(String[] args) {
         User user = new User();
         user.setAccount("admin");
@@ -103,14 +109,14 @@ public class JsonUtil {
         System.out.println("不输出值为null的json字符串：==》");
         System.out.println(toJsonNotNull(user));
 
-        User user2 = fromJson(User.class,json);
+        User user2 = fromJson(User.class, json);
 
         System.out.println("json字符串转对象：==========》");
-        System.out.println(user2.getAccount()+user2.getCreateTime());
+        System.out.println(user2.getAccount() + user2.getCreateTime());
 
         List<User> users = Lists.newArrayList(user);
         String jsons = toJson(users);
-        List<User> users2 = fromJsonAsList(User.class,jsons );
+        List<User> users2 = fromJsonAsList(User.class, jsons);
         System.out.println("转换为集合后的集合长度：=======》");
         System.out.println(users2.size());
 

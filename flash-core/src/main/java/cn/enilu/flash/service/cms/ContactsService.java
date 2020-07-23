@@ -6,5 +6,5 @@ import cn.enilu.flash.service.BaseService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ContactsService extends BaseService<Contacts,Long,ContactsRepository> {
+public class ContactsService extends BaseService<Contacts, Long, ContactsRepository> {
 }

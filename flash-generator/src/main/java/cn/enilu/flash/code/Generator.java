@@ -1,6 +1,10 @@
 package cn.enilu.flash.code;
 
-import org.apache.commons.cli.*;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.GnuParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Options;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.nutz.ioc.Ioc;
@@ -54,7 +58,7 @@ public class Generator {
         StringWriter writer = new StringWriter();
 
         String template = new String(Streams.readBytes(ClassLoader.getSystemResourceAsStream(templatePath)),
-                                     Charset.forName("utf8"));
+                Charset.forName("utf8"));
         VelocityEngine engine = new VelocityEngine();
         engine.setProperty("runtime.references.strict", false);
         engine.init();
@@ -62,7 +66,9 @@ public class Generator {
         return writer.toString();
 
     }
+
     static Pattern includePattern = Pattern.compile(".*");
+
     public static void main(String[] args) throws Exception {
 
         String configPath = "code/code.json";
@@ -70,10 +76,10 @@ public class Generator {
 
         String module = "test";
         String basePackageName = "cn.enilu.flash";
-        String controllerPackageName = "api.controller."+module;
-        String servicePackageName = "service."+module;
-        String repositoryPackageName = "dao."+module;
-        String modelPackageName = "bean.entity."+module;
+        String controllerPackageName = "api.controller." + module;
+        String servicePackageName = "service." + module;
+        String repositoryPackageName = "dao." + module;
+        String modelPackageName = "bean.entity." + module;
 
         String outputDir = "src/main/java";
         boolean force = false;
@@ -81,30 +87,30 @@ public class Generator {
         String[] types = {"all"};
         String[] pages = {"index", "add", "edit", "detail"};
         Options options = new Options();
-        options.addOption("basePath","base path",true,"base path");
+        options.addOption("basePath", "base path", true, "base path");
         options.addOption("i", "include", true, "include table pattern");
         options.addOption("module", "module", true, "current module name");
         options.addOption("p", "package", true, "base package name,default:cn.enilu.flash");
         options.addOption("ctr",
-                          "package",
-                          true,
-                          "controller base package name,default:controllers/${package}");
+                "package",
+                true,
+                "controller base package name,default:controllers/${package}");
         options.addOption("mod",
-                          "package",
-                          true,
-                          "model base package name,default:models/${package}");
+                "package",
+                true,
+                "model base package name,default:models/${package}");
         options.addOption("repo",
                 "package",
                 true,
                 "repository base package name,default:repository/${package}");
         options.addOption("sev",
-                          "package",
-                          true,
-                          "service base package name,default:services/${package}");
+                "package",
+                true,
+                "service base package name,default:services/${package}");
         options.addOption("v",
-                          "views",
-                          true,
-                          "for generator pages,default:all pages,eg: -v will generate vue,js,api.js");
+                "views",
+                true,
+                "for generator pages,default:all pages,eg: -v will generate vue,js,api.js");
         options.addOption("u", "base-uri", true, "base uri prefix, default is /");
         options.addOption("f", "force", false, "force generate file even if file exists");
         options.addOption("h", "help", false, "show help message");
@@ -116,8 +122,8 @@ public class Generator {
                 includePattern = Pattern.compile(commandLine.getOptionValue("i"),
                         Pattern.CASE_INSENSITIVE);
             }
-            if(commandLine.hasOption("basePath")){
-                basePath =commandLine.getOptionValue("basePath")+File.separator;
+            if (commandLine.hasOption("basePath")) {
+                basePath = commandLine.getOptionValue("basePath") + File.separator;
             }
 
             if (commandLine.hasOption("p")) {
@@ -130,12 +136,12 @@ public class Generator {
                 servicePackageName = commandLine.getOptionValue("sev");
             }
             if (commandLine.hasOption("mod")) {
-                module =  commandLine.getOptionValue("mod");
-                module = module.split("\\.")[module.split("\\.").length-1];
-                controllerPackageName = "api.controller."+module;
-                servicePackageName = "service."+module;
-                repositoryPackageName = "dao."+module;
-                modelPackageName = "bean.entity."+module;
+                module = commandLine.getOptionValue("mod");
+                module = module.split("\\.")[module.split("\\.").length - 1];
+                controllerPackageName = "api.controller." + module;
+                servicePackageName = "service." + module;
+                repositoryPackageName = "dao." + module;
+                modelPackageName = "bean.entity." + module;
             }
 
             if (commandLine.hasOption("repo")) {
@@ -149,8 +155,7 @@ public class Generator {
             if (extraArgs.length > 0) {
                 types = extraArgs;
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             usage(options);
         }
@@ -161,11 +166,11 @@ public class Generator {
 
         AbstractLoader loader = (AbstractLoader) Mirror.me(EntityDescLoader.class).born();
         Map<String, TableDescriptor> tables = loader.loadTables(ioc,
-                                                                basePackageName,
-                                                                baseUri,
-                                                                servicePackageName,
-                                                                repositoryPackageName,
-                                                                modelPackageName);
+                basePackageName,
+                baseUri,
+                servicePackageName,
+                repositoryPackageName,
+                modelPackageName);
         for (Map.Entry<String, TableDescriptor> entry : tables.entrySet()) {
             if (includePattern != null) {
                 String className = entry.getValue().getEntityClassName();
@@ -184,14 +189,14 @@ public class Generator {
             typeMap.put("model", modelPackageName);
             typeMap.put("service", servicePackageName);
             typeMap.put("controller", controllerPackageName);
-            typeMap.put("repository",repositoryPackageName);
+            typeMap.put("repository", repositoryPackageName);
 
-            for (String type : new String[]{"model","repository", "service", "controller", "view"}) {
+            for (String type : new String[]{"model", "repository", "service", "controller", "view"}) {
                 if (!isTypeMatch(types, type)) {
                     continue;
                 }
                 if ("view".equals(type)) {
-                    generateViews(basePath,codeConfig,force, table, generator, pages);
+                    generateViews(basePath, codeConfig, force, table, generator, pages);
                 } else {
                     if (loader instanceof EntityDescLoader && "model".equals(type)) {
                         continue;
@@ -204,7 +209,7 @@ public class Generator {
                     if (!"model".equals(type)) {
                         className = Utils.upperCamel(className) + Strings.upperFirst(type);
                     }
-                    File file = new File(basePath+codeConfig.getModel(type)+File.separator+outputDir, packagePath + "/" + className + ".java");
+                    File file = new File(basePath + codeConfig.getModel(type) + File.separator + outputDir, packagePath + "/" + className + ".java");
                     log.debug("generate " + file.getName());
                     generator.generate(packageName, templatePath, file, force);
                 }
@@ -223,20 +228,20 @@ public class Generator {
         return false;
     }
 
-    private static void generateViews(String basePath,CodeConfig codeConfig,boolean force,
+    private static void generateViews(String basePath, CodeConfig codeConfig, boolean force,
                                       TableDescriptor table,
                                       Generator generator,
                                       String[] pages)
             throws IOException {
         //生成vue版本相关文件
-        File apiFile = new File(basePath+codeConfig.getViewModel()+"/src/api/"+table.getLastPackageName()+File.separator+table.getEntityNameLowerFirstChar()+".js");
-        generator.generate(null,  "code/view/api.js.vm", apiFile, force);
+        File apiFile = new File(basePath + codeConfig.getViewModel() + "/src/api/" + table.getLastPackageName() + File.separator + table.getEntityNameLowerFirstChar() + ".js");
+        generator.generate(null, "code/view/api.js.vm", apiFile, force);
 
-        File vueFile = new File(basePath+codeConfig.getViewModel()+"/src/views/"+table.getLastPackageName()+File.separator+table.getEntityNameLowerFirstChar()+File.separator+"index.vue");
-        generator.generate(null,  "code/view/index.vue.vm", vueFile, force);
+        File vueFile = new File(basePath + codeConfig.getViewModel() + "/src/views/" + table.getLastPackageName() + File.separator + table.getEntityNameLowerFirstChar() + File.separator + "index.vue");
+        generator.generate(null, "code/view/index.vue.vm", vueFile, force);
 
-        File jsFile = new File(basePath+codeConfig.getViewModel()+"/src/views/"+table.getLastPackageName()+File.separator+table.getEntityNameLowerFirstChar()+File.separator+table.getEntityNameLowerFirstChar()+".js");
-        generator.generate(null,  "code/view/index.js.vm", jsFile, force);
+        File jsFile = new File(basePath + codeConfig.getViewModel() + "/src/views/" + table.getLastPackageName() + File.separator + table.getEntityNameLowerFirstChar() + File.separator + table.getEntityNameLowerFirstChar() + ".js");
+        generator.generate(null, "code/view/index.js.vm", jsFile, force);
 
     }
 

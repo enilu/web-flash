@@ -24,7 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ContactsController extends BaseController {
     @Autowired
     private ContactsService contactsService;
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.CONTACTS})
     public Object list(@RequestParam(required = false) String userName,
                        @RequestParam(required = false) String mobile,
@@ -33,10 +34,10 @@ public class ContactsController extends BaseController {
 
     ) {
         Page<Contacts> page = new PageFactory<Contacts>().defaultPage();
-        page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parse(startDate,"yyyyMMddHHmmss"));
-        page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parse(endDate,"yyyyMMddHHmmss"));
-        page.addFilter("userName", SearchFilter.Operator.EQ,userName);
-        page.addFilter("mobile", SearchFilter.Operator.EQ,mobile);
+        page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parse(startDate, "yyyyMMddHHmmss"));
+        page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parse(endDate, "yyyyMMddHHmmss"));
+        page.addFilter("userName", SearchFilter.Operator.EQ, userName);
+        page.addFilter("mobile", SearchFilter.Operator.EQ, mobile);
         page = contactsService.queryPage(page);
         return Rets.success(page);
     }

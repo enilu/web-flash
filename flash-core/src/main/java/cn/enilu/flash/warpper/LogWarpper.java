@@ -32,13 +32,13 @@ public class LogWarpper extends BaseControllerWarpper {
             String subMessage = message.substring(0, 100) + "...";
             map.put("message", subMessage);
         }
-        map.put("createtime",DateUtil.format((Date) map.get("createTime"),"yyyy-MM-dd hh:MM:ss"));
+        map.put("createtime", DateUtil.format((Date) map.get("createTime"), "yyyy-MM-dd hh:MM:ss"));
         //如果信息中包含分割符号;;;   则分割字符串返给前台
         if (StringUtil.isNotEmpty(message) && message.indexOf(Constants.SEPARATOR) != -1) {
             String[] msgs = message.split(Constants.SEPARATOR);
-            map.put("regularMessage",msgs);
-        }else{
-            map.put("regularMessage",message);
+            map.put("regularMessage", msgs);
+        } else {
+            map.put("regularMessage", message);
         }
     }
 

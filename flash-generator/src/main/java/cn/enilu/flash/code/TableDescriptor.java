@@ -49,7 +49,7 @@ public class TableDescriptor {
         this.serPackageName = serPackageName;
         this.repoPackageName = repoPackageName;
         this.modPackageName = modPackageName;
-        this.lastPackageName =      modPackageName.split("\\.")[modPackageName.split("\\.").length-1];
+        this.lastPackageName = modPackageName.split("\\.")[modPackageName.split("\\.").length - 1];
         if (!baseUri.endsWith("/")) {
             baseUri = baseUri + "/";
         }
@@ -136,10 +136,12 @@ public class TableDescriptor {
         }
         return entityName;
     }
-    public String getEntityNameLowerFirstChar(){
+
+    public String getEntityNameLowerFirstChar() {
         String ret = getEntityClassName();
-        return ret.substring(0,1).toLowerCase()+ret.substring(1);
+        return ret.substring(0, 1).toLowerCase() + ret.substring(1);
     }
+
     public String getEntityFullClassName() {
         return basePackageName + "." + getModPackageName() + "." + getEntityClassName();
     }
@@ -147,7 +149,8 @@ public class TableDescriptor {
     public String getServiceFullClassName() {
         return basePackageName + "." + getSerPackageName() + "." + getServiceClassName();
     }
-    public String getRepositoryFullClassName(){
+
+    public String getRepositoryFullClassName() {
         return basePackageName + "." + getRepoPackageName() + "." + getRepositoryClassName();
     }
 
@@ -174,7 +177,8 @@ public class TableDescriptor {
     public String getServiceClassName() {
         return Utils.upperCamel(getEntityClassName()) + "Service";
     }
-    public String getRepositoryClassName(){
+
+    public String getRepositoryClassName() {
         return Utils.upperCamel(getEntityClassName()) + "Repository";
     }
 

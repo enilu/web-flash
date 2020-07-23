@@ -13,9 +13,9 @@ import javax.transaction.Transactional;
  *
  * @author enilu
  */
-public interface OperationLogRepository extends BaseRepository<OperationLog,Long> {
+public interface OperationLogRepository extends BaseRepository<OperationLog, Long> {
     @Modifying
     @Transactional
-    @Query(nativeQuery = true,value = "delete from t_sys_operation_log")
+    @Query(nativeQuery = true, value = "delete from t_sys_operation_log")
     int clear();
 }

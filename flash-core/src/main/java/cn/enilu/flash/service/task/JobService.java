@@ -7,7 +7,17 @@ import cn.enilu.flash.bean.vo.QuartzJob;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.utils.JsonUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.quartz.*;
+import org.quartz.CronScheduleBuilder;
+import org.quartz.CronTrigger;
+import org.quartz.Job;
+import org.quartz.JobBuilder;
+import org.quartz.JobDetail;
+import org.quartz.JobKey;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.Trigger;
+import org.quartz.TriggerBuilder;
+import org.quartz.TriggerKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +71,7 @@ public class JobService {
 
 
     public List<QuartzJob> getTaskList() {
-        List<Task> tasks = taskService.queryAll(SearchFilter.build("disabled", SearchFilter.Operator.EQ,false));
+        List<Task> tasks = taskService.queryAll(SearchFilter.build("disabled", SearchFilter.Operator.EQ, false));
         List<QuartzJob> jobs = new ArrayList<>();
         for (Task task : tasks) {
             jobs.add(getJob(task));
@@ -82,10 +92,10 @@ public class JobService {
             job.setDisabled(task.isDisabled());
             if (StringUtils.isNotBlank(task.getData())) {
                 try {
-                    Map<String, Object> dataMap =  JsonUtil.fromJson(Map.class, task.getData());
+                    Map<String, Object> dataMap = JsonUtil.fromJson(Map.class, task.getData());
                     job.setDataMap(dataMap);
                 } catch (Exception e) {
-                    throw  new ApplicationException(ApplicationExceptionEnum.TASK_CONFIG_ERROR);
+                    throw new ApplicationException(ApplicationExceptionEnum.TASK_CONFIG_ERROR);
                 }
             }
         }

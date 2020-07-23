@@ -10,7 +10,11 @@ import cn.enilu.flash.service.cms.BannerService;
 import cn.enilu.flash.utils.StringUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -28,9 +32,9 @@ public class BannerMgrController extends BaseController {
     @BussinessLog(value = "编辑banner", key = "title")
     @RequiresPermissions(value = {Permission.BANNER_EDIT})
     public Object save(@ModelAttribute @Valid Banner banner) {
-        if(banner.getId()==null){
+        if (banner.getId() == null) {
             bannerService.insert(banner);
-        }else {
+        } else {
             bannerService.update(banner);
         }
         return Rets.success();
@@ -48,8 +52,8 @@ public class BannerMgrController extends BaseController {
     @RequiresPermissions(value = {Permission.BANNER})
     public Object list(@RequestParam(required = false) String title) {
         SearchFilter filter = null;
-        if(StringUtil.isNotEmpty(title)){
-             filter =  SearchFilter.build("title", SearchFilter.Operator.LIKE,title);
+        if (StringUtil.isNotEmpty(title)) {
+            filter = SearchFilter.build("title", SearchFilter.Operator.LIKE, title);
         }
         List<Banner> list = bannerService.queryAll(filter);
         return Rets.success(list);

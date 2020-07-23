@@ -14,7 +14,7 @@ import javax.persistence.Id;
  * @author enilu
  */
 @Entity(name = "t_sys_relation")
-@Table(appliesTo = "t_sys_relation",comment = "菜单角色关系")
+@Table(appliesTo = "t_sys_relation", comment = "菜单角色关系")
 @Data
 public class Relation {
     @Id

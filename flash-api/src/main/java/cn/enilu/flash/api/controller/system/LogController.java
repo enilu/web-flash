@@ -17,7 +17,11 @@ import cn.enilu.flash.utils.factory.Page;
 import cn.enilu.flash.warpper.LogWarpper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -44,13 +48,13 @@ public class LogController extends BaseController {
                        @RequestParam(required = false) String logName,
                        @RequestParam(required = false) Integer logType) {
         Page<OperationLog> page = new PageFactory<OperationLog>().defaultPage();
-        if(StringUtil.isNotEmpty(beginTime)) {
+        if (StringUtil.isNotEmpty(beginTime)) {
             page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parseDate(beginTime));
         }
-        if(StringUtil.isNotEmpty(endTime)) {
+        if (StringUtil.isNotEmpty(endTime)) {
             page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parseDate(endTime));
         }
-        page.addFilter( "logname", SearchFilter.Operator.LIKE, logName);
+        page.addFilter("logname", SearchFilter.Operator.LIKE, logName);
         if (logType != null) {
             page.addFilter(SearchFilter.build("logtype", SearchFilter.Operator.EQ, BizLogType.valueOf(logType)));
         }

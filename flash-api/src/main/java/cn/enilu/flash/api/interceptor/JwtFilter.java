@@ -38,7 +38,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
     }
 
     /**
-     *登录验证
+     * 登录验证
      */
     @Override
     protected boolean executeLogin(ServletRequest request, ServletResponse response) throws Exception {
@@ -61,14 +61,14 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
             } catch (Exception e) {
                 logger.info(e.getMessage());
                 //判断如果抛出token失效，则执行刷新token逻辑
-                if(e.getMessage().contains("expired")){
+                if (e.getMessage().contains("expired")) {
                     //获取用户信息
                     String oldToken = HttpUtil.getToken();
                     Long userId = JwtUtil.getUserId(oldToken);
                     UserService userService = SpringContextHolder.getBean(UserService.class);
                     User user = userService.get(userId);
                     //验证refreshToken是否有效
-                    if(userService.refreshTokenIsValid(oldToken)) {
+                    if (userService.refreshTokenIsValid(oldToken)) {
                         //生成新token 返回界面
                         String newToken = userService.loginForToken(user);
                         JwtToken jwtToken = new JwtToken(newToken);
@@ -110,13 +110,14 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
             HttpServletResponse httpServletResponse = (HttpServletResponse) resp;
             httpServletResponse.setStatus(401);
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
         }
     }
 
     /**
      * 重新该方法直接返回false，因为走到这个方法的请求都是因为401过来的，所以拒绝继续访问
      * 如果不重写该方法，父类的方法回返回WWW-Authenticate 头信息导致浏览器自身弹出验证框，影响用户使用体验。本项目的业务要求前端自行判断401的话往登录页面跳转，不需要浏览器自己弹框。
+     *
      * @param request
      * @param response
      * @param mappedValue

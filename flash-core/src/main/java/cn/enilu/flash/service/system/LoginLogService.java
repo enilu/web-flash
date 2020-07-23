@@ -12,6 +12,6 @@ import org.springframework.stereotype.Service;
  * @author enilu
  */
 @Service
-public class LoginLogService extends BaseService<LoginLog,Long,LoginLogRepository> {
+public class LoginLogService extends BaseService<LoginLog, Long, LoginLogRepository> {
 
 }

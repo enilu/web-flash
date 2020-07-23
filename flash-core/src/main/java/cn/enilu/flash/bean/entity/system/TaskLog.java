@@ -15,10 +15,10 @@ import java.util.Date;
  * User: Yao
  * Date: 2017-06-22 11:12:48
  */
-@Table(appliesTo="t_sys_task_log",comment = "定时任务日志")
-@Entity(name="t_sys_task_log")
+@Table(appliesTo = "t_sys_task_log", comment = "定时任务日志")
+@Entity(name = "t_sys_task_log")
 @Data
-public class TaskLog{
+public class TaskLog {
     public static final int EXE_FAILURE_RESULT = 0;
     public static final int EXE_SUCCESS_RESULT = 1;
 

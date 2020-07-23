@@ -66,7 +66,6 @@ public abstract class JobExecuter {
     }
 
     /**
-     *
      * @param dataMap 数据库配置的参数
      */
     public abstract void execute(Map<String, Object> dataMap) throws Exception;

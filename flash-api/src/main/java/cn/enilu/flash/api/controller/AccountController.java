@@ -34,8 +34,8 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/account")
-public class AccountController extends BaseController{
-     private Logger logger = LoggerFactory.getLogger(AccountController.class);
+public class AccountController extends BaseController {
+    private Logger logger = LoggerFactory.getLogger(AccountController.class);
 
     @Autowired
     @Lazy
@@ -46,13 +46,14 @@ public class AccountController extends BaseController{
      * 1，验证没有注册<br>
      * 2，验证密码错误<br>
      * 3，登录成功
+     *
      * @param userName
      * @param password
      * @return
      */
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Object login(@RequestParam("username") String userName,
-                        @RequestParam("password") String password){
+                        @RequestParam("password") String password) {
         try {
             //1,
             User user = userService.findByAccount(userName);
@@ -64,7 +65,7 @@ public class AccountController extends BaseController{
             if (!user.getPassword().equals(passwdMd5)) {
                 return Rets.failure("用户名或密码错误");
             }
-            if(StringUtil.isEmpty(user.getRoleid())){
+            if (StringUtil.isEmpty(user.getRoleid())) {
                 return Rets.failure("该用户未配置权限");
             }
             String token = userService.loginForToken(user);
@@ -78,47 +79,48 @@ public class AccountController extends BaseController{
         return Rets.failure("登录时失败");
     }
 
-    @RequestMapping(value = "/info",method = RequestMethod.GET)
-    public Object info( ){
+    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    public Object info() {
         HttpServletRequest request = HttpUtil.getRequest();
         Long idUser = null;
         try {
-             idUser = getIdUser(request);
-        }catch (Exception e){
+            idUser = getIdUser(request);
+        } catch (Exception e) {
             return Rets.expire();
         }
-        if(idUser!=null){
-            User user =  userService.get(idUser);
-            if(StringUtil.isEmpty(user.getRoleid())){
+        if (idUser != null) {
+            User user = userService.get(idUser);
+            if (StringUtil.isEmpty(user.getRoleid())) {
                 return Rets.failure("该用户未配置权限");
             }
             ShiroUser shiroUser = ShiroFactroy.me().shiroUser(user);
-            Map map = Maps.newHashMap("name",user.getName(),"role","admin","roles", shiroUser.getRoleCodes());
-            map.put("permissions",shiroUser.getUrls());
+            Map map = Maps.newHashMap("name", user.getName(), "role", "admin", "roles", shiroUser.getRoleCodes());
+            map.put("permissions", shiroUser.getUrls());
             Map profile = (Map) Mapl.toMaplist(user);
-            profile.put("dept",shiroUser.getDeptName());
-            profile.put("roles",shiroUser.getRoleNames());
-            map.put("profile",profile);
+            profile.put("dept", shiroUser.getDeptName());
+            profile.put("roles", shiroUser.getRoleNames());
+            map.put("profile", profile);
 
             return Rets.success(map);
         }
         return Rets.failure("获取用户信息失败");
     }
-    @RequestMapping(value = "/updatePwd",method = RequestMethod.POST)
-    public Object updatePwd( String oldPassword,String password, String rePassword){
+
+    @RequestMapping(value = "/updatePwd", method = RequestMethod.POST)
+    public Object updatePwd(String oldPassword, String password, String rePassword) {
         try {
 
-            if(StringUtil.isEmpty(password) || StringUtil.isEmpty(rePassword)){
+            if (StringUtil.isEmpty(password) || StringUtil.isEmpty(rePassword)) {
                 return Rets.failure("密码不能为空");
             }
-            if(!password.equals(rePassword)){
+            if (!password.equals(rePassword)) {
                 return Rets.failure("新密码前后不一致");
             }
             User user = userService.get(getIdUser(HttpUtil.getRequest()));
-            if(ApiConstants.ADMIN_ACCOUNT.equals(user.getAccount())){
+            if (ApiConstants.ADMIN_ACCOUNT.equals(user.getAccount())) {
                 return Rets.failure("不能修改超级管理员密码");
             }
-            if(!MD5.md5(oldPassword, user.getSalt()).equals(user.getPassword())){
+            if (!MD5.md5(oldPassword, user.getSalt()).equals(user.getPassword())) {
                 return Rets.failure("旧密码输入错误");
             }
 

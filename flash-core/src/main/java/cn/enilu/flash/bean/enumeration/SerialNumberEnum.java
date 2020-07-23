@@ -23,7 +23,9 @@ public enum SerialNumberEnum {
     TR_KJWG_WX0("TRKJWGWX0", "快捷-微信"),
     TR_KJTK_CJ0("TRKJTKCJ0", "快捷-退款-畅捷"),
     TR_KJZL_KLT("TRKJZLKLT", "快捷-直连-开联通"),
-    /**第三方抽成*/
+    /**
+     * 第三方抽成
+     */
     TR_CCSN_000("TRCCSN000", "第三方抽成"),
     TR_MANUL_000("TRMANUL00", "手工还款记账"),
 
@@ -35,7 +37,7 @@ public enum SerialNumberEnum {
     JK_SQH("JKSQH", "借款申请客户为person on H5"),
 
     //协议模板编号
-    XDXY_L_C("XDXYLC","借款项目Lending Company"),
+    XDXY_L_C("XDXYLC", "借款项目Lending Company"),
     XDXY_L_P("XDXYLP", "借款项目Lending Person"),
     XDXY_M_J("XDXYMJ", "居间协议M 借款居间J"),
     XDXY_R("XDXYR0", "注册协议R 0补位"),
@@ -52,7 +54,7 @@ public enum SerialNumberEnum {
     XX_W("XXW", "发送方式微信"),
 
     //消息模板编号
-    XXMB_CL("XXMBCL","credit lending个人信贷"),
+    XXMB_CL("XXMBCL", "credit lending个人信贷"),
     XXMB_MC("XXMBMC", "小贷"),
     XXMB_YX("XXMBYX", "营销类"),
 
@@ -61,8 +63,7 @@ public enum SerialNumberEnum {
     US_JK_P("USJKP", "借款JK 来源Person on PC"),
     US_JK_S("USJKS", "借款JK 来源Share transfer"),
     US_JK_M("USJKM", "借款JK 来源person on Mobile"),
-    US_JK_H("USJKH", "借款JK 来源person on H5")
-    ;
+    US_JK_H("USJKH", "借款JK 来源person on H5");
 
 
     private String code;

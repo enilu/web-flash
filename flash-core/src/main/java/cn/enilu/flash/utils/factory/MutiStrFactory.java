@@ -2,7 +2,6 @@ package cn.enilu.flash.utils.factory;
 
 
 import cn.enilu.flash.utils.StringUtil;
-import cn.enilu.flash.utils.ToolUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,41 +47,41 @@ public class MutiStrFactory {
      * @author fengshuonan
      * @Date 2017/4/27 16:44
      */
-    public static List<Map<String,String>> parseKeyValue(String mutiString){
-        if(StringUtil.isEmpty(mutiString)){
+    public static List<Map<String, String>> parseKeyValue(String mutiString) {
+        if (StringUtil.isEmpty(mutiString)) {
             return new ArrayList<>();
-        }else{
-            ArrayList<Map<String,String>> results = new ArrayList<>();
+        } else {
+            ArrayList<Map<String, String>> results = new ArrayList<>();
             String[] items = StringUtil.split(StringUtil.removeSuffix(mutiString, ITEM_SPLIT), ITEM_SPLIT);
             for (String item : items) {
                 String[] attrs = item.split(ATTR_SPLIT);
                 HashMap<String, String> itemMap = new HashMap<>(100);
-                itemMap.put(MUTI_STR_KEY,attrs[0]);
-                itemMap.put(MUTI_STR_VALUE,attrs[1]);
+                itemMap.put(MUTI_STR_KEY, attrs[0]);
+                itemMap.put(MUTI_STR_VALUE, attrs[1]);
                 results.add(itemMap);
             }
             return results;
         }
     }
-    
+
     /**
      * 解析id:key:value这样类型的字符串
-     * 
+     *
      * @author fengshuonan
      * @Date 2017/4/28 11:06
      */
-    public static List<Map<String,String>> parseIdKeyValue(String mutiString){
-        if(StringUtil.isEmpty(mutiString)){
+    public static List<Map<String, String>> parseIdKeyValue(String mutiString) {
+        if (StringUtil.isEmpty(mutiString)) {
             return new ArrayList<>();
-        }else{
-            ArrayList<Map<String,String>> results = new ArrayList<>();
+        } else {
+            ArrayList<Map<String, String>> results = new ArrayList<>();
             String[] items = StringUtil.split(StringUtil.removeSuffix(mutiString, ITEM_SPLIT), ITEM_SPLIT);
             for (String item : items) {
                 String[] attrs = item.split(ATTR_SPLIT);
                 HashMap<String, String> itemMap = new HashMap<>(100);
-                itemMap.put(MUTI_STR_ID,attrs[0]);
-                itemMap.put(MUTI_STR_KEY,attrs[1]);
-                itemMap.put(MUTI_STR_VALUE,attrs[2]);
+                itemMap.put(MUTI_STR_ID, attrs[0]);
+                itemMap.put(MUTI_STR_KEY, attrs[1]);
+                itemMap.put(MUTI_STR_VALUE, attrs[2]);
                 results.add(itemMap);
             }
             return results;

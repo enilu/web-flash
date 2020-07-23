@@ -13,19 +13,15 @@ import java.util.List;
  *
  * @author enilu
  */
-public class Page<T>  {
+public class Page<T> {
 
     private Sort sort;
     /**
      * 该操作只是为了忽略RowBounds属性
-     *
-     *
      */
     private transient int offset;
     /**
      * 该操作只是为了忽略RowBounds属性
-     *
-     *
      */
     private transient int limit;
 
@@ -59,21 +55,21 @@ public class Page<T>  {
      */
     private List<T> records = Collections.emptyList();
 
-    private transient  List<SearchFilter> filters;
+    private transient List<SearchFilter> filters;
 
     public Page() {
 
     }
 
     public Page(int current, int size, String orderByField) {
-        this(current,size,orderByField,true);
+        this(current, size, orderByField, true);
 
 
     }
 
     public Page(int current, int size, String orderByField, boolean isAsc) {
         this(current, size);
-        setSort(Sort.by(isAsc? Sort.Direction.ASC: Sort.Direction.DESC,orderByField));
+        setSort(Sort.by(isAsc ? Sort.Direction.ASC : Sort.Direction.DESC, orderByField));
 
     }
 
@@ -86,7 +82,7 @@ public class Page<T>  {
      * @param size    每页显示条数
      */
     public Page(int current, int size) {
-        this(current,size,true);
+        this(current, size, true);
     }
 
 
@@ -194,7 +190,6 @@ public class Page<T>  {
     }
 
 
-
     public List<T> getRecords() {
         return records;
     }
@@ -212,22 +207,25 @@ public class Page<T>  {
     public void setFilters(List<SearchFilter> filters) {
         this.filters = filters;
     }
-    public void addFilter(SearchFilter filter){
-        if(filter==null){
-            return ;
+
+    public void addFilter(SearchFilter filter) {
+        if (filter == null) {
+            return;
         }
-        if(filters==null){
+        if (filters == null) {
             filters = Lists.newArrayList();
         }
         filters.add(filter);
     }
-    public void addFilter(String fieldName, SearchFilter.Operator operator, Object value){
-        if(!StringUtil.isNullOrEmpty(value)){
-            addFilter(SearchFilter.build(fieldName,operator,value));
+
+    public void addFilter(String fieldName, SearchFilter.Operator operator, Object value) {
+        if (!StringUtil.isNullOrEmpty(value)) {
+            addFilter(SearchFilter.build(fieldName, operator, value));
         }
     }
-    public void addFilter(String fieldName, Object val){
-        addFilter( fieldName, SearchFilter.Operator.EQ, val);
+
+    public void addFilter(String fieldName, Object val) {
+        addFilter(fieldName, SearchFilter.Operator.EQ, val);
     }
 
     @Override
