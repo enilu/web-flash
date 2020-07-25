@@ -15,17 +15,11 @@ export default {
         label: 'name',
         children: 'children'
       },
-
       listLoading: true,
       expandAll: false,
       formTitle: '',
       formVisible: false,
       isAdd: false,
-      show:{
-        form:{
-          component:true
-        }
-      },
       form: {
         id: '',
         name: '',
@@ -123,8 +117,7 @@ export default {
       if (this.form.pcode=='0') {
         this.form.pcode =undefined
       }
-      this.show.form.component=true
-      console.log("form",this.form)
+
       this.formTitle = '编辑菜单'
       this.formVisible = true
       this.isAdd = false
@@ -155,13 +148,6 @@ export default {
         dangerouslyUseHTMLString:true,
         message: '顶级目录请输入layout,<br/>左侧惨淡请根据实际组件路径输入:views/...<br/>功能按钮无需输入该值'
       })
-    },
-    changeISmenu(val){
-      if(val===1){
-        this.show.form.component=true
-      }else{
-        this.show.form.component=false
-      }
     }
   }
 }

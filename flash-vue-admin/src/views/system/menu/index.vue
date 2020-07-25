@@ -77,13 +77,13 @@
 
             <el-col :span="12">
               <el-form-item label="菜单类型">
-                <el-radio-group v-model="form.ismenu" @change="changeISmenu">
+                <el-radio-group v-model="form.ismenu">
                   <el-radio :label="1">菜单</el-radio>
                   <el-radio :label="0">按钮</el-radio>
                 </el-radio-group>
               </el-form-item>
             </el-col>
-            <el-col :span="12"  v-show="show.form.component">
+            <el-col :span="12"  v-show="form.ismenu">
               <el-form-item label="是否隐藏">
                 <el-radio-group v-model="form.hidden">
                   <el-radio :label="true">是</el-radio>
@@ -102,12 +102,12 @@
               </el-form-item>
             </el-col>
 
-            <el-col :span="12" v-show="show.form.component">
+            <el-col :span="12" v-show="form.ismenu===1">
               <el-form-item label="组件">
                 <el-input v-model="form.component" @focus="componentTips" ></el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="12" v-show="show.form.component">
+            <el-col :span="12" v-show="form.ismenu===1">
               <el-form-item label="图标">
                 <el-popover
                   placement="bottom-start"
