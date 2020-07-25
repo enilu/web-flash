@@ -86,6 +86,9 @@ export default {
       this.formTitle = '添加菜单'
       this.formVisible = true
       this.isAdd = true
+      if(this.$refs['form'] !== undefined) {
+        this.$refs['form'].resetFields()
+      }
     },
     save() {
       var self = this
