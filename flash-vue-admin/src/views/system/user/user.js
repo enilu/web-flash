@@ -52,6 +52,15 @@ export default {
           { required: true, message: '请输入用户名', trigger: 'blur' },
           { min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur' }
         ],
+        deptid:[
+          { required: true, message: '请选择所属部门', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '请输入初始密码', trigger: 'blur' }
+        ],
+        rePassword: [
+          { required: true, message: '请输入重复密码', trigger: 'blur' }
+        ],
         email: [
           { required: true, message: '请输入email', trigger: 'blur' }
         ]
@@ -178,10 +187,19 @@ export default {
       if (!this.isAdd) {
         return true
       }
+
       if (this.form.password !== this.form.rePassword) {
+        this.$message({
+          message: '前后密码不一致',
+          type: 'error'
+        })
         return false
       }
       if (this.form.password === '' || this.form.rePassword === '') {
+        this.$message({
+          message: '密码不能为空',
+          type: 'error'
+        })
         return false
       }
       return true
@@ -210,14 +228,8 @@ export default {
               this.fetchData()
               this.formVisible = false
             })
-          } else {
-            this.$message({
-              message: '提交失败',
-              type: 'error'
-            })
           }
         } else {
-          console.log('error submit!!')
           return false
         }
       })

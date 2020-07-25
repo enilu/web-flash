@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -30,8 +31,8 @@ public class UserDto{
 	private String email;
 	private String phone;
 	private String roleid;
+	@NotNull(message="所属部门不能为空")
 	private Long deptid;
-	private Long eduorgid;
 	private Integer status;
 	private Date createtime;
 	private Integer version;

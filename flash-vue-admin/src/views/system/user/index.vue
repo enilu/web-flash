@@ -177,7 +177,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="所属部门" >
+            <el-form-item label="所属部门" prop="deptid" >
               <treeselect v-model="form.deptid"  :options="deptTree.data"  placeholder="请选择所属部门"/>
             </el-form-item>
           </el-col>
