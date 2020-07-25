@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 /**
  * MessagesenderService
  *
@@ -19,22 +20,23 @@ import java.util.List;
  * @version 2019/05/17 0017
  */
 @Service
-public class MessagesenderService extends BaseService<MessageSender,Long,MessagesenderRepository> {
+public class MessagesenderService extends BaseService<MessageSender, Long, MessagesenderRepository> {
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     private MessagesenderRepository messageSenderRepository;
     @Autowired
     private MessagetemplateRepository messagetemplateRepository;
 
-    public void save(MessageSender messageSender){
+    public void save(MessageSender messageSender) {
         messageSenderRepository.save(messageSender);
     }
+
     @Override
-    public void  delete(Long id){
+    public void delete(Long id) {
         List<MessageTemplate> templateList = messagetemplateRepository.findByIdMessageSender(id);
-        if(templateList.isEmpty()) {
+        if (templateList.isEmpty()) {
             messageSenderRepository.deleteById(id);
-        }else {
+        } else {
             throw new RuntimeException("有模板使用该发送器，无法删除");
         }
     }

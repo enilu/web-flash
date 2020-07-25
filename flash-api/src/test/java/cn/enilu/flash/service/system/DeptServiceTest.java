@@ -18,10 +18,11 @@ public class DeptServiceTest extends BaseApplicationStartTest {
 
     @Autowired
     private DeptService deptService;
+
     @Test
-    public void tree()     {
+    public void tree() {
         List<ZTreeNode> list = deptService.tree();
-        for(ZTreeNode treeNode:list) {
+        for (ZTreeNode treeNode : list) {
             System.out.println(JsonUtil.toJson(treeNode));
         }
     }

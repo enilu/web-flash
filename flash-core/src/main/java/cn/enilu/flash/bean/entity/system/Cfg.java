@@ -15,18 +15,18 @@ import javax.validation.constraints.NotBlank;
  *
  * @author enilu
  */
-@Entity(name="t_sys_cfg")
-@Table(appliesTo = "t_sys_cfg",comment = "系统参数")
+@Entity(name = "t_sys_cfg")
+@Table(appliesTo = "t_sys_cfg", comment = "系统参数")
 @Data
 @EntityListeners(AuditingEntityListener.class)
-public class Cfg  extends BaseEntity {
+public class Cfg extends BaseEntity {
     @NotBlank(message = "参数名并能为空")
-    @Column(name = "cfg_name",columnDefinition = "VARCHAR(256) COMMENT '参数名'")
+    @Column(name = "cfg_name", columnDefinition = "VARCHAR(256) COMMENT '参数名'")
     private String cfgName;
     @NotBlank(message = "参数值不能为空")
-    @Column(name = "cfg_value",columnDefinition = "VARCHAR(512) COMMENT '参数值'")
+    @Column(name = "cfg_value", columnDefinition = "VARCHAR(512) COMMENT '参数值'")
     private String cfgValue;
-    @Column(name = "cfg_desc",columnDefinition = "TEXT COMMENT '备注'")
+    @Column(name = "cfg_desc", columnDefinition = "TEXT COMMENT '备注'")
     private String cfgDesc;
 
 }

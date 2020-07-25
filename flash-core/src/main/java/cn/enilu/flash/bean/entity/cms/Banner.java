@@ -10,8 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.validation.constraints.NotBlank;
 
-@Entity(name="t_cms_banner")
-@Table(appliesTo = "t_cms_banner",comment = "Banner")
+@Entity(name = "t_cms_banner")
+@Table(appliesTo = "t_cms_banner", comment = "Banner")
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Banner extends BaseEntity {

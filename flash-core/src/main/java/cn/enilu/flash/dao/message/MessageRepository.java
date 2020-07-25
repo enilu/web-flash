@@ -7,7 +7,7 @@ import cn.enilu.flash.dao.BaseRepository;
 import java.util.ArrayList;
 
 
-public interface MessageRepository extends BaseRepository<Message,Long> {
+public interface MessageRepository extends BaseRepository<Message, Long> {
     void deleteAllByIdIn(ArrayList<String> list);
 }
 

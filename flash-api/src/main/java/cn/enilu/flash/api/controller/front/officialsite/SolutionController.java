@@ -30,7 +30,7 @@ public class SolutionController extends BaseController {
 
     @RequestMapping(method = RequestMethod.GET)
     public Object index() {
-        Map<String, Object> dataMap =  Maps.newHashMap();
+        Map<String, Object> dataMap = Maps.newHashMap();
 
         BannerVo banner = bannerService.queryBanner(BannerTypeEnum.SOLUTION.getValue());
         dataMap.put("banner", banner);
@@ -42,7 +42,7 @@ public class SolutionController extends BaseController {
         }
         dataMap.put("solutionList", solutions);
 
-        Map map =  Maps.newHashMap("data",dataMap);
+        Map map = Maps.newHashMap("data", dataMap);
         return Rets.success(map);
 
     }

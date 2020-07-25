@@ -8,9 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 
-@Entity(name="t_cms_contacts")
+@Entity(name = "t_cms_contacts")
 @Data
-@Table(appliesTo = "t_cms_contacts",comment = "邀约信息")
+@Table(appliesTo = "t_cms_contacts", comment = "邀约信息")
 public class Contacts extends BaseEntity {
     @Column(columnDefinition = "VARCHAR(64) COMMENT '邀约人名称'")
     @NotBlank(message = "名称不能为空")

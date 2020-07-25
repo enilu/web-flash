@@ -23,6 +23,7 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
 
     /**
      * 根据原生sql查询数组对象
+     *
      * @param sql
      * @return
      */
@@ -30,16 +31,19 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
 
     /**
      * 根据原生sql查询对象列表
+     *
      * @param sql
      * @param klass
      * @return
      */
-    List<T> queryBySql(String sql,Class<T> klass);
-    List<?> queryObjBySql(String sql,Class<?> klass);
+    List<T> queryBySql(String sql, Class<T> klass);
+
+    List<?> queryObjBySql(String sql, Class<?> klass);
 
 
     /**
      * 根据原生sql查询对象列表
+     *
      * @param sql
      * @return
      */
@@ -49,14 +53,17 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
 
     /**
      * 根据原生sql查询对象
+     *
      * @param sql
      * @return
      */
     T get(String sql);
+
     T getOne(ID id);
 
     /**
      * 执行sql
+     *
      * @param sql
      * @return
      */
@@ -64,6 +71,7 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
 
     /**
      * 获取数据类型
+     *
      * @return
      */
     Class<T> getDataClass();

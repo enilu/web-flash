@@ -9,7 +9,7 @@ import cn.enilu.flash.dao.BaseRepository;
  *
  * @author enilu
  */
-public interface UserRepository extends BaseRepository<User,Long> {
+public interface UserRepository extends BaseRepository<User, Long> {
     User findByAccount(String account);
 
     User findByAccountAndStatusNot(String account, Integer status);

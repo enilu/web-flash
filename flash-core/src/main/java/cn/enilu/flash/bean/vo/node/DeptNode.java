@@ -24,7 +24,7 @@ public class DeptNode extends Dept {
         this.children = children;
     }
 
-    public String getLabel(){
+    public String getLabel() {
         return getSimplename();
     }
 }

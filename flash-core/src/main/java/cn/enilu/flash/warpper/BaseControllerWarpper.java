@@ -12,11 +12,12 @@ import java.util.Map;
 public abstract class BaseControllerWarpper {
 
     public Object obj = null;
+
     public BaseControllerWarpper(Object obj) {
         this.obj = obj;
     }
 
-        @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     public Object warp() {
 
         if (this.obj instanceof List) {
@@ -36,6 +37,7 @@ public abstract class BaseControllerWarpper {
 
     /**
      * 数据转换
+     *
      * @param map
      */
     protected abstract void warpTheMap(Map<String, Object> map);

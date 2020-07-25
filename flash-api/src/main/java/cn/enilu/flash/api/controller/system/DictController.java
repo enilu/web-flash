@@ -14,7 +14,11 @@ import cn.enilu.flash.utils.StringUtil;
 import cn.enilu.flash.warpper.DictWarpper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -31,14 +35,15 @@ public class DictController extends BaseController {
     private DictService dictService;
     @Autowired
     private DictCache dictCache;
+
     /**
      * 获取所有字典列表
      */
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.DICT})
     public Object list(String name) {
 
-        if(StringUtil.isNotEmpty(name)){
+        if (StringUtil.isNotEmpty(name)) {
             List<Dict> list = dictService.findByNameLike(name);
             return Rets.success(new DictWarpper(BeanUtil.objectsToMaps(list)).warp());
         }
@@ -60,11 +65,11 @@ public class DictController extends BaseController {
     @RequestMapping(method = RequestMethod.PUT)
     @BussinessLog(value = "修改字典", key = "dictName")
     @RequiresPermissions(value = {Permission.DICT_EDIT})
-    public Object update(Long id,String dictName, String dictValues) {
+    public Object update(Long id, String dictName, String dictValues) {
         if (BeanUtil.isOneEmpty(dictName, dictValues)) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
-        dictService.editDict(id,dictName, dictValues);
+        dictService.editDict(id, dictName, dictValues);
         return Rets.success();
     }
 
@@ -76,8 +81,9 @@ public class DictController extends BaseController {
         dictService.delteDict(id);
         return Rets.success();
     }
-    @RequestMapping(value = "/getDicts/{dictName}",method = RequestMethod.GET)
-    public Object getDicts(@PathVariable("dictName") String dictName){
+
+    @RequestMapping(value = "/getDicts/{dictName}", method = RequestMethod.GET)
+    public Object getDicts(@PathVariable("dictName") String dictName) {
         List<Dict> dicts = dictCache.getDictsByPname(dictName);
         return Rets.success(dicts);
     }

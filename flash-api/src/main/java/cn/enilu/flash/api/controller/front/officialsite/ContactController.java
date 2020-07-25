@@ -19,8 +19,9 @@ public class ContactController extends BaseController {
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     private ContactsService contactsService;
+
     @RequestMapping(method = RequestMethod.POST)
-    public Object save(@Valid Contacts contacts){
+    public Object save(@Valid Contacts contacts) {
         contactsService.insert(contacts);
         return Rets.success();
     }

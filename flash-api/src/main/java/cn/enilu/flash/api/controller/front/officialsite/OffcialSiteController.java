@@ -68,7 +68,7 @@ public class OffcialSiteController extends BaseController {
             solutions.add(solution);
         }
         dataMap.put("solutionList", solutions);
-        Map map = Maps.newHashMap("data",dataMap);
+        Map map = Maps.newHashMap("data", dataMap);
         return Rets.success(map);
 
     }

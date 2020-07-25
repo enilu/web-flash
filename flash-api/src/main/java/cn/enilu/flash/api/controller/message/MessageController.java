@@ -24,13 +24,13 @@ public class MessageController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.MSG})
-    public Object list(  @RequestParam(required = false) String tplCode,
-                         @RequestParam(required = false) String startDate,
-                         @RequestParam(required = false) String endDate) {
+    public Object list(@RequestParam(required = false) String tplCode,
+                       @RequestParam(required = false) String startDate,
+                       @RequestParam(required = false) String endDate) {
         Page<Message> page = new PageFactory<Message>().defaultPage();
-        page.addFilter("tplCode",tplCode);
-        page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parse(startDate,"yyyyMMddHHmmss"));
-        page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parse(endDate,"yyyyMMddHHmmss"));
+        page.addFilter("tplCode", tplCode);
+        page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parse(startDate, "yyyyMMddHHmmss"));
+        page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parse(endDate, "yyyyMMddHHmmss"));
         page = messageService.queryPage(page);
         page.setRecords(page.getRecords());
         return Rets.success(page);

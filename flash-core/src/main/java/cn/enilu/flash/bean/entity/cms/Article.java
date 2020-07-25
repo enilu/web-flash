@@ -11,8 +11,8 @@ import javax.persistence.EntityListeners;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@Entity(name="t_cms_article")
-@Table(appliesTo = "t_cms_article",comment = "文章")
+@Entity(name = "t_cms_article")
+@Table(appliesTo = "t_cms_article", comment = "文章")
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Article extends BaseEntity {

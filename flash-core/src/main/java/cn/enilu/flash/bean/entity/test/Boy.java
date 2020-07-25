@@ -13,8 +13,8 @@ import javax.persistence.EntityListeners;
 /**
  * 该实体用于测试生成代码
  */
-@Entity(name="t_test_boy")
-@Table(appliesTo = "t_test_boy",comment = "男孩")
+@Entity(name = "t_test_boy")
+@Table(appliesTo = "t_test_boy", comment = "男孩")
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Boy extends BaseEntity {
@@ -24,6 +24,6 @@ public class Boy extends BaseEntity {
     private Integer age;
     @Column(columnDefinition = "VARCHAR(12) COMMENT '生日'")
     private String birthday;
-    @Column(name = "has_girl_friend",columnDefinition = "TINYINT COMMENT '是否有女朋友'")
+    @Column(name = "has_girl_friend", columnDefinition = "TINYINT COMMENT '是否有女朋友'")
     private Boolean hasGirFriend;
 }

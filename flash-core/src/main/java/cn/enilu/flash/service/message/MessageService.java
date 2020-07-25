@@ -23,7 +23,11 @@ import org.springframework.core.io.InputStreamSource;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 /**
  * MessageService
  *
@@ -31,7 +35,7 @@ import java.util.*;
  * @version 2019/05/17 0017
  */
 @Service
-public class MessageService extends BaseService<Message,Long,MessageRepository> {
+public class MessageService extends BaseService<Message, Long, MessageRepository> {
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     private MessageRepository messageRepository;
@@ -39,7 +43,6 @@ public class MessageService extends BaseService<Message,Long,MessageRepository> 
     private MessagesenderRepository messagesenderRepository;
     @Autowired
     private MessagetemplateRepository messagetemplateRepository;
-
 
 
     public boolean delete(String ids) {
@@ -51,45 +54,48 @@ public class MessageService extends BaseService<Message,Long,MessageRepository> 
     public void sendTplEmail(String tplCode, String from, String to, String cc, String title, Map<String, Object> dataMap) {
         MessageTemplate messageTemplate = messagetemplateRepository.findByCode(tplCode);
         String content = getContent(messageTemplate.getContent(), dataMap);
-        sendEmailMessage(tplCode,from,to,cc,title,content,messageTemplate,null,null);
+        sendEmailMessage(tplCode, from, to, cc, title, content, messageTemplate, null, null);
     }
+
     public void sendTplEmail(String tplCode, String from, String to, String cc, String title,
                              String attachmentFilename, InputStreamSource inputStreamSource,
                              Map<String, Object> dataMap) {
         MessageTemplate messageTemplate = messagetemplateRepository.findByCode(tplCode);
         String content = getContent(messageTemplate.getContent(), dataMap);
-        sendEmailMessage(tplCode,from,to,cc,title,content,messageTemplate,attachmentFilename,inputStreamSource);
+        sendEmailMessage(tplCode, from, to, cc, title, content, messageTemplate, attachmentFilename, inputStreamSource);
     }
 
     public void sendSimpleEmail(String tplCode, String from, String to, String cc, String title, String... args) {
         MessageTemplate messageTemplate = messagetemplateRepository.findByCode(tplCode);
         String content = getContent(messageTemplate.getContent(), args);
-        sendEmailMessage(tplCode,from,to,cc,title,content,messageTemplate,null,null);
+        sendEmailMessage(tplCode, from, to, cc, title, content, messageTemplate, null, null);
     }
+
     public void sendSms(String tplCode, String receiver, String... args) {
         MessageTemplate messageTemplate = messagetemplateRepository.findByCode(tplCode);
         String content = getContent(messageTemplate.getContent(), args);
         boolean isSuccess = false;
         try {
             isSuccess = this.sendSmsMessage(receiver, content, messageTemplate, args);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
-        saveMessage(0,tplCode,receiver,content,isSuccess);
+        saveMessage(0, tplCode, receiver, content, isSuccess);
     }
+
     private void sendEmailMessage(String tplCode, String from, String to, String cc, String title,
-                                  String content,MessageTemplate messageTemplate,
-                                  String attachmentFilename, InputStreamSource inputStreamSource){
+                                  String content, MessageTemplate messageTemplate,
+                                  String attachmentFilename, InputStreamSource inputStreamSource) {
         try {
             EmailSender emailSender = getEmailSender(messageTemplate);
             boolean isSuccess = false;
-            if(inputStreamSource!=null){
-                isSuccess = emailSender.sendEmail(from, to, cc, title, content,attachmentFilename,inputStreamSource);
-            }else {
-                  isSuccess = emailSender.sendEmail(from, to, cc, title, content);
+            if (inputStreamSource != null) {
+                isSuccess = emailSender.sendEmail(from, to, cc, title, content, attachmentFilename, inputStreamSource);
+            } else {
+                isSuccess = emailSender.sendEmail(from, to, cc, title, content);
             }
             saveMessage(1, tplCode, to, content, isSuccess);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e.getMessage(), e);
             saveMessage(1, tplCode, to, content, false);
         }
@@ -122,9 +128,7 @@ public class MessageService extends BaseService<Message,Long,MessageRepository> 
     }
 
 
-
-
-    private boolean sendSmsMessage( String receiver, String content,  MessageTemplate messageTemplate,String... args) throws Exception {
+    private boolean sendSmsMessage(String receiver, String content, MessageTemplate messageTemplate, String... args) throws Exception {
         String tplCode = getTpl(messageTemplate);
         SmsSender smsSender = getSmsSender(messageTemplate);
 
@@ -171,6 +175,7 @@ public class MessageService extends BaseService<Message,Long,MessageRepository> 
             throw new Exception("未配置运营商模版id");
         }
     }
+
     private String getTpl(MessageTemplate messageTemplate) {
         MessageSender messageSender = messagesenderRepository.findById(messageTemplate.getIdMessageSender()).get();
 

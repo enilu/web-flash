@@ -5,7 +5,14 @@ import lombok.Data;
 import org.hibernate.annotations.Table;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 /**
@@ -14,10 +21,10 @@ import java.util.Date;
  * @author enilu
  */
 @Entity(name = "t_sys_user")
-@Table(appliesTo = "t_sys_user",comment = "账号")
+@Table(appliesTo = "t_sys_user", comment = "账号")
 @Data
 @EntityListeners(AuditingEntityListener.class)
-public class User  extends BaseEntity {
+public class User extends BaseEntity {
     @Column(columnDefinition = "varchar(64) comment '头像'")
     private String avatar;
     @Column(columnDefinition = "VARCHAR(32) COMMENT '账户'")
@@ -44,7 +51,7 @@ public class User  extends BaseEntity {
     private Integer status;
     @Column(columnDefinition = "INT COMMENT '版本'")
     private Integer version;
-    @JoinColumn(name="deptid", insertable = false, updatable = false,foreignKey = @ForeignKey(name="none",value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "deptid", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @ManyToOne(fetch = FetchType.EAGER)
     private Dept dept;
 }

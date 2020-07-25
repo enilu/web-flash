@@ -3,6 +3,7 @@ package cn.enilu.flash.bean.enumeration;
 /**
  * 权限编码列表<br>
  * 权限编码需要和菜单中的菜单编码一致
+ *
  * @author ：enilu
  * @date ：Created in 2019/7/31 11:05
  */

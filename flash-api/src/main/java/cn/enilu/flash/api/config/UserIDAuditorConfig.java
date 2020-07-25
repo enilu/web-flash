@@ -24,7 +24,7 @@ public class UserIDAuditorConfig implements AuditorAware<Long> {
             if (StringUtil.isNotEmpty(token)) {
                 return Optional.of(JwtUtil.getUserId(token));
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             //返回系统用户id
             return Optional.of(Constants.SYSTEM_USER_ID);
         }

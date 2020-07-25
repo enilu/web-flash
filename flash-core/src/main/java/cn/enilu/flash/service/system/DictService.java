@@ -22,7 +22,7 @@ import java.util.Optional;
  * @date 2017-04-27 17:00
  */
 @Service
-public class DictService extends BaseService<Dict,Long,DictRepository> {
+public class DictService extends BaseService<Dict, Long, DictRepository> {
     private Logger logger = LoggerFactory.getLogger(DictService.class);
     @Resource
     DictRepository dictRepository;
@@ -31,9 +31,9 @@ public class DictService extends BaseService<Dict,Long,DictRepository> {
 
     public void addDict(String dictName, String dictValues) {
         //判断有没有该字典
-        List<Dict> dicts = dictRepository.findByNameAndPid(dictName,0L);
-        if(dicts != null && dicts.size() > 0){
-            return ;
+        List<Dict> dicts = dictRepository.findByNameAndPid(dictName, 0L);
+        if (dicts != null && dicts.size() > 0) {
+            return;
         }
 
         //解析dictValues
@@ -55,8 +55,8 @@ public class DictService extends BaseService<Dict,Long,DictRepository> {
             itemDict.setName(name);
             try {
                 itemDict.setNum(num);
-            }catch (NumberFormatException e){
-                logger.error(e.getMessage(),e);
+            } catch (NumberFormatException e) {
+                logger.error(e.getMessage(), e);
             }
             this.dictRepository.save(itemDict);
         }
@@ -68,7 +68,7 @@ public class DictService extends BaseService<Dict,Long,DictRepository> {
         this.delteDict(dictId);
 
         //重新添加新的字典
-        this.addDict(dictName,dicts);
+        this.addDict(dictName, dicts);
 
         dictCache.cache();
     }
@@ -82,6 +82,7 @@ public class DictService extends BaseService<Dict,Long,DictRepository> {
 
         dictCache.cache();
     }
+
     @Override
     public Dict get(Long id) {
         Optional<Dict> optional = dictRepository.findById(id);

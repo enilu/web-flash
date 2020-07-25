@@ -22,7 +22,7 @@ import java.util.Optional;
  * @author enilu
  */
 @Service
-public class RoleService extends BaseService<Role,Long,RoleRepository> {
+public class RoleService extends BaseService<Role, Long, RoleRepository> {
     @Autowired
     private RoleRepository roleRepository;
     @Autowired
@@ -95,6 +95,7 @@ public class RoleService extends BaseService<Role,Long,RoleRepository> {
         }
         return nodes;
     }
+
     @Override
     public Role get(Long id) {
         Optional<Role> optional = roleRepository.findById(id);

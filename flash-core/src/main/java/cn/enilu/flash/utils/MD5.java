@@ -61,7 +61,7 @@ public class MD5 {
             MessageDigest MESSAGE_DIGEST = MessageDigest.getInstance(HASH_ALGORITHM_NAME);
             MESSAGE_DIGEST.update(bytes);
             return bytesToHex(MESSAGE_DIGEST.digest());
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.error(e.getMessage(), e);
             return null;
         }

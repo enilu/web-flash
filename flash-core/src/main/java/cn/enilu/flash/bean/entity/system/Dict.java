@@ -14,8 +14,8 @@ import javax.persistence.EntityListeners;
  *
  * @author enilu
  */
-@Entity(name="t_sys_dict")
-@Table(appliesTo = "t_sys_dict",comment = "字典")
+@Entity(name = "t_sys_dict")
+@Table(appliesTo = "t_sys_dict", comment = "字典")
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Dict extends BaseEntity {

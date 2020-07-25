@@ -32,7 +32,8 @@ import java.util.List;
 public class LoginLogController extends BaseController {
     @Autowired
     private LoginLogService loginlogService;
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     @RequiresPermissions(value = {Permission.LOGIN_LOG})
     public Object list(@RequestParam(required = false) String beginTime,
                        @RequestParam(required = false) String endTime,
@@ -40,7 +41,7 @@ public class LoginLogController extends BaseController {
         Page<LoginLog> page = new PageFactory<LoginLog>().defaultPage();
         page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parseDate(beginTime));
         page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parseDate(endTime));
-        page.addFilter( "logname", SearchFilter.Operator.LIKE, logName);
+        page.addFilter("logname", SearchFilter.Operator.LIKE, logName);
         Page pageResult = loginlogService.queryPage(page);
         pageResult.setRecords((List<LoginLog>) new LogWarpper(BeanUtil.objectsToMaps(pageResult.getRecords())).warp());
         return Rets.success(pageResult);

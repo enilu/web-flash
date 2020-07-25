@@ -3,7 +3,11 @@ package cn.enilu.flash.bean.vo.query;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.persistence.criteria.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.Collection;
 import java.util.Date;
 
@@ -24,7 +28,7 @@ public class SimpleSpecification<T> implements Specification<T> {
 
     @Override
     public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-        if (filters !=null && !filters.isEmpty()) {
+        if (filters != null && !filters.isEmpty()) {
             int index = 0;
             //通过resultPre来组合多个条件
             Predicate resultPre = null;
@@ -50,7 +54,7 @@ public class SimpleSpecification<T> implements Specification<T> {
             }
             return resultPre;
         }
-       return  cb.conjunction();
+        return cb.conjunction();
     }
 
     /**
@@ -78,15 +82,15 @@ public class SimpleSpecification<T> implements Specification<T> {
             case GTE:
                 return cb.greaterThanOrEqualTo(expression, (Comparable) value);
             case LTE:
-                return cb.lessThanOrEqualTo(expression , (Comparable) value);
+                return cb.lessThanOrEqualTo(expression, (Comparable) value);
             case GT:
                 return cb.greaterThan(expression, (Comparable) value);
             case LT:
                 return cb.lessThan(expression, (Comparable) value);
             case IN:
-                if(value.getClass().isArray()){
+                if (value.getClass().isArray()) {
                     return expression.in((Object[]) value);
-                } else{
+                } else {
                     return expression.in((Collection) value);
                 }
             case NOTIN:

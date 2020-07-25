@@ -32,6 +32,7 @@ public class BaseRepositoryFactoryBean<JR extends JpaRepository<T, ID>, T, ID ex
 
     private static class BaseRepositoryFactory<T, ID extends Serializable> extends JpaRepositoryFactory {
         private final EntityManager entityManager;
+
         public BaseRepositoryFactory(EntityManager entityManager) {
             super(entityManager);
             this.entityManager = entityManager;
@@ -42,7 +43,7 @@ public class BaseRepositoryFactoryBean<JR extends JpaRepository<T, ID>, T, ID ex
             JpaEntityInformation<?, Serializable> entityInformation = this.getEntityInformation(information.getDomainType());
             Object repository = this.getTargetRepositoryViaReflection(information, new Object[]{entityInformation, entityManager});
             Assert.isInstanceOf(BaseRepositoryImpl.class, repository);
-            return (JpaRepositoryImplementation)repository;
+            return (JpaRepositoryImplementation) repository;
         }
 
         @Override

@@ -4,11 +4,11 @@ import lombok.Data;
 
 @Data
 public class BannerItem {
-    private String url="javascript:";
+    private String url = "javascript:";
     private String img;
-    private String title="";
+    private String title = "";
 
-    public BannerItem(){
+    public BannerItem() {
 
     }
 

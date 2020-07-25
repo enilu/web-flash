@@ -15,26 +15,26 @@ import javax.servlet.http.HttpSession;
  */
 public class SessionUtils {
 
-	public static HttpSession getSession() {
-		if (RequestContextHolder.getRequestAttributes() == null) {
-			return null;
-		}
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		return request.getSession();
-	}
+    public static HttpSession getSession() {
+        if (RequestContextHolder.getRequestAttributes() == null) {
+            return null;
+        }
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        return request.getSession();
+    }
 
-	public static HttpServletRequest getRequest() {
-		if (RequestContextHolder.getRequestAttributes() == null) {
-			return null;
-		}
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		return request;
-	}
+    public static HttpServletRequest getRequest() {
+        if (RequestContextHolder.getRequestAttributes() == null) {
+            return null;
+        }
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        return request;
+    }
 
-	public static ServletContext getServletContext() {
-		WebApplicationContext context = ContextLoader.getCurrentWebApplicationContext();
-		return context.getServletContext();
-	}
+    public static ServletContext getServletContext() {
+        WebApplicationContext context = ContextLoader.getCurrentWebApplicationContext();
+        return context.getServletContext();
+    }
 
 
 }

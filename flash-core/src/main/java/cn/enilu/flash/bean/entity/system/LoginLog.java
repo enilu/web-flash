@@ -15,8 +15,8 @@ import java.util.Date;
  *
  * @author enilu
  */
-@Entity(name="t_sys_login_log")
-@Table(appliesTo = "t_sys_login_log",comment = "登录日志")
+@Entity(name = "t_sys_login_log")
+@Table(appliesTo = "t_sys_login_log", comment = "登录日志")
 @Data
 public class LoginLog {
     @Id
@@ -33,6 +33,6 @@ public class LoginLog {
     @Column
     private String ip;
     @CreationTimestamp
-    @Column(name = "create_time",columnDefinition="DATETIME COMMENT '创建时间'")
+    @Column(name = "create_time", columnDefinition = "DATETIME COMMENT '创建时间'")
     private Date createTime;
 }

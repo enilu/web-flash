@@ -16,7 +16,7 @@ import java.io.Serializable;
  */
 @Component
 @Scope(scopeName = WebApplicationContext.SCOPE_SESSION)
-public class LogObjectHolder implements Serializable{
+public class LogObjectHolder implements Serializable {
 
     private Object object = null;
 
@@ -25,7 +25,7 @@ public class LogObjectHolder implements Serializable{
             //为表面后面的逻辑对obj进行变更，这里克隆一份存储，用于后续变化对比
             Object cloneObj = BeanUtils.cloneBean(obj);
             this.object = cloneObj;
-        }   catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -35,7 +35,7 @@ public class LogObjectHolder implements Serializable{
         return object;
     }
 
-    public static LogObjectHolder me(){
+    public static LogObjectHolder me() {
         LogObjectHolder bean = SpringContextHolder.getBean(LogObjectHolder.class);
         return bean;
     }

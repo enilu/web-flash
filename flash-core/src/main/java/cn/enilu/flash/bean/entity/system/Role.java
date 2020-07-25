@@ -16,7 +16,7 @@ import javax.validation.constraints.NotBlank;
  * @author enilu
  */
 @Entity(name = "t_sys_role")
-@Table(appliesTo = "t_sys_role",comment = "角色")
+@Table(appliesTo = "t_sys_role", comment = "角色")
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Role extends BaseEntity {

@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author enilu
  */
-public interface LoginLogRepository extends BaseRepository<LoginLog,Long> {
+public interface LoginLogRepository extends BaseRepository<LoginLog, Long> {
     @Modifying
     @Transactional
-    @Query(nativeQuery = true,value = "delete from t_sys_login_log")
+    @Query(nativeQuery = true, value = "delete from t_sys_login_log")
     int clear();
 }

@@ -70,11 +70,11 @@ public class LogAop {
         Long idUser = null;
         HttpServletRequest request = HttpUtil.getRequest();
         String token = request.getHeader("Authorization");
-        if(StringUtil.isNotEmpty(token)) {
+        if (StringUtil.isNotEmpty(token)) {
             idUser = JwtUtil.getUserId(token);
         }
-        if(idUser==null) {
-            return ;
+        if (idUser == null) {
+            return;
         }
 
         //获取拦截方法的参数
@@ -93,18 +93,18 @@ public class LogAop {
         }
 
         //如果涉及到修改,比对变化
-        String msg="";
+        String msg = "";
         if (bussinessName.indexOf("修改") != -1 || bussinessName.indexOf("编辑") != -1) {
             Object obj1 = LogObjectHolder.me().get();
             Map<String, String> obj2 = HttpUtil.getRequestParameters();
             try {
-                msg = BeanUtil.contrastObj( key, obj1, obj2);
-            }catch (Exception e){
+                msg = BeanUtil.contrastObj(key, obj1, obj2);
+            } catch (Exception e) {
 
             }
         } else {
             Map<String, String> parameters = HttpUtil.getRequestParameters();
-            msg = BeanUtil.parseMutiKey( parameters);
+            msg = BeanUtil.parseMutiKey(parameters);
         }
 
         LogManager.me().executeLog(LogTaskFactory.bussinessLog(idUser, bussinessName, className, methodName, msg));

@@ -20,7 +20,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableCaching
 @SpringBootApplication
 @ComponentScan(basePackages = "cn.enilu.flash")
-@EntityScan(basePackages="cn.enilu.flash.bean.entity")
+@EntityScan(basePackages = "cn.enilu.flash.bean.entity")
 @EnableJpaRepositories(basePackages = "cn.enilu.flash.dao", repositoryFactoryBeanClass = BaseRepositoryFactoryBean.class)
 @EnableJpaAuditing
 public class ApiApplication extends SpringBootServletInitializer {

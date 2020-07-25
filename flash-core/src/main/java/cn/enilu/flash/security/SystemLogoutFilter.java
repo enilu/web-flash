@@ -25,7 +25,7 @@ public class SystemLogoutFilter extends LogoutFilter {
         try {
             subject.logout();
         } catch (Exception ex) {
-            logger.error("退出登录错误",ex);
+            logger.error("退出登录错误", ex);
         }
 
         this.writeResult(response);
@@ -33,7 +33,7 @@ public class SystemLogoutFilter extends LogoutFilter {
         return false;
     }
 
-    private void writeResult(ServletResponse response){
+    private void writeResult(ServletResponse response) {
         //响应Json结果
         PrintWriter out = null;
         try {

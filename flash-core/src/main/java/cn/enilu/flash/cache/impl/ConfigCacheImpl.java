@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Service
 public class ConfigCacheImpl extends BaseCache implements ConfigCache {
-    private static  final Logger logger = LoggerFactory.getLogger(ConfigCacheImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(ConfigCacheImpl.class);
     @Autowired
     private CfgRepository cfgRepository;
     @Autowired
@@ -30,17 +30,17 @@ public class ConfigCacheImpl extends BaseCache implements ConfigCache {
 
     @Override
     public Object get(String key) {
-        return  cacheDao.hget(CacheDao.CONSTANT,key);
+        return cacheDao.hget(CacheDao.CONSTANT, key);
     }
 
     @Override
     public String get(String key, boolean local) {
         String ret = null;
-        if(local) {
-             ret = (String) get(key);
-        }else{
+        if (local) {
+            ret = (String) get(key);
+        } else {
             ret = cfgRepository.findByCfgName(key).getCfgValue();
-            set(key,ret);
+            set(key, ret);
         }
         return ret;
     }
@@ -48,7 +48,7 @@ public class ConfigCacheImpl extends BaseCache implements ConfigCache {
     @Override
     public String get(String key, String def) {
         String ret = (String) get(key);
-        if(StringUtil.isEmpty(ret)){
+        if (StringUtil.isEmpty(ret)) {
             return ret;
         }
         return ret;
@@ -56,18 +56,18 @@ public class ConfigCacheImpl extends BaseCache implements ConfigCache {
 
     @Override
     public String get(ConfigKeyEnum configKeyEnum) {
-        return get(configKeyEnum.getValue(),null);
+        return get(configKeyEnum.getValue(), null);
     }
 
 
     @Override
     public void set(String key, Object val) {
-        cacheDao.hset(CacheDao.CONSTANT,key,val);
+        cacheDao.hset(CacheDao.CONSTANT, key, val);
     }
 
     @Override
     public void del(String key, String val) {
-        cacheDao.hdel(CacheDao.CONSTANT,val);
+        cacheDao.hdel(CacheDao.CONSTANT, val);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class ConfigCacheImpl extends BaseCache implements ConfigCache {
         if (list != null && !list.isEmpty()) {
             for (Cfg cfg : list) {
                 if (StringUtil.isNotEmpty(cfg.getCfgName()) && StringUtil.isNotEmpty(cfg.getCfgValue())) {
-                    set(cfg.getCfgName(),cfg.getCfgValue());
+                    set(cfg.getCfgName(), cfg.getCfgValue());
                 }
             }
         }

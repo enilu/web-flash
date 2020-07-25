@@ -16,7 +16,8 @@ public class News {
      * 图片地址
      */
     private String src;
-    public News(){
+
+    public News() {
 
     }
 

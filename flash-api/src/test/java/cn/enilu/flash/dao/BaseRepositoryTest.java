@@ -55,7 +55,7 @@ public class BaseRepositoryTest extends BaseApplicationStartTest {
 
     @Test
     public void test_02_queryBySql() {
-        List<Boy> list =  boyRepository.queryBySql("select * from t_test_boy where age>25", Boy.class);
+        List<Boy> list = boyRepository.queryBySql("select * from t_test_boy where age>25", Boy.class);
         System.out.println(JsonUtil.toJson(list));
         Assert.assertTrue(list.get(0) instanceof Boy);
 
@@ -73,16 +73,17 @@ public class BaseRepositoryTest extends BaseApplicationStartTest {
         Boy boy = boyRepository.getBySql("select * from t_test_boy where age=25");
         Assert.assertTrue(boy.getAge() == 25);
     }
+
     @Test
     public void test_05_getOne() {
         Boy boy = boyRepository.getOne(1L);
-        Assert.assertTrue(boy.getAge()==18);
+        Assert.assertTrue(boy.getAge() == 18);
     }
 
     @Test
     public void test_06_get() {
         Boy boy = boyRepository.get("select * from t_test_boy where age=30");
-        Assert.assertTrue(boy.getAge() == 30 );
+        Assert.assertTrue(boy.getAge() == 30);
     }
 
     //todo 测试有问题
@@ -91,7 +92,7 @@ public class BaseRepositoryTest extends BaseApplicationStartTest {
     public void test_07_execute() {
         int ret = boyRepository.execute("update t_test_boy set name='李四'");
         System.out.println(ret);
-        Assert.assertTrue(ret>0);
+        Assert.assertTrue(ret > 0);
     }
 
     @Test

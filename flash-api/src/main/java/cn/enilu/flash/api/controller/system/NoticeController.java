@@ -22,15 +22,16 @@ import java.util.List;
 public class NoticeController extends BaseController {
     @Autowired
     private NoticeService noticeService;
+
     /**
      * 获取通知列表
      */
     @RequestMapping(value = "/list")
     public Object list(String condition) {
         List<Notice> list = null;
-        if(Strings.isNullOrEmpty(condition)) {
-            list =  noticeService.queryAll();
-        }else{
+        if (Strings.isNullOrEmpty(condition)) {
+            list = noticeService.queryAll();
+        } else {
             list = noticeService.findByTitleLike(condition);
         }
         return Rets.success(list);

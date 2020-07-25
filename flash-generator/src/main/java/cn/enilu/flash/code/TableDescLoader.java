@@ -26,12 +26,12 @@ public class TableDescLoader extends AbstractLoader {
 
 
     @Override
-    public   Map<String, TableDescriptor> loadTables(Ioc ioc,
-                                                     String basePackageName,
-                                                     String baseUri,
-                                                     String servPackageName,
-                                                     String repositoryPackageName,
-                                                     String modPackageName) throws SQLException {
+    public Map<String, TableDescriptor> loadTables(Ioc ioc,
+                                                   String basePackageName,
+                                                   String baseUri,
+                                                   String servPackageName,
+                                                   String repositoryPackageName,
+                                                   String modPackageName) throws SQLException {
 
 
         DataSource ds = ioc.get(DataSource.class);
@@ -77,7 +77,7 @@ public class TableDescLoader extends AbstractLoader {
         dao.execute(tableSchemaSql);
 
 
-        List<Map> columns =tableSchemaSql.getList(Map.class);
+        List<Map> columns = tableSchemaSql.getList(Map.class);
 
         Map<String, TableDescriptor> tables = new HashMap<String, TableDescriptor>(20);
         for (Map<String, Object> columnInfo : columns) {
@@ -85,7 +85,7 @@ public class TableDescLoader extends AbstractLoader {
 
             ColumnDescriptor column = new ColumnDescriptor();
             column.columnName = (String) columnInfo.get("COLUMN_NAME");
-            if("opAt".equals(column.columnName)||"opBy".equals(column.columnName)||"delFlag".equals(column.columnName)){
+            if ("opAt".equals(column.columnName) || "opBy".equals(column.columnName) || "delFlag".equals(column.columnName)) {
                 continue;
             }
             column.setDefaultValue(columnInfo.get("COLUMN_DEFAULT"));
@@ -99,10 +99,10 @@ public class TableDescLoader extends AbstractLoader {
 
             TableDescriptor table = tables.get(tableName);
             if (table == null) {
-                table = new TableDescriptor(tableName,null, basePackageName, baseUri,servPackageName,repositoryPackageName,modPackageName);
+                table = new TableDescriptor(tableName, null, basePackageName, baseUri, servPackageName, repositoryPackageName, modPackageName);
                 tables.put(tableName, table);
             }
-            if(column.primary){
+            if (column.primary) {
                 table.setPkType(column.getSimpleJavaTypeName());
             }
             table.addColumn(column);
@@ -132,7 +132,7 @@ public class TableDescLoader extends AbstractLoader {
         dao.execute(infomationSchemaSql);
 
 
-        List<Map> tableInfos =infomationSchemaSql.getList(Map.class);
+        List<Map> tableInfos = infomationSchemaSql.getList(Map.class);
 
         for (Map<String, Object> tableInfo : tableInfos) {
             String tableName = (String) tableInfo.get("TABLE_NAME");

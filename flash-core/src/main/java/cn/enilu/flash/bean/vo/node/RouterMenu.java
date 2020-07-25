@@ -17,7 +17,7 @@ public class RouterMenu {
     private String component;
     private String name;
     private Integer num;
-    private Boolean hidden=false;
+    private Boolean hidden = false;
     private MenuMeta meta;
     private List<RouterMenu> children = Lists.newArrayList();
 

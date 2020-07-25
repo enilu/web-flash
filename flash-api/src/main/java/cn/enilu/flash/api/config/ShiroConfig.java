@@ -49,7 +49,7 @@ public class ShiroConfig {
         ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
 
         // 添加自己的过滤器并且取名为jwt
-        Map<String, Filter> filterMap =  Maps.newHashMap();
+        Map<String, Filter> filterMap = Maps.newHashMap();
         filterMap.put("jwt", new JwtFilter());
         factoryBean.setFilters(filterMap);
 
@@ -62,29 +62,29 @@ public class ShiroConfig {
          * http://shiro.apache.org/web.html#urls-
          * 这里最好用LinkedHashMap,否则可能回出现anon配置无效的情况
          */
-        Map<String, String> filterRuleMap = new LinkedHashMap<String,String>();
+        Map<String, String> filterRuleMap = new LinkedHashMap<String, String>();
         // 所有请求通过我们自己的JWT Filter
         //swagger资源不拦截
-        filterRuleMap.put("/swagger-ui.html","anon");
+        filterRuleMap.put("/swagger-ui.html", "anon");
         filterRuleMap.put("/v2/api-docs/**", "anon");
         filterRuleMap.put("/webjars/**", "anon");
-        filterRuleMap.put("/swagger-resources","anon");
-        filterRuleMap.put("/images/**","anon");
-        filterRuleMap.put("/configuration/security","anon");
-        filterRuleMap.put("/configuration/ui","anon");
+        filterRuleMap.put("/swagger-resources", "anon");
+        filterRuleMap.put("/images/**", "anon");
+        filterRuleMap.put("/configuration/security", "anon");
+        filterRuleMap.put("/configuration/ui", "anon");
 
-        filterRuleMap.put("/file/download","anon");
-        filterRuleMap.put("/file/getImgStream","anon");
-        filterRuleMap.put("/file/getImgBase64","anon");
+        filterRuleMap.put("/file/download", "anon");
+        filterRuleMap.put("/file/getImgStream", "anon");
+        filterRuleMap.put("/file/getImgBase64", "anon");
 
 
         //druid监控地址不拦截
-        filterRuleMap.put("/druid/**","anon");
+        filterRuleMap.put("/druid/**", "anon");
         //登录登出不拦截
-        filterRuleMap.put("/account/login","anon");
+        filterRuleMap.put("/account/login", "anon");
         filterRuleMap.put("/logout", "logout");
         //H5前端不拦截
-        filterRuleMap.put("/offcialsite/**","anon");
+        filterRuleMap.put("/offcialsite/**", "anon");
         // 访问401和404页面不通过我们的Filter
         filterRuleMap.put("/401", "anon");
         filterRuleMap.put("/**", "jwt");
