@@ -18,22 +18,22 @@ public interface MenuRepository extends BaseRepository<Menu, Long> {
 
     List<Menu> findByPcodesLike(String code);
 
-    @Query(nativeQuery = true, value = "select url from t_sys_relation rel inner join t_sys_menu m on rel.menuid = m.id where m.status=1 and  rel.roleid = ?1")
+    @Query(nativeQuery = true, value = "select url from t_sys_relation rel inner join t_sys_menu m on rel.menuid = m.id where  rel.roleid = ?1")
     List<String> getResUrlsByRoleId(Long roleId);
 
-    @Query(nativeQuery = true, value = "select code from t_sys_relation rel inner join t_sys_menu m on rel.menuid = m.id where m.status=1 and  rel.roleid = ?1")
+    @Query(nativeQuery = true, value = "select code from t_sys_relation rel inner join t_sys_menu m on rel.menuid = m.id where   rel.roleid = ?1")
     List<String> getResCodesByRoleId(Long roleId);
 
     @Query(nativeQuery = true, value = "SELECT m1.id AS id, m1.icon AS icon, ( CASE WHEN (m2.id = 0 OR m2.id IS NULL) " +
             "THEN 0 ELSE m2.id END ) AS parentId, m1. NAME AS NAME, m1.url AS url, m1.levels AS levels, m1.ismenu AS " +
-            "ismenu, m1.num AS num, m1. CODE AS CODE,m1.status as status,m1.component,m1.hidden,m1.pcode FROM t_sys_menu m1 LEFT JOIN t_sys_menu m2 " +
+            "ismenu, m1.num AS num, m1. CODE AS CODE,m1.component,m1.hidden,m1.pcode FROM t_sys_menu m1 LEFT JOIN t_sys_menu m2 " +
             "ON " +
             "m1.pcode = m2. CODE ORDER BY levels, num ASC")
     List getMenus();
 
     @Query(nativeQuery = true, value = "SELECT m1.id AS id, m1.icon AS icon, ( CASE WHEN (m2.id = 0 OR m2.id IS NULL) " +
             "THEN 0 ELSE m2.id END ) AS parentId, m1. NAME AS NAME, m1.url AS url, m1.levels AS levels, m1.ismenu AS " +
-            "ismenu, m1.num AS num, m1. CODE AS CODE,m1.status as status,m1.component,m1.hidden FROM t_sys_menu m1 LEFT JOIN t_sys_menu m2 " +
+            "ismenu, m1.num AS num, m1. CODE AS CODE,m1.component,m1.hidden FROM t_sys_menu m1 LEFT JOIN t_sys_menu m2 " +
             "ON " +
             "m1.pcode = m2. CODE " +
             " where m1.id in (select distinct(menuid) from t_sys_relation where roleid   in(?))" +

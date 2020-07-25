@@ -42,8 +42,7 @@ public class MenuNode implements Comparable {
      */
     private Integer ismenu;
     private String isMenuName;
-    private Integer status;
-    private String statusName;
+
 
     /**
      * 按钮的排序
@@ -190,13 +189,6 @@ public class MenuNode implements Comparable {
         this.isMenuName = isMenuName;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
 
     public String getComponent() {
         return component;
@@ -204,14 +196,6 @@ public class MenuNode implements Comparable {
 
     public void setComponent(String component) {
         this.component = component;
-    }
-
-    public String getStatusName() {
-        return status == 1 ? "启用" : "禁用";
-    }
-
-    public void setStatusName(String statusName) {
-        this.statusName = statusName;
     }
 
     public Boolean getHidden() {

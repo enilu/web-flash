@@ -120,11 +120,6 @@ export default {
       } else {
         this.form.ismenu = 0
       }
-      if (row.statusName === '启用') {
-        this.form.status = 1
-      } else {
-        this.form.status = 0
-      }
       if (this.form.pcode=='0') {
         this.form.pcode =undefined
       }

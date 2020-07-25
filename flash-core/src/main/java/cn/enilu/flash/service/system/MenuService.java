@@ -13,6 +13,7 @@ import cn.enilu.flash.dao.system.MenuRepository;
 import cn.enilu.flash.service.BaseService;
 import cn.enilu.flash.utils.Lists;
 import cn.enilu.flash.utils.StringUtil;
+import org.nutz.json.Json;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -176,17 +177,16 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
                 menuNode.setIsmenu(Integer.valueOf(source[6].toString()));
                 menuNode.setNum(Integer.valueOf(source[7].toString()));
                 menuNode.setCode(String.valueOf(source[8]));
-                menuNode.setStatus(Integer.valueOf(source[9].toString()));
 
-                if (source[10] != null) {
-                    menuNode.setComponent(source[10].toString());
+                if (source[9] != null) {
+                    menuNode.setComponent(source[9].toString());
                 }
-                if ("1".equals(source[11].toString())) {
+                if ("1".equals(source[10].toString())) {
                     menuNode.setHidden(true);
                 } else {
                     menuNode.setHidden(false);
                 }
-                menuNode.setPcode(StringUtil.sNull(source[12]));
+                menuNode.setPcode(StringUtil.sNull(source[11]));
                 menuNodes.add(menuNode);
 
             }
@@ -201,7 +201,7 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
         try {
             for (int i = 0; i < menus.size(); i++) {
                 Object[] source = (Object[]) menus.get(i);
-                if (source[10] == null) {
+                if (source[9] == null) {
                     continue;
                 }
 
@@ -216,10 +216,12 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
 //                meta.setTitle(String.valueOf(source[3]));
                 menu.setNum(Integer.valueOf(source[7].toString()));
                 menu.setParentId(Long.valueOf(source[2].toString()));
-                menu.setComponent(source[10].toString());
+                if(source[9]!=null) {
+                    menu.setComponent(source[9].toString());
+                }
                 menu.setId(Long.valueOf(source[0].toString()));
                 menu.setMeta(meta);
-                if ("1".equals(source[11].toString())) {
+                if ("1".equals(source[10].toString())) {
                     menu.setHidden(true);
                 }
                 routerMenus.add(menu);

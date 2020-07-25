@@ -1,7 +1,6 @@
 package cn.enilu.flash.api.controller.system;
 
 import cn.enilu.flash.api.controller.BaseController;
-import cn.enilu.flash.bean.constant.state.MenuStatus;
 import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.entity.system.Menu;
@@ -9,11 +8,7 @@ import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Rets;
-import cn.enilu.flash.bean.vo.node.MenuNode;
-import cn.enilu.flash.bean.vo.node.Node;
-import cn.enilu.flash.bean.vo.node.RouterMenu;
-import cn.enilu.flash.bean.vo.node.TreeSelectNode;
-import cn.enilu.flash.bean.vo.node.ZTreeNode;
+import cn.enilu.flash.bean.vo.node.*;
 import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.service.system.LogObjectHolder;
 import cn.enilu.flash.service.system.MenuService;
@@ -26,11 +21,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -101,7 +92,6 @@ public class MenuController extends BaseController {
             if (StringUtil.isNotEmpty(existedMenuName)) {
                 throw new ApplicationException(BizExceptionEnum.EXISTED_THE_MENU);
             }
-            menu.setStatus(MenuStatus.ENABLE.getCode());
         }
 
         //设置父级菜单编号

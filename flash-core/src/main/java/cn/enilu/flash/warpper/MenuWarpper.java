@@ -1,7 +1,6 @@
 package cn.enilu.flash.warpper;
 
 import cn.enilu.flash.bean.vo.node.IsMenu;
-import cn.enilu.flash.service.system.impl.ConstantFactory;
 
 import java.util.List;
 import java.util.Map;
@@ -20,7 +19,6 @@ public class MenuWarpper extends BaseControllerWarpper {
 
     @Override
     public void warpTheMap(Map<String, Object> map) {
-        map.put("statusName", ConstantFactory.me().getMenuStatusName((Integer) map.get("status")));
         map.put("isMenuName", IsMenu.valueOf((Integer) map.get("ismenu")));
     }
 

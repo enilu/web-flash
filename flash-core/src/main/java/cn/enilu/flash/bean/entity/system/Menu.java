@@ -45,8 +45,6 @@ public class Menu extends BaseEntity {
     private Integer ismenu;
     @Column(columnDefinition = "VARCHAR(32) COMMENT '鼠标悬停提示信息'")
     private String tips;
-    @Column(columnDefinition = "INT COMMENT '状态1:启用,0:禁用'", nullable = false)
-    private Integer status;
     @Column(columnDefinition = "INT  COMMENT '是否默认打开1:是,0:否'")
     private Integer isopen;
     @Column(columnDefinition = "VARCHAR(64) COMMENT '页面组件'")

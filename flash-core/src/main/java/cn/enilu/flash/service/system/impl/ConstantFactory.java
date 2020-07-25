@@ -2,23 +2,12 @@ package cn.enilu.flash.service.system.impl;
 
 import cn.enilu.flash.bean.constant.cache.CacheKey;
 import cn.enilu.flash.bean.constant.state.ManagerStatus;
-import cn.enilu.flash.bean.constant.state.MenuStatus;
-import cn.enilu.flash.bean.entity.system.Dept;
-import cn.enilu.flash.bean.entity.system.Dict;
-import cn.enilu.flash.bean.entity.system.Menu;
-import cn.enilu.flash.bean.entity.system.Notice;
-import cn.enilu.flash.bean.entity.system.Role;
-import cn.enilu.flash.bean.entity.system.User;
+import cn.enilu.flash.bean.entity.system.*;
 import cn.enilu.flash.bean.vo.DictVo;
 import cn.enilu.flash.bean.vo.SpringContextHolder;
 import cn.enilu.flash.cache.ConfigCache;
 import cn.enilu.flash.cache.DictCache;
-import cn.enilu.flash.dao.system.DeptRepository;
-import cn.enilu.flash.dao.system.DictRepository;
-import cn.enilu.flash.dao.system.MenuRepository;
-import cn.enilu.flash.dao.system.NoticeRepository;
-import cn.enilu.flash.dao.system.RoleRepository;
-import cn.enilu.flash.dao.system.UserRepository;
+import cn.enilu.flash.dao.system.*;
 import cn.enilu.flash.service.system.IConstantFactory;
 import cn.enilu.flash.service.system.LogObjectHolder;
 import cn.enilu.flash.utils.Convert;
@@ -329,14 +318,6 @@ public class ConstantFactory implements IConstantFactory {
     @Override
     public String getStatusName(Integer status) {
         return ManagerStatus.valueOf(status);
-    }
-
-    /**
-     * 获取菜单状态
-     */
-    @Override
-    public String getMenuStatusName(Integer status) {
-        return MenuStatus.valueOf(status);
     }
 
     /**

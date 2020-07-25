@@ -40,11 +40,6 @@
           <span >{{scope.row.url}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="是否启用">
-        <template slot-scope="scope">
-          <span >{{scope.row.statusName}}</span>
-        </template>
-      </el-table-column>
       <el-table-column label="是否隐藏">
         <template slot-scope="scope">
           <span >{{scope.row.hidden}}</span>
@@ -88,11 +83,11 @@
                 </el-radio-group>
               </el-form-item>
             </el-col>
-            <el-col :span="12">
-              <el-form-item label="是否启用">
-                <el-radio-group v-model="form.status">
-                  <el-radio :label="1">是</el-radio>
-                  <el-radio :label="0">否</el-radio>
+            <el-col :span="12"  v-show="show.form.component">
+              <el-form-item label="是否隐藏">
+                <el-radio-group v-model="form.hidden">
+                  <el-radio :label="true">是</el-radio>
+                  <el-radio :label="false">否</el-radio>
                 </el-radio-group>
               </el-form-item>
             </el-col>
@@ -103,23 +98,7 @@
             </el-col>
             <el-col :span="12">
               <el-form-item label="父菜单" >
-
                 <treeselect v-model="form.pcode"  :options="treeData"  placeholder="请选择父菜单/顶级菜单目录无需选择"/>
-<!--                <el-input-->
-<!--                  placeholder="请选择父菜单/顶级菜单目录无需选择"-->
-<!--                  v-model="form.pname"-->
-<!--                  readonly="readonly"-->
-<!--                  @click.native="showTree = !showTree">-->
-<!--                </el-input>-->
-<!--                <el-tree v-if="showTree"-->
-<!--                         empty-text="暂无数据"-->
-<!--                         :expand-on-click-node="false"-->
-<!--                         :data="data"-->
-<!--                         :props="defaultProps"-->
-<!--                         @node-click="handleNodeClick"-->
-<!--                         class="input-tree">-->
-<!--                </el-tree>-->
-
               </el-form-item>
             </el-col>
 
@@ -150,14 +129,7 @@
                 </el-popover>
               </el-form-item>
             </el-col>
-            <el-col :span="12"  v-show="show.form.component">
-              <el-form-item label="是否隐藏">
-                <el-radio-group v-model="form.hidden">
-                  <el-radio :label="true">是</el-radio>
-                  <el-radio :label="false">否</el-radio>
-                </el-radio-group>
-              </el-form-item>
-            </el-col>
+
             <el-col :span="12">
               <el-form-item label="排序" prop="num">
                 <el-input type="number" v-model="form.num"></el-input>
