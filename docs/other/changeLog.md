@@ -1,8 +1,8 @@
 # change log
 ## 1.7
 
-[gitee](https://gitee.com/enilu/web-flash/releases/1.6)
-[github](https://github.com/enilu/web-flash/releases/tag/1.6)
+[gitee](https://gitee.com/enilu/web-flash/releases/1.7)
+[github](https://github.com/enilu/web-flash/releases/tag/1.7)
 
 ## Issues
 - Issue前端request.js请求默认配置：withCredentials: false,(仅作开发使用，不建议生产使用该配置)
