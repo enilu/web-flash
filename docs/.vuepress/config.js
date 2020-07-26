@@ -3,7 +3,16 @@ module.exports = {
     description: '使用web-flash快速构建web应用程序',
     base: '/web-flash/',
     head: [
-        ['link', { rel: 'shortcut icon', type: "image/x-icon", href: './favicon.ico' }]
+        ['link', { rel: 'shortcut icon', type: "image/x-icon", href: './favicon.ico' }],
+        ['script',{},`
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2e49fcf058af23545d0f4f943a872044";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+        `]
     ],
     evergreen: true,
     editLinkText:'在 GitHub 上编辑此页',
