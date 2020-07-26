@@ -47,7 +47,7 @@ public class CfgController extends BaseController {
      * 查询参数列表
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @RequiresPermissions(value = {Permission.CFG})
+    @RequiresPermissions(value = {"/cfg"})
     public Object list(@RequestParam(required = false) String cfgName, @RequestParam(required = false) String cfgValue) {
         Page<Cfg> page = new PageFactory<Cfg>().defaultPage();
         if (StringUtil.isNotEmpty(cfgName)) {
@@ -83,25 +83,29 @@ public class CfgController extends BaseController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
+    @BussinessLog(value = "新增参数", key = "cfgName")
+    @RequiresPermissions(value = {"/cfg/add"})
+    public Object add(@ModelAttribute @Valid Cfg cfg) {
+        cfgService.saveOrUpdate(cfg);
+        return Rets.success();
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
     @BussinessLog(value = "编辑参数", key = "cfgName")
-    @RequiresPermissions(value = {Permission.CFG_EDIT})
-    public Object save(@ModelAttribute @Valid Cfg cfg) {
-        if (cfg.getId() != null) {
-            Cfg old = cfgService.get(cfg.getId());
-            LogObjectHolder.me().set(old);
-            old.setCfgName(cfg.getCfgName());
-            old.setCfgValue(cfg.getCfgValue());
-            old.setCfgDesc(cfg.getCfgDesc());
-            cfgService.saveOrUpdate(old);
-        } else {
-            cfgService.saveOrUpdate(cfg);
-        }
+    @RequiresPermissions(value = {"/cfg/update"})
+    public Object update(@ModelAttribute @Valid Cfg cfg) {
+        Cfg old = cfgService.get(cfg.getId());
+        LogObjectHolder.me().set(old);
+        old.setCfgName(cfg.getCfgName());
+        old.setCfgValue(cfg.getCfgValue());
+        old.setCfgDesc(cfg.getCfgDesc());
+        cfgService.saveOrUpdate(old);
         return Rets.success();
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
     @BussinessLog(value = "删除参数", key = "id")
-    @RequiresPermissions(value = {Permission.CFG_DEL})
+    @RequiresPermissions(value = {"/cfg/delete"})
     public Object remove(@RequestParam Long id) {
         logger.info("id:{}", id);
         if (id == null) {

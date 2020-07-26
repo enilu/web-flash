@@ -1,4 +1,4 @@
-import { remove, getList, save, exportXls } from '@/api/system/cfg'
+import cfgApi from '@/api/system/cfg'
 import { getApiUrl } from '@/utils/utils'
 import permission from '@/directive/permission/index.js'
 
@@ -60,7 +60,7 @@ export default {
     },
     fetchData() {
       this.listLoading = true
-      getList(this.listQuery).then(response => {
+      cfgApi.getList(this.listQuery).then(response => {
         this.list = response.data.records
         this.listLoading = false
         this.total = response.data.total
@@ -119,19 +119,32 @@ export default {
     save() {
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          save({
+          const formData = {
             id: this.form.id,
             cfgName: this.form.cfgName,
             cfgValue: this.form.cfgValue,
             cfgDesc: this.form.cfgDesc
-          }).then(response => {
-            this.$message({
-              message: this.$t('common.optionSuccess'),
-              type: 'success'
+          }
+          if(this.form.id){
+            cfgApi.update(formData).then(response => {
+              this.$message({
+                message: this.$t('common.optionSuccess'),
+                type: 'success'
+              })
+              this.fetchData()
+              this.formVisible = false
             })
-            this.fetchData()
-            this.formVisible = false
-          })
+          }else{
+            cfgApi.add(formData).then(response => {
+              this.$message({
+                message: this.$t('common.optionSuccess'),
+                type: 'success'
+              })
+              this.fetchData()
+              this.formVisible = false
+            })
+          }
+
         } else {
           return false
         }
@@ -171,7 +184,7 @@ export default {
           cancelButtonText: this.$t('button.cancel'),
           type: 'warning'
         }).then(() => {
-          remove(id).then(response => {
+          cfgApi.remove(id).then(response => {
             this.$message({
               message: this.$t('common.optionSuccess'),
               type: 'success'

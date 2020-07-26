@@ -70,7 +70,7 @@
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item label="请求地址" prop="url">
+              <el-form-item label="资源地址" prop="url">
                 <el-input v-model="form.url"  minlength=1></el-input>
               </el-form-item>
             </el-col>

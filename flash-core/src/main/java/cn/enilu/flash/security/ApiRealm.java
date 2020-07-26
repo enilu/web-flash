@@ -50,7 +50,9 @@ public class ApiRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         simpleAuthorizationInfo.addRoles(user.getRoleCodes());
         Set<String> permission = user.getPermissions();
+        //资源的权限标识采用menu中的code和url，建议统一以url为准
         simpleAuthorizationInfo.addStringPermissions(permission);
+        simpleAuthorizationInfo.addStringPermissions(user.getUrls());
         return simpleAuthorizationInfo;
     }
 

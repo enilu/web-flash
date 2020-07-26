@@ -39,7 +39,7 @@ export default {
           { min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur' }
         ],
         url: [
-          { required: true, message: '请输入请求地址', trigger: 'blur' }
+          { required: true, message: '请输入资源地址', trigger: 'blur' }
         ],
         num: [
           { required: true, message: '请输入排序', trigger: 'blur' }

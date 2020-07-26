@@ -35,7 +35,7 @@ public class Menu extends BaseEntity {
     /**
      * 如果当前配置为非菜单（按钮）也需要配置链接，v-permission使用该配置，且不能与其他url重复
      */
-    @Column(columnDefinition = "VARCHAR(32) COMMENT '链接标识'")
+    @Column(columnDefinition = "VARCHAR(32) COMMENT '资源/权限标识'")
     private String url;
     @Column(columnDefinition = "INT COMMENT '顺序'", nullable = false)
     private Integer num;

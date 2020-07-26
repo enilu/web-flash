@@ -1,7 +1,9 @@
 #set($refForm = "this.$refs['form']")
-import { remove, getList, save } from '@/api/${table.lastPackageName}/${table.entityNameLowerFirstChar}'
+import ${table.entityNameLowerFirstChar}Api from '@/api/${table.lastPackageName}/${table.entityNameLowerFirstChar}'
+import permission from '@/directive/permission/index.js'
 
 export default {
+  directives: { permission },
   data() {
     return {
       formVisible: false,
@@ -55,7 +57,7 @@ export default {
     },
     fetchData() {
       this.listLoading = true
-      getList(this.listQuery).then(response => {
+        ${table.entityNameLowerFirstChar}Api.getList(this.listQuery).then(response => {
         this.list = response.data.records
         this.listLoading = false
         this.total = response.data.total
@@ -110,25 +112,37 @@ export default {
       if(this.$refs['form'] !== undefined) {
         this.$refs['form'].resetFields()
       }
-      //如果表单初始化又特殊处理需求,可以在resetForm中处理
+      //如果表单初始化有特殊处理需求,可以在resetForm中处理
       ## this.resetForm()
     },
     save() {
       ${refForm}.validate((valid) => {
         if (valid) {
-          save({
+            const formData = {
+                id:this.form.id,
 #foreach ($column in $table.LabeledColumns)
-            ${column.FieldName}:this.form.${column.FieldName},
+                ${column.FieldName}:this.form.${column.FieldName},
 #end
-            id: this.form.id
-          }).then(response => {
-            this.$message({
-              message: this.$t('common.optionSuccess'),
-              type: 'success'
-            })
-            this.fetchData()
-            this.formVisible = false
-          })
+            }
+            if(formData.id){
+                ${table.entityNameLowerFirstChar}Api.update(formData).then(response => {
+                    this.$message({
+                        message: this.$t('common.optionSuccess'),
+                        type: 'success'
+                    })
+                    this.fetchData()
+                    this.formVisible = false
+                })
+            }else{
+                ${table.entityNameLowerFirstChar}Api.add(formData).then(response => {
+                    this.$message({
+                        message: this.$t('common.optionSuccess'),
+                        type: 'success'
+                    })
+                    this.fetchData()
+                    this.formVisible = false
+                })
+            }
         } else {
           return false
         }
@@ -174,7 +188,7 @@ export default {
           cancelButtonText: this.$t('button.cancel'),
           type: 'warning'
         }).then(() => {
-          remove(id).then(response => {
+            ${table.entityNameLowerFirstChar}Api.remove(id).then(response => {
             this.$message({
               message: this.$t('common.optionSuccess'),
               type: 'success'

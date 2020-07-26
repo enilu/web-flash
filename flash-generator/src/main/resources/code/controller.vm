@@ -12,11 +12,15 @@ import ${table.basePackageName}.bean.vo.front.Rets;
 
 import ${table.basePackageName}.utils.factory.Page;
 
+
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("${table.UriPrefix}")
@@ -26,6 +30,7 @@ public class ${table.ControllerClassName} extends BaseController {
 	private ${table.ServiceClassName} ${table.ServiceInstanceName};
 
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
+	@RequiresPermissions(value = "${table.UriPrefix}")
 	public Object list(@RequestParam(required = false) Long id) {
 		Page<${table.EntityClassName}> page = new PageFactory<${table.EntityClassName}>().defaultPage();
 		page.addFilter("id",id);
@@ -33,17 +38,22 @@ public class ${table.ControllerClassName} extends BaseController {
 		return Rets.success(page);
 	}
 	@RequestMapping(method = RequestMethod.POST)
-	@BussinessLog(value = "编辑${table.Label}", key = "name")
-	public Object save(@ModelAttribute ${table.EntityClassName} ${table.EntityInstanceName}){
-		if(${table.EntityInstanceName}.getId()==null){
-			${table.ServiceInstanceName}.insert(${table.EntityInstanceName});
-		}else {
-			${table.ServiceInstanceName}.update(${table.EntityInstanceName});
-		}
+	@BussinessLog(value = "新增${table.Label}", key = "name")
+	@RequiresPermissions(value = "${table.UriPrefix}/add")
+	public Object add(@ModelAttribute ${table.EntityClassName} ${table.entityNameLowerFirstChar}){
+		${table.ServiceInstanceName}.insert(${table.entityNameLowerFirstChar});
+		return Rets.success();
+	}
+	@RequestMapping(method = RequestMethod.PUT)
+	@BussinessLog(value = "更新${table.Label}", key = "name")
+	@RequiresPermissions(value = "${table.UriPrefix}/update")
+	public Object update(@ModelAttribute ${table.EntityClassName} ${table.entityNameLowerFirstChar}){
+		${table.ServiceInstanceName}.update(${table.entityNameLowerFirstChar});
 		return Rets.success();
 	}
 	@RequestMapping(method = RequestMethod.DELETE)
 	@BussinessLog(value = "删除${table.Label}", key = "id")
+	@RequiresPermissions(value = "${table.UriPrefix}/delete")
 	public Object remove(Long id){
 		if (id == null) {
 			throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
