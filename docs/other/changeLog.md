@@ -1,5 +1,9 @@
 # change log
-## latest
+## 1.7
+
+[gitee](https://gitee.com/enilu/web-flash/releases/1.6)
+[github](https://github.com/enilu/web-flash/releases/tag/1.6)
+
 ## Issues
 - Issue前端request.js请求默认配置：withCredentials: false,(仅作开发使用，不建议生产使用该配置)
 - Issue 优化菜单维护功能
@@ -8,11 +12,15 @@
 - Issue 页面标题显示中文代替之前的英文
 - Issue 定义DictSelect 字典下拉组件
 - Issue 映入vue-treeselect组件代替之前的input+el-tree的用法
-
+- Issue 菜单编辑窗口使用图标选择组件输入菜单图标
+- Issue 完善权限管理功能
 ## Fixes
 - Fix 修复登陆页面标题显示错误问题
 - Fix 编辑菜单默认的父菜单没有选中
 - Fix 编辑功能使用深拷贝表格记录，代替之前的直接引用
+- Fix 完善用户编辑过程对用户字段的校验
+- Fix 去掉menu中无用的status字段
+- Fix 菜单编辑过程针对菜单类型的切换（按钮/菜单）过程，隐藏掉不需要填写的字段编辑框
 
 ## 1.6
 
