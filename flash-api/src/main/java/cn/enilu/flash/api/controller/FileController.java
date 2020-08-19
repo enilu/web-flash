@@ -72,7 +72,8 @@ public class FileController extends BaseController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        byte[] buffer = new byte[1024];
+        int length = 1024;
+        byte[] buffer = new byte[length];
         FileInputStream fis = null;
         BufferedInputStream bis = null;
 
@@ -83,11 +84,11 @@ public class FileController extends BaseController {
             fis = new FileInputStream(file);
             bis = new BufferedInputStream(fis);
             int i = bis.read(buffer);
-            while (i != -1) {
+            while(i != -1){
                 os.write(buffer);
+                buffer = new byte[length];
                 i = bis.read(buffer);
             }
-
         } catch (Exception e) {
             logger.error("download error", e);
         } finally {
