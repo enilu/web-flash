@@ -53,7 +53,7 @@ public abstract class BaseService<T, ID extends Serializable, R extends BaseRepo
     @Override
     @Cacheable(value = Cache.APPLICATION, key = "#root.targetClass.simpleName+':'+#id")
     public T get(ID id) {
-        return dao.findById(id).get();
+        return dao.getOne(id);
     }
 
     @Override

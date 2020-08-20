@@ -47,7 +47,7 @@ public class BaseRepositoryTest extends BaseApplicationStartTest {
 
     @Test
     public void test_01_queryBySql() {
-        List<Map> list = boyRepository.queryBySql("select name,age from t_test_boy where age>25");
+        List<Map> list = boyRepository.queryMapBySql("select name,age from t_test_boy where age>25");
         System.out.println(JsonUtil.toJson(list));
         Assert.assertTrue(list.get(0) instanceof Map);
 
@@ -55,7 +55,7 @@ public class BaseRepositoryTest extends BaseApplicationStartTest {
 
     @Test
     public void test_02_queryBySql() {
-        List<Boy> list = boyRepository.queryBySql("select * from t_test_boy where age>25", Boy.class);
+        List<Boy> list = boyRepository.queryBySql("select * from t_test_boy where age>25");
         System.out.println(JsonUtil.toJson(list));
         Assert.assertTrue(list.get(0) instanceof Boy);
 
@@ -70,7 +70,7 @@ public class BaseRepositoryTest extends BaseApplicationStartTest {
 
     @Test
     public void test_04_getBySql() {
-        Boy boy = boyRepository.getBySql("select * from t_test_boy where age=25");
+        Boy boy = boyRepository.get("select * from t_test_boy where age=25");
         Assert.assertTrue(boy.getAge() == 25);
     }
 

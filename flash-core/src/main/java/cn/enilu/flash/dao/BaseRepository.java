@@ -19,7 +19,7 @@ import java.util.Map;
 public interface BaseRepository<T, ID extends Serializable> extends JpaRepository<T, ID>
         , PagingAndSortingRepository<T, ID>
         , JpaSpecificationExecutor<T> {
-    List<Map> queryBySql(String sql);
+    List<Map> queryMapBySql(String sql);
 
     /**
      * 根据原生sql查询数组对象
@@ -33,10 +33,9 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
      * 根据原生sql查询对象列表
      *
      * @param sql
-     * @param klass
      * @return
      */
-    List<T> queryBySql(String sql, Class<T> klass);
+    List<T> queryBySql(String sql);
 
     List<?> queryObjBySql(String sql, Class<?> klass);
 
@@ -49,7 +48,6 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
      */
     List<T> query(String sql);
 
-    T getBySql(String sql);
 
     /**
      * 根据原生sql查询对象

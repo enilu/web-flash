@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * 字典服务
@@ -85,11 +84,7 @@ public class DictService extends BaseService<Dict, Long, DictRepository> {
 
     @Override
     public Dict get(Long id) {
-        Optional<Dict> optional = dictRepository.findById(id);
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-        return null;
+        return  dictRepository.getOne(id);
     }
 
     public List<Dict> findByNameLike(String name) {

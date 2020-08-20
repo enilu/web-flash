@@ -42,6 +42,9 @@ public class EntityDescLoader extends AbstractLoader {
 
         String filePath = packageName.replaceAll("\\.", "\\/");
         URL url = AbstractLoader.class.getClassLoader().getResource(filePath);
+        String path1 = AbstractLoader.class.getClassLoader().getResource("./").getPath();
+        log.info("current："+path1);
+        log.info("filePath:"+filePath);
         String path;
         if (url != null) {
             path = url.getPath();

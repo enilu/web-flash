@@ -19,7 +19,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 /**
@@ -80,12 +79,7 @@ public class ConstantFactory implements IConstantFactory {
     }
 
     private User getUser(Long id) {
-        Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            return user;
-        }
-        return null;
+        return  userRepository.getOne(id);
     }
 
     /**
@@ -390,38 +384,22 @@ public class ConstantFactory implements IConstantFactory {
 
     @Override
     public Role getRole(Long id) {
-        Optional<Role> optional = roleRepository.findById(id);
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-        return null;
+        return roleRepository.getOne(id);
     }
 
     @Override
     public Dept getDept(Long id) {
-        Optional<Dept> optional = deptRepository.findById(id);
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-        return null;
+        return deptRepository.getOne(id);
     }
 
     @Override
     public Menu getMenu(Long id) {
-        Optional<Menu> optiona = menuRepository.findById(id);
-        if (optiona.isPresent()) {
-            return optiona.get();
-        }
-        return null;
+        return  menuRepository.getOne(id);
     }
 
     @Override
     public Notice getNotice(Long id) {
-        Optional<Notice> optional = sysNoticeRepository.findById(id);
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-        return null;
+        return sysNoticeRepository.getOne(id);
     }
 
     @Override

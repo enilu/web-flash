@@ -12,6 +12,7 @@ import javax.persistence.Query;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * 基础dao实现类
@@ -35,29 +36,31 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
 
 
     @Override
-    public List<T> queryBySql(String sql, Class<T> klass) {
-        return (List<T>) queryObjBySql(sql, klass);
+    public List<T> queryBySql(String sql) {
+        List list = entityManager.createNativeQuery(sql, klass).getResultList();
+        return list ;
     }
 
     @Override
     public List<?> queryObjBySql(String sql, Class<?> klass) {
-        List<Map> list = queryBySql(sql);
-        if (list.isEmpty()) {
-            return null;
-        }
-        List result = Lists.newArrayList();
-        for (Map map : list) {
+         List<Map> list = queryMapBySql(sql);
+         if(list.isEmpty()){
+             return Lists.newArrayList();
+         }
+         List result = Lists.newArrayList();
+        for(Map map:list){
             try {
                 Object bean = Mapl.maplistToObj(map, klass);
                 result.add(bean);
             } catch (Exception e) {
             }
         }
-        return result;
+        return result ;
+
     }
 
     @Override
-    public List<Map> queryBySql(String sql) {
+    public List<Map> queryMapBySql(String sql) {
         Query query = entityManager.createNativeQuery(sql);
         query.unwrap(NativeQueryImpl.class)
                 .setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
@@ -67,16 +70,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
 
     @Override
     public Map getMapBySql(String sql) {
-        List<Map> list = queryBySql(sql);
-        if (list.isEmpty()) {
-            return null;
-        }
-        return list.get(0);
-    }
-
-    @Override
-    public T getBySql(String sql) {
-        List<T> list = queryBySql(sql, klass);
+        List<Map> list = queryMapBySql(sql);
         if (list.isEmpty()) {
             return null;
         }
@@ -85,7 +79,11 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
 
     @Override
     public T getOne(ID id) {
-        return findById(id).get();
+        Optional<T> optional = findById(id);
+        if(optional.isPresent()){
+            return optional.get();
+        }
+        return null;
     }
 
     @Override

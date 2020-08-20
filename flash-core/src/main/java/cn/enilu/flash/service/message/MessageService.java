@@ -149,7 +149,7 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
     }
 
     private SmsSender getSmsSender(MessageTemplate messageTemplate) throws Exception {
-        MessageSender messageSender = messagesenderRepository.findById(messageTemplate.getIdMessageSender()).get();
+        MessageSender messageSender = messagesenderRepository.getOne(messageTemplate.getIdMessageSender());
         if (messageSender != null) {
             try {
                 return SpringContextHolder.getBean(messageSender.getClassName());
@@ -163,7 +163,7 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
     }
 
     private EmailSender getEmailSender(MessageTemplate messageTemplate) throws Exception {
-        MessageSender messageSender = messagesenderRepository.findById(messageTemplate.getIdMessageSender()).get();
+        MessageSender messageSender = messagesenderRepository.getOne(messageTemplate.getIdMessageSender());
         if (messageSender != null) {
             try {
                 return SpringContextHolder.getBean(messageSender.getClassName());
@@ -177,7 +177,7 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
     }
 
     private String getTpl(MessageTemplate messageTemplate) {
-        MessageSender messageSender = messagesenderRepository.findById(messageTemplate.getIdMessageSender()).get();
+        MessageSender messageSender = messagesenderRepository.getOne(messageTemplate.getIdMessageSender());
 
         if (messageSender != null && StringUtil.isNotEmpty(messageSender.getTplCode())) {
             return messageSender.getTplCode();
