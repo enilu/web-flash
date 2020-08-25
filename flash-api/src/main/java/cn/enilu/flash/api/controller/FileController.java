@@ -85,7 +85,7 @@ public class FileController extends BaseController {
             bis = new BufferedInputStream(fis);
             int i = bis.read(buffer);
             while(i != -1){
-                os.write(buffer);
+                os.write(buffer,0,i);
                 buffer = new byte[length];
                 i = bis.read(buffer);
             }
