@@ -6,6 +6,7 @@
 - Change 重构BaseRepository部分方法
 - Change 优化获取用户菜单数据的方法
 - Issue 优化JsonUtil性能（ObjectMapper采用单例模式)
+- Issue 完善系统基础表的列定义和注释
 ### Fixes
 - Fix 文件下载过程文件损坏的问题
 - Fix 用户锁定和删除状态可以登录的问题
