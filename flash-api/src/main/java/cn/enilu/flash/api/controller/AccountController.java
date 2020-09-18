@@ -1,6 +1,7 @@
 package cn.enilu.flash.api.controller;
 
 import cn.enilu.flash.api.utils.ApiConstants;
+import cn.enilu.flash.bean.constant.state.ManagerStatus;
 import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.vo.front.Rets;
@@ -57,6 +58,11 @@ public class AccountController extends BaseController {
         try {
             //1,
             User user = userService.findByAccount(userName);
+            if(user.getStatus() == ManagerStatus.FREEZED.getCode()){
+                return Rets.failure("用户已冻结");
+            }else if(user.getStatus() == ManagerStatus.DELETED.getCode()){
+                return Rets.failure("用户已删除");
+            }
             if (user == null) {
                 return Rets.failure("用户名或密码错误");
             }
