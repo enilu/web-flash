@@ -1,10 +1,21 @@
 # change log
+
+## Latest
+
+### Issues
+- Change 重构BaseRepository部分方法
+- Change 优化获取用户菜单数据的方法
+- Issue 优化JsonUtil性能（ObjectMapper采用单例模式)
+### Fixes
+- Fix 文件下载过程文件损坏的问题
+- Fix 用户锁定和删除状态可以登录的问题
+
 ## 1.7
 
 [gitee](https://gitee.com/enilu/web-flash/releases/1.7)
 [github](https://github.com/enilu/web-flash/releases/tag/1.7)
 
-## Issues
+### Issues
 - Issue前端request.js请求默认配置：withCredentials: false,(仅作开发使用，不建议生产使用该配置)
 - Issue 优化菜单维护功能
 - Issue 优化页面标题显示（从之前的英文调整为中文）
@@ -14,7 +25,7 @@
 - Issue 映入vue-treeselect组件代替之前的input+el-tree的用法
 - Issue 菜单编辑窗口使用图标选择组件输入菜单图标
 - Issue 完善权限管理功能
-## Fixes
+### Fixes
 - Fix 修复登陆页面标题显示错误问题
 - Fix 编辑菜单默认的父菜单没有选中
 - Fix 编辑功能使用深拷贝表格记录，代替之前的直接引用

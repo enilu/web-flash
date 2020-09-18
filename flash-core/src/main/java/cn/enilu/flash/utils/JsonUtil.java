@@ -18,10 +18,21 @@ import java.util.Map;
  * @date ：Created in 2020/5/31 21:55
  */
 public class JsonUtil {
+    private static ObjectMapper objectMapper = null;
+
+    private static ObjectMapper objectMapper() {
+        if (objectMapper == null) {
+            objectMapper = new ObjectMapper();
+            //如果有特殊处理需求在下面做ObjectMapper的设置
+
+        }
+        return objectMapper;
+    }
+
     public static String toJsonForHuman(Object obj) {
-        ObjectMapper mapper = new ObjectMapper();
+
         try {
-            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
+            return objectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(obj);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -29,9 +40,9 @@ public class JsonUtil {
 
     public static String toJson(Object obj) {
         StringWriter sw = new StringWriter();
-        ObjectMapper mapper = new ObjectMapper();
+
         try {
-            mapper.writeValue(sw, obj);
+            objectMapper().writeValue(sw, obj);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -40,10 +51,10 @@ public class JsonUtil {
 
     public static String toJsonNotNull(Object obj) {
         StringWriter sw = new StringWriter();
-        ObjectMapper mapper = new ObjectMapper();
+
         try {
-            mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-            mapper.writeValue(sw, obj);
+            objectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL);
+            objectMapper().writeValue(sw, obj);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -51,10 +62,10 @@ public class JsonUtil {
     }
 
     public static <T> T fromJson(Class<T> klass, String jsonStr) {
-        ObjectMapper mapper = new ObjectMapper();
+
         T obj = null;
         try {
-            obj = mapper.readValue(jsonStr, klass);
+            obj = objectMapper().readValue(jsonStr, klass);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -62,12 +73,12 @@ public class JsonUtil {
     }
 
     public static <T> List<T> fromJsonAsList(Class<T> klass, String jsonStr) {
-        ObjectMapper mapper = new ObjectMapper();
+
         List<T> objList = null;
         try {
-            JavaType t = mapper.getTypeFactory().constructParametricType(
+            JavaType t = objectMapper().getTypeFactory().constructParametricType(
                     List.class, klass);
-            objList = mapper.readValue(jsonStr, t);
+            objList = objectMapper().readValue(jsonStr, t);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
