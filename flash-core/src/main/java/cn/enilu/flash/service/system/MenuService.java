@@ -4,26 +4,17 @@ package cn.enilu.flash.service.system;
 import cn.enilu.flash.bean.entity.system.Menu;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.exception.ApplicationException;
-import cn.enilu.flash.bean.vo.node.MenuMeta;
-import cn.enilu.flash.bean.vo.node.MenuNode;
-import cn.enilu.flash.bean.vo.node.Node;
-import cn.enilu.flash.bean.vo.node.RouterMenu;
-import cn.enilu.flash.bean.vo.node.ZTreeNode;
+import cn.enilu.flash.bean.vo.node.*;
 import cn.enilu.flash.dao.system.MenuRepository;
 import cn.enilu.flash.service.BaseService;
 import cn.enilu.flash.utils.Lists;
 import cn.enilu.flash.utils.StringUtil;
-import org.nutz.json.Json;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created  on 2018/3/23 0023.
@@ -83,16 +74,8 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
      *
      * @return
      */
-    public List<RouterMenu> getSideBarMenus(List<Long> roleIds) {
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < roleIds.size(); i++) {
-            if (i == roleIds.size() - 1) {
-                builder.append(roleIds.get(i));
-            } else {
-                builder.append(roleIds.get(i)).append(",");
-            }
-        }
-        List<RouterMenu> list = transferRouteMenu(menuRepository.getMenusByRoleids(builder.toString()));
+    public List<RouterMenu> getSideBarMenus(List roleIds) {
+        List<RouterMenu> list = transferRouteMenu(menuRepository.getMenusByRoleids(roleIds));
         List<RouterMenu> result = generateRouterTree(list);
         for (RouterMenu menuNode : result) {
             if (!menuNode.getChildren().isEmpty()) {

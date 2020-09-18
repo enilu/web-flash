@@ -4,6 +4,7 @@ import cn.enilu.flash.bean.entity.system.Menu;
 import cn.enilu.flash.dao.BaseRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -36,9 +37,9 @@ public interface MenuRepository extends BaseRepository<Menu, Long> {
             "ismenu, m1.num AS num, m1. CODE AS CODE,m1.component,m1.hidden FROM t_sys_menu m1 LEFT JOIN t_sys_menu m2 " +
             "ON " +
             "m1.pcode = m2. CODE " +
-            " where m1.id in (select distinct(menuid) from t_sys_relation where roleid   in(?))" +
+            " where m1.id in (select distinct(menuid) from t_sys_relation where roleid   in(:roleIds))" +
             "ORDER BY levels, num ASC")
-    List getMenusByRoleids(String roleIds);
+    List getMenusByRoleids(@Param("roleIds") List<String>roleIds);
 
     @Query(nativeQuery = true, value = "select menuid from t_sys_relation where roleid=?1")
     List getMenuIdsByRoleId(Integer roleId);
