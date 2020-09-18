@@ -25,7 +25,7 @@ public class TaskLog {
     @Id
     @GeneratedValue
     private Long id;
-    @Column
+    @Column(columnDefinition = "BIGINT COMMENT '对应任务id'")
     private Long idTask;
     @Column(columnDefinition = "VARCHAR(50) COMMENT '任务名'")
     private String name;

@@ -40,7 +40,7 @@ export default {
         password: '',
         rePassword: '',
         dept: '',
-        status: true,
+        statusBool: true,
         deptid: undefined
       },
       rules: {
@@ -54,12 +54,6 @@ export default {
         ],
         deptid:[
           { required: true, message: '请选择所属部门', trigger: 'blur' }
-        ],
-        password: [
-          { required: true, message: '请输入初始密码', trigger: 'blur' }
-        ],
-        rePassword: [
-          { required: true, message: '请输入重复密码', trigger: 'blur' }
         ],
         email: [
           { required: true, message: '请输入email', trigger: 'blur' }
@@ -164,7 +158,7 @@ export default {
         password: '',
         rePassword: '',
         dept: '',
-        status: true,
+        statusBool: true,
         deptid: undefined
       }
     },
@@ -210,7 +204,8 @@ export default {
         if (valid) {
           if (this.validPasswd()) {
             var form = self.form
-            if (form.status === true) {
+            console.log('form.status',form.status);
+            if (form.statusBool === true) {
               //启用
               form.status = 1
             } else {
@@ -251,8 +246,8 @@ export default {
     edit() {
       if (this.checkSel()) {
         this.isAdd = false
-        this.form = this.selRow
-        this.form.status = this.selRow.statusName === '启用'
+        this.form = Object.assign({}, this.selRow);
+        this.form.statusBool = this.form.statusName === '启用'
         this.form.password = ''
         this.formTitle = '修改用户'
         this.formVisible = true

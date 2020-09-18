@@ -22,15 +22,15 @@ public class LoginLog {
     @Id
     @GeneratedValue
     private Integer id;
-    @Column
+    @Column(columnDefinition = "VARCHAR(64) COMMENT '日志表述'")
     private String logname;
-    @Column
+    @Column(columnDefinition = "INT COMMENT '操作用户id'")
     private Integer userid;
-    @Column
+    @Column(columnDefinition = "VARCHAR(32) COMMENT '操作结果标识'")
     private String succeed;
-    @Column
+    @Column(columnDefinition = "VARCHAR(128) COMMENT '日志详情'")
     private String message;
-    @Column
+    @Column(columnDefinition = "VARCHAR(32) COMMENT '操作ip'")
     private String ip;
     @CreationTimestamp
     @Column(name = "create_time", columnDefinition = "DATETIME COMMENT '创建时间'")

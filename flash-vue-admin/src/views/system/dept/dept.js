@@ -25,8 +25,7 @@ export default {
         simplename: '',
         fullname: '',
         pid: '',
-        num: '',
-        tips: ''
+        num: ''
       },
       rules: {
         simplename: [
@@ -82,7 +81,7 @@ export default {
       this.$refs['form'].validate((valid) => {
         if (valid) {
           console.log('form', self.form)
-          const menuData = {id:self.form.id,simplename:self.form.simplename,fullname:self.form.fullname,num:self.form.num,pid:self.form.pid,tips:self.form.tips}//self.form
+          const menuData = {id:self.form.id,simplename:self.form.simplename,fullname:self.form.fullname,num:self.form.num,pid:self.form.pid}//self.form
           menuData.parent = null
           save(menuData).then(response => {
             console.log(response)

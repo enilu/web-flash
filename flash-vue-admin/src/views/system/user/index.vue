@@ -182,8 +182,8 @@
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="是否启用" prop="status">
-              <el-switch v-model="form.status"></el-switch>
+            <el-form-item label="是否启用">
+              <el-switch v-model="form.statusBool"></el-switch>
             </el-form-item>
           </el-col>
           <el-col :span="12">

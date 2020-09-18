@@ -15,9 +15,9 @@ import javax.persistence.Transient;
 @Table(appliesTo = "t_sys_file_info", comment = "文件")
 @EntityListeners(AuditingEntityListener.class)
 public class FileInfo extends BaseEntity {
-    @Column
+    @Column(columnDefinition = "VARCHAR(64) COMMENT '原始文件名称'")
     private String originalFileName;
-    @Column
+    @Column(columnDefinition = "VARCHAR(64) COMMENT '文件存储在磁盘中的真正名称'")
     private String realFileName;
     @Transient
     private String ablatePath;

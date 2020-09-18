@@ -59,7 +59,6 @@ public class DeptContoller extends BaseController {
             old.setSimplename(dept.getSimplename());
             old.setFullname(dept.getFullname());
             old.setNum(dept.getNum());
-            old.setTips(dept.getTips());
             deptService.deptSetPids(old);
             deptService.update(old);
         } else {
