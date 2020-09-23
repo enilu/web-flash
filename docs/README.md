@@ -2,7 +2,7 @@
 home: true
 heroImage: /logo.png
 actionText: 快速开始 →
-actionLink: /base/preface
+actionLink: /guide/base/preface
 footer: MIT Licensed | Copyright © 2018-present enilu
 ---
 

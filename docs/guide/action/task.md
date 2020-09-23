@@ -76,10 +76,10 @@ public class HelloJob extends JobExecuter {
 在任务管理页面可以增上改查一个定时任务，还可以禁用、启用定时任务
 
 - 添加定时任务
-![task-add](../img/task_add.png)
+![task-add](../../img/task_add.png)
 
 - 定时任务列表
-![task-list](../img/task_list.png)
+![task-list](../../img/task_list.png)
 - 查看定时任务执行历史日志
-![task-log](../img/task_log.png)
+![task-log](../../img/task_log.png)
 

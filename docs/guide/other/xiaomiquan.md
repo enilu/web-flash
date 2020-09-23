@@ -16,7 +16,7 @@
 - 方法1：邀请好友给项目（gitee上）star 10个即可，然后截图发给作者（微信：myenilu),作者核实过后会邀请你进来。
 
 - 方法2：扫描下图知识星球二维码直接支付即可加入
-![小密圈](../img/other/xiaomiquan.png)
+![小密圈](../../img/other/xiaomiquan.png)
 
 
 **声明**
