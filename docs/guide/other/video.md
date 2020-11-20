@@ -14,4 +14,4 @@
    
 - 视频教程目录：
 
-![视频ppt目录](../img/other/linjiashop_video.png)
+![视频ppt目录](../../img/other/linjiashop_video.png)

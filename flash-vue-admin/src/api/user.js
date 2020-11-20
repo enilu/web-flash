@@ -30,7 +30,7 @@ export function updatePwd(params) {
   return request({
     url: '/account/updatePwd',
     method: 'post',
-    params
+    data: qs.stringify(params)
   })
 }
 
