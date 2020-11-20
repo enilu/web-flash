@@ -127,6 +127,9 @@ public class UserController extends BaseController {
         if (userId == null) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
+        if (userId.intValue() <= 2) {
+            return Rets.failure("不能冻结初始用户");
+        }
         User user = userService.get(userId);
         user.setStatus(user.getStatus().intValue() == ManagerStatus.OK.getCode() ? ManagerStatus.FREEZED.getCode() : ManagerStatus.OK.getCode());
         userService.update(user);

@@ -64,7 +64,7 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 
 - 克隆本项目
 - 导入idea或者eclipse
-- 创建数据库：web-flash
+- 创建数据库：webflash
 - 在开发环境中配置了系统启动后自动创建数据库和初始化数据，所以不需要开发人员手动初始化数据库
 - 确保开发工具下载了[lombok](https://www.zhihu.com/question/42348457)插件
 - 修改flash-api中数据库连接配置
