@@ -4,7 +4,7 @@
 
 ## web-flash模块
 
-web-flash包含4个核心模块：
+web-flash包含5个核心模块：
 - **flash-api** 后台api服务,为vue-admin和vue-h5提供后台数据接口。**个人小建议**：如果前后端项目不复杂，可以前后端项目共用这么一个api服务，如果业务比较复杂，建议前后端的api服务分拆开来：后台管理一个api服务，手机端系统一个api服务。
 - **flash-vue-admin** 基于Vue.js的后台管理的界面系统
     - 该模块克隆自：[vue-admin-template](https://github.com/PanJiaChen/vue-admin-template)，感谢PanJiaChen，欢迎大家给他点赞。
