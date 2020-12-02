@@ -9,39 +9,23 @@ export default {
     return {
       formVisible: false,
       formTitle: '添加角色',
-      deptList: [],
+
       roleList: [],
       isAdd: true,
       checkedPermissionKeys: [],
       permissons: [],
-      defaultProps: {
-        id: 'id',
-        label: 'name',
-        children: 'children'
-      },
       permissonVisible: false,
       deptTree: {
-        show: false,
-        defaultProps: {
-          id: 'id',
-          label: 'simplename',
-          children: 'children'
-        }
+          data: [],
       },
       roleTree: {
-        show: false,
-        defaultProps: {
-          id: 'id',
-          label: 'name',
-          children: 'children'
-        }
+        data:[],
       },
-
       form: {
         tips: '',
         name: '',
         deptid: '',
-        pid: 0,
+        pid: undefined,
         id: '',
         version: '',
         deptName: '',
@@ -86,7 +70,7 @@ export default {
   methods: {
     init() {
       getDeptList().then(response => {
-        this.deptList = response.data
+        this.deptTree.data = response.data
       })
       this.fetchData()
     },
@@ -94,6 +78,7 @@ export default {
       this.listLoading = true
       getList(this.listQuery).then(response => {
         this.list = response.data.records
+        this.roleTree.data = response.data.records
         this.listLoading = false
         this.total = response.data.total
       })
@@ -134,11 +119,10 @@ export default {
       this.form = {
         tips: '',
         name: '',
-        deptid: '',
-        pid: 0,
+        deptid: undefined,
+        pid: undefined,
         id: '',
         version: '',
-        deptName: '',
         pName: '',
         num: 1
 
@@ -186,6 +170,7 @@ export default {
     },
     editItem(record){
       this.selRow= Object.assign({},record);
+      console.log('sel',this.selRow);
       this.edit()
     },
     edit() {
@@ -256,17 +241,6 @@ export default {
           type: 'success'
         })
       })
-    },
-    handleDeptNodeClick(data, node) {
-      this.form.deptid = data.id
-      this.form.deptName = data.simplename
-      this.deptTree.show = false
-    },
-    handleRoleNodeClick(data, node) {
-      this.form.pid = data.id
-      this.form.pName = data.name
-      this.roleTree.show = false
     }
-
   }
 }

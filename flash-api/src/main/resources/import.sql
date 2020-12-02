@@ -304,8 +304,8 @@ INSERT INTO `t_sys_relation` (`id`, `menuid`, `roleid`) VALUES (143, 2, 2);
 -- ----------------------------
 -- Records of t_sys_role
 -- ----------------------------
-INSERT INTO `t_sys_role` VALUES ('1', null, null, null, null, '24', '超级管理员', '1', '0', 'administrator', '1');
-INSERT INTO `t_sys_role` VALUES ('2', null, null, null, null, '25', '网站管理员', '1', '1', 'developer', null);
+INSERT INTO `t_sys_role` VALUES ('1', null, null, null, null, '1', '超级管理员', '1', '0', 'administrator', '1');
+INSERT INTO `t_sys_role` VALUES ('2', null, null, null, null, '2', '网站管理员', '1', '1', 'developer', null);
 
 -- ----------------------------
 -- Records of t_sys_task
