@@ -57,6 +57,7 @@ export default {
     // 选择图标
     selected(name) {
       this.form.icon = name
+      this.$forceUpdate()
     },
     init() {
       this.fetchData()
