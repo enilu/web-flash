@@ -91,20 +91,7 @@
 
           <el-col :span="12">
             <el-form-item label="上级角色">
-              <el-input
-                placeholder="请选择上级角色"
-                v-model="form.pName"
-                readonly="readonly"
-                @click.native="roleTree.show = !roleTree.show">
-              </el-input>
-              <el-tree v-if="roleTree.show"
-                       empty-text="暂无数据"
-                       :expand-on-click-node="false"
-                       :data="list"
-                       :props="roleTree.defaultProps"
-                       @node-click="handleRoleNodeClick"
-                       class="input-tree">
-              </el-tree>
+              <treeselect v-model="form.pid"  :options="roleTree.data"  placeholder="请选择上级角色"/>
 
             </el-form-item>
           </el-col>
@@ -116,21 +103,7 @@
 
           <el-col :span="12">
             <el-form-item label="所在部门">
-              <el-input
-                placeholder="请选择所在部门"
-                v-model="form.deptName"
-                readonly="readonly"
-                @click.native="deptTree.show = !deptTree.show">
-              </el-input>
-              <el-tree v-if="deptTree.show"
-                       empty-text="暂无数据"
-                       :expand-on-click-node="false"
-                       :data="deptList"
-                       :props="deptTree.defaultProps"
-                       @node-click="handleDeptNodeClick"
-                       class="input-tree">
-              </el-tree>
-
+              <treeselect v-model="form.deptid"  :options="deptTree.data"  placeholder="请选择所属部门"/>
             </el-form-item>
           </el-col>
 

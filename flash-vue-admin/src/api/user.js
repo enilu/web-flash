@@ -5,7 +5,10 @@ export function login(data) {
   return request({
     url: '/account/login',
     method: 'post',
-    data: qs.stringify(data)
+    data: qs.stringify({
+         'username': data.username,
+         'password': data.password
+       })
   })
 }
 

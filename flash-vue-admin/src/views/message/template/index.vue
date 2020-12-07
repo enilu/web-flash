@@ -117,11 +117,7 @@
                             <el-input v-model="form.title" minlength=1></el-input>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="12">
-                        <el-form-item label="内容"  >
-                            <el-input v-model="form.content" minlength=1></el-input>
-                        </el-form-item>
-                    </el-col>
+
                     <el-col :span="12">
                         <el-form-item label="发送条件"  >
                             <el-input v-model="form.cond" minlength=1></el-input>
@@ -129,7 +125,7 @@
                     </el-col>
                     <el-col :span="12">
                         <el-form-item label="发送器"  >
-                          <el-select  v-model="form.idMessageSender" filterable placeholder="请选择">
+                          <el-select  v-model="form.idMessageSender"   placeholder="请选择">
                             <el-option
                               v-for="item in sendList"
                               :key="item.id"
@@ -142,6 +138,11 @@
 
                         </el-form-item>
                     </el-col>
+                  <el-col :span="24">
+                    <el-form-item label="内容"  >
+                      <el-input  type="textarea" :rows="4" v-model="form.content" minlength=1></el-input>
+                    </el-form-item>
+                  </el-col>
                 </el-row>
                 <el-form-item>
                     <el-button type="primary" @click="save">{{ $t('button.submit') }}</el-button>

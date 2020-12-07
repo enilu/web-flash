@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -33,5 +34,11 @@ public class Role extends BaseEntity {
     private Long deptid;
     @Column(columnDefinition = "INT COMMENT '角色版本号'")
     private Integer version;
+    @Transient
+    private String label = name;
+
+    public String getLabel(){
+        return name;
+    }
 
 }

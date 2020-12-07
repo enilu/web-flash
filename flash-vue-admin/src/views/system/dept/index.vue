@@ -2,7 +2,6 @@
   <div class="app-container">
     <div class="block">
       <el-button type="success" size="mini" icon="el-icon-plus"  @click.native="add" v-permission="['/dept/add']">{{ $t('button.add') }}</el-button>
-      <el-button type="primary" size="mini" icon="el-icon-edit"  @click.native="edit" v-permission="['/dept/update']">{{ $t('button.edit') }}</el-button>
       <el-button type="danger" size="mini" icon="el-icon-delete"  @click.native="remove" v-permission="['/dept/delete']">{{ $t('button.edit') }}</el-button>
     </div>
 
@@ -58,21 +57,8 @@
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="父部门" >
-              <el-input
-                placeholder="请选择父部门"
-                v-model="form.pname"
-                readonly="readonly"
-                @click.native="showTree = !showTree">
-              </el-input>
-              <el-tree v-if="showTree"
-                       empty-text="暂无数据"
-                       :expand-on-click-node="false"
-                       :data="data"
-                       :props="defaultProps"
-                       @node-click="handleNodeClick"
-                       class="input-tree">
-              </el-tree>
+            <el-form-item label="父部门">
+            <treeselect v-model="form.pid"  :options="deptTree.data"  placeholder="请选择所属部门"/>
 
             </el-form-item>
           </el-col>

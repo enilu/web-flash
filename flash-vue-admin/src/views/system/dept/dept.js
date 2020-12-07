@@ -13,18 +13,14 @@ export default {
       formVisible: false,
       formTitle: '',
       isAdd: false,
-
-      showTree: false,
-      defaultProps: {
-        id: 'id',
-        label: 'simplename',
-        children: 'children'
+      deptTree: {
+        data: [],
       },
       form: {
         id: '',
         simplename: '',
         fullname: '',
-        pid: '',
+        pid: undefined,
         num: ''
       },
       rules: {
@@ -51,14 +47,9 @@ export default {
       this.listLoading = true
       list().then(response => {
         this.data = response.data
+         this.deptTree.data = response.data
         this.listLoading = false
       })
-    },
-    handleNodeClick(data, node) {
-      console.log(data)
-      this.form.pid = data.id
-      this.form.pname = data.simplename
-      this.showTree = false
     },
     checkSel() {
       if (this.selRow && this.selRow.id) {
@@ -99,21 +90,10 @@ export default {
     },
     editItem(record){
       this.selRow= Object.assign({},record);
-      this.edit()
-    },
-    edit() {
-      if(this.checkSel()) {
-        const row = this.selRow
-        this.form = row
-
-        if (row.parent) {
-          this.form.pid = row.parent.id
-          this.form.pname = row.parent.simplename
-        }
-        this.formTitle = '编辑部门'
-        this.formVisible = true
-        this.isAdd = false
+      if(this.selRow.pid=='0'){
+      this.selRow.pid = undefined
       }
+      this.edit()
     },
     removeItem(record){
       this.selRow = record

@@ -5,10 +5,11 @@
 ## web-flash模块
 
 web-flash包含4个模块：
-- flash-api
-- flash-vue-admin
-- flash-vue-h5
-- flash-core
+- flash-api api服务(web服务)
+- flash-core 核心库(dao,service,util)
+- flash-generator 代码生成模块
+- flash-vue-admin 后台管理前端界面
+- flash-vue-h5  手机端cms系统前端界面
 
 ![modules](./img/modules.jpg)
 
