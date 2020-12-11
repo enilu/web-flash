@@ -27,6 +27,7 @@ export default {
         url: '',
         pcode: '',
         ismenu: 1,
+        hidden:false,
         num: 1
       },
       rules: {
@@ -83,7 +84,7 @@ export default {
       return false
     },
     add() {
-      this.form = {}
+      this.form = {ismenu: 1,hidden:false}
       this.formTitle = '添加菜单'
       this.formVisible = true
       this.isAdd = true

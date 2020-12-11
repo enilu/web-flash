@@ -13,7 +13,8 @@ export default {
       list: null,
       listLoading: true,
       selRow: {},
-      downloadUrl: ''
+      downloadUrl: '',
+      imgHost: ''
     }
   },
   created() {
@@ -22,6 +23,7 @@ export default {
   methods: {
     init() {
       this.downloadUrl = getApiUrl() + '/file/download?idFile='
+      this.imgHost = getApiUrl() + '/file/getImgStream?idFile='
       this.fetchData()
     },
     fetchData() {
@@ -67,8 +69,20 @@ export default {
     handleCurrentChange(currentRow, oldCurrentRow) {
       this.selRow = currentRow
     },
-    download(id,fileName) {
-      window.location.href = this.downloadUrl + id+'&fileName='+fileName
+    download(id, fileName) {
+      window.location.href = this.downloadUrl + id + '&fileName=' + fileName
+    },
+    chkFileType(fileName, types) {
+      const typeArr = types.split(',')
+      for (const i in typeArr) {
+        const type = typeArr[i]
+        var d = fileName.length - type.length
+        const ret = (d >= 0 && fileName.lastIndexOf(type) == d)
+        if (ret) {
+          return ret
+        }
+      }
+
     }
 
   }
