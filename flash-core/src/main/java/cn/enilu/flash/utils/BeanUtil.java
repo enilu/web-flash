@@ -6,7 +6,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.cglib.beans.BeanMap;
 
 import javax.persistence.Column;
-import java.beans.PropertyDescriptor;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -17,7 +16,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created  on 2018/2/26 0026.
+ * Created on 2018/2/26 0026.
  *
  * @author enilu
  */
@@ -30,7 +29,8 @@ public class BeanUtil {
      * 缓存字段名和中文注释对应关系的map
      */
     private static Map<String, String> fieldMap = cn.enilu.flash.utils.Maps.newHashMap();
-    public static final Pattern COLUMN_DEFINITION_PATTERN = Pattern.compile("([A-Za-z]+)(?:\\(\\d+\\))?\\s*(?:(?:COMMENT|[Cc]omment)\\s+'(.*?)')?");
+    public static final Pattern COLUMN_DEFINITION_PATTERN = Pattern
+            .compile("([A-Za-z]+)(?:\\(\\d+\\))?\\s*(?:(?:COMMENT|[Cc]omment)\\s+'(.*?)')?");
 
     /**
      * 将对象装换为map
@@ -91,7 +91,8 @@ public class BeanUtil {
      * @throws InstantiationException
      * @throws IllegalAccessException
      */
-    public static <T> List<T> mapsToObjects(List<Map<String, Object>> maps, Class<T> clazz) throws InstantiationException, IllegalAccessException {
+    public static <T> List<T> mapsToObjects(List<Map<String, Object>> maps, Class<T> clazz)
+            throws InstantiationException, IllegalAccessException {
         List<T> list = Lists.newArrayList();
         if (maps != null && maps.size() > 0) {
             Map<String, Object> map = null;
@@ -106,7 +107,8 @@ public class BeanUtil {
         return list;
     }
 
-    public static <T> List<T> objectToObjects(List<Object> objectList, Class<T> clazz) throws InstantiationException, IllegalAccessException {
+    public static <T> List<T> objectToObjects(List<Object> objectList, Class<T> clazz)
+            throws InstantiationException, IllegalAccessException {
         List<T> list = Lists.newArrayList();
         if (objectList != null && objectList.size() > 0) {
             Object source = null;
@@ -121,7 +123,6 @@ public class BeanUtil {
         return list;
     }
 
-
     /**
      * 比较两个对象pojo1和pojo2,并输出不一致信息
      *
@@ -132,8 +133,8 @@ public class BeanUtil {
      * @throws IllegalAccessException
      * @throws InstantiationException
      */
-    public static String contrastObj(String key, Object pojo1, Map<String, String> pojo2) throws IllegalAccessException, InstantiationException {
-
+    public static String contrastObj(String key, Object pojo1, Map<String, String> pojo2)
+            throws IllegalAccessException, InstantiationException {
 
         StringBuilder str = new StringBuilder();
         String headerName = key;
@@ -146,8 +147,8 @@ public class BeanUtil {
                 if ("serialVersionUID".equals(field.getName())) {
                     continue;
                 }
-                PropertyDescriptor pd = new PropertyDescriptor(field.getName(), clazz);
-                Method getMethod = pd.getReadMethod();
+                // PropertyDescriptor pd = new PropertyDescriptor(field.getName(), clazz);
+                Method getMethod = getReadMethod(field.getName(), clazz);
                 Object o1 = "null";
                 if (StringUtil.isNotNullOrEmpty(pojo2.get("id"))) {
                     o1 = getMethod.invoke(pojo1);
@@ -179,6 +180,23 @@ public class BeanUtil {
         return header + str;
     }
 
+    private static Method getReadMethod(String fieldName, Class clazz) {
+        String methodName = "get" + StringUtil.firstCharToUpperCase(fieldName);
+        Method method = null;
+        ;
+        try {
+            method = clazz.getDeclaredMethod(methodName);
+        } catch (Exception e) {
+            methodName = "is" + StringUtil.firstCharToUpperCase(fieldName);
+            try {
+                method = clazz.getDeclaredMethod(methodName);
+            } catch (Exception e1) { 
+                e1.printStackTrace();
+            } 
+        }  
+
+        return method;
+    }
     /**
      * 从实体类的columDefinition中获取字段的中文注释，如果
      *

@@ -6,6 +6,7 @@ import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.entity.system.Task;
 import cn.enilu.flash.bean.entity.system.TaskLog;
 import cn.enilu.flash.bean.enumeration.Permission;
+import cn.enilu.flash.bean.vo.front.Ret;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.task.TaskLogService;
@@ -14,7 +15,9 @@ import cn.enilu.flash.utils.StringUtil;
 import cn.enilu.flash.utils.factory.Page;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,10 +56,15 @@ public class TaskController extends BaseController {
     /**
      * 新增定时任务管理
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     @BussinessLog(value = "编辑定时任务", key = "name")
     @RequiresPermissions(value = {Permission.TASK_EDIT})
     public Object add(@ModelAttribute @Valid Task task) {
+
+        Ret validRet = taskService.validate(task);
+        if(!validRet.isSuccess()){
+            return validRet;
+        }
         if (task.getId() == null) {
             taskService.save(task);
         } else {
@@ -74,8 +82,7 @@ public class TaskController extends BaseController {
     /**
      * 删除定时任务管理
      */
-    @RequestMapping(method = RequestMethod.DELETE)
-
+    @DeleteMapping
     @BussinessLog(value = "删除定时任务", key = "taskId")
     @RequiresPermissions(value = {Permission.TASK_DEL})
     public Object delete(@RequestParam Long id) {
@@ -83,8 +90,7 @@ public class TaskController extends BaseController {
         return Rets.success();
     }
 
-    @RequestMapping(value = "/disable", method = RequestMethod.POST)
-
+    @PostMapping(value = "/disable")
     @BussinessLog(value = "禁用定时任务", key = "taskId")
     @RequiresPermissions(value = {Permission.TASK_EDIT})
     public Object disable(@RequestParam Long taskId) {
@@ -92,7 +98,7 @@ public class TaskController extends BaseController {
         return Rets.success();
     }
 
-    @RequestMapping(value = "/enable", method = RequestMethod.POST)
+    @PostMapping(value = "/enable")
     @BussinessLog(value = "启用定时任务", key = "taskId")
     @RequiresPermissions(value = {Permission.TASK_EDIT})
     public Object enable(@RequestParam Long taskId) {

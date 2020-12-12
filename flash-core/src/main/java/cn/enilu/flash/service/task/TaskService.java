@@ -1,18 +1,25 @@
 package cn.enilu.flash.service.task;
 
-
 import cn.enilu.flash.bean.entity.system.Task;
 import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.exception.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.vo.QuartzJob;
+import cn.enilu.flash.bean.vo.front.Ret;
+import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.dao.system.TaskRepository;
 import cn.enilu.flash.service.BaseService;
+import cn.enilu.flash.utils.JsonUtil;
+import cn.enilu.flash.utils.StringUtil;
+
+import org.json.JSONObject;
+import org.quartz.CronExpression;
 import org.quartz.SchedulerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -29,7 +36,31 @@ public class TaskService extends BaseService<Task, Long, TaskRepository> {
     @Autowired
     private JobService jobService;
 
-
+    /**
+     * 校验定时人物配置是否合法
+     * 
+     * @param task
+     * @return
+     */
+    public Ret validate(Task task) {
+        if (StringUtil.isNotEmpty(task.getData())) {
+            // 参数比粗为json格式
+            if (!JsonUtil.isJson(task.getData())) {
+                return Rets.failure("参数不是合法的json字符串");
+            }
+        }
+        try {
+            Class.forName(task.getJobClass());
+        } catch (ClassNotFoundException e) {
+            return Rets.failure("执行类配置错误");
+        }
+        try {
+            CronExpression cronExpression = new CronExpression(task.getCron());
+        } catch (ParseException e) {
+            return Rets.failure("定时规则不合法");
+        }
+        return Rets.success();
+    }
     public Task save(Task task) {
         logger.info("新增定时任务%s", task.getName());
         task = taskRepository.save(task);
