@@ -196,7 +196,7 @@ export default {
       }
     },
     exportXls() {
-      exportXls(this.listQuery).then(response => {
+      cfgApi.exportXls(this.listQuery).then(response => {
         window.location.href= getApiUrl() + '/file/download?idFile='+response.data.id
       })
 

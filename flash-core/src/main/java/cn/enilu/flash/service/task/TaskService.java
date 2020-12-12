@@ -62,7 +62,7 @@ public class TaskService extends BaseService<Task, Long, TaskRepository> {
         return Rets.success();
     }
     public Task save(Task task) {
-        logger.info("新增定时任务%s", task.getName());
+        logger.info("新增定时任务{}", task.getName());
         task = taskRepository.save(task);
         try {
             jobService.addJob(jobService.getJob(task));
