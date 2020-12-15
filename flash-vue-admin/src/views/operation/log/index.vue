@@ -14,11 +14,7 @@
           <el-input v-model="listQuery.logName" size="mini" placeholder="日志名称"></el-input>
         </el-col>
         <el-col :span="4">
-          <dict-select dictName="日志类型"
-                       v-model="listQuery.logType"
-                       @change="changeLogType"
-                       placeholder="请选择日志类型">
-          </dict-select>
+          <dict-select v-model="listQuery.logType" dict-name="日志类型" placeholder="请选择日志类型" />
         </el-col>
         <el-col :span="8">
           <el-button type="success" size="mini" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>

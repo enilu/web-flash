@@ -89,10 +89,6 @@ export default {
     this.init()
   },
   methods: {
-    changeSexVal(val){
-      console.log('from son',val)
-      this.listQuery.sex = val
-    },
     init() {
       deptList().then(response => {
         this.deptTree.data = response.data

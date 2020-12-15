@@ -1,75 +1,69 @@
 <template>
-  <el-select v-model="dictValue"
-             :size="size"
-             :placeholder="placeholder">
+  <el-select
+    v-model="dictValue"
+    style="width: 100%"
+    :size="size"
+    :placeholder="placeholder"
+    @change="change"
+  >
     <el-option
       v-for="item in dictList"
       :key="item.num"
       :label="item.name"
-      :value="item.num">
-    </el-option>
+      :value="item.num"
+    />
   </el-select>
 </template>
 
 <script>
-  import {getDicts} from '@/api/system/dict'
+import { getDicts } from '@/api/system/dict'
 
-  export default {
-    model: {
-      prop: 'defaultValue', //接收props内值
-      event: 'changeData' //自定义事件名
+export default {
+  name: 'DictSelect',
+  props: {
+    value: {
+      type: [String, Number],
+      default: ''
     },
-    props: {
-      size: {
-        type: String,
-        default: 'mini'
-      },
-      defaultValue: {
-        type: String,
-        default: ''
-      },
-      dictName: {
-        type: String,
-        default: ''
-      },
-      placeholder: {
-        type: String,
-        default: ''
-      }
+    size: {
+      type: String,
+      default: 'mini'
     },
-    data() {
-      return {
-        dictValue: '',
-        dictList: []
-      }
+    dictName: {
+      type: String,
+      default: '',
+      require: true
     },
-    watch: {
-      // 监听父组件传入的数据，更新到本地
-      defaultValue(newVal, oldVal) {
-        console.log('par->son newVal:'+newVal+",oldVal:"+oldVal)
-        this.dictValue = newVal
-      },
-      // 监听本地数据的变化，通知父组件更新
-      dictValue(newVal, oldVal) {
-        console.log('son->par newVal:'+newVal+', oldVal:'+oldVal)
-        this.$emit('change', newVal)
-      }
+    placeholder: {
+      type: String,
+      default: ''
+    }
+  },
+  data() {
+    return {
+      dictList: [],
+      dictValue: ''
+    }
+  },
+  watch: {
+    value() {
+      this.dictValue = this.value + ''
+    }
+  },
+  created() {
+    this.dictValue = this.value + ''
+    this.getDictList()
+  },
+  methods: {
+    getDictList() {
+      // 从后台获取字典列表
+      getDicts(this.dictName).then(response => {
+        this.dictList = response.data
+      })
     },
-    created() {
-      this.getDictList()
-    },
-    methods: {
-      getDictList() {
-        //从后台获取字典列表
-        this.dictValue = this.defaultValue
-        getDicts(this.dictName).then(response => {
-          this.dictList = response.data
-        })
-      }
+    change(value) {
+      this.$emit('input', value)
     }
   }
+}
 </script>
-
-<style lang="scss" scoped>
-
-</style>
