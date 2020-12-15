@@ -9,11 +9,7 @@
           <el-input v-model="listQuery.name" size="mini" placeholder="请输入姓名"></el-input>
         </el-col>
         <el-col :span="4">
-          <dict-select dictName="性别"
-                       v-model="listQuery.sex"
-                       @change="changeSexVal"
-                       placeholder="请选择性别">
-          </dict-select>
+          <dict-select v-model="listQuery.sex" dict-name="性别" placeholder="请选择性别" />
         </el-col>
 
         <el-col :span="4">
