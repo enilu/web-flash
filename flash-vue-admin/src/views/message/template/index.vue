@@ -44,15 +44,20 @@
                 <el-form-item label="标题">
                   <span>{{ props.row.title }}</span>
                 </el-form-item>
+                <el-form-item label="发送器">
+                  <span>{{ props.row.messageSender.name }}</span>
+                </el-form-item>
                 <el-form-item label="内容">
                   <span>{{ props.row.content }}</span>
                 </el-form-item>
                 <el-form-item label="发送条件">
                   <span>{{ props.row.cond }}</span>
                 </el-form-item>
-                <el-form-item label="发送器">
-                  <span>{{ props.row.messageSender.name }}</span>
+                <el-form-item label="远程模板编号">
+                  <span>{{ props.row.remoteTplCode }}</span>
                 </el-form-item>
+
+
               </el-form>
             </template>
           </el-table-column>
@@ -138,6 +143,11 @@
 
                         </el-form-item>
                     </el-col>
+                  <el-col :span="12">
+                    <el-form-item label="远程模板编号"  >
+                      <el-input v-model="form.remoteTplCode" placeholder="请输入配置在短信服务商的短信模板编号"></el-input>
+                    </el-form-item>
+                  </el-col>
                   <el-col :span="24">
                     <el-form-item label="内容"  >
                       <el-input  type="textarea" :rows="4" v-model="form.content" minlength=1></el-input>

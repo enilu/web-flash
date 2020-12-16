@@ -7,9 +7,15 @@
 - Change 优化获取用户菜单数据的方法
 - Issue 优化JsonUtil性能（ObjectMapper采用单例模式)
 - Issue 完善系统基础表的列定义和注释
+- Issue 添加阿里云短信服务模块
+- Change 重构短信发送模块，将远程模板编号从messageSender迁移至messageTemplate
+- Issue DictSelect组件调整为双向绑定
+- Issue cms模块文件列表增加图片预览功能
+- Issue 前端登录接口账号和密码
 ### Fixes
-- Fix 文件下载过程文件损坏的问题
-- Fix 用户锁定和删除状态可以登录的问题
+- Fix 文件下载过程文件损坏
+- Fix 用户锁定和删除状态可以登录
+- Fix 新增菜单时候候选页面不显示菜单图标
 
 ## 1.7
 

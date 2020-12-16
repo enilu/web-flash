@@ -20,7 +20,11 @@ public enum ConfigKeyEnum {
     /**
      * 腾讯sms接口签名参数
      */
-    API_TENCENT_SMS_SIGN("api.tencent.sms.sign");
+    API_TENCENT_SMS_SIGN("api.tencent.sms.sign"),
+    API_ALIYUN_SMS_ACCESS_KEY_ID("api.aliyun.sms.access.key.id"),
+    API_ALIYUN_SMS_ACCESS_SECRET("api.aliyun.sms.access.secret"),
+    API_ALIYUN_SMS_REGION_ID("api.aliyun.sms.region.id"),
+    API_ALIYUN_SMS_SIGN_NAME("api.aliyun.sms.sign.name");
 
     private String value;
 

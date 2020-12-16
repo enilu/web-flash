@@ -21,7 +21,5 @@ public class MessageSender extends BaseEntity {
     @Column(name = "class_name", columnDefinition = "VARCHAR(64) COMMENT '发送类'")
     @NotBlank(message = "发送类不能为空")
     private String className;
-    @Column(name = "tpl_code", columnDefinition = "VARCHAR(64) COMMENT '短信运营商模板编号'")
-    private String tplCode;
 
 }

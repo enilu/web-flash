@@ -55,9 +55,12 @@ INSERT INTO `t_cms_contacts` VALUES ('1', null, '2019-07-31 17:44:27', null, '20
 -- ----------------------------
 INSERT INTO `t_sys_cfg` VALUES ('1', null, null, '1', '2019-04-15 21:36:07', '应用名称update by 2019-03-27 11:47:04', 'system.app.name', 'web-flash');
 INSERT INTO `t_sys_cfg` VALUES ('2', null, null, '1', '2019-04-15 21:36:17', '系统默认上传文件路径', 'system.file.upload.path', '/data/web-flash/runtime/upload');
-INSERT INTO `t_sys_cfg` VALUES ('3', null, null, '1', '2019-04-15 21:36:17', '腾讯sms接口appid', 'api.tencent.sms.appid', '1400219425');
-INSERT INTO `t_sys_cfg` VALUES ('4', null, null, '1', '2019-04-15 21:36:17', '腾讯sms接口appkey', 'api.tencent.sms.appkey', '5f71ed5325f3b292946530a1773e997a');
+INSERT INTO `t_sys_cfg` VALUES ('3', null, null, '1', '2019-04-15 21:36:17', '腾讯sms接口appid', 'api.tencent.sms.appid', '需要去申请咯');
+INSERT INTO `t_sys_cfg` VALUES ('4', null, null, '1', '2019-04-15 21:36:17', '腾讯sms接口appkey', 'api.tencent.sms.appkey', '需要去申请咯');
 INSERT INTO `t_sys_cfg` VALUES ('5', null, null, '1', '2019-04-15 21:36:17', '腾讯sms接口签名参数', 'api.tencent.sms.sign', '需要去申请咯');
+INSERT INTO `t_sys_cfg` VALUES ('6', null, null, '1', '2019-04-15 21:36:17', '阿里云sms接口accesskey', 'api.aliyun.sms.access.key.id', '需要去申请咯');
+INSERT INTO `t_sys_cfg` VALUES ('7', null, null, '1', '2019-04-15 21:36:17', '阿里云sms接口access Secret', 'api.aliyun.sms.access.secret', '需要去申请咯');
+INSERT INTO `t_sys_cfg` VALUES ('8', null, null, '1', '2019-04-15 21:36:17', '阿里云sms接口地域id', 'api.aliyun.sms.region.id', '需要去申请咯');
 
 -- ----------------------------
 -- Records of t_sys_dept
@@ -333,15 +336,16 @@ INSERT INTO `t_test_boy` (`id`, `create_by`, `create_time`, `modify_by`, `modify
 -- ----------------------------
 -- Records of t_message_sender
 -- ----------------------------
-INSERT INTO `t_message_sender` VALUES ('1', null, null, null, null, 'tencentSmsSender', '腾讯短信服务', null);
-INSERT INTO `t_message_sender` VALUES ('2', null, null, null, null, 'defaultEmailSender', '默认邮件发送器', null);
-
+INSERT INTO `t_message_sender` VALUES ('1', '1', '2020-12-16 12:02:17', null, null, 'tencentSmsSender', '腾讯短信服务');
+INSERT INTO `t_message_sender` VALUES ('2', '1', '2020-12-16 12:02:17', null, null, 'defaultEmailSender', '默认邮件发送器');
+INSERT INTO `t_message_sender` VALUES ('3', '1', '2020-12-16 12:02:17', null, null, 'aliSmsSender', '阿里云短信服务');
 -- ----------------------------
 -- Records of t_message_template
 -- ----------------------------
-INSERT INTO `t_message_template` VALUES ('1', null, null, null, null, 'REGISTER_CODE', '注册页面，点击获取验证码', '【腾讯云】校验码{1}，请于5分钟内完成验证，如非本人操作请忽略本短信。', '1', '注册验证码', 0);
-INSERT INTO `t_message_template` VALUES ('2', null, null, null, null, 'EMAIL_TEST', '测试发送', '你好:{1},欢迎使用{2}', '2', '测试邮件', 1);
-INSERT INTO `t_message_template` VALUES ('3', null, null, null, null, 'EMAIL_HTML_TEMPLATE_TEST', '测试发送模板邮件', '你好<strong>${userName}</strong>欢迎使用<font color=\"red\">${appName}</font>,这是html模板邮件', '2', '测试发送模板邮件', 1);
+INSERT INTO `t_message_template` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `code`, `cond`, `content`, `id_message_sender`, `title`, `type`, `remote_tpl_code`) VALUES (1, NULL, NULL, NULL, NULL, 'REGISTER_CODE', '注册页面，点击获取验证码', '【腾讯云】校验码{1}，请于5分钟内完成验证，如非本人操作请忽略本短信。', 1, '注册验证码', '0', NULL);
+INSERT INTO `t_message_template` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `code`, `cond`, `content`, `id_message_sender`, `title`, `type`, `remote_tpl_code`) VALUES (2, NULL, NULL, NULL, NULL, 'EMAIL_TEST', '测试发送', '你好:{1},欢迎使用{2}', 2, '测试邮件', '1', NULL);
+INSERT INTO `t_message_template` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `code`, `cond`, `content`, `id_message_sender`, `title`, `type`, `remote_tpl_code`) VALUES (3, NULL, NULL, NULL, NULL, 'EMAIL_HTML_TEMPLATE_TEST', '测试发送模板邮件', '你好<strong>${userName}</strong>欢迎使用<font color=\"red\">${appName}</font>,这是html模板邮件', 2, '测试发送模板邮件', '1', NULL);
+INSERT INTO `t_message_template` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `code`, `cond`, `content`, `id_message_sender`, `title`, `type`, `remote_tpl_code`) VALUES (4, NULL, NULL, NULL, NULL, 'ALI_SMS_CODE', '测试发送阿里云短信', '您的验证码${code}，该验证码5分钟内有效，请勿泄漏于他人！', 3, '阿里云短信验证码', '0', NULL);
 
 -- ----------------------------
 -- Records of t_message

@@ -287,6 +287,13 @@
                 <artifactId>qcloudsms</artifactId>
                 <version>1.0.6</version>
             </dependency>
+            <!--aliyun sdk-->
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>4.5.17</version>
+            </dependency>
+
             <!-- message end-->
         </dependencies>
 

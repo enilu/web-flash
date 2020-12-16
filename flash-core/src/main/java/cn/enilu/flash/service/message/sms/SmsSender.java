@@ -1,5 +1,7 @@
 package cn.enilu.flash.service.message.sms;
 
+import java.util.LinkedHashMap;
+
 public interface SmsSender {
 
     /**
@@ -7,9 +9,9 @@ public interface SmsSender {
      *
      * @param tplCode  短信运营商模板号码
      * @param receiver
-     * @param args
+     * @param params
      * @param content
      * @return
      */
-    boolean sendSms(String tplCode, String receiver, String[] args, String content);
+    boolean sendSms(String tplCode, String receiver, LinkedHashMap params, String content);
 }

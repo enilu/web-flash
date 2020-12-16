@@ -38,11 +38,6 @@
                     {{scope.row.className}}
                 </template>
             </el-table-column>
-          <el-table-column label="远程模板编号">
-            <template slot-scope="scope">
-              {{scope.row.tplCode}}
-            </template>
-          </el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
               <el-button type="text" size="mini" icon="el-icon-edit" @click.native="editItem(scope.row)" v-permission="['/sender/edit']">{{ $t('button.edit') }}</el-button>

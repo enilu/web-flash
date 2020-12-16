@@ -23,10 +23,7 @@ import org.springframework.core.io.InputStreamSource;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * MessageService
@@ -72,11 +69,19 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
     }
 
     public void sendSms(String tplCode, String receiver, String... args) {
+        LinkedHashMap params = new LinkedHashMap();
+        for (int i = 0; i < args.length; i++) {
+            params.put((i + 1) + "", args[i]);
+        }
+        sendSms(tplCode, receiver, params);
+    }
+
+    public void sendSms(String tplCode, String receiver, LinkedHashMap params) {
         MessageTemplate messageTemplate = messagetemplateRepository.findByCode(tplCode);
-        String content = getContent(messageTemplate.getContent(), args);
+        String content = getContent(messageTemplate.getContent(), params);
         boolean isSuccess = false;
         try {
-            isSuccess = this.sendSmsMessage(receiver, content, messageTemplate, args);
+            isSuccess = this.sendSmsMessage(receiver, content, messageTemplate, params);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
@@ -115,6 +120,23 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
         return StrSubstitutor.replace(template, dataMap);
     }
 
+    public static void main(String[] args) {
+        Map map = new HashMap();
+        map.put("code", 11122);
+        String template = "短信验证码为${code},谨慎保存";
+        String ret = new MessageService().getContent(template, map);
+        System.out.println(ret);
+    }
+
+    /**
+     * 保存消息发送记录
+     *
+     * @param type
+     * @param tplCode
+     * @param receiver
+     * @param content
+     * @param sendResult
+     */
     private void saveMessage(Integer type, String tplCode, String receiver, String content, Boolean sendResult) {
         Message message = new Message();
         message.setType(type);
@@ -128,17 +150,15 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
     }
 
 
-    private boolean sendSmsMessage(String receiver, String content, MessageTemplate messageTemplate, String... args) throws Exception {
-        String tplCode = getTpl(messageTemplate);
+    private boolean sendSmsMessage(String receiver, String content, MessageTemplate messageTemplate, LinkedHashMap params) throws Exception {
         SmsSender smsSender = getSmsSender(messageTemplate);
-
         boolean success = false;
         String[] receivers = receiver.split(",|;", -1);
         for (String oneReceiver : receivers) {
             try {
 
                 if (StringUtil.isNotEmpty(oneReceiver)) {
-                    success = smsSender.sendSms(tplCode, oneReceiver, args, content);
+                    success = smsSender.sendSms(messageTemplate.getRemoteTplCode(), oneReceiver, params, content);
                 }
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
@@ -176,14 +196,5 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
         }
     }
 
-    private String getTpl(MessageTemplate messageTemplate) {
-        MessageSender messageSender = messagesenderRepository.getOne(messageTemplate.getIdMessageSender());
-
-        if (messageSender != null && StringUtil.isNotEmpty(messageSender.getTplCode())) {
-            return messageSender.getTplCode();
-        } else {
-            return null;
-        }
-    }
 }
 

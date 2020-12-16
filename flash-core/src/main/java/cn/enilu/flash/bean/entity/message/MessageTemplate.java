@@ -40,4 +40,6 @@ public class MessageTemplate extends BaseEntity {
     @JoinColumn(name = "id_message_sender", referencedColumnName = "id", columnDefinition = "BIGINT comment '发送者id'", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @ManyToOne(fetch = FetchType.EAGER)
     private MessageSender messageSender;
+    @Column(name="remote_tpl_code",columnDefinition = "VARCHAR(64) COMMENT '在短信发送服务商处申请的模板编号'")
+    public String remoteTplCode;
 }

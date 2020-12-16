@@ -8,13 +8,13 @@ import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.message.MessageService;
 import cn.enilu.flash.utils.DateUtil;
+import cn.enilu.flash.utils.JsonUtil;
 import cn.enilu.flash.utils.factory.Page;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.LinkedHashMap;
 
 @RestController
 @RequestMapping("/message")
@@ -41,6 +41,15 @@ public class MessageController {
     @RequiresPermissions(value = {Permission.MSG_CLEAR})
     public Object clear() {
         messageService.clear();
+        return Rets.success();
+    }
+
+    @PostMapping("/testSender")
+    @BussinessLog(value = "发送测试短信")
+    @RequiresPermissions(value = {Permission.MSG_SENDER})
+    public Object testSend(@RequestParam String tplCode,@RequestParam String receiver,@RequestParam String params) {
+        LinkedHashMap map = JsonUtil.fromJson(LinkedHashMap.class,params);
+        messageService.sendSms(tplCode,receiver,map);
         return Rets.success();
     }
 }

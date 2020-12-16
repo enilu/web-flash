@@ -15,6 +15,7 @@ export default {
         content:'',
         cond:'',
         idMessageSender:'',
+        remoteTplCode:'',
         id: ''
       },
       sendList:[],
@@ -103,6 +104,7 @@ export default {
         content:'',
         cond:'',
         idMessageSender:'',
+        remoteTplCode:'',
         id: ''
       }
     },
@@ -120,6 +122,7 @@ export default {
       title:this.form.title,
       content:this.form.content,
       cond:this.form.cond,
+      remoteTplCode:this.form.remoteTplCode,
       idMessageSender:this.form.idMessageSender,
             id: this.form.id
           }).then(response => {
