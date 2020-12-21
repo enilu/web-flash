@@ -1,7 +1,9 @@
 # change log
 
-## Latest
+## 1.8
 
+[gitee](https://gitee.com/enilu/web-flash/releases/1.8)
+[github](https://github.com/enilu/web-flash/releases/tag/1.8)
 ### Issues
 - Change 重构BaseRepository部分方法
 - Change 优化获取用户菜单数据的方法
@@ -11,10 +13,11 @@
 - Change 重构短信发送模块，将远程模板编号从messageSender迁移至messageTemplate
 - Issue DictSelect组件调整为双向绑定
 - Issue cms模块文件列表增加图片预览功能
-- Issue 前端登录接口账号和密码
+- Issue 禁止冻结初始账户
+- Issue 提交定时任务时对相关参数有效性进行校验
 ### Fixes
 - Fix 文件下载过程文件损坏
-- Fix 用户锁定和删除状态可以登录
+- Fix 用户锁定和删除状态可以登录的问题
 - Fix 新增菜单时候候选页面不显示菜单图标
 
 ## 1.7
