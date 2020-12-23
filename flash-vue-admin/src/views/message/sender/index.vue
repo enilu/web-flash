@@ -41,7 +41,7 @@
           <el-table-column label="操作">
             <template slot-scope="scope">
               <el-button type="text" size="mini" icon="el-icon-edit" @click.native="editItem(scope.row)" v-permission="['/sender/edit']">{{ $t('button.edit') }}</el-button>
-              <el-button type="text" size="mini" icon="el-icon-delete" @click.native="remove(scope.row)" v-permission="['/sender/remove']">{{ $t('button.delete') }}</el-button>
+              <el-button type="text" size="mini" icon="el-icon-delete" @click.native="removeItem(scope.row)" v-permission="['/sender/remove']">{{ $t('button.delete') }}</el-button>
 
             </template>
           </el-table-column>
