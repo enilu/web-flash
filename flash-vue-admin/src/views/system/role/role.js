@@ -14,6 +14,11 @@ export default {
       isAdd: true,
       checkedPermissionKeys: [],
       permissons: [],
+      defaultProps: {
+        id: 'id',
+        label: 'name',
+        children: 'children'
+      },
       permissonVisible: false,
       deptTree: {
           data: [],

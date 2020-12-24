@@ -28,7 +28,7 @@ public class LoginLog {
     private Integer userid;
     @Column(columnDefinition = "VARCHAR(32) COMMENT '操作结果标识'")
     private String succeed;
-    @Column(columnDefinition = "VARCHAR(128) COMMENT '日志详情'")
+    @Column(columnDefinition = "TEXT COMMENT '日志详情'")
     private String message;
     @Column(columnDefinition = "VARCHAR(32) COMMENT '操作ip'")
     private String ip;

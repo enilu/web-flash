@@ -15,7 +15,6 @@ export default {
     loginLog: 'Login Log',
     log: 'Bussiness Log',
     cfg: 'Config',
-
     banner: 'Banner',
     article: 'Article',
     editArticle: 'Edit Article',
@@ -26,7 +25,8 @@ export default {
     swagger: 'Docs',
     msg: 'History',
     msgTpl: 'Template',
-    msgSender: 'Sender'
+    msgSender: 'Sender',
+    document: 'Document'
   },
   navbar: {
     logOut: 'Log Out',

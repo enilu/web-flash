@@ -201,6 +201,8 @@ INSERT INTO `t_sys_menu` (`id`, `create_by`, `create_time`, `modify_by`, `modify
 INSERT INTO `t_sys_menu` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `code`, `component`, `hidden`, `icon`, `ismenu`, `isopen`, `levels`, `name`, `num`, `pcode`, `pcodes`, `tips`, `url`) VALUES (68, 1, '2019-7-31 22:04:30', 1, '2019-7-31 22:04:30', 'channelEdit', NULL, 0, NULL, 0, NULL, 3, '编辑栏目', 1, 'channel', '[0],[cms],[channel],', NULL, '/channel/edit');
 INSERT INTO `t_sys_menu` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `code`, `component`, `hidden`, `icon`, `ismenu`, `isopen`, `levels`, `name`, `num`, `pcode`, `pcodes`, `tips`, `url`) VALUES (69, 1, '2019-7-31 22:04:30', 1, '2019-7-31 22:04:30', 'channelDelete', NULL, 0, NULL, 0, NULL, 3, '删除栏目', 2, 'channel', '[0],[cms],[channel],', NULL, '/channel/remove');
 INSERT INTO `t_sys_menu` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `code`, `component`, `hidden`, `icon`, `ismenu`, `isopen`, `levels`, `name`, `num`, `pcode`, `pcodes`, `tips`, `url`) VALUES (70, 1, '2019-7-31 22:04:30', 1, '2019-7-31 22:04:30', 'deleteArticle', NULL, 0, NULL, 0, NULL, 3, '删除文章', 2, 'article', '[0],[cms],[article]', NULL, '/article/remove');
+INSERT INTO `t_sys_menu` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `code`, `component`, `hidden`, `icon`, `ismenu`, `isopen`, `levels`, `name`, `num`, `pcode`, `pcodes`, `tips`, `url`) VALUES (71, 1, '2020-12-24 22:16:41', 1, '2020-12-24 22:18:50', 'documentp', 'layout', 0, 'documentation', 1, NULL, 1, '在线文档', 6, '0', '[0],', NULL, '#');
+INSERT INTO `t_sys_menu` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `code`, `component`, `hidden`, `icon`, `ismenu`, `isopen`, `levels`, `name`, `num`, `pcode`, `pcodes`, `tips`, `url`) VALUES (72, 1, '2020-12-24 22:18:32', 1, '2020-12-24 22:26:39', 'document', 'views/document/index', 0, 'documentation', 1, NULL, 2, '在线文档', 1, 'documentp', '[0],[documentp],', NULL, '/document');
 
 
 -- ----------------------------
@@ -289,6 +291,8 @@ INSERT INTO `t_sys_relation` (`id`, `menuid`, `roleid`) VALUES (67, 38, 1);
 INSERT INTO `t_sys_relation` (`id`, `menuid`, `roleid`) VALUES (68, 40, 1);
 INSERT INTO `t_sys_relation` (`id`, `menuid`, `roleid`) VALUES (69, 39, 1);
 INSERT INTO `t_sys_relation` (`id`, `menuid`, `roleid`) VALUES (70, 47, 1);
+INSERT INTO `t_sys_relation` (`id`, `menuid`, `roleid`) VALUES (71, 72, 1);
+INSERT INTO `t_sys_relation` (`id`, `menuid`, `roleid`) VALUES (72, 71, 1);
 INSERT INTO `t_sys_relation` (`id`, `menuid`, `roleid`) VALUES (128, 41, 2);
 INSERT INTO `t_sys_relation` (`id`, `menuid`, `roleid`) VALUES (129, 42, 2);
 INSERT INTO `t_sys_relation` (`id`, `menuid`, `roleid`) VALUES (130, 43, 2);

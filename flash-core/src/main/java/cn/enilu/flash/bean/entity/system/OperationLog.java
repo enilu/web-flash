@@ -41,7 +41,7 @@ public class OperationLog {
     private Date createTime;
     @Column(columnDefinition = "VARCHAR(32) COMMENT '成功标识'")
     private String succeed;
-    @Column(columnDefinition = "VARCHAR(128) COMMENT '详细信息'")
+    @Column(columnDefinition = "TEXT COMMENT '详细信息'")
     private String message;
 
 }
