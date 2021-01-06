@@ -43,3 +43,14 @@ export function changeStatus(userId) {
     }
   })
 }
+
+
+export function resetPassword(userId) {
+  return request({
+    url: '/user/resetPassword',
+    method: 'post',
+    params: {
+      userId
+    }
+  })
+}

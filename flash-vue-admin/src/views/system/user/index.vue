@@ -43,6 +43,10 @@
           <el-button type="danger" size="mini" icon="el-icon-delete" @click.native="remove" v-permission="['/mgr/delete']">
             {{$t('button.delete') }}
           </el-button>
+          <el-button type="danger" size="mini" icon="el-icon-refresh-right" @click.native="resetPwd" v-permission="['/mgr/edit']">
+            {{$t('button.resetPwd') }}
+          </el-button>
+
           <el-button type="info" size="mini" icon="el-icon-s-operation" @click.native="openRole" v-permission="['/mgr/setRole']">角色分配</el-button>
         </el-col>
       </el-row>

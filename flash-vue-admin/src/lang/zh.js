@@ -58,7 +58,8 @@ export default {
     cancel: '取消',
     clear: '清除',
     back: '返回',
-    export: '导出'
+    export: '导出',
+    resetPwd: '重置密码'
   },
   common: {
     mustSelectOne: '请选中操作项!',

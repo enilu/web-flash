@@ -22,10 +22,7 @@ import cn.enilu.flash.warpper.UserWarpper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -135,5 +132,12 @@ public class UserController extends BaseController {
         userService.update(user);
         return Rets.success();
     }
-
+    @BussinessLog(value = "重置密码", key = "userId")
+    @PostMapping(value="resetPassword")
+    public Object resetPassword(Long userId){
+        User user = userService.get(userId);
+        user.setPassword(MD5.md5("111111", user.getSalt()));
+        userService.update(user);
+        return Rets.success();
+    }
 }

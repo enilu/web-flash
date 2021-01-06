@@ -1,4 +1,4 @@
-import { deleteUser, getList, saveUser, remove, setRole, changeStatus } from '@/api/system/user'
+import { deleteUser, getList, saveUser, remove, setRole, changeStatus,resetPassword } from '@/api/system/user'
 import { list as deptList } from '@/api/system/dept'
 import { parseTime } from '@/utils/index'
 import { roleTreeListByIdUser } from '@/api/system/role'
@@ -272,6 +272,30 @@ export default {
             this.$notify.error({
               title: '错误',
               message:err,
+            })
+          })
+        }).catch(() => {
+        })
+      }
+    },
+
+    resetPwd() {
+      if (this.checkSel()) {
+        var id = this.selRow.id
+        this.$confirm('密码将重置为111111?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          resetPassword(id).then(response => {
+            this.$message({
+              message: '重置密码成功',
+              type: 'success'
+            })
+          }).catch(err => {
+            this.$notify.error({
+              title: '错误',
+              message: err,
             })
           })
         }).catch(() => {

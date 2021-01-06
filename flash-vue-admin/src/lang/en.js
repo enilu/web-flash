@@ -56,7 +56,8 @@ export default {
     cancel: 'Cancel',
     clear: 'Clear',
     back: 'Back',
-    export: 'Export'
+    export: 'Export',
+    resetPwd: 'Reset Password'
   },
   common: {
     mustSelectOne: 'Please select the record to operate!',

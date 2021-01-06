@@ -1,5 +1,7 @@
 # change log
-
+## latest
+### Issues
+- Issue 用户管理中增加重置用户密码功能
 ## 1.8
 
 [gitee](https://gitee.com/enilu/web-flash/releases/1.8)
