@@ -58,13 +58,13 @@ public class AccountController extends BaseController {
         try {
             //1,
             User user = userService.findByAccount(userName);
+            if (user == null) {
+                return Rets.failure("用户名或密码错误");
+            }
             if(user.getStatus() == ManagerStatus.FREEZED.getCode()){
                 return Rets.failure("用户已冻结");
             }else if(user.getStatus() == ManagerStatus.DELETED.getCode()){
                 return Rets.failure("用户已删除");
-            }
-            if (user == null) {
-                return Rets.failure("用户名或密码错误");
             }
             String passwdMd5 = MD5.md5(password, user.getSalt());
             //2,
