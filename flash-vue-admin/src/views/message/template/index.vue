@@ -50,8 +50,8 @@
                 <el-form-item label="内容">
                   <span>{{ props.row.content }}</span>
                 </el-form-item>
-                <el-form-item label="发送条件">
-                  <span>{{ props.row.cond }}</span>
+                <el-form-item label="消息类型">
+                  <span>{{ props.row.type==0?'短信':'邮件' }}</span>
                 </el-form-item>
                 <el-form-item label="远程模板编号">
                   <span>{{ props.row.remoteTplCode }}</span>
@@ -74,9 +74,9 @@
                 </template>
             </el-table-column>
 
-            <el-table-column label="发送条件">
+            <el-table-column label="消息类型">
                 <template slot-scope="scope">
-                    {{scope.row.cond}}
+                    {{scope.row.type==0?'短信':'邮件'}}
                 </template>
             </el-table-column>
             <el-table-column label="发送器">
@@ -122,11 +122,13 @@
                             <el-input v-model="form.title" minlength=1></el-input>
                         </el-form-item>
                     </el-col>
-
                     <el-col :span="12">
-                        <el-form-item label="发送条件"  >
-                            <el-input v-model="form.cond" minlength=1></el-input>
-                        </el-form-item>
+                      <el-form-item label="消息类型">
+                        <el-radio-group v-model="form.type">
+                          <el-radio :label="0">短信</el-radio>
+                          <el-radio :label="1">邮件</el-radio>
+                        </el-radio-group>
+                      </el-form-item>
                     </el-col>
                     <el-col :span="12">
                         <el-form-item label="发送器"  >
@@ -143,7 +145,7 @@
 
                         </el-form-item>
                     </el-col>
-                  <el-col :span="12">
+                  <el-col :span="12" v-if="form.type==0">
                     <el-form-item label="远程模板编号"  >
                       <el-input v-model="form.remoteTplCode" placeholder="请输入配置在短信服务商的短信模板编号"></el-input>
                     </el-form-item>

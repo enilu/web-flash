@@ -13,7 +13,7 @@ export default {
         code:'',
         title:'',
         content:'',
-        cond:'',
+        type:'',
         idMessageSender:'',
         remoteTplCode:'',
         id: ''
@@ -102,7 +102,7 @@ export default {
         code:'',
         title:'',
         content:'',
-        cond:'',
+        type:0,
         idMessageSender:'',
         remoteTplCode:'',
         id: ''
@@ -118,12 +118,12 @@ export default {
       this.$refs['form'].validate((valid) => {
         if (valid) {
           save({
-      code:this.form.code,
-      title:this.form.title,
-      content:this.form.content,
-      cond:this.form.cond,
-      remoteTplCode:this.form.remoteTplCode,
-      idMessageSender:this.form.idMessageSender,
+            code:this.form.code,
+            title:this.form.title,
+            content:this.form.content,
+            type:this.form.type,
+            remoteTplCode:this.form.remoteTplCode,
+            idMessageSender:this.form.idMessageSender,
             id: this.form.id
           }).then(response => {
             this.$message({
