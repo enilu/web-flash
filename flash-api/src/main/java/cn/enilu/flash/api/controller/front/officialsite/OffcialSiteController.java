@@ -42,6 +42,8 @@ public class OffcialSiteController extends BaseController {
             News news = new News();
             news.setDesc(article.getTitle());
             news.setUrl("/article?id=" + article.getId());
+            news.setId(article.getId());
+            news.setCreateTime(article.getCreateTime());
             news.setSrc("static/images/icon/user.png");
             newsList.add(news);
         }

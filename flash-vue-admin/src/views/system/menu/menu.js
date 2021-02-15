@@ -151,7 +151,7 @@ export default {
       this.$notify({
         title: '提示',
         dangerouslyUseHTMLString:true,
-        message: '顶级目录请输入layout,<br/>左侧惨淡请根据实际组件路径输入:views/...<br/>功能按钮无需输入该值'
+        message: '顶级目录请输入layout,<br/>左侧菜单请根据实际组件路径输入:views/...<br/>功能按钮无需输入该值'
       })
     }
   }
