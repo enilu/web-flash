@@ -42,6 +42,7 @@ public class NewsController extends BaseController {
             news.setDesc(article.getTitle());
             news.setUrl("/article?id=" + article.getId());
             news.setSrc("static/images/icon/user.png");
+            news.setId(article.getId());
             newsList.add(news);
         }
 
