@@ -73,13 +73,13 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
     - 运行 npm install --registry=https://registry.npm.taobao.org 安装依赖
     - 运行npm run dev 启动项目
     - 启动成功后访问 http://localhost:9528,登录，用户名密码:admin/admin 
-- ![vue](../../vuejs.gif)
+- ![admin](https://gitee.com/enilu/web-flash/raw/master/docs/vuejs.gif)
 - 进入flash-vue-h5目录
     - 运行 npm install --registry=https://registry.npm.taobao.org
     - 运行npm run dev
     - 启动成功后访问 http://localhost:8088/#/index
 - 手机端运行效果图：
-    ![mobile](../../flash-mobile.gif)
+    ![mobile](https://gitee.com/enilu/web-flash/raw/master/docs/flash-mobile.gif)
 
 ## 在线文档
 - [http://enilu.github.io/web-flash](http://enilu.github.io/web-flash)
@@ -88,11 +88,8 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 ## 交流
 - Bugs: [Issues](https://github.com/enilu/web-flash/issues/new)
 - Gitter: [Gitter channel](https://gitter.im/web-flash/community)
-- 关注公众号：嗨客帝国，点击对应的项目菜单进群交流。
+- QQ:752844606
 
-![公众号二维码](../../img/haike.jpg)
-
-- [问答社区](http://enilu.gitee.io/web-flash/other/xiaomiquan.html)
 
 也欢迎你给该项目点个赞：
 - Github:[https://github.com/enilu/web-flash](https://github.com/enilu/web-flash)
