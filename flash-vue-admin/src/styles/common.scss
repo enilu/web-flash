@@ -35,10 +35,12 @@ width:100%;
 
 .user-content > .profile {
   background: #edecec;
-  padding: 10px;
   height: 500px;
   width: 220px;
 }
 .user-content>.profile>img{
   width:100%;
+}
+.user-content > .profile >p{
+  padding:0px 15px;
 }

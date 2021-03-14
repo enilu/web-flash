@@ -71,21 +71,6 @@ export const constantRoutes = [
 
         meta: { title: '个人资料' }
 
-      },
-      {
-        path: 'timeline',
-        name: '最近活动',
-        component: () => import('@/views/account/timeline.vue'),
-        hidden: true,
-        meta: { title: '最近活动' }
-
-      },
-      {
-        path: 'updatePwd',
-        name: '修改密码',
-        component: () => import('@/views/account/updatePwd.vue'),
-        hidden: true,
-        meta: { title: '修改密码' }
       }
     ]
   }

@@ -13,6 +13,7 @@ import cn.enilu.flash.utils.HttpUtil;
 import cn.enilu.flash.utils.MD5;
 import cn.enilu.flash.utils.Maps;
 import cn.enilu.flash.utils.StringUtil;
+import org.apache.shiro.subject.Subject;
 import org.nutz.mapl.Mapl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -96,6 +97,11 @@ public class AccountController extends BaseController {
         }
         if (idUser != null) {
             User user = userService.get(idUser);
+            if(user==null){
+                //该用户可能被删除
+                return Rets.expire();
+
+            }
             if (StringUtil.isEmpty(user.getRoleid())) {
                 return Rets.failure("该用户未配置权限");
             }

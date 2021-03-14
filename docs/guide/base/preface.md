@@ -16,12 +16,12 @@ web-flash项目本身有readme文件，如果你有丰富的spring boot的和vue
 
 但是考虑到有的开发者可能初次使用上述组件，有的甚至刚接触java不久，那么本文当将引导你一步步使用本系统搭建一个后台管理系统，并在此基础上做二次开发。
 
- 
+
 ## 版本说明
 - web-flash提供了一个后台管理系统和前端h5站点系统
 - web-flash是一个基于[Spring Boot](https://spring.io/projects/spring-boot/)和[Vue.js](https://cn.vuejs.org)的web系统，包含了基于[element](https://element.eleme.cn/#/zh-CN)搭建的后台管理系统和基于[vux](https://vux.li)搭建的手机端h5站点
 - web-flash具备后台管理类系统的通用的基础功能，而且提供了基于idea intellij的的代码生成插件，可以一键生成后台代码（service,dao,controller)和管理系统（flash-vue-admin)的前端界面。
- 
+
 ## 目录说明
 - flash-api 后台api服务
 - flash-vue-admin 基于vuejs的前端界面
@@ -73,7 +73,10 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
     - 运行 npm install --registry=https://registry.npm.taobao.org 安装依赖
     - 运行npm run dev 启动项目
     - 启动成功后访问 http://localhost:9528,登录，用户名密码:admin/admin 
-- ![admin](https://gitee.com/enilu/web-flash/raw/master/docs/vuejs.gif)
+    
+
+ ![admin](https://gitee.com/enilu/web-flash/raw/master/docs/vuejs.gif)
+
 - 进入flash-vue-h5目录
     - 运行 npm install --registry=https://registry.npm.taobao.org
     - 运行npm run dev

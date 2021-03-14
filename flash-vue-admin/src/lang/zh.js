@@ -31,7 +31,7 @@ export default {
   },
   navbar: {
     logOut: '退出登录',
-    profile:'个人资料',
+    profile:'个人中心',
     updatePwd: '修改密码',
     dashboard: '首页',
     github: '项目地址',
