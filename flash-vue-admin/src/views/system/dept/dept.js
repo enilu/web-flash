@@ -95,6 +95,16 @@ export default {
       }
       this.edit()
     },
+    edit(){
+        if (this.checkSel()) {
+        this.isAdd = false
+        this.form = Object.assign({}, this.selRow);
+        this.form.statusBool = this.form.statusName === '启用'
+        this.form.password = ''
+        this.formTitle = '修改用户'
+        this.formVisible = true
+      }
+    },
     removeItem(record){
       this.selRow = record
       this.remove()
