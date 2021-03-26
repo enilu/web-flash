@@ -5,6 +5,7 @@ import cn.enilu.flash.bean.entity.test.Boy;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.test.BoyService;
 import cn.enilu.flash.utils.JsonUtil;
+import cn.enilu.flash.utils.Lists;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -47,6 +48,15 @@ public class SearchFilterTest extends BaseApplicationStartTest {
     @Test
     public void test_02_isNotNull() {
         List<Boy> list = boyService.queryAll(SearchFilter.build("birthday", SearchFilter.Operator.ISNOTNULL));
+        System.out.println(JsonUtil.toJson(list));
+        Assert.assertTrue(!list.isEmpty());
+    }
+    @Test
+    public void test_02_Or() {
+        List<SearchFilter> filters = Lists.newArrayList();
+
+        filters.add(SearchFilter.build("birthday","", SearchFilter.Join.or));
+        List<Boy> list = boyService.queryAll(SearchFilter.build("birthday","", SearchFilter.Join.or));
         System.out.println(JsonUtil.toJson(list));
         Assert.assertTrue(!list.isEmpty());
     }

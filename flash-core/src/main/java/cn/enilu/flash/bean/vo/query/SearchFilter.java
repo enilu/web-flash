@@ -39,7 +39,11 @@ public class SearchFilter {
 
 
     public static SearchFilter build(String fieldName, Object value, Join join) {
-        return new SearchFilter(fieldName, Operator.EQ, value, join);
+        return build(fieldName, Operator.EQ, value, join);
+
+    }
+    public static SearchFilter build(String fieldName, Operator operator,  Object value, Join join) {
+        return new SearchFilter(fieldName, operator, value, join);
 
     }
 
