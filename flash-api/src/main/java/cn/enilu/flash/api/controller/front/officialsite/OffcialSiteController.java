@@ -37,8 +37,8 @@ public class OffcialSiteController extends BaseController {
         BannerVo banner = bannerService.queryIndexBanner();
         dataMap.put("banner", banner);
         List<News> newsList = new ArrayList<>();
-        List<cn.enilu.flash.bean.entity.cms.Article> articles = articleService.queryIndexNews();
-        for (cn.enilu.flash.bean.entity.cms.Article article : articles) {
+        List<Article> articles = articleService.queryIndexNews();
+        for (Article article : articles) {
             News news = new News();
             news.setDesc(article.getTitle());
             news.setUrl("/article?id=" + article.getId());

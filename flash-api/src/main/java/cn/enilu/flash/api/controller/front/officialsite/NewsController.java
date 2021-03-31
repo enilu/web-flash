@@ -37,7 +37,7 @@ public class NewsController extends BaseController {
         List<News> newsList = new ArrayList<>();
         Page<Article> articlePage = articleService.query(1, 10, ChannelEnum.NEWS.getId());
 
-        for (cn.enilu.flash.bean.entity.cms.Article article : articlePage.getRecords()) {
+        for (Article article : articlePage.getRecords()) {
             News news = new News();
             news.setDesc(article.getTitle());
             news.setUrl("/article?id=" + article.getId());
