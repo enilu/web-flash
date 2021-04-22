@@ -33,7 +33,7 @@
         <!--auth libs-->
         <spring.security.jwt.version>1.0.9.RELEASE</spring.security.jwt.version>
         <spring.security.oauth2.version>2.2.0.RELEASE</spring.security.oauth2.version>
-        <shiro.version>1.3.2</shiro.version>
+        <shiro.version>1.7.0</shiro.version>
         <jwt.version>3.2.0</jwt.version>
         <!--util libs-->
         <guava.version>20.0</guava.version>
