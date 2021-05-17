@@ -6,7 +6,8 @@ import cn.enilu.flash.utils.Lists;
 import java.util.List;
 
 /**
- * 手动生成代码<br>虽然本系统提供了代码生成插件方便更具java 实体生成代码，但是部分版本存在兼容性问题，因此可以使用本工具类来手动生成代码
+ * 手动生成代码<br>
+ * 虽然本系统提供了代码生成插件方便根据java实体生成相关业务代码，但是部分idea版本存在兼容性问题（且也没有提供eclipse的插件），因此可以使用本工具类来手动生成代码
  *
  * @Author enilu
  * @Date 2021/5/17 11:28

@@ -3,6 +3,7 @@
 ### Issues
 - Issue 用户管理中增加重置用户密码功能
 - Issue 优化个人中心功能
+- Issue 提供手动生成代码的方式:cn.enilu.flash.CodeGenerator
 ## 1.8
 
 [gitee](https://gitee.com/enilu/web-flash/releases/1.8)

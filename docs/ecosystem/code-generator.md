@@ -47,7 +47,7 @@ public class Boy extends BaseEntity {
 
 
 ## 手动生成代码
-- 部分版本idea的插件存在兼容性问题，无法使用代码生成插件生成代码，本系统提供了手动生成代码的方式，具体用法参考：cn.enilu.flash.CodeGenerator
+- 部分版本idea的插件存在兼容性问题，无法使用代码生成插件生成代码，本系统提供了手动生成代码的方式，具体用法参考：[cn.enilu.flash.CodeGenerator](https://gitee.com/enilu/web-flash/blob/master/flash-core/src/main/java/cn/enilu/flash/CodeGenerator.java)
 
 ## FAQ
 
