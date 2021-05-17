@@ -70,6 +70,11 @@ public class Generator {
     static Pattern includePattern = Pattern.compile(".*");
 
     public static void main(String[] args) throws Exception {
+        generator(args);
+    }
+
+
+    public static  void generator(String[] args) throws Exception {
 
         String configPath = "code/code.json";
         String basePath = "";
@@ -218,7 +223,6 @@ public class Generator {
         ioc.depose();
         log.debug("done!");
     }
-
     private static boolean isTypeMatch(String[] types, String type) {
         for (String t : types) {
             if (t.equalsIgnoreCase(type) || "all".equalsIgnoreCase(t)) {

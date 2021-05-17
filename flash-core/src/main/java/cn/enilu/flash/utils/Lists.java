@@ -3,13 +3,7 @@ package cn.enilu.flash.utils;
 
 import net.sf.ehcache.hibernate.management.impl.BeanUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 集合工具类

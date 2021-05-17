@@ -46,6 +46,9 @@ public class Boy extends BaseEntity {
 ![run code_result](./doc/code_result.jpg)
 
 
+## 手动生成代码
+- 部分版本idea的插件存在兼容性问题，无法使用代码生成插件生成代码，本系统提供了手动生成代码的方式，具体用法参考：cn.enilu.flash.CodeGenerator
+
 ## FAQ
 
 <br>
