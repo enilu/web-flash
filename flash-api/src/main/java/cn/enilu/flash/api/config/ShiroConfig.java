@@ -76,7 +76,7 @@ public class ShiroConfig {
         filterRuleMap.put("/file/download", "anon");
         filterRuleMap.put("/file/getImgStream", "anon");
         filterRuleMap.put("/file/getImgBase64", "anon");
-
+        filterRuleMap.put("/test/**", "anon");
 
         //druid监控地址不拦截
         filterRuleMap.put("/druid/**", "anon");
