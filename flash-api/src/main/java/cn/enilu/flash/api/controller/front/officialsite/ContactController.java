@@ -18,7 +18,7 @@ public class ContactController extends BaseController {
     @Autowired
     private ContactsService contactsService;
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public Object save(@RequestBody @Valid Contacts contacts) {
         contactsService.insert(contacts);
         return Rets.success();

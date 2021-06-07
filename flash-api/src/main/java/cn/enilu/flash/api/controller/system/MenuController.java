@@ -43,7 +43,7 @@ public class MenuController extends BaseController {
     @Autowired
     private TokenCache tokenCache;
 
-    @RequestMapping(value = "/listForRouter", method = RequestMethod.GET)
+    @GetMapping(value = "/listForRouter")
     public Object listForRouter() {
         ShiroUser shiroUser = tokenCache.getUser(HttpUtil.getToken());
 
@@ -51,13 +51,13 @@ public class MenuController extends BaseController {
         return Rets.success(list);
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     public Object list() {
         List<MenuNode> list = menuService.getMenus();
         return Rets.success(list);
     }
 
-    @RequestMapping(value = "/tree", method = RequestMethod.GET)
+    @GetMapping(value = "/tree")
     public Object tree() {
         List<MenuNode> list = menuService.getMenus();
         List<TreeSelectNode> treeSelectNodes = Lists.newArrayList();
@@ -82,7 +82,7 @@ public class MenuController extends BaseController {
         return tsn;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     @BussinessLog(value = "编辑菜单", key = "name")
     @RequiresPermissions(value = {Permission.MENU_EDIT})
     public Object save(@ModelAttribute @Valid Menu menu) {
@@ -104,7 +104,7 @@ public class MenuController extends BaseController {
         return Rets.success();
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping
     @BussinessLog(value = "删除菜单", key = "id")
     @RequiresPermissions(value = {Permission.MENU_DEL})
     public Object remove(@RequestParam Long id) {
@@ -125,7 +125,7 @@ public class MenuController extends BaseController {
     /**
      * 获取菜单树
      */
-    @RequestMapping(value = "/menuTreeListByRoleId", method = RequestMethod.GET)
+    @GetMapping(value = "/menuTreeListByRoleId")
     @RequiresPermissions(value = {Permission.MENU})
     public Object menuTreeListByRoleId(Integer roleId) {
         List<Long> menuIds = menuService.getMenuIdsByRoleId(roleId);

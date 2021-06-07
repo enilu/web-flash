@@ -39,7 +39,7 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @RequiresPermissions(value = {Permission.USER})
     public Object list(@RequestParam(required = false) String account,
                        @RequestParam(required = false) String name,
@@ -62,7 +62,7 @@ public class UserController extends BaseController {
         return Rets.success(page);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     @BussinessLog(value = "编辑账号", key = "name")
     @RequiresPermissions(value = {Permission.USER_EDIT})
     public Object save(@Valid UserDto user, BindingResult result) {
@@ -85,7 +85,7 @@ public class UserController extends BaseController {
     }
 
     @BussinessLog(value = "删除账号", key = "userId")
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping
     @RequiresPermissions(value = {Permission.USER_DEL})
     public Object remove(@RequestParam Long userId) {
         if (userId == null) {
@@ -101,7 +101,7 @@ public class UserController extends BaseController {
     }
 
     @BussinessLog(value = "设置账号角色", key = "userId")
-    @RequestMapping(value = "/setRole", method = RequestMethod.GET)
+    @PostMapping(value = "/setRole")
     @RequiresPermissions(value = {Permission.USER_EDIT})
     public Object setRole(@RequestParam("userId") Long userId, @RequestParam("roleIds") String roleIds) {
         if (BeanUtil.isOneEmpty(userId, roleIds)) {
@@ -118,7 +118,7 @@ public class UserController extends BaseController {
     }
 
     @BussinessLog(value = "冻结/解冻账号", key = "userId")
-    @RequestMapping(value = "changeStatus", method = RequestMethod.GET)
+    @GetMapping(value = "changeStatus")
     @RequiresPermissions(value = {Permission.USER_EDIT})
     public Object changeStatus(@RequestParam Long userId) {
         if (userId == null) {

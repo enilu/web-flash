@@ -1,7 +1,10 @@
 package cn.enilu.flash.api.runner;
 
+import cn.enilu.flash.bean.entity.system.Task;
 import cn.enilu.flash.bean.vo.QuartzJob;
+import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.task.JobService;
+import cn.enilu.flash.service.task.TaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +25,16 @@ public class StartJob implements ApplicationRunner {
 
     @Autowired
     private JobService jobService;
+    @Autowired
+    private TaskService taskService;
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
     @Override
     public void run(ApplicationArguments applicationArguments) throws Exception {
         log.info("start Job >>>>>>>>>>>>>>>>>>>>>>>");
-        List<QuartzJob> list = jobService.getTaskList();
+        List<Task> tasks = taskService.queryAll(SearchFilter.build("disabled", SearchFilter.Operator.EQ, false));
+        List<QuartzJob> list = jobService.getTaskList(tasks);
         for (QuartzJob quartzJob : list) {
             jobService.addJob(quartzJob);
         }

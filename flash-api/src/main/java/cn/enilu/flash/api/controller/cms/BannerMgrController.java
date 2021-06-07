@@ -10,11 +10,7 @@ import cn.enilu.flash.service.cms.BannerService;
 import cn.enilu.flash.utils.StringUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -28,7 +24,7 @@ public class BannerMgrController extends BaseController {
     @Autowired
     private BannerService bannerService;
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     @BussinessLog(value = "编辑banner", key = "title")
     @RequiresPermissions(value = {Permission.BANNER_EDIT})
     public Object save(@ModelAttribute @Valid Banner banner) {
@@ -40,7 +36,7 @@ public class BannerMgrController extends BaseController {
         return Rets.success();
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping
     @BussinessLog(value = "删除banner", key = "id")
     @RequiresPermissions(value = {Permission.BANNER_DEL})
     public Object remove(Long id) {
@@ -48,7 +44,7 @@ public class BannerMgrController extends BaseController {
         return Rets.success();
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @RequiresPermissions(value = {Permission.BANNER})
     public Object list(@RequestParam(required = false) String title) {
         SearchFilter filter = null;

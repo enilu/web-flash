@@ -12,11 +12,7 @@ import cn.enilu.flash.service.message.MessagetemplateService;
 import cn.enilu.flash.utils.factory.Page;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -26,7 +22,7 @@ public class MessagetemplateController {
     @Autowired
     private MessagetemplateService messagetemplateService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @RequiresPermissions(value = {Permission.MSG_TPL})
     public Object list(@RequestParam(name = "idMessageSender", required = false) Long idMessageSender,
                        @RequestParam(name = "title", required = false) String title) {
@@ -41,7 +37,7 @@ public class MessagetemplateController {
         return Rets.success(page);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     @BussinessLog(value = "编辑消息模板", key = "name")
     @RequiresPermissions(value = {Permission.MSG_TPL_EDIT})
     public Object save(@ModelAttribute @Valid MessageTemplate messageTemplate) {
@@ -58,7 +54,7 @@ public class MessagetemplateController {
         return Rets.success();
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping
     @BussinessLog(value = "删除消息模板", key = "id")
     @RequiresPermissions(value = {Permission.MSG_TPL_DEL})
     public Object remove(Long id) {

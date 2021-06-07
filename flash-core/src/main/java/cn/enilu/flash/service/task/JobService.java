@@ -4,20 +4,9 @@ import cn.enilu.flash.bean.entity.system.Task;
 import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.exception.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.vo.QuartzJob;
-import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.utils.JsonUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.quartz.CronScheduleBuilder;
-import org.quartz.CronTrigger;
-import org.quartz.Job;
-import org.quartz.JobBuilder;
-import org.quartz.JobDetail;
-import org.quartz.JobKey;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.Trigger;
-import org.quartz.TriggerBuilder;
-import org.quartz.TriggerKey;
+import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +24,6 @@ public class JobService {
     private static final Logger logger = LoggerFactory.getLogger(JobService.class);
     @Autowired
     private Scheduler scheduler;
-    @Autowired
-    private TaskService taskService;
 
     /**
      * 获取单个任务
@@ -70,8 +57,8 @@ public class JobService {
     }
 
 
-    public List<QuartzJob> getTaskList() {
-        List<Task> tasks = taskService.queryAll(SearchFilter.build("disabled", SearchFilter.Operator.EQ, false));
+    public List<QuartzJob> getTaskList( List<Task> tasks) {
+
         List<QuartzJob> jobs = new ArrayList<>();
         for (Task task : tasks) {
             jobs.add(getJob(task));

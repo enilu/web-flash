@@ -10,11 +10,7 @@ import cn.enilu.flash.service.message.MessagesenderService;
 import cn.enilu.flash.utils.factory.Page;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -24,7 +20,7 @@ public class MessagesenderController {
     @Autowired
     private MessagesenderService messagesenderService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @RequiresPermissions(value = {Permission.MSG_SENDER})
     public Object list(@RequestParam(required = false) String name,
                        @RequestParam(required = false) String className) {
@@ -36,13 +32,13 @@ public class MessagesenderController {
         return Rets.success(page);
     }
 
-    @RequestMapping(value = "/queryAll", method = RequestMethod.GET)
+    @GetMapping(value = "/queryAll")
     @RequiresPermissions(value = {Permission.MSG_SENDER})
     public Object queryAll() {
         return Rets.success(messagesenderService.queryAll());
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     @BussinessLog(value = "编辑消息发送者", key = "name")
     @RequiresPermissions(value = {Permission.MSG_SENDER_EDIT})
     public Object save(@ModelAttribute @Valid MessageSender messageSender) {
@@ -61,7 +57,7 @@ public class MessagesenderController {
         return Rets.success();
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping
     @BussinessLog(value = "删除消息发送者", key = "id")
     @RequiresPermissions(value = {Permission.MSG_SENDER_DEL})
     public Object remove(Long id) {

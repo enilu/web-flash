@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="block">
-      <iframe src="http://flash-api.enilu.cn/api/druid/sql.html" width="100%" height="768px" frameborder="0" scrolling="auto"></iframe>
+      <iframe src="http://flash-api.enilu.cn/druid/index.html" width="100%" height="768px" frameborder="0" scrolling="auto"></iframe>
 
 
     </div>

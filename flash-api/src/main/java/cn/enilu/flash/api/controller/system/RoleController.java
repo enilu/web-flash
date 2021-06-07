@@ -28,10 +28,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -46,7 +43,7 @@ public class RoleController extends BaseController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @RequiresPermissions(value = {Permission.ROLE})
     public Object list(@RequestParam(required = false) String name,
                        @RequestParam(required = false) String tips) {
@@ -60,7 +57,7 @@ public class RoleController extends BaseController {
         return Rets.success(page);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     @BussinessLog(value = "编辑角色", key = "name")
     @RequiresPermissions(value = {Permission.ROLE_EDIT})
     public Object save(@Valid Role role) {
@@ -72,7 +69,7 @@ public class RoleController extends BaseController {
         return Rets.success();
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping
     @BussinessLog(value = "删除角色", key = "roleId")
     @RequiresPermissions(value = {Permission.ROLE_DEL})
     public Object remove(@RequestParam Long roleId) {
@@ -97,7 +94,7 @@ public class RoleController extends BaseController {
         return Rets.success();
     }
 
-    @RequestMapping(value = "/savePermisson", method = RequestMethod.POST)
+    @PostMapping(value = "/savePermisson")
     @BussinessLog(value = "配置角色权限", key = "roleId")
     @RequiresPermissions(value = {Permission.ROLE_EDIT})
     public Object setAuthority(Long roleId, String
@@ -113,7 +110,7 @@ public class RoleController extends BaseController {
     /**
      * 获取角色树
      */
-    @RequestMapping(value = "/roleTreeListByIdUser", method = RequestMethod.GET)
+    @GetMapping(value = "/roleTreeListByIdUser")
     @RequiresPermissions(value = {Permission.ROLE})
     public Object roleTreeListByIdUser(Long idUser) {
         User user = userService.get(idUser);

@@ -23,7 +23,10 @@
 			<charset>UTF-8</charset>
 		</encoder>
 	</appender>
-
+	<logger level="info" name="org.springframework.boot.autoconfigure.logging"  additivity="false">
+		<appender-ref ref="file" />
+		<appender-ref ref="stdout" />
+	</logger>
 	<!-- druid连接池的日志级别 -->
 	<logger name="com.alibaba.druid" level="DEBUG" />
 

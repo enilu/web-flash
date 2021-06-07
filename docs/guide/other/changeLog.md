@@ -4,6 +4,12 @@
 - Issue 用户管理中增加重置用户密码功能
 - Issue 优化个人中心功能
 - Issue 提供手动生成代码的方式:cn.enilu.flash.CodeGenerator
+- Issue 升级Spring Boot从2.1.1.RELEASE到2.3.11.RELEASE
+- Issue 升级Spring Framework从5.1.3.RELEASE到5.2.12.RELEASE
+- Issue 升级Swagger从2.2.2到3.0.0
+- Issue 配置文件从properties形式转换为yml形式
+- Issue 简化Controller请求类型配置
+
 ## 1.8
 
 [gitee](https://gitee.com/enilu/web-flash/releases/1.8)

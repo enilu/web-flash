@@ -8,10 +8,7 @@ import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.service.cms.ChannelService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -25,7 +22,7 @@ public class ChannelMgrController extends BaseController {
     @Autowired
     private ChannelService channelService;
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     @BussinessLog(value = "编辑栏目", key = "name")
     @RequiresPermissions(value = {Permission.CHANNEL_EDIT})
     public Object save(@ModelAttribute @Valid Channel channel) {
@@ -37,7 +34,7 @@ public class ChannelMgrController extends BaseController {
         return Rets.success();
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping
     @BussinessLog(value = "删除栏目", key = "id")
     @RequiresPermissions(value = {Permission.CHANNEL_DEL})
     public Object remove(Long id) {
@@ -45,7 +42,7 @@ public class ChannelMgrController extends BaseController {
         return Rets.success();
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @RequiresPermissions(value = {Permission.CHANNEL})
     public Object list() {
         List<Channel> list = channelService.queryAll();

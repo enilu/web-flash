@@ -17,11 +17,7 @@ import cn.enilu.flash.utils.factory.Page;
 import cn.enilu.flash.warpper.LogWarpper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -40,8 +36,7 @@ public class LogController extends BaseController {
     /**
      * 查询操作日志列表
      */
-    @RequestMapping("/list")
-    @ResponseBody
+    @GetMapping("/list")
     @RequiresPermissions(value = {Permission.LOG})
     public Object list(@RequestParam(required = false) String beginTime,
                        @RequestParam(required = false) String endTime,
@@ -66,8 +61,7 @@ public class LogController extends BaseController {
     /**
      * 查询指定用户的操作日志列表
      */
-    @RequestMapping("/queryByUser")
-    @ResponseBody
+    @GetMapping("/queryByUser")
     public Object list() {
         Page<OperationLog> page = new Page<OperationLog>();
         page.addFilter(SearchFilter.build("userid", SearchFilter.Operator.EQ, getIdUser(HttpUtil.getRequest())));
@@ -78,7 +72,7 @@ public class LogController extends BaseController {
     /**
      * 清空日志
      */
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping
     @BussinessLog(value = "清空业务日志")
     @RequiresPermissions(value = {Permission.LOG_CLEAR})
     public Object delLog() {

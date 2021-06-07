@@ -1,6 +1,7 @@
 package cn.enilu.flash.security;
 
 import cn.enilu.flash.bean.core.ShiroUser;
+import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.service.system.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -68,7 +69,11 @@ public class ApiRealm extends AuthorizingRealm {
             throw new AuthenticationException("token invalid");
         }
 
-        ShiroUser userBean = ShiroFactroy.me().shiroUser(userService.findByAccount(username));
+        User user = userService.findByAccount(username);
+        if(user==null){
+            throw new AuthenticationException("token invalid");
+        }
+        ShiroUser userBean = ShiroFactroy.me().shiroUser(user);
         if (userBean == null) {
             throw new AuthenticationException("User didn't existed!");
         }

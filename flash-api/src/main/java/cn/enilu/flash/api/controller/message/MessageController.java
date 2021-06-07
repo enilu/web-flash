@@ -22,7 +22,7 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @RequiresPermissions(value = {Permission.MSG})
     public Object list(@RequestParam(required = false) String tplCode,
                        @RequestParam(required = false) String startDate,
@@ -36,7 +36,7 @@ public class MessageController {
         return Rets.success(page);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping
     @BussinessLog(value = "清空所有历史消息")
     @RequiresPermissions(value = {Permission.MSG_CLEAR})
     public Object clear() {

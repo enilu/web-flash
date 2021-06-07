@@ -11,10 +11,7 @@ import cn.enilu.flash.utils.DateUtil;
 import cn.enilu.flash.utils.factory.Page;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 邀约信息管理
@@ -25,7 +22,7 @@ public class ContactsController extends BaseController {
     @Autowired
     private ContactsService contactsService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @RequiresPermissions(value = {Permission.CONTACTS})
     public Object list(@RequestParam(required = false) String userName,
                        @RequestParam(required = false) String mobile,

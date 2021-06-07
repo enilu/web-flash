@@ -6,6 +6,7 @@ import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.service.system.NoticeService;
 import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +27,7 @@ public class NoticeController extends BaseController {
     /**
      * 获取通知列表
      */
-    @RequestMapping(value = "/list")
+    @GetMapping(value = "/list")
     public Object list(String condition) {
         List<Notice> list = null;
         if (Strings.isNullOrEmpty(condition)) {

@@ -13,10 +13,7 @@ import cn.enilu.flash.utils.factory.Page;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 文章管理
@@ -28,7 +25,7 @@ public class ArticleMgrController extends BaseController {
     @Autowired
     private ArticleService articleService;
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     @BussinessLog(value = "编辑文章", key = "name")
     @RequiresPermissions(value = {Permission.ARTICLE_EDIT})
     public Object save() {
@@ -47,7 +44,7 @@ public class ArticleMgrController extends BaseController {
         return Rets.success();
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping
     @BussinessLog(value = "删除文章", key = "id")
     @RequiresPermissions(value = {Permission.ARTICLE_DEL})
     public Object remove(Long id) {
@@ -55,14 +52,14 @@ public class ArticleMgrController extends BaseController {
         return Rets.success();
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     @RequiresPermissions(value = {Permission.ARTICLE})
     public Object get(@Param("id") Long id) {
         Article article = articleService.get(id);
         return Rets.success(article);
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @RequiresPermissions(value = {Permission.ARTICLE})
     public Object list(@RequestParam(required = false) String title,
                        @RequestParam(required = false) String author,

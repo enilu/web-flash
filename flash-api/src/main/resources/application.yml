@@ -1,0 +1,39 @@
+spring:
+  profiles:
+    active: dev
+  cache:
+    ehcache:
+      config: classpath:ehcache.xml
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+#        exclusions: *.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /*
+        reset-enable: false
+        login-username: druiduser
+        login-password: druidpwd
+        allow: 127.0.0.1
+    sql-script-encoding: UTF-8
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  mail:
+    host: smtp.qq.com
+    username: enidfdluzt@qq.com
+    password: 123456
+    port: 465
+    protocol: smtp
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+jwt:
+  token:
+    expire:
+      time: 30
+server:
+  port: 8082

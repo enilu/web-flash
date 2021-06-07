@@ -14,11 +14,7 @@ import cn.enilu.flash.utils.StringUtil;
 import cn.enilu.flash.warpper.DictWarpper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,7 +35,7 @@ public class DictController extends BaseController {
     /**
      * 获取所有字典列表
      */
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @RequiresPermissions(value = {Permission.DICT})
     public Object list(String name) {
 
@@ -51,7 +47,7 @@ public class DictController extends BaseController {
         return Rets.success(new DictWarpper(BeanUtil.objectsToMaps(list)).warp());
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     @BussinessLog(value = "添加字典", key = "dictName")
     @RequiresPermissions(value = {Permission.DICT_EDIT})
     public Object add(String dictName, String dictValues) {
@@ -62,7 +58,7 @@ public class DictController extends BaseController {
         return Rets.success();
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @PutMapping
     @BussinessLog(value = "修改字典", key = "dictName")
     @RequiresPermissions(value = {Permission.DICT_EDIT})
     public Object update(Long id, String dictName, String dictValues) {
@@ -74,7 +70,7 @@ public class DictController extends BaseController {
     }
 
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping
     @BussinessLog(value = "删除字典", key = "id")
     @RequiresPermissions(value = {Permission.DICT_EDIT})
     public Object delete(@RequestParam Long id) {
@@ -82,7 +78,7 @@ public class DictController extends BaseController {
         return Rets.success();
     }
 
-    @RequestMapping(value = "/getDicts/{dictName}", method = RequestMethod.GET)
+    @GetMapping(value = "/getDicts/{dictName}")
     public Object getDicts(@PathVariable("dictName") String dictName) {
         List<Dict> dicts = dictCache.getDictsByPname(dictName);
         return Rets.success(dicts);

@@ -109,6 +109,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         try {
             HttpServletResponse httpServletResponse = (HttpServletResponse) resp;
             httpServletResponse.setStatus(401);
+//            httpServletResponse.getWriter().println("401");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }

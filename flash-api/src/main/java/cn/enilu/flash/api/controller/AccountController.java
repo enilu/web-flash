@@ -13,16 +13,12 @@ import cn.enilu.flash.utils.HttpUtil;
 import cn.enilu.flash.utils.MD5;
 import cn.enilu.flash.utils.Maps;
 import cn.enilu.flash.utils.StringUtil;
-import org.apache.shiro.subject.Subject;
 import org.nutz.mapl.Mapl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -53,7 +49,7 @@ public class AccountController extends BaseController {
      * @param password
      * @return
      */
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @PostMapping(value = "/login")
     public Object login(@RequestParam("username") String userName,
                         @RequestParam("password") String password) {
         try {
@@ -86,7 +82,7 @@ public class AccountController extends BaseController {
         return Rets.failure("登录时失败");
     }
 
-    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    @GetMapping(value = "/info")
     public Object info() {
         HttpServletRequest request = HttpUtil.getRequest();
         Long idUser = null;
@@ -118,7 +114,7 @@ public class AccountController extends BaseController {
         return Rets.failure("获取用户信息失败");
     }
 
-    @RequestMapping(value = "/updatePwd", method = RequestMethod.POST)
+    @PostMapping(value = "/updatePwd")
     public Object updatePwd(String oldPassword, String password, String rePassword) {
         try {
 

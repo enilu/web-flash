@@ -20,11 +20,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -46,7 +42,7 @@ public class CfgController extends BaseController {
     /**
      * 查询参数列表
      */
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping(value = "/list")
     @RequiresPermissions(value = {"/cfg"})
     public Object list(@RequestParam(required = false) String cfgName, @RequestParam(required = false) String cfgValue) {
         Page<Cfg> page = new PageFactory<Cfg>().defaultPage();
@@ -67,7 +63,7 @@ public class CfgController extends BaseController {
      * @param cfgValue
      * @return
      */
-    @RequestMapping(value = "/export", method = RequestMethod.GET)
+    @GetMapping(value = "/export")
     @RequiresPermissions(value = {Permission.CFG})
     public Object export(@RequestParam(required = false) String cfgName, @RequestParam(required = false) String cfgValue) {
         Page<Cfg> page = new PageFactory<Cfg>().defaultPage();
@@ -82,7 +78,7 @@ public class CfgController extends BaseController {
         return Rets.success(fileInfo);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     @BussinessLog(value = "新增参数", key = "cfgName")
     @RequiresPermissions(value = {"/cfg/add"})
     public Object add(@ModelAttribute @Valid Cfg cfg) {
@@ -90,7 +86,7 @@ public class CfgController extends BaseController {
         return Rets.success();
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @PutMapping
     @BussinessLog(value = "编辑参数", key = "cfgName")
     @RequiresPermissions(value = {"/cfg/update"})
     public Object update(@ModelAttribute @Valid Cfg cfg) {
@@ -103,7 +99,7 @@ public class CfgController extends BaseController {
         return Rets.success();
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping
     @BussinessLog(value = "删除参数", key = "id")
     @RequiresPermissions(value = {"/cfg/delete"})
     public Object remove(@RequestParam Long id) {

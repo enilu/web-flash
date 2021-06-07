@@ -65,10 +65,11 @@ public class ShiroConfig {
         Map<String, String> filterRuleMap = new LinkedHashMap<String, String>();
         // 所有请求通过我们自己的JWT Filter
         //swagger资源不拦截
-        filterRuleMap.put("/swagger-ui.html", "anon");
-        filterRuleMap.put("/v2/api-docs/**", "anon");
+        filterRuleMap.put("/swagger-ui/**", "anon");
+        filterRuleMap.put("/v3/**","anon");
+        filterRuleMap.put("/doc.html","anon");
         filterRuleMap.put("/webjars/**", "anon");
-        filterRuleMap.put("/swagger-resources", "anon");
+        filterRuleMap.put("/swagger-resources/**", "anon");
         filterRuleMap.put("/images/**", "anon");
         filterRuleMap.put("/configuration/security", "anon");
         filterRuleMap.put("/configuration/ui", "anon");

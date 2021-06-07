@@ -19,15 +19,17 @@ public class PageFactory<T> {
 
     public Page<T> defaultPage() {
         HttpServletRequest request = HttpUtil.getRequest();
-        //每页多少条数据
-        int limit = Integer.valueOf(request.getParameter("limit"));
+
+        String limitStr = request.getParameter("limit");
+        int limit =  10;
+        if(StringUtil.isNotEmpty(limitStr)){
+          limit = Integer.valueOf(limitStr);
+        }
         String pageNum = request.getParameter("page");
         int current = 1;
-        //每页的偏移量(本页当前有多少条)
+
         if (StringUtils.isNotEmpty(pageNum)) {
             current = Integer.valueOf(pageNum);
-        } else {
-            current = Integer.valueOf(request.getParameter("offset")) / limit + 1;
         }
         //排序字段名称
         String sortName = request.getParameter("sort");

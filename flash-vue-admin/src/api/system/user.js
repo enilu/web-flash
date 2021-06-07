@@ -29,7 +29,7 @@ export function remove(userId) {
 export function setRole(params) {
   return request({
     url: '/user/setRole',
-    method: 'get',
+    method: 'post',
     params
   })
 }
