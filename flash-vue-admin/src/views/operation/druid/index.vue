@@ -18,7 +18,7 @@
       init() {
         this.$notify({
           title: '提示',
-          message: '用户名密码参考：application.properties',
+          message: '查看application.yml配置文件获取账号密码',
           duration: 3000
         })
       },
