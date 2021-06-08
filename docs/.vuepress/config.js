@@ -1,7 +1,7 @@
 module.exports = {
     title: 'web-flash',
     description: '使用web-flash快速构建web应用程序',
-    base: '/web-flash/',
+    base: '/',
     head: [
         ['link', {rel: 'shortcut icon', type: "image/x-icon", href: './favicon.ico'}],
         ['script', {}, `
