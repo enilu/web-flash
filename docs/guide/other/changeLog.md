@@ -1,5 +1,8 @@
 # change log
-## latest
+## 1.9
+
+[gitee](https://gitee.com/enilu/web-flash/releases/1.9)
+[github](https://github.com/enilu/web-flash/releases/tag/1.9)
 ### Issues
 - Issue 用户管理中增加重置用户密码功能
 - Issue 优化个人中心功能
@@ -9,6 +12,7 @@
 - Issue 升级Swagger从2.2.2到3.0.0
 - Issue 配置文件从properties形式转换为yml形式
 - Issue 简化Controller请求类型配置
+- Issue 添加事务管理器
 
 ## 1.8
 
