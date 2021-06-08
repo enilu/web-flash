@@ -29,7 +29,7 @@ public class ${table.ControllerClassName} extends BaseController {
 	@Autowired
 	private ${table.ServiceClassName} ${table.ServiceInstanceName};
 
-	@RequestMapping(value = "/list",method = RequestMethod.GET)
+	@GetMapping(value = "/list")
 	@RequiresPermissions(value = "${table.UriPrefix}")
 	public Object list(@RequestParam(required = false) Long id) {
 		Page<${table.EntityClassName}> page = new PageFactory<${table.EntityClassName}>().defaultPage();
@@ -37,21 +37,21 @@ public class ${table.ControllerClassName} extends BaseController {
 		page = ${table.ServiceInstanceName}.queryPage(page);
 		return Rets.success(page);
 	}
-	@RequestMapping(method = RequestMethod.POST)
+	@PostMapping
 	@BussinessLog(value = "新增${table.Label}", key = "name")
 	@RequiresPermissions(value = "${table.UriPrefix}/add")
 	public Object add(@ModelAttribute ${table.EntityClassName} ${table.entityNameLowerFirstChar}){
 		${table.ServiceInstanceName}.insert(${table.entityNameLowerFirstChar});
 		return Rets.success();
 	}
-	@RequestMapping(method = RequestMethod.PUT)
+	@PutMapping
 	@BussinessLog(value = "更新${table.Label}", key = "name")
 	@RequiresPermissions(value = "${table.UriPrefix}/update")
 	public Object update(@ModelAttribute ${table.EntityClassName} ${table.entityNameLowerFirstChar}){
 		${table.ServiceInstanceName}.update(${table.entityNameLowerFirstChar});
 		return Rets.success();
 	}
-	@RequestMapping(method = RequestMethod.DELETE)
+	@DeleteMapping
 	@BussinessLog(value = "删除${table.Label}", key = "id")
 	@RequiresPermissions(value = "${table.UriPrefix}/delete")
 	public Object remove(Long id){
