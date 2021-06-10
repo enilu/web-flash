@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="block">
-      <iframe src="https://enilu.gitee.io/web-flash" width="100%" height="768px" frameborder="0" scrolling="auto"></iframe>
+      <iframe src="http://webflash.enilu.cn" width="100%" height="768px" frameborder="0" scrolling="auto"></iframe>
 
 
     </div>
