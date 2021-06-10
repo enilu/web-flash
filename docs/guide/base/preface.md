@@ -2,7 +2,7 @@
 pageClass: getting-started
 ---
 # 介绍
-[![Spring Boot](https://img.shields.io/badge/spring--boot-2.1.1.1.RELEASE-brightgreen)](https://github.com/spring-projects/spring-boot)
+[![Spring Boot](https://img.shields.io/badge/spring--boot-2.3.11.RELEASE-brightgreen)](https://github.com/spring-projects/spring-boot)
 [![vue](https://img.shields.io/badge/vue-2.6.10-brightgreen.svg)](https://github.com/vuejs/vue)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/enilu/web-flash/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/enilu/web-flash.svg)](https://github.com/enilu/web-flash/releases)
