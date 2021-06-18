@@ -11,9 +11,9 @@ import java.util.Map;
  * @author fengshuonan
  * @date 2017年2月19日10:59:02
  */
-public class RoleWarpper extends BaseControllerWarpper {
+public class RoleWrapper extends BaseControllerWrapper {
 
-    public RoleWarpper(List<Map<String, Object>> list) {
+    public RoleWrapper(List<Map<String, Object>> list) {
         super(list);
     }
 

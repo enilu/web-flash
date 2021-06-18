@@ -10,9 +10,9 @@ import java.util.Map;
  * @author fengshuonan
  * @date 2017年4月25日 18:10:31
  */
-public class DeptWarpper extends BaseControllerWarpper {
+public class DeptWrapper extends BaseControllerWrapper {
 
-    public DeptWarpper(Object list) {
+    public DeptWrapper(Object list) {
         super(list);
     }
 

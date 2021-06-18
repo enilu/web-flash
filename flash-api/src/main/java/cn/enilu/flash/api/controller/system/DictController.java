@@ -11,7 +11,7 @@ import cn.enilu.flash.cache.DictCache;
 import cn.enilu.flash.service.system.DictService;
 import cn.enilu.flash.utils.BeanUtil;
 import cn.enilu.flash.utils.StringUtil;
-import cn.enilu.flash.warpper.DictWarpper;
+import cn.enilu.flash.warpper.DictWrapper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,10 +41,10 @@ public class DictController extends BaseController {
 
         if (StringUtil.isNotEmpty(name)) {
             List<Dict> list = dictService.findByNameLike(name);
-            return Rets.success(new DictWarpper(BeanUtil.objectsToMaps(list)).warp());
+            return Rets.success(new DictWrapper(BeanUtil.objectsToMaps(list)).warp());
         }
         List<Dict> list = dictService.findByPid(0L);
-        return Rets.success(new DictWarpper(BeanUtil.objectsToMaps(list)).warp());
+        return Rets.success(new DictWrapper(BeanUtil.objectsToMaps(list)).warp());
     }
 
     @PostMapping

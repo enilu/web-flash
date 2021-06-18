@@ -13,9 +13,9 @@ import java.util.Map;
  * @author fengshuonan
  * @date 2017年4月25日 18:10:31
  */
-public class DictWarpper extends BaseControllerWarpper {
+public class DictWrapper extends BaseControllerWrapper {
 
-    public DictWarpper(Object list) {
+    public DictWrapper(Object list) {
         super(list);
     }
 

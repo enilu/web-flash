@@ -14,9 +14,9 @@ import java.util.Map;
  * @author fengshuonan
  * @date 2017年4月5日22:56:24
  */
-public class LogWarpper extends BaseControllerWarpper {
+public class LogWrapper extends BaseControllerWrapper {
 
-    public LogWarpper(Object list) {
+    public LogWrapper(Object list) {
         super(list);
     }
 

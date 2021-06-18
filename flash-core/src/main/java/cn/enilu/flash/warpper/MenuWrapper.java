@@ -11,9 +11,9 @@ import java.util.Map;
  * @author fengshuonan
  * @date 2017年2月19日15:07:29
  */
-public class MenuWarpper extends BaseControllerWarpper {
+public class MenuWrapper extends BaseControllerWrapper {
 
-    public MenuWarpper(List<Map<String, Object>> list) {
+    public MenuWrapper(List<Map<String, Object>> list) {
         super(list);
     }
 

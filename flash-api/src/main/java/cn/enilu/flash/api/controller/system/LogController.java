@@ -14,7 +14,7 @@ import cn.enilu.flash.utils.DateUtil;
 import cn.enilu.flash.utils.HttpUtil;
 import cn.enilu.flash.utils.StringUtil;
 import cn.enilu.flash.utils.factory.Page;
-import cn.enilu.flash.warpper.LogWarpper;
+import cn.enilu.flash.warpper.LogWrapper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -54,7 +54,7 @@ public class LogController extends BaseController {
             page.addFilter(SearchFilter.build("logtype", SearchFilter.Operator.EQ, BizLogType.valueOf(logType)));
         }
         page = operationLogService.queryPage(page);
-        page.setRecords((List<OperationLog>) new LogWarpper(BeanUtil.objectsToMaps(page.getRecords())).warp());
+        page.setRecords((List<OperationLog>) new LogWrapper(BeanUtil.objectsToMaps(page.getRecords())).warp());
         return Rets.success(page);
     }
 

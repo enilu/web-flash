@@ -18,7 +18,7 @@ import cn.enilu.flash.utils.BeanUtil;
 import cn.enilu.flash.utils.MD5;
 import cn.enilu.flash.utils.RandomUtil;
 import cn.enilu.flash.utils.factory.Page;
-import cn.enilu.flash.warpper.UserWarpper;
+import cn.enilu.flash.warpper.UserWrapper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -57,7 +57,7 @@ public class UserController extends BaseController {
         page.addFilter("status", SearchFilter.Operator.GT, 0);
         page.addFilter("sex", sex);
         page = userService.queryPage(page);
-        List list = (List) new UserWarpper(BeanUtil.objectsToMaps(page.getRecords())).warp();
+        List list = (List) new UserWrapper(BeanUtil.objectsToMaps(page.getRecords())).warp();
         page.setRecords(list);
         return Rets.success(page);
     }

@@ -22,7 +22,7 @@ import cn.enilu.flash.utils.Convert;
 import cn.enilu.flash.utils.Maps;
 import cn.enilu.flash.utils.StringUtil;
 import cn.enilu.flash.utils.factory.Page;
-import cn.enilu.flash.warpper.RoleWarpper;
+import cn.enilu.flash.warpper.RoleWrapper;
 import com.google.common.collect.Lists;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
@@ -52,7 +52,7 @@ public class RoleController extends BaseController {
         page.addFilter("name", name);
         page.addFilter("tips", tips);
         page = roleService.queryPage(page);
-        List list = (List) new RoleWarpper(BeanUtil.objectsToMaps(page.getRecords())).warp();
+        List list = (List) new RoleWrapper(BeanUtil.objectsToMaps(page.getRecords())).warp();
         page.setRecords(list);
         return Rets.success(page);
     }

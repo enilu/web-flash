@@ -11,7 +11,7 @@ import cn.enilu.flash.service.system.LoginLogService;
 import cn.enilu.flash.utils.BeanUtil;
 import cn.enilu.flash.utils.DateUtil;
 import cn.enilu.flash.utils.factory.Page;
-import cn.enilu.flash.warpper.LogWarpper;
+import cn.enilu.flash.warpper.LogWrapper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +40,7 @@ public class LoginLogController extends BaseController {
         page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parseDate(endTime));
         page.addFilter("logname", SearchFilter.Operator.LIKE, logName);
         Page pageResult = loginlogService.queryPage(page);
-        pageResult.setRecords((List<LoginLog>) new LogWarpper(BeanUtil.objectsToMaps(pageResult.getRecords())).warp());
+        pageResult.setRecords((List<LoginLog>) new LogWrapper(BeanUtil.objectsToMaps(pageResult.getRecords())).warp());
         return Rets.success(pageResult);
 
     }

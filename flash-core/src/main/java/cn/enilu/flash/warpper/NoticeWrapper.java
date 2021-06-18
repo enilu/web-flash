@@ -10,7 +10,7 @@ import java.util.Map;
  * @author fengshuonan
  * @date 2017年4月25日 18:10:31
  */
-public class NoticeWrapper extends BaseControllerWarpper {
+public class NoticeWrapper extends BaseControllerWrapper {
 
     public NoticeWrapper(Object list) {
         super(list);
