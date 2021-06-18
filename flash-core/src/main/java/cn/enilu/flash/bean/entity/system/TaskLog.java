@@ -4,10 +4,7 @@ package cn.enilu.flash.bean.entity.system;
 import lombok.Data;
 import org.hibernate.annotations.Table;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -23,7 +20,7 @@ public class TaskLog {
     public static final int EXE_SUCCESS_RESULT = 1;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(columnDefinition = "BIGINT COMMENT '对应任务id'")
     private Long idTask;
