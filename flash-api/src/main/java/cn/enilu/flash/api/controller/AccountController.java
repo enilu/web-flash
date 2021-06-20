@@ -5,6 +5,7 @@ import cn.enilu.flash.bean.constant.state.ManagerStatus;
 import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.vo.front.Rets;
+import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.core.log.LogManager;
 import cn.enilu.flash.core.log.LogTaskFactory;
 import cn.enilu.flash.security.ShiroFactroy;
@@ -17,7 +18,6 @@ import org.nutz.mapl.Mapl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,8 +36,9 @@ public class AccountController extends BaseController {
     private Logger logger = LoggerFactory.getLogger(AccountController.class);
 
     @Autowired
-    @Lazy
     private UserService userService;
+    @Autowired
+    private TokenCache tokenCache;
 
     /**
      * 用户登录<br>
@@ -72,6 +73,7 @@ public class AccountController extends BaseController {
                 return Rets.failure("该用户未配置权限");
             }
             String token = userService.loginForToken(user);
+            ShiroFactroy.me().shiroUser(token,user);
             Map<String, String> result = new HashMap<>(1);
             result.put("token", token);
             LogManager.me().executeLog(LogTaskFactory.loginLog(user.getId(), HttpUtil.getIp()));
@@ -101,7 +103,7 @@ public class AccountController extends BaseController {
             if (StringUtil.isEmpty(user.getRoleid())) {
                 return Rets.failure("该用户未配置权限");
             }
-            ShiroUser shiroUser = ShiroFactroy.me().shiroUser(user);
+            ShiroUser shiroUser = tokenCache.getUser(getToken());
             Map map = Maps.newHashMap("name", user.getName(), "role", "admin", "roles", shiroUser.getRoleCodes());
             map.put("permissions", shiroUser.getUrls());
             Map profile = (Map) Mapl.toMaplist(user);

@@ -40,7 +40,6 @@ public class DruidConfiguration {
         //控制台管理用户
         String user = env.getProperty("spring.datasource.druid.stat-view-servlet.login-username");
         String password =  env.getProperty("spring.datasource.druid.stat-view-servlet.login-password");
-        System.out.println("user"+user);
         servletRegistrationBean.addInitParameter("loginUsername", user);
         servletRegistrationBean.addInitParameter("loginPassword", password);
         //是否能够重置数据 禁用HTML页面上的“Reset All”功能

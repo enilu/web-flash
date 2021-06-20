@@ -1,6 +1,6 @@
 # web-flash代码生成工具
- 
-本项目提供了基于IDEA的插件来生成代码,你可以再idea插件仓库中搜索webflash-generator，或者直接从本地安装插件：flash-generator/idea-plugin.jar即可
+
+本项目提供了基于IDEA的插件来生成代码,你可以在idea插件仓库中搜索webflash-generator，或者直接从本地安装插件：flash-generator/idea-plugin.jar即可
 用法如下：
 
 - 写好实体类，例如：
@@ -22,7 +22,7 @@ public class Boy extends BaseEntity {
     private String name;
 
 }
-``` 
+```
 - 上面实体类注意事项
     - @Table注解要使用org.hibernate.annotations.Table 不要使用javax.persistence.Table
     - @Table注解 必须配置表名(applyiesTo)和注释(comment)
@@ -30,17 +30,17 @@ public class Boy extends BaseEntity {
     - 实体类必须继承BaseEntity
 - 实体类准备好了后,打开实体类，右键选择Generator(或者Alt+Insert)-->web-flash-mvc，弹出如下图所示对话框  
  ![](../img/plugin/generator.jpg)
- 
+
  - 选择web-flash mvc，在弹框中勾选生成选项 
- 
+
  ![](../img/plugin/generator-config.jpg) 
- - 点击生成即可，生成完毕后在vue的router/index.js添加路由，启动api和vue项目，配置上菜单和角色后即可使用
+ - 点击生成即可，生成完毕后在~~vue的router/index.js添加路由~~（新版本web-flash使用动态路由功能，不需要此步骤），启动api和vue项目，配置上菜单和角色后即可使用
         
 
 
 以Boy实体为例,执行代码生成后将会生成如下文件：
 ![code_add](./doc/code_add.jpg)
- 
+
 
 启动flash-api和flash-vue-admin,配置和菜单和角色权限后就可以访问刚刚生成的代码功能了
 ![run code_result](./doc/code_result.jpg)
@@ -54,7 +54,7 @@ public class Boy extends BaseEntity {
 <br>
 
 - Q:生成代码失败？
-- A:没有生成代码的原因又很多：
+- A:没有生成代码的原因有很多：
     - 1.要生成的代码没有编译生成class文件，点击idea菜单rebuild或者通过mvn package 生成项目class文件
     - 2.检查插件运行过程生成的idea运行配置是否和如下一致,尤其是红框部分：
         ![runconfig](./doc/runconfig.png)
@@ -81,7 +81,7 @@ public class Boy extends BaseEntity {
         -ctr api.controller.test  生成controller 如果不需要可以删除该配置
         -sev service.test  生成对应service 如果不需要可以删除该配置
         -repo dao.test 生成对应repository 如果不需要可以删除该配置
-        ```  
+        ```
         - 完整配置如下,具体使用中可以拷贝如下配置做适当调整即可使用：
         ```
         -basePath F:/workspace/personal/web-flash/web-flash -i Boy -u /test -p cn.enilu.flash -f -v all  -ctr api.controller.test -sev service.test -repo dao.test 
@@ -93,5 +93,5 @@ public class Boy extends BaseEntity {
 - A:个人精力有限，没空一个个版本测试；如果执意想用插件，自己拿源码调整去：[https://gitee.com/enilu/webflash-generator](https://gitee.com/enilu/webflash-generator)
 
 
-        
-        
+​        
+​        

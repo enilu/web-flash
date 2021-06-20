@@ -1,8 +1,9 @@
 package cn.enilu.flash.security;
 
 import cn.enilu.flash.bean.core.ShiroUser;
-import cn.enilu.flash.bean.entity.system.User;
+import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.service.system.UserService;
+import cn.enilu.flash.utils.HttpUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authc.AuthenticationException;
@@ -30,6 +31,8 @@ public class ApiRealm extends AuthorizingRealm {
     private UserService userService;
     @Autowired
     private ShiroFactroy shiroFactroy;
+    @Autowired
+    private TokenCache tokenCache;
 
 
     /**
@@ -45,9 +48,7 @@ public class ApiRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        String username = JwtUtil.getUsername(principals.toString());
-
-        ShiroUser user = shiroFactroy.shiroUser(userService.findByAccount(username));
+        ShiroUser user =  tokenCache.getUser(HttpUtil.getToken());
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         simpleAuthorizationInfo.addRoles(user.getRoleCodes());
         Set<String> permission = user.getPermissions();
@@ -68,12 +69,7 @@ public class ApiRealm extends AuthorizingRealm {
         if (username == null) {
             throw new AuthenticationException("token invalid");
         }
-
-        User user = userService.findByAccount(username);
-        if(user==null){
-            throw new AuthenticationException("token invalid");
-        }
-        ShiroUser userBean = ShiroFactroy.me().shiroUser(user);
+        ShiroUser userBean =tokenCache.getUser(token);
         if (userBean == null) {
             throw new AuthenticationException("User didn't existed!");
         }

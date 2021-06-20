@@ -1,4 +1,13 @@
 # change log
+## Latest
+### Issues
+
+### Fixes
+- Fix 参数管理中参数值长度校验问题
+- Fix 自动生成hibernate_sequence的问题
+- Fix 包装类命名单词错误
+
+
 ## 1.9
 
 [gitee](https://gitee.com/enilu/web-flash/releases/1.9)

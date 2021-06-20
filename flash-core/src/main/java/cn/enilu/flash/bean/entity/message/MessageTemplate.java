@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 @Entity(name = "t_message_template")
 @Table(appliesTo = "t_message_template", comment = "消息模板")
 public class MessageTemplate extends BaseEntity {
-    @Column(name = "code", columnDefinition = "VARCHAR(32) COMMENT '编号'")
+    @Column(name = "code", columnDefinition = "VARCHAR(64) COMMENT '编号'")
     @NotBlank(message = "编号不能为空")
     private String code;
     @NotBlank(message = "标题不能为空")

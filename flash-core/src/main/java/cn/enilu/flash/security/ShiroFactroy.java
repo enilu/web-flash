@@ -64,7 +64,7 @@ public class ShiroFactroy {
     }
 
 
-    public ShiroUser shiroUser(User user) {
+    public ShiroUser shiroUser(String token,User user) {
         ShiroUser shiroUser = tokenCache.getUser(HttpUtil.getToken());
         if (shiroUser != null) {
             return shiroUser;
@@ -103,7 +103,7 @@ public class ShiroFactroy {
         shiroUser.setPermissions(permissions);
 
         shiroUser.setUrls(resUrls);
-        tokenCache.setUser(HttpUtil.getToken(), shiroUser);
+        tokenCache.setUser(token, shiroUser);
         return shiroUser;
     }
 
