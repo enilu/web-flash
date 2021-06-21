@@ -9,6 +9,7 @@ import cn.enilu.flash.dao.message.MessageRepository;
 import cn.enilu.flash.dao.message.MessagesenderRepository;
 import cn.enilu.flash.dao.message.MessagetemplateRepository;
 import cn.enilu.flash.service.BaseService;
+import cn.enilu.flash.service.message.email.DefaultEmailSender;
 import cn.enilu.flash.service.message.email.EmailSender;
 import cn.enilu.flash.service.message.sms.SmsSender;
 import cn.enilu.flash.utils.StringUtil;
@@ -19,6 +20,7 @@ import org.nutz.lang.Lang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamSource;
 import org.springframework.stereotype.Service;
 
@@ -34,12 +36,16 @@ import java.util.*;
 @Service
 public class MessageService extends BaseService<Message, Long, MessageRepository> {
     private Logger logger = LoggerFactory.getLogger(getClass());
+    @Value("${spring.mail.username}")
+    private String from;
     @Autowired
     private MessageRepository messageRepository;
     @Autowired
     private MessagesenderRepository messagesenderRepository;
     @Autowired
     private MessagetemplateRepository messagetemplateRepository;
+    @Autowired
+    private DefaultEmailSender defaultEmailSender;
 
 
     public boolean delete(String ids) {
@@ -48,12 +54,46 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
         return true;
     }
 
+    /**
+     *
+     * @param tplCode
+     * @param to
+     * @param cc
+     * @param title
+     * @param dataMap
+     */
+    public void sendTplEmail(String tplCode,  String to, String cc, String title, Map<String, Object> dataMap) {
+        MessageTemplate messageTemplate = messagetemplateRepository.findByCode(tplCode);
+        String content = getContent(messageTemplate.getContent(), dataMap);
+        sendEmailMessage(tplCode, from, to, cc, title, content, messageTemplate, null, null);
+    }
+
+    /**
+     *
+     * @param tplCode
+     * @param from
+     * @param to
+     * @param cc
+     * @param title
+     * @param dataMap
+     */
     public void sendTplEmail(String tplCode, String from, String to, String cc, String title, Map<String, Object> dataMap) {
         MessageTemplate messageTemplate = messagetemplateRepository.findByCode(tplCode);
         String content = getContent(messageTemplate.getContent(), dataMap);
         sendEmailMessage(tplCode, from, to, cc, title, content, messageTemplate, null, null);
     }
 
+    /**
+     *
+     * @param tplCode
+     * @param from
+     * @param to
+     * @param cc
+     * @param title
+     * @param attachmentFilename
+     * @param inputStreamSource
+     * @param dataMap
+     */
     public void sendTplEmail(String tplCode, String from, String to, String cc, String title,
                              String attachmentFilename, InputStreamSource inputStreamSource,
                              Map<String, Object> dataMap) {
@@ -61,7 +101,9 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
         String content = getContent(messageTemplate.getContent(), dataMap);
         sendEmailMessage(tplCode, from, to, cc, title, content, messageTemplate, attachmentFilename, inputStreamSource);
     }
-
+    public void sendSimpleEmail(String to, String cc, String title, String body) {
+        sendEmailMessage(null, from, to, cc, title, body, null, null, null);
+    }
     public void sendSimpleEmail(String tplCode, String from, String to, String cc, String title, String... args) {
         MessageTemplate messageTemplate = messagetemplateRepository.findByCode(tplCode);
         String content = getContent(messageTemplate.getContent(), args);
@@ -92,14 +134,17 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
                                   String content, MessageTemplate messageTemplate,
                                   String attachmentFilename, InputStreamSource inputStreamSource) {
         try {
-            EmailSender emailSender = getEmailSender(messageTemplate);
+            EmailSender emailSender = defaultEmailSender;
+            if(messageTemplate!=null) {
+                emailSender = getEmailSender(messageTemplate);
+            }
             boolean isSuccess = false;
             if (inputStreamSource != null) {
                 isSuccess = emailSender.sendEmail(from, to, cc, title, content, attachmentFilename, inputStreamSource);
             } else {
                 isSuccess = emailSender.sendEmail(from, to, cc, title, content);
             }
-            saveMessage(1, tplCode, to, content, isSuccess);
+            saveMessage(1, StringUtil.isNotEmpty(tplCode)?tplCode:"no_template", to, content, isSuccess);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             saveMessage(1, tplCode, to, content, false);
@@ -120,13 +165,7 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
         return StrSubstitutor.replace(template, dataMap);
     }
 
-    public static void main(String[] args) {
-        Map map = new HashMap();
-        map.put("code", 11122);
-        String template = "短信验证码为${code},谨慎保存";
-        String ret = new MessageService().getContent(template, map);
-        System.out.println(ret);
-    }
+
 
     /**
      * 保存消息发送记录
@@ -141,7 +180,6 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
         Message message = new Message();
         message.setType(type);
         message.setTplCode(tplCode);
-        message.setType(0);
         message.setState(sendResult ? 1 : 2);
         message.setReceiver(receiver);
         message.setContent(content);
@@ -194,6 +232,14 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
         } else {
             throw new Exception("未配置运营商模版id");
         }
+    }
+
+    public static void main(String[] args) {
+        Map map = new HashMap();
+        map.put("code", 11122);
+        String template = "短信验证码为${code},谨慎保存";
+        String ret = new MessageService().getContent(template, map);
+        System.out.println(ret);
     }
 
 }
