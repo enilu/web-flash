@@ -14,7 +14,7 @@ import javax.persistence.Entity;
 @Entity(name = "t_message")
 @Table(appliesTo = "t_message", comment = "历史消息")
 public class Message extends BaseEntity {
-    @Column(name = "tpl_code", columnDefinition = "VARCHAR(32) COMMENT '模板编码'")
+    @Column(name = "tpl_code", columnDefinition = "VARCHAR(64) COMMENT '模板编码'")
     private String tplCode;
     @Column(name = "content", columnDefinition = "TEXT COMMENT '消息内容'")
     private String content;
