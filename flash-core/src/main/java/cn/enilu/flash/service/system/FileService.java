@@ -72,7 +72,10 @@ public class FileService extends BaseService<FileInfo, Long, FileInfoRepository>
         FileOutputStream outputStream = null;
         File file = new File(configCache.get(ConfigKeyEnum.SYSTEM_FILE_UPLOAD_PATH) + File.separator + UUID.randomUUID().toString() + ".xlsx");
         try {
-
+            File directory = file.getParentFile();
+            if(!directory.exists()){
+                directory.mkdirs();
+            }
             // 定义输出类型
             outputStream = new FileOutputStream(file);
 

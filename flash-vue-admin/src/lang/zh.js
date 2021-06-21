@@ -56,6 +56,7 @@ export default {
     reset: '重置',
     submit: '提交',
     cancel: '取消',
+    close: '关闭',
     clear: '清除',
     back: '返回',
     export: '导出',

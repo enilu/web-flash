@@ -54,6 +54,7 @@ export default {
     reset: 'Reset',
     submit: 'Submit',
     cancel: 'Cancel',
+    close: 'Close',
     clear: 'Clear',
     back: 'Back',
     export: 'Export',

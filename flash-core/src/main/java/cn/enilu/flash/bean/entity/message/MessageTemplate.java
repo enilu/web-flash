@@ -35,7 +35,7 @@ public class MessageTemplate extends BaseEntity {
     @Column(name = "id_message_sender", columnDefinition = "BIGINT COMMENT '发送者id'")
     @NotNull(message = "发送器不能为空")
     private Long idMessageSender;
-    @Column(name = "type", columnDefinition = "VARCHAR(32) COMMENT '消息类型,0:短信,1:邮件'")
+    @Column(name = "type", columnDefinition = "INT COMMENT '消息类型,0:短信,1:邮件'")
     private Integer type;
     @JoinColumn(name = "id_message_sender", referencedColumnName = "id", columnDefinition = "BIGINT comment '发送者id'", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @ManyToOne(fetch = FetchType.EAGER)

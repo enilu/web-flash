@@ -21,6 +21,11 @@ export default {
         cfgName: undefined,
         cfgValue: undefined
       },
+      dialog:{
+        show:false,
+        title:'',
+        content:'',
+      },
       total: 0,
       list: null,
       listLoading: true,
@@ -200,6 +205,11 @@ export default {
         window.location.href= getApiUrl() + '/file/download?idFile='+response.data.id
       })
 
+    },
+    showCfgValDialog(data){
+      this.dialog.content = data.cfgValue
+      this.dialog.title= data.cfgName
+      this.dialog.show=true
     }
 
   }
