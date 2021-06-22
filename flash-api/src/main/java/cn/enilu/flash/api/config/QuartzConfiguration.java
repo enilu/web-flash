@@ -1,11 +1,11 @@
-package cn.enilu.flash.service.task;
+package cn.enilu.flash.api.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 @Configuration
-public class QuartzConfigration {
+public class QuartzConfiguration {
 
     @Bean(name = "scheduler")
     public SchedulerFactoryBean schedulerFactory() {
