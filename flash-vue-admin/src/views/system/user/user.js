@@ -242,9 +242,10 @@ export default {
     edit() {
       if (this.checkSel()) {
         this.isAdd = false
-        this.form = Object.assign({}, this.selRow);
-        this.form.statusBool = this.form.statusName === '启用'
-        this.form.password = ''
+        let form = Object.assign({}, this.selRow);
+        form.statusBool = form.statusName === '启用'
+        form.password = ''
+        this.form = form
         this.formTitle = '修改用户'
         this.formVisible = true
       }

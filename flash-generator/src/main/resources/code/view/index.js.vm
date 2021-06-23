@@ -165,7 +165,8 @@ export default {
     edit() {
       if (this.checkSel()) {
         this.isAdd = false
-        this.form = this.selRow
+        let form = Object.assign({}, this.selRow)
+        this.form = form
         this.formTitle = '编辑${table.Label}'
         this.formVisible = true
 
