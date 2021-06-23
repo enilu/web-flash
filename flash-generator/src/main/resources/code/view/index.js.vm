@@ -105,7 +105,7 @@ export default {
       }
     },
     add() {
-      this.formTitle = '添加${table.Label}',
+      this.formTitle = '添加${table.Label}'
       this.formVisible = true
       this.isAdd = true
 
