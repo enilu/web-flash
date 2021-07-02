@@ -13,7 +13,7 @@
 - web-flash具备后台管理类系统的通用的基础功能，而且提供了基于idea intellij的的代码生成插件，可以一键生成前后端页面。
 - web-flash提供了一个后台管理系统和前端h5站点系统
 - 另提供Material Design风格的单体版：[material-admin](https://github.com/enilu/material-admin)
-
+- 另提供[web-flash spring cloud版本](https://gitee.com/enilu/web-flash-spring-cloud)
 ## 目录说明
 - flash-api 后台api服务
 - flash-vue-admin 基于vuejs的后台管理系统

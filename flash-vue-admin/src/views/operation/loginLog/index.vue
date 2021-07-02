@@ -1,13 +1,13 @@
 <template>
   <div class="app-container">
     <div class="block">
-      <el-row  :gutter="24">
+      <el-row :gutter="24">
         <el-col :span="4">
           <el-date-picker type="date" size="mini" placeholder="起始日期" v-model="listQuery.beginTime" value-format="yyyy-MM-dd"
                           style="width: 100%;"></el-date-picker>
         </el-col>
         <el-col :span="4">
-          <el-date-picker type="date" size="mini" placeholder="结束日期" v-model="listQuery.endTime"  value-format="yyyy-MM-dd"
+          <el-date-picker type="date" size="mini" placeholder="结束日期" v-model="listQuery.endTime" value-format="yyyy-MM-dd"
                           style="width: 100%;"></el-date-picker>
         </el-col>
 
@@ -22,51 +22,67 @@
     </div>
 
     <el-table :data="list" v-loading="listLoading" element-loading-text="Loading" border fit highlight-current-row>
-     <el-table-column type="expand">
-       <template slot-scope="props">
-         <el-form label-position="left" inline class="flash-table-expand">
-           <el-form-item label="用户id">
-             <span>{{ props.row.userid }}</span>
-           </el-form-item>
-           <el-form-item label="日志名称">
-             <span>{{ props.row.logname }}</span>
-           </el-form-item>
-           <el-form-item label="用户">
-             <span>{{ props.row.userName }}</span>
-           </el-form-item>
-           <el-form-item label="IP">
-             <span>{{ props.row.ip }}</span>
-           </el-form-item>
-           <el-form-item label="结果">
-             <span>{{ props.row.succeed }}</span>
-           </el-form-item>
-           <el-form-item label="时间">
-             <span>{{ props.row.createtime }}</span>
-           </el-form-item>
-           <el-form-item label="内容">
-             <span>{{ props.row.regularMessage }}</span>
-           </el-form-item>
-         </el-form>
-       </template>
-     </el-table-column>
+      <el-table-column type="expand">
+        <template slot-scope="props">
+          <el-form label-position="left" inline class="flash-table-expand" label-width="120px">
+            <el-row>
+              <el-col :span="12">
+                <el-form-item label="用户id">
+                  <span>{{ props.row.userid }}</span>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="日志名称">
+                  <span>{{ props.row.logname }}</span>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="用户">
+                  <span>{{ props.row.userName }}</span>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="IP">
+                  <span>{{ props.row.ip }}</span>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="结果">
+                  <span>{{ props.row.succeed }}</span>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="时间">
+                  <span>{{ props.row.createtime }}</span>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="内容">
+                  <span>{{ props.row.regularMessage }}</span>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-form>
+        </template>
+      </el-table-column>
 
-     <el-table-column
-       label="用户"
-       prop="userName">
-     </el-table-column>
-     <el-table-column
-       label="IP"
-       prop="ip">
-     </el-table-column>
-     <el-table-column
-       label="日志名称"
-       prop="logname">
-     </el-table-column>
-     <el-table-column
-       label="时间"
-       prop="createtime">
-     </el-table-column>
-   </el-table>
+      <el-table-column
+        label="用户"
+        prop="userName">
+      </el-table-column>
+      <el-table-column
+        label="IP"
+        prop="ip">
+      </el-table-column>
+      <el-table-column
+        label="日志名称"
+        prop="logname">
+      </el-table-column>
+      <el-table-column
+        label="时间"
+        prop="createtime">
+      </el-table-column>
+    </el-table>
 
     <el-pagination
       background
