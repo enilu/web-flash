@@ -3,6 +3,8 @@ import ${table.entityNameLowerFirstChar}Api from '@/api/${table.lastPackageName}
 import permission from '@/directive/permission/index.js'
 
 export default {
+  //如果需要标签页缓存生效，则需要保证name值和菜单管理中的编码值一致
+  name: '${table.entityNameLowerFirstChar}'
   directives: { permission },
   data() {
     return {
