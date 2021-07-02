@@ -60,6 +60,12 @@ export default {
     export: 'Export',
     resetPwd: 'Reset Password'
   },
+  tags:{
+    refresh:'Refresh',
+    close:'Close',
+    closeOthers:'Close Others',
+    closeAll:'Close All'
+  },
   common: {
     mustSelectOne: 'Please select the record to operate!',
     deleteConfirm: 'Are you sure delete the record?',

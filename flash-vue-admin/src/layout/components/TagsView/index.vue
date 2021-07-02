@@ -17,10 +17,10 @@
       </router-link>
     </scroll-pane>
     <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
-      <li @click="refreshSelectedTag(selectedTag)">Refresh</li>
-      <li v-if="!(selectedTag.meta&&selectedTag.meta.affix)" @click="closeSelectedTag(selectedTag)">Close</li>
-      <li @click="closeOthersTags">Close Others</li>
-      <li @click="closeAllTags(selectedTag)">Close All</li>
+      <li @click="refreshSelectedTag(selectedTag)">{{ $t('tags.refresh') }}</li>
+      <li v-if="!(selectedTag.meta&&selectedTag.meta.affix)" @click="closeSelectedTag(selectedTag)">{{ $t('tags.close') }}</li>
+      <li @click="closeOthersTags">{{ $t('tags.closeOthers') }}</li>
+      <li @click="closeAllTags(selectedTag)">{{ $t('tags.closeAll') }}</li>
     </ul>
   </div>
 </template>
@@ -169,6 +169,7 @@ export default {
       }
     },
     openMenu(tag, e) {
+      console.log('tag',tag)
       const menuMinWidth = 105
       const offsetLeft = this.$el.getBoundingClientRect().left // container margin left
       const offsetWidth = this.$el.offsetWidth // container width

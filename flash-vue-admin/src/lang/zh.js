@@ -62,6 +62,12 @@ export default {
     export: '导出',
     resetPwd: '重置密码'
   },
+  tags:{
+    refresh:'刷新页面',
+    close:'关闭当前',
+    closeOthers:'关闭其他',
+    closeAll:'关闭所有'
+  },
   common: {
     mustSelectOne: '请选中操作项!',
     deleteConfirm: '你确认删除该记录？',
