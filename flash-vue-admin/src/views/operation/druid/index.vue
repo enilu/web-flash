@@ -11,6 +11,7 @@
 
 <script>
   export default {
+    name:'druid',
     created: function () {
       this.init()
     },

@@ -4,6 +4,7 @@ import { menuTreeListByRoleId } from '@/api/system/menu'
 import permission from '@/directive/permission/index.js'
 
 export default {
+  name:'role',
   directives: { permission },
   data() {
     return {

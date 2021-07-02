@@ -53,9 +53,9 @@ export const constantRoutes = [
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
-      name: 'Dashboard',
+      name: 'dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'dashboard', icon: 'dashboard', affix: true }
+      meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
     }]
   },
   {
@@ -78,6 +78,7 @@ export const constantRoutes = [
 ]
 
 const createRouter = () => new Router({
+  mode: 'history', // 去掉url中的#
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })

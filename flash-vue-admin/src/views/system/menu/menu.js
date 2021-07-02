@@ -5,7 +5,7 @@ import IconSelect from '@/components/IconSelect'
 
 export default {
   directives: { permission },
-  name: 'treeTableDemo',
+  name: 'menu',
   components: { treeTable, IconSelect },
   data() {
     return {

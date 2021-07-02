@@ -1,6 +1,7 @@
 import {  getList } from '@/api/cms/contacts'
 
 export default {
+  name: 'contacts',
   data() {
     return {
       listQuery: {

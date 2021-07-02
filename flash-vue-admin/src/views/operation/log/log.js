@@ -1,8 +1,9 @@
-import { clear, getList } from '@/api/system/log'
+import {clear, getList} from '@/api/system/log'
 import permission from '@/directive/permission/index.js'
 
 export default {
-  directives: { permission },
+  name: 'log',
+  directives: {permission},
   data() {
     return {
       options: [{

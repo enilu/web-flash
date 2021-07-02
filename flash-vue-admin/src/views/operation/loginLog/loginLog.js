@@ -1,8 +1,9 @@
-import { clear, getList } from '@/api/system/loginLog'
+import {clear, getList} from '@/api/system/loginLog'
 import permission from '@/directive/permission/index.js'
 
 export default {
-  directives: { permission },
+  name: 'loginLog',
+  directives: {permission},
   data() {
     return {
       listQuery: {

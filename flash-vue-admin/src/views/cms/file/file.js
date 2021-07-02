@@ -2,6 +2,7 @@ import { getList } from '@/api/cms/fileInfo'
 import { getApiUrl } from '@/utils/utils'
 
 export default {
+  name: 'file',
   data() {
     return {
       listQuery: {

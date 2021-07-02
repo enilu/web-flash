@@ -2,6 +2,7 @@ import { remove, getList, save, disable, enable } from '@/api/system/task'
 import permission from '@/directive/permission/index.js'
 
 export default {
+  name:'task',
   directives: { permission },
   data() {
     return {

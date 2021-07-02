@@ -1,4 +1,7 @@
 # change log
+##Latest
+### Issues
+- Add 启用keep-Alive保存标签页状态
 ## 2.0
 
 [gitee](https://gitee.com/enilu/web-flash/releases/2.0)

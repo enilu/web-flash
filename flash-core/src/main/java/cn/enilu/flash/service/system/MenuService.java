@@ -190,13 +190,10 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
 
                 RouterMenu menu = new RouterMenu();
                 menu.setPath(String.valueOf(source[4]));
-                menu.setName(String.valueOf(source[3]));
+                menu.setName(String.valueOf(source[8]));
                 MenuMeta meta = new MenuMeta();
                 meta.setIcon(String.valueOf(source[1]));
-                //如果使用前端vue-i18n对菜单进行国际化，则title設置为code，且code需要与国际化资源文件中route节点下的key值一致
-                meta.setTitle(String.valueOf(source[8]));
-                //如果不需要做国际化，则title直接设置后台管理配置的菜单标题即可
-                //meta.setTitle(String.valueOf(source[3]));
+                meta.setTitle(String.valueOf(source[3]));
                 menu.setNum(Integer.valueOf(source[7].toString()));
                 menu.setParentId(Long.valueOf(source[2].toString()));
                 if(source[9]!=null) {

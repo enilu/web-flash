@@ -6,6 +6,7 @@ import { roleTreeListByIdUser } from '@/api/system/role'
 import permission from '@/directive/permission/index.js'
 
 export default {
+  name:'mgr',
   directives: { permission },
   data() {
     return {

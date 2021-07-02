@@ -8,7 +8,7 @@ import { getApiUrl } from '@/utils/utils'
 import { getToken } from '@/utils/auth'
 
 export default {
-  name: 'Tinymce',
+  name: 'editArticle',
   components: { editorImage },
   props: {
     id: {

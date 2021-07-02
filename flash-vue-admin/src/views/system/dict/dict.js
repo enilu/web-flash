@@ -1,8 +1,9 @@
-import { remove, getList, save, update } from '@/api/system/dict'
+import {remove, getList, save, update} from '@/api/system/dict'
 import permission from '@/directive/permission/index.js'
 
 export default {
-  directives: { permission },
+  name: 'dict',
+  directives: {permission},
   data() {
     return {
       formVisible: false,
@@ -20,8 +21,8 @@ export default {
       },
       rules: {
         name: [
-          { required: true, message: '请输入字典名称', trigger: 'blur' },
-          { min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur' }
+          {required: true, message: '请输入字典名称', trigger: 'blur'},
+          {min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur'}
         ]
 
       },
@@ -104,7 +105,7 @@ export default {
             dictValues += item['key'] + ':' + item['value'] + ';'
           }
           if (this.form.id !== '') {
-            update({ id: self.form.id, dictName: dictName, dictValues: dictValues }).then(response => {
+            update({id: self.form.id, dictName: dictName, dictValues: dictValues}).then(response => {
               this.$message({
                 message: '提交成功',
                 type: 'success'
@@ -113,7 +114,7 @@ export default {
               self.formVisible = false
             })
           } else {
-            save({ dictName: dictName, dictValues: dictValues }).then(response => {
+            save({dictName: dictName, dictValues: dictValues}).then(response => {
               this.$message({
                 message: '提交成功',
                 type: 'success'
@@ -137,7 +138,7 @@ export default {
       })
       return false
     },
-    editItem(record){
+    editItem(record) {
       this.selRow = record
       this.edit()
     },
@@ -147,15 +148,15 @@ export default {
         this.formTitle = '修改字典'
         var detail = this.selRow.detail.split(',')
         var details = []
-        detail.forEach(function(val, index) {
+        detail.forEach(function (val, index) {
           var arr = val.split(':')
-          details.push({ 'key': arr[0], 'value': arr[1] })
+          details.push({'key': arr[0], 'value': arr[1]})
         })
-        this.form = { name: this.selRow.name, id: this.selRow.id, details: details, detail: this.selRow.detail }
+        this.form = {name: this.selRow.name, id: this.selRow.id, details: details, detail: this.selRow.detail}
         this.formVisible = true
       }
     },
-    removeItem(record){
+    removeItem(record) {
       this.selRow = record
       this.remove()
     },
@@ -190,7 +191,7 @@ export default {
     },
     removeDetail(detail) {
       var details = []
-      this.form.details.forEach(function(val, index) {
+      this.form.details.forEach(function (val, index) {
         if (detail.key !== val.key) {
           details.push(val)
         }

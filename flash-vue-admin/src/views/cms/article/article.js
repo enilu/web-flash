@@ -3,6 +3,7 @@ import { getApiUrl } from '@/utils/utils'
 import permission from '@/directive/permission/index.js'
 
 export default {
+  name: 'article',
   directives: { permission },
   data() {
     return {

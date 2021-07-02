@@ -2,6 +2,7 @@ import { remove, getList, save } from '@/api/cms/channel'
 import permission from '@/directive/permission/index.js'
 
 export default {
+  name: 'channel',
   directives: { permission },
   data() {
     return {

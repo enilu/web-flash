@@ -7,7 +7,7 @@
     <div class="right-menu">
       <template>
         <search id="header-search" class="right-menu-item" title="快速入口" />
-        <a class="right-menu-item" target="_blank" title="文档" href="https://enilu.gitee.io/web-flash" style="vertical-align: top;"><i class="el-icon-document"></i></a>
+        <a class="right-menu-item" target="_blank" title="文档" href="http://webflash.enilu.cn" style="vertical-align: top;"><i class="el-icon-document"></i></a>
           <lang-select class="international right-menu-item"/>
         </template>
         <el-dropdown class="avatar-container right-menu-item" trigger="click">

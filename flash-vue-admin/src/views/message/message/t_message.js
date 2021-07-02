@@ -2,6 +2,7 @@ import { clear, getList, save } from '@/api/message/message'
 import permission from '@/directive/permission/index.js'
 
 export default {
+  name: 'msg',
   directives: { permission },
   data() {
     return {

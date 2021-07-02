@@ -55,16 +55,18 @@
 
 **注意**
 - 本项目采用i18n国际化，左侧菜单的名称并没有使用上面配置的菜单名称，而是根据上面配置的菜单编码对应的国际化资源文件中的具体值：flash-vue-admin/src/lang/zh.js（en.js).
-- 如果不想使用国际化，想直接从数据库中获取菜单名称作为左侧菜单树的名称，参考MenuService类中的transferRouteMenu 方法里的相关注释说明。
-  ```java
-  private List<RouterMenu> transferRouteMenu(List menus) {
-              ***
-              ***
-              //如果使用前端vue-i18n对菜单进行国际化，则title設置为code，且code需要与国际化资源文件中route节点下的key值一致
-              meta.setTitle(String.valueOf(source[8]));
-              //如果不需要做国际化，则title直接设置后台管理配置的菜单标题即可
-              //meta.setTitle(String.valueOf(source[3]));
-              ***
-              ***
-  }
-  ```
+- 如果不想使用国际化，想直接从数据库中获取菜单名称作为左侧菜单树的名称，则需要修改以下两处内容：
+    - SidebarItem.vue,修改下面内容使得菜单直接从数据库中获取
+    ```vuejs
+    将：
+    :title="generateTitle(**.name)" 
+    修改为
+    :title="**.meta.title" 
+    ```
+    - TagsView/index.vue，修改一下内容使得标签页内容直接从数据库中获取
+    ```vuejs
+    将
+    {{ generateTitle(tag.name) }}
+    修改为：
+    {{ tag.meta.title }}
+    ```

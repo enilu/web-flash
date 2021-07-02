@@ -3,6 +3,7 @@ import { queryAll } from '@/api/message/sender'
 import permission from '@/directive/permission/index.js'
 
 export default {
+  name: 'msgTpl',
   directives: { permission },
   data() {
     return {

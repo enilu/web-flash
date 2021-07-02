@@ -19,7 +19,6 @@ import 'echarts/map/js/world'
 import 'zrender/lib/svg/svg'
 import elementResizeDetectorMaker from "element-resize-detector"
 export default {
-
   name: 'dashboard',
   components: {
     chart: ECharts

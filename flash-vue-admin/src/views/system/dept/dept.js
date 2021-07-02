@@ -4,7 +4,7 @@ import permission from '@/directive/permission/index.js'
 
 export default {
   directives: { permission },
-  name: 'customTreeTableDemo',
+  name: 'dept',
   components: { treeTable },
   data() {
     return {
