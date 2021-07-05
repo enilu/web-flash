@@ -70,3 +70,10 @@
     修改为：
     {{ tag.meta.title }}
     ```
+    - src/permission.js,修改页面标题为非国际化
+    ```javascript
+      将：
+      document.title = getPageTitle(i18n.t('route.'+to.name))
+      修改为：
+      document.title = to.meta.title
+    ```

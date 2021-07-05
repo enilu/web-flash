@@ -5,10 +5,12 @@ import cn.enilu.flash.bean.constant.state.ManagerStatus;
 import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.vo.front.Rets;
+import cn.enilu.flash.bean.vo.node.RouterMenu;
 import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.core.log.LogManager;
 import cn.enilu.flash.core.log.LogTaskFactory;
 import cn.enilu.flash.security.ShiroFactroy;
+import cn.enilu.flash.service.system.MenuService;
 import cn.enilu.flash.service.system.UserService;
 import cn.enilu.flash.utils.HttpUtil;
 import cn.enilu.flash.utils.MD5;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,6 +42,8 @@ public class AccountController extends BaseController {
     private UserService userService;
     @Autowired
     private TokenCache tokenCache;
+    @Autowired
+    private MenuService menuService;
 
     /**
      * 用户登录<br>
@@ -98,14 +103,15 @@ public class AccountController extends BaseController {
             if(user==null){
                 //该用户可能被删除
                 return Rets.expire();
-
             }
             if (StringUtil.isEmpty(user.getRoleid())) {
                 return Rets.failure("该用户未配置权限");
             }
             ShiroUser shiroUser = tokenCache.getUser(getToken());
+            List<RouterMenu> list = menuService.getSideBarMenus(shiroUser.getRoleList());
             Map map = Maps.newHashMap("name", user.getName(), "role", "admin", "roles", shiroUser.getRoleCodes());
             map.put("permissions", shiroUser.getUrls());
+            map.put("menus",list);
             Map profile = (Map) Mapl.toMaplist(user);
             profile.put("dept", shiroUser.getDeptName());
             profile.put("roles", shiroUser.getRoleNames());

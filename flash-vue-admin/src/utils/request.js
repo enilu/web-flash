@@ -41,6 +41,7 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
+    console.log('response',response)
     const res = response.data
     if(response.headers.token){
       //如果后台通过header返回token，说明token已经更新，则更新客户端本地token

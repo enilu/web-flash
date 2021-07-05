@@ -14,8 +14,8 @@ const whiteList = ['/login'] // no redirect whitelist
 router.beforeEach(async(to, from, next) => {
   // start progress bar
   NProgress.start()
-  // set page title
-  document.title = getPageTitle(i18n.t('route.'+to.meta.title))
+  // set page title,如果不使用国际化,使用： document.title = to.meta.title
+  document.title = getPageTitle(i18n.t('route.'+to.name))
 
   // determine whether the user has logged in
   const hasToken = getToken()
@@ -32,9 +32,8 @@ router.beforeEach(async(to, from, next) => {
       } else {
         try {
           // get user info
-          store.dispatch('user/getInfo')
-          const accessRoutes  = await store.dispatch('menu/getSideMenus');
-          router.addRoutes(accessRoutes)
+          const userInfo = await store.dispatch('user/getInfo')
+          router.addRoutes(userInfo.routes)
           next({ ...to, replace: true })
         } catch (error) {
           // remove token and go to login page to re-login

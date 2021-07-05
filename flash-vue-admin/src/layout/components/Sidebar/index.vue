@@ -31,7 +31,7 @@ export default {
       'sidebar'
     ]),
     routes() {
-      return this.$store.state.menu.routes
+      return this.$store.state.user.routes
     },
     activeMenu() {
       const route = this.$route

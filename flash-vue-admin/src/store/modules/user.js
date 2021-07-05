@@ -1,14 +1,18 @@
 import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
+import {traverseRoutes} from '@/utils/route'
 import { resetRouter } from '@/router'
 import { listForRouter } from '@/api/system/menu'
+import {constantRoutes} from '@/router'
 import router from '@/router'
 const state = {
   token: getToken(),
   name: '',
   avatar: '',
   permissions:null,
-  roles:[]
+  roles:[],
+  routes: [],
+  addRoutes: []
 }
 
 const mutations = {
@@ -29,6 +33,10 @@ const mutations = {
   },
   SET_ROLES:(state,roles) => {
     state.roles = roles
+  },
+  SET_ROUTES: (state, routes) => {
+    state.addRoutes = routes
+    state.routes = constantRoutes.concat(routes)
   }
 }
 
@@ -41,7 +49,6 @@ const actions = {
         const { data } = response
         commit('SET_TOKEN', data.token)
         setToken(data.token)
-
         resolve()
       }).catch(error => {
         reject(error)
@@ -54,25 +61,18 @@ const actions = {
     return new Promise((resolve, reject) => {
       getInfo().then(response => {
         const { data } = response
-        if (!data) {
-          reject('Verification failed, please Login again.')
-        }
-        console.log('data',data)
-        const { name, profile,permissions,roles } = data
+        const { name, profile,permissions,roles,menus } = data
         commit('SET_NAME', name)
         commit('SET_AVATAR', profile.avatar)
         commit('SET_PROFILE',profile)
         commit('SET_ROLES',roles)
         commit('SET_PERMISSIONS',permissions)
+        const routes = traverseRoutes(menus)
+        commit('SET_ROUTES', routes);
+        data.routes = routes
         resolve(data)
       }).catch(error => {
-        console.log('user',error)
-        reject('Verification failed, please Login again.')
-        router.replace({
-          path: '/login',
-          query:{redirect:router.currentRoute.path}
-        })
-        //reject(error)
+        reject(error)
       })
     })
   },

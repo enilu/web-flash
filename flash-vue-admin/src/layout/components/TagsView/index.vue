@@ -45,7 +45,7 @@
         return this.$store.state.tagsView.visitedViews
       },
       routes() {
-        return this.$store.state.menu.routes
+        return this.$store.state.user.routes
       }
     },
     watch: {
@@ -67,7 +67,6 @@
     },
     methods: {
       isActive(route) {
-        console.log('isActive',route)
         return route.path === this.$route.path
       },
       isAffix(tag) {

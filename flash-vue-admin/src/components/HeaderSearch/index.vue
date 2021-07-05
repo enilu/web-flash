@@ -37,7 +37,7 @@ export default {
   },
   computed: {
     routes() {
-      return  this.$store.state.menu.routes
+      return  this.$store.state.user.routes
     }
   },
   watch: {

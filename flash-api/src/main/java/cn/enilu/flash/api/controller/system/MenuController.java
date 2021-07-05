@@ -2,18 +2,18 @@ package cn.enilu.flash.api.controller.system;
 
 import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.core.BussinessLog;
-import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.entity.system.Menu;
 import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Rets;
-import cn.enilu.flash.bean.vo.node.*;
-import cn.enilu.flash.cache.TokenCache;
+import cn.enilu.flash.bean.vo.node.MenuNode;
+import cn.enilu.flash.bean.vo.node.Node;
+import cn.enilu.flash.bean.vo.node.TreeSelectNode;
+import cn.enilu.flash.bean.vo.node.ZTreeNode;
 import cn.enilu.flash.service.system.LogObjectHolder;
 import cn.enilu.flash.service.system.MenuService;
 import cn.enilu.flash.service.system.impl.ConstantFactory;
-import cn.enilu.flash.utils.HttpUtil;
 import cn.enilu.flash.utils.Maps;
 import cn.enilu.flash.utils.StringUtil;
 import com.google.common.collect.Lists;
@@ -40,16 +40,6 @@ public class MenuController extends BaseController {
     private Logger logger = LoggerFactory.getLogger(MenuController.class);
     @Autowired
     private MenuService menuService;
-    @Autowired
-    private TokenCache tokenCache;
-
-    @GetMapping(value = "/listForRouter")
-    public Object listForRouter() {
-        ShiroUser shiroUser = tokenCache.getUser(HttpUtil.getToken());
-
-        List<RouterMenu> list = menuService.getSideBarMenus(shiroUser.getRoleList());
-        return Rets.success(list);
-    }
 
     @GetMapping(value = "/list")
     public Object list() {
@@ -108,12 +98,11 @@ public class MenuController extends BaseController {
     @BussinessLog(value = "删除菜单", key = "id")
     @RequiresPermissions(value = {Permission.MENU_DEL})
     public Object remove(@RequestParam Long id) {
-        logger.info("id:{}", id);
         if (id == null) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         //演示环境不允许删除初始化的菜单
-        if (id.intValue() < 70) {
+        if (id.intValue() <= 72) {
             return Rets.failure("演示环境不允许删除初始菜单");
         }
         //缓存菜单的名称
