@@ -31,7 +31,8 @@ module.exports = {
                             {text:'code-generator',link:'/ecosystem/code-generator.html'},
                             {text:'IDEA code plugin',link:'https://gitee.com/enilu/webflash-generator'},
                             {text:'database-doc-generator',link:'/ecosystem/database-doc-generator.html'},
-                            {text:'material-admin(单体版本)',link:'https://enilu.gitee.io/material-admin'}
+                            {text:'material-admin(单体版本)',link:'https://enilu.gitee.io/material-admin'},
+                            {text:'微服务版(spring cloud)',link:'/ecosystem/spring-cloud'}
                         ]
                     },
                     {text:'帮助',items:[

@@ -1,7 +1,8 @@
 # change log
 ##Latest
 ### Issues
-- Add 启用keep-Alive保存标签页状态
+- Issue 启用keep-Alive保存标签页状态
+- Change 路由模式由默认的hash调整为history
 ## 2.0
 
 [gitee](https://gitee.com/enilu/web-flash/releases/2.0)
