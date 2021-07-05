@@ -6,4 +6,4 @@ spring:
     password: webflash190602@ABC
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create

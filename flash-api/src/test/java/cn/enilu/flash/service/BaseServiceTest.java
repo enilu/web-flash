@@ -37,13 +37,14 @@ public class BaseServiceTest extends BaseApplicationStartTest {
 
     @Test
     public void test_02_get() {
-        Boy boy = boyService.get(1L);
-        Assert.assertTrue(boy.getId().intValue() == 1);
+        Long id = boyService.queryAll().get(0).getId();
+        Boy boy = boyService.get(id);
+        Assert.assertTrue(boy.getId().intValue() == id.intValue());
     }
 
     @Test
     public void test_03_get() {
-        SearchFilter searchFilter = SearchFilter.build("name", "张三");
+        SearchFilter searchFilter = SearchFilter.build("name", "李四");
         Boy boy = boyService.get(searchFilter);
         Assert.assertTrue(boy.getAge() == 18);
     }
@@ -93,14 +94,14 @@ public class BaseServiceTest extends BaseApplicationStartTest {
 
     @Test
     public void test_12_count() {
-        long count = boyService.count(SearchFilter.build("name", "张三"));
-        Assert.assertTrue(count == 1);
+        long count = boyService.count(SearchFilter.build("name", "李四"));
+        Assert.assertTrue(count >1);
     }
 
     @Test
     public void test_13_count() {
-        long count = boyService.count(Lists.newArrayList(SearchFilter.build("name", "张三")));
-        Assert.assertTrue(count == 1);
+        long count = boyService.count(Lists.newArrayList(SearchFilter.build("name", "李四")));
+        Assert.assertTrue(count >1);
     }
 
     @Test
@@ -114,7 +115,7 @@ public class BaseServiceTest extends BaseApplicationStartTest {
     @Test
     public void test_15_delete() {
         List<Boy> list = boyService.queryAll();
-        boyService.delete(20L);
+        boyService.delete(1L);
     }
 
     @Test
@@ -127,6 +128,7 @@ public class BaseServiceTest extends BaseApplicationStartTest {
     @Test
     public void test_17_clear() {
         boyService.clear();
+        boyService.truncate();
         long count = boyService.count(Lists.newArrayList());
         Assert.assertTrue(count == 0);
     }
