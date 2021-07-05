@@ -18,17 +18,13 @@
             <artifactId>flash-core</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!--swagger支持-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
         </dependency>
 
-        <!--test-->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--单元测试-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -49,22 +45,22 @@
             </plugin>
             <!-- 以war形式运行 配置结束-->
 
-            <!--以jar包形式单独部署 配置开始-->
+            <!--以jar包形式单独部署 配置开始:并将packaging调整为jar-->
             <!--<plugin>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-                <!--<configuration>-->
-                    <!--<mainClass>cn.enilu.flash.api.ApiApplication</mainClass>-->
-                    <!--<layout>ZIP</layout>-->
-                    <!--<finalName>flash-api</finalName>-->
-                <!--</configuration>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<goals>-->
-                            <!--<goal>repackage</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--<configuration>-->
+            <!--<mainClass>cn.enilu.flash.api.ApiApplication</mainClass>-->
+            <!--<layout>ZIP</layout>-->
+            <!--<finalName>flash-api</finalName>-->
+            <!--</configuration>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<goals>-->
+            <!--<goal>repackage</goal>-->
+            <!--</goals>-->
+            <!--</execution>-->
+            <!--</executions>-->
             <!--</plugin>-->
             <!--以jar包形式单独部署 配置结束-->
 

@@ -24,4 +24,10 @@ public interface DeleteService<ID> {
      * 清空表数据
      */
     void clear();
+
+    /**
+     * 使用truncate table 清空数据
+     *
+     */
+    void truncate();
 }

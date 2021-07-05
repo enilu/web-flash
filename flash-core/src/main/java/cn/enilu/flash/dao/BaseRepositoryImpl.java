@@ -7,8 +7,11 @@ import org.nutz.mapl.Mapl;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.metamodel.EntityType;
+import javax.persistence.metamodel.Metamodel;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -43,11 +46,11 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
 
     @Override
     public List<?> queryObjBySql(String sql, Class<?> klass) {
-         List<Map> list = queryMapBySql(sql);
-         if(list.isEmpty()){
-             return Lists.newArrayList();
-         }
-         List result = Lists.newArrayList();
+        List<Map> list = queryMapBySql(sql);
+        if(list.isEmpty()){
+            return Lists.newArrayList();
+        }
+        List result = Lists.newArrayList();
         for(Map map:list){
             try {
                 Object bean = Mapl.maplistToObj(map, klass);
@@ -100,6 +103,28 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
     @Override
     public Class<T> getDataClass() {
         return klass;
+    }
+
+    @Override
+    public int truncate() {
+        String query = new StringBuilder("TRUNCATE TABLE ")
+                .append(getTableName())
+                .toString();
+        return entityManager.createNativeQuery(query).executeUpdate();
+    }
+
+    /**
+     * 根据entityType获取表名称
+     * @return
+     */
+    private String getTableName() {
+        Metamodel meta = entityManager.getMetamodel();
+        EntityType<T> entityType = (EntityType<T>) meta.entity(klass);
+        Entity t = klass.getAnnotation(Entity.class);
+        String tableName = (t == null)
+                ? entityType.getName().toUpperCase()
+                : t.name();
+        return tableName;
     }
 
     @Override

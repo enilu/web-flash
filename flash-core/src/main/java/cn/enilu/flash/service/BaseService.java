@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.Iterator;
@@ -142,5 +143,10 @@ public abstract class BaseService<T, ID extends Serializable, R extends BaseRepo
     @Override
     public void clear() {
         dao.deleteAllInBatch();
+    }
+    @Transactional
+    @Override
+    public void truncate() {
+        dao.truncate();
     }
 }

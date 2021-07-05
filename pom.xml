@@ -17,9 +17,7 @@
     <properties>
         <spring.boot.version>2.3.11.RELEASE</spring.boot.version>
         <springframework.version>5.2.12.RELEASE</springframework.version>
-        <!-- Log libs -->
-        <slf4j.version>1.7.21</slf4j.version>
-        <logback.version>1.1.7</logback.version>
+
         <!-- Test libs -->
         <junit.version>4.12</junit.version>
         <!--build libs-->
@@ -39,7 +37,6 @@
         <guava.version>20.0</guava.version>
         <mail.version>1.4.7</mail.version>
         <httpcomponents.version>4.4.1</httpcomponents.version>
-        <jackson.version>2.12.0</jackson.version>
         <velocity.version>1.7</velocity.version>
         <quartz.version>2.2.1</quartz.version>
         <ehcache.version>3.3.1</ehcache.version>
@@ -219,24 +216,6 @@
                 <artifactId>commons-httpclient</artifactId>
                 <version>3.1</version>
             </dependency>
-
-            <!-- json lib-->
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-
             <dependency>
                 <groupId>eu.bitwalker</groupId>
                 <artifactId>UserAgentUtils</artifactId>

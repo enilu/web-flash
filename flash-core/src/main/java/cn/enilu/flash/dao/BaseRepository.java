@@ -73,4 +73,9 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
      * @return
      */
     Class<T> getDataClass();
+
+    /**
+     * 使用truncate table 清空数据
+     */
+    int truncate();
 }
