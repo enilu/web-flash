@@ -15,21 +15,21 @@
 - 运行：npm run build:prod可以构建出生产环境的前端部署文件
 - 前端链接的api服务地址为前端地址+prod-api，
 ```
-以本项目演示环境为例,前端地址为：http://flash-admin.enilu.cn
-那么请求的api地址为:http://flash-admin.enilu.cn/prod-api
-可以通过访问http://flash-admin.enilu.cn/prod-api/swagger-ui.html来检测生产环境的api服务是否正常
+以本项目演示环境为例,前端地址为：http://flashadmin.enilu.cn
+那么请求的api地址为:http://flashadmin.enilu.cn/prod-api
+可以通过访问http://flashadmin.enilu.cn/prod-api/swagger-ui.html来检测生产环境的api服务是否正常
 ```
 
-- 用户通过浏览器debug看到的api地址是http://flash-admin.enilu.cn/prod-api/，但是实际上会被代理软件（建议使用nginx)转发到实际的api地址
+- 用户通过浏览器debug看到的api地址是http://flashadmin.enilu.cn/prod-api/，但是实际上会被代理软件（建议使用nginx)转发到实际的api地址
 
 
 下面给出本人的nginx配置供参考：
 ```
 server {
     listen       80;
-    server_name  flash-admin.enilu.cn;
+    server_name  flashadmin.enilu.cn;
 
-    access_log  /data/app/runtime/log/nginx/flash-admin.access.log  main;
+    access_log  /data/app/runtime/log/nginx/flashadmin.access.log  main;
     
     location /{
                 alias /opt/web-flash/admin/;

@@ -2,7 +2,7 @@
 
 ## 简介
 本系统集成了一个简单的CMS内容管理系统功能；主要包括两部分：
-- 后台管理提供了栏目，文章，广告，邀约信息的维护，演示地址：[http://flash-admin.enilu.cn/#/cms/banner](http://flash-admin.enilu.cn/#/cms/banner)
+- 后台管理提供了栏目，文章，广告，邀约信息的维护，演示地址：[http://flashadmin.enilu.cn/banner](http://flashadmin.enilu.cn/banner)
 - 前端提供了一个手机端的站点系统（flash-vue-h5),演示地址:[http://flash-mobile.enilu.cn/#/index](http://flash-mobile.enilu.cn/#/index)
 
 <iframe 

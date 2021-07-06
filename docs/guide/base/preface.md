@@ -30,7 +30,7 @@ web-flash项目本身有readme文件，如果你有丰富的spring boot的和vue
 - flash-generator 代码生成模块，IDEA插件需要配合该模块进行代码生成，如果在代码生成方面你有什么特殊需求，可以直接调整该模块
 
 ## 演示
-- 后台管理(vue版本) [http://flash-admin.enilu.cn](http://flash-admin.enilu.cn)
+- 后台管理(vue版本) [http://flashadmin.enilu.cn](http://flashadmin.enilu.cn)
 - 手机端 [http://flash-mobile.enilu.cn/#/index](http://flash-mobile.enilu.cn/#/index) 打开浏览器后使用debug模式的手机视图模式浏览
 - **建议** 开发之前先将上面两个演示系统的功能查看一遍，这样后续开发可以知道参考哪些功能；演示系统为方便演示给出的权限比较大。过程中请请温柔操作，不要随意删改关键数据。
 

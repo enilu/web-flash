@@ -22,7 +22,7 @@
 - flash-generator 代码生成模块,配合IDEA 代码生成插件[webflash-generator](https://plugins.jetbrains.com/plugin/12648-webflash-generator)使用效果更好
 
 ## 演示
-- 后台管理(vue版本) [http://flash-admin.enilu.cn](http://flash-admin.enilu.cn)
+- 后台管理(vue版本) [http://flashadmin.enilu.cn](http://flashadmin.enilu.cn)
 - 手机端 [http://flash-mobile.enilu.cn/#/index](http://flash-mobile.enilu.cn/#/index) 打开浏览器后使用debug模式的手机视图模式浏览
 
 ## 技术选型

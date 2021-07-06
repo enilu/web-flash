@@ -29,7 +29,7 @@
       }
       ```
   - **资源地址**：资源地址都以斜杠“/”开头，资源地址也有两个用途：
-    - 1.资源地址为浏览器中显示的地址，比如用户管理的资源地址为"/mgr",则演示环境用户管理的地址为"http://flash-admin.enilu.cn/#/mgr"
+    - 1.资源地址为浏览器中显示的地址，比如用户管理的资源地址为"/mgr",则演示环境用户管理的地址为"http://flashadmin.enilu.cn/mgr"
     - 2.资源地址作为前端权限控制的资源表示，比如用户管理下面有个三级菜单配置"添加用户"，资源地址为："/mgr/add",页面使用资源地址作为权限标识对"添加用户"按钮进行权限控制，控制代码如下：
     ```html
     <el-button type="success" size="mini" icon="el-icon-plus" @click.native="add" v-permission="['/mgr/add']">
