@@ -6,7 +6,7 @@ spring:
     password: webflash190602@ABC
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
   activiti:
     check-process-definitions: true
     database-schema-update: update

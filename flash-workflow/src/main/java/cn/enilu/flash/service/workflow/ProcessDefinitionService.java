@@ -9,6 +9,10 @@ import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 /**
@@ -44,4 +48,15 @@ public class ProcessDefinitionService {
         return page;
     }
 
+    public void getProcessDefineXML(HttpServletResponse response, String deploymentId, String resourceName) throws IOException {
+        InputStream inputStream = repositoryService.getResourceAsStream(deploymentId, resourceName);
+        int count = inputStream.available();
+        byte[] bytes = new byte[count];
+        response.setContentType("text/xml");
+        OutputStream outputStream = response.getOutputStream();
+        while (inputStream.read(bytes) != -1) {
+            outputStream.write(bytes);
+        }
+        inputStream.close();
+    }
 }

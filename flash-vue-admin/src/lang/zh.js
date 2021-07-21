@@ -27,7 +27,10 @@ export default {
     msg:'历史消息',
     msgTpl:'消息模板',
     msgSender:'消息发送器',
-    document: '在线文档'
+    document: '在线文档',
+    workFlow:'工作流',
+    processDefinition:'流程定义',
+    startProcessIns: '发起流程'
   },
   navbar: {
     logOut: '退出登录',
@@ -52,6 +55,8 @@ export default {
     add: '添加',
     edit: '修改',
     delete: '删除',
+    view:'查看',
+    deploy: '部署',
     search: '搜索',
     reset: '重置',
     submit: '提交',

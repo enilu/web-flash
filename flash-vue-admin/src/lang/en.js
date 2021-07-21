@@ -26,7 +26,10 @@ export default {
     msg: 'History',
     msgTpl: 'Template',
     msgSender: 'Sender',
-    document: 'Document'
+    document: 'Document',
+    workFlow: 'Work Flow',
+    processDefinition: 'Process Definition',
+    startProcessIns: 'Start'
   },
   navbar: {
     logOut: 'Log Out',
@@ -50,6 +53,8 @@ export default {
     add: 'Add',
     edit: 'Edit',
     delete: 'Delete',
+    view:'View',
+    deploy: 'Deploy',
     search: 'Search',
     reset: 'Reset',
     submit: 'Submit',

@@ -79,6 +79,8 @@ public class ShiroConfig {
         filterRuleMap.put("/file/getImgBase64", "anon");
         filterRuleMap.put("/test/**", "anon");
 
+        //工作流定义文件流
+        filterRuleMap.put("/workflow/process/definition/getDefinitionXML","anon");
         //druid监控地址不拦截
         filterRuleMap.put("/druid/**", "anon");
         //登录登出不拦截
