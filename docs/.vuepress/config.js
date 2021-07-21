@@ -103,6 +103,15 @@ module.exports = {
                         '/guide/action/validator',
                         '/guide/action/deploy'
                     ]
+                },
+                {
+                    title: '其他',
+                    collapsable: false,
+                    children: [
+                        '/guide/other/faq',
+                        '/guide/other/changeLog',
+                        '/guide/other/resource'
+                    ]
                 }
             ],
             '/blog': [

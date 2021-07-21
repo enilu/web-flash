@@ -85,8 +85,7 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
     ![mobile](https://gitee.com/enilu/web-flash/raw/master/docs/flash-mobile.gif)
 
 ## 在线文档
-- [http://enilu.github.io/web-flash](http://enilu.github.io/web-flash)
-- 国内加速版：[http://enilu.gitee.io/web-flash](http://enilu.gitee.io/web-flash)
+- [http://webflash.enilu.cn](http://webflash.enilu.cn)
 
 ## 交流
 - Bugs: [Issues](https://github.com/enilu/web-flash/issues/new)
