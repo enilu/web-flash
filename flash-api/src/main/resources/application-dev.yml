@@ -7,3 +7,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+  activiti:
+    check-process-definitions: true
+    database-schema-update: update
+    history-level: full
+    db-history-used: true
+    process-definition-location-prefix: classpath:/bpmn/

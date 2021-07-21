@@ -12,6 +12,7 @@
         <module>flash-api</module>
         <module>flash-core</module>
         <module>flash-generator</module>
+        <module>flash-workflow</module>
     </modules>
 
     <properties>
@@ -40,7 +41,8 @@
         <velocity.version>1.7</velocity.version>
         <quartz.version>2.2.1</quartz.version>
         <ehcache.version>3.3.1</ehcache.version>
-        <ehcache.core.version>2.6.11</ehcache.core.version>
+        <!--<ehcache.core.version>2.6.11</ehcache.core.version>-->
+        <ehcache.core.version>2.10.6</ehcache.core.version>
         <zxing.version>3.2.1</zxing.version>
         <swagger.version>3.0.0</swagger.version>
         <commons.io.version>2.5</commons.io.version>
@@ -121,7 +123,7 @@
                 <version>${ehcache.version}</version>
             </dependency>
             <dependency>
-                <groupId>net.sf.ehcache</groupId>
+                <groupId>net.sf.ehcache.internal</groupId>
                 <artifactId>ehcache-core</artifactId>
                 <version>${ehcache.core.version}</version>
             </dependency>

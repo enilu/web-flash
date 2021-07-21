@@ -9,3 +9,8 @@ spring:
     hibernate:
       ## 生产环境建议去掉改配置
       ddl-auto: create
+  activiti:
+    check-process-definitions: false
+    database-schema-update: update
+    history-level: full
+    db-history-used: true

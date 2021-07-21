@@ -15,7 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>cn.enilu</groupId>
-            <artifactId>flash-core</artifactId>
+            <artifactId>flash-workflow</artifactId>
             <version>${project.version}</version>
         </dependency>
         <!--swagger支持-->
