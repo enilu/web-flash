@@ -61,6 +61,7 @@
     <el-dialog
       :visible.sync="processDefinitionForm.visible"
       :title="processDefinitionForm.title"
+      @close="closeDrawingWindow"
       width="90%"
       append-to-body
     >

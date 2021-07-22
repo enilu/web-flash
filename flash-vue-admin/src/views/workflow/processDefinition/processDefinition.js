@@ -1,5 +1,6 @@
 import processDefinitionApi from '@/api/workflow/processDefinition'
 import permission from '@/directive/permission/index.js'
+import {getToken} from '@/utils/auth'
 
 export default {
   //如果需要标签页缓存生效，则需要保证name值和菜单管理中的编码值一致
@@ -18,8 +19,8 @@ export default {
         resourceName: '',
         id: ''
       },
-      processDefinitionForm:{
-        title:'',
+      processDefinitionForm: {
+        title: '',
         modelerUrl: "",
         visible: false,
       },
@@ -63,6 +64,7 @@ export default {
   methods: {
     init() {
       this.fetchData()
+      localStorage.setItem("Authorization", getToken())
     },
     fetchData() {
       this.listLoading = true
@@ -126,16 +128,20 @@ export default {
       //如果表单初始化有特殊处理需求,可以在resetForm中处理
     },
     onlineDrawingProcess() {
-      this.processDefinitionForm.title='编辑流程图'
-      this.processDefinitionForm.visible = true;
+      this.processDefinitionForm.title = '编辑流程图'
+      this.processDefinitionForm.visible = true
       localStorage.setItem("VUE_APP_BASE_API", process.env.VUE_APP_BASE_API)
-      this.processDefinitionForm.modelerUrl = "/bpmnjs/index.html?type=addBpmn";
+      this.processDefinitionForm.modelerUrl = "/bpmnjs/index.html?type=addBpmn"
     },
     onlineModificationProcess(data) {
-      this.processDefinitionForm.title='查看流程图'
-      this.processDefinitionForm.visible = true;
+      this.processDefinitionForm.title = '查看流程图'
+      this.processDefinitionForm.visible = true
       localStorage.setItem("VUE_APP_BASE_API", process.env.VUE_APP_BASE_API)
       this.processDefinitionForm.modelerUrl = '/bpmnjs/index.html?type=lookBpmn&deploymentFileUUID=' + data.deploymentId + '&deploymentName=' + encodeURI(data.resourceName);
+    },
+    closeDrawingWindow() {
+      console.log('关闭窗口')
+      this.fetchData()
     },
     save() {
       this.$refs['form'].validate((valid) => {

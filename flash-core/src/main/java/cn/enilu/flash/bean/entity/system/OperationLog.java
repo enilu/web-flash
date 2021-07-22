@@ -30,7 +30,7 @@ public class OperationLog {
     private String logname;
     @Column(columnDefinition = "INT COMMENT '操作用户id'")
     private Integer userid;
-    @Column(columnDefinition = "VARCHAR(64) COMMENT '对应类名'")
+    @Column(columnDefinition = "VARCHAR(128) COMMENT '对应类名'")
     private String classname;
     @Column(columnDefinition = "VARCHAR(32) COMMENT '对应方法名'")
     private String method;

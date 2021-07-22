@@ -27,6 +27,7 @@ import java.io.IOException;
 public class ProcessDefinitionController extends BaseController {
     @Autowired
     private ProcessDefinitionService processDefinitionService;
+
     @GetMapping(value = "/list")
     public Ret list() {
         Page<ProcessDefinitionVo> page = new PageFactory<ProcessDefinitionVo>().defaultPage();
@@ -47,13 +48,11 @@ public class ProcessDefinitionController extends BaseController {
     @PostMapping(value = "/upload")
     public Ret upload(@RequestParam("processFile") MultipartFile multipartFile) throws IOException {
 
-//        if (!multipartFile.isEmpty()) {
-//            String fileName = processDefinitionService.upload(multipartFile);
-//            return AjaxResult.success("操作成功", fileName);
-//
-//        }
-//        return AjaxResult.error("不允许上传空文件！");
-        return Rets.success();
+        if (!multipartFile.isEmpty()) {
+            String fileName = processDefinitionService.uploadAndDeploy(multipartFile);
+            return Rets.success(fileName);
+        }
+        return Rets.failure("上传文件为空");
     }
 
 
@@ -63,11 +62,10 @@ public class ProcessDefinitionController extends BaseController {
      * @param stringBPMN
      * @return
      */
-    @BussinessLog(value = "上传流程流程定义")
-    @PostMapping(value = "/通过stringBPMN添加流程定义")
+    @BussinessLog(value = "通过stringBPMN添加流程定义")
+    @PostMapping(value = "/addDeploymentByString")
     public Ret addDeploymentByString(@RequestParam("stringBPMN") String stringBPMN) {
-//        processDefinitionService.addDeploymentByString(stringBPMN);
-//        return AjaxResult.success();
+        processDefinitionService.deploymentByString(stringBPMN);
         return Rets.success();
 
     }

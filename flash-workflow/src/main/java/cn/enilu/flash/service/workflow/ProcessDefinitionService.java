@@ -6,14 +6,17 @@ import cn.enilu.flash.utils.factory.Page;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.zip.ZipInputStream;
 
 /**
  * descript
@@ -30,14 +33,13 @@ public class ProcessDefinitionService {
         ProcessDefinitionQuery processDefinitionQuery = repositoryService
                 .createProcessDefinitionQuery()
                 .orderByProcessDefinitionId()
-                .orderByProcessDefinitionVersion().desc();
+                .desc();
         List<ProcessDefinition> processDefinitions = processDefinitionQuery.listPage(page.getOffset(),page.getLimit());
         Long count = processDefinitionQuery.count();
         if(count>0) {
             page.setTotal(count.intValue());
 
         }
-
         List<ProcessDefinitionVo> processDefinitionVos = Lists.newArrayList();
         for(ProcessDefinition processDefinition:processDefinitions){
             ProcessDefinitionVo vo = new ProcessDefinitionVo(processDefinition);
@@ -58,5 +60,32 @@ public class ProcessDefinitionService {
             outputStream.write(bytes);
         }
         inputStream.close();
+    }
+
+    public String uploadAndDeploy(MultipartFile file) throws IOException {
+        // 获取上传的文件名
+        String fileName = file.getOriginalFilename();
+        // 得到输入流（字节流）对象
+        InputStream fileInputStream = file.getInputStream();
+        // 文件的扩展名
+        String extension = FilenameUtils.getExtension(fileName);
+
+        if (extension.equals("zip")) {
+            ZipInputStream zip = new ZipInputStream(fileInputStream);
+            repositoryService.createDeployment()//初始化流程
+                    .addZipInputStream(zip)
+                    .deploy();
+        } else {
+            repositoryService.createDeployment()//初始化流程
+                    .addInputStream(fileName, fileInputStream)
+                    .deploy();
+        }
+        return fileName;
+    }
+
+    public void deploymentByString(String stringBPMN) {
+        repositoryService.createDeployment()
+                .addString("CreateWithBPMNJS.bpmn", stringBPMN)
+                .deploy();
     }
 }
