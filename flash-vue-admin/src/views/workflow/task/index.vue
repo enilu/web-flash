@@ -11,32 +11,28 @@
         </el-col>
       </el-row>
       <br>
-      <el-row>
-        <el-col :span="24">
-          <el-button type="success" size="mini" icon="el-icon-plus" @click.native="add" v-permission="['/workflow/request/add']">{{ $t('workflow.startProcessInstance') }}</el-button>
-          <el-button type="primary" size="mini" icon="el-icon-edit" @click.native="edit" v-permission="['/workflow/request/update']">{{ $t('button.edit') }}</el-button>
-          <el-button type="danger" size="mini" icon="el-icon-delete" @click.native="remove" v-permission="['/workflow/request/delete']">{{ $t('button.delete') }}</el-button>
-        </el-col>
-      </el-row>
+
     </div>
 
     <el-table :data="list" v-loading="listLoading" element-loading-text="Loading" border fit highlight-current-row
               @current-change="handleCurrentChange">
+
+      <el-table-column label="申请人">
+        <template slot-scope="scope">
+          {{scope.row.userName}}
+        </template>
+      </el-table-column>
+      <el-table-column label="申请时间">
+        <template slot-scope="scope">
+          {{scope.row.createTime}}
+        </template>
+      </el-table-column>
       <el-table-column label="标题">
         <template slot-scope="scope">
           {{scope.row.title}}
         </template>
       </el-table-column>
-      <el-table-column label="工作流类型">
-        <template slot-scope="scope">
-          {{scope.row.processDefName}}
-        </template>
-      </el-table-column>
-      <el-table-column label="流程实例id">
-        <template slot-scope="scope">
-          {{scope.row.instanceId}}
-        </template>
-      </el-table-column>
+
       <el-table-column label="备注">
         <template slot-scope="scope">
           {{scope.row.descript}}
@@ -49,7 +45,7 @@
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button type="text" size="mini" icon="el-icon-edit" @click.native="editItem(scope.row)" v-permission="['/workflow/request/update']">{{ $t('button.edit') }}</el-button>
+          <el-button type="text" size="mini" icon="el-icon-edit" @click.native="editItem(scope.row)" v-permission="['/workflow/request/task']">{{ $t('button.audit') }}</el-button>
           <el-button type="text" size="mini" icon="el-icon-delete" @click.native="removeItem(scope.row)" v-permission="['/workflow/request/delete']">{{ $t('button.delete') }}</el-button>
         </template>
       </el-table-column>
@@ -76,31 +72,23 @@
         <el-row>
           <el-col :span="12">
             <el-form-item label="标题">
-              <el-input v-model="form.title" minlength=1></el-input>
+             <div>{{form.title}}</div>
             </el-form-item>
           </el-col>
-          <el-col :span="12">
-            <el-form-item label="工作流类型">
-              <el-select v-model="form.processDefId" placeholder="请选择">
-                <el-option
-                  v-for="item in processDefinitionList"
-                  :key="item.deploymentId"
-                  :label="item.name"
-                  :value="item.deploymentId"
 
-                >
-                </el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
-          <el-col :span="12" v-show="form.instanceId">
-            <el-form-item label="流程实例id">
-              <el-input v-model="form.instanceId" minlength=1></el-input>
+          <el-col :span="12">
+            <el-form-item label="申请时间">
+              <div>{{form.createTime}}</div>
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="备注">
-              <el-input v-model="form.descript" minlength=1></el-input>
+            <el-form-item label="申请人">
+              <div>{{form.userName}}</div>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="申请备注">
+            <div>{{form.descript}}</div>
             </el-form-item>
           </el-col>
           <el-col :span="12" v-show="form.state">
@@ -110,8 +98,8 @@
           </el-col>
         </el-row>
         <el-form-item>
-          <el-button type="primary" @click="save">{{ $t('button.submit') }}</el-button>
-          <el-button @click.native="formVisible = false">{{ $t('button.cancel') }}</el-button>
+          <el-button type="primary" @click="pass">{{ $t('button.pass') }}</el-button>
+          <el-button @click.native="reject">{{ $t('button.reject') }}</el-button>
         </el-form-item>
 
       </el-form>

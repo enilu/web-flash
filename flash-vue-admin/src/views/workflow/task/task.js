@@ -140,6 +140,13 @@ export default {
       }
       //如果表单初始化有特殊处理需求,可以在resetForm中处理
     },
+    pass(){
+      this.formVisible=false
+    },
+    reject(){
+
+      this.formVisible=false
+    },
     save() {
       this.$refs['form'].validate((valid) => {
         if (valid) {

@@ -10,8 +10,9 @@ import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.service.workflow.WorkFlowRequestService;
+import cn.enilu.flash.utils.BeanUtil;
 import cn.enilu.flash.utils.factory.Page;
-import org.activiti.engine.task.Task;
+import cn.enilu.flash.wrapper.TaskWrapper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,6 +50,9 @@ public class WorkFlowRequestController extends BaseController {
 		ShiroUser shiroUser = tokenCache.getUser(getToken());
 		List<String> roleCodes =  shiroUser.getRoleCodes();
 		page = workFlowRequestService.queryTask(page,roleCodes);
+
+
+		page.setRecords((List<WorkFlowRequest>) new TaskWrapper(BeanUtil.objectsToMaps(page.getRecords())).warp());
 		return Rets.success(page);
 	}
 

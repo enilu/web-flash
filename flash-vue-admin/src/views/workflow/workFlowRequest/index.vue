@@ -49,8 +49,7 @@
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button type="text" size="mini" icon="el-icon-edit" @click.native="editItem(scope.row)" v-permission="['/workflow/request/update']">{{ $t('button.edit') }}</el-button>
-          <el-button type="text" size="mini" icon="el-icon-delete" @click.native="removeItem(scope.row)" v-permission="['/workflow/request/delete']">{{ $t('button.delete') }}</el-button>
+          <el-button type="text" size="mini" icon="el-icon-view" @click.native="editItem(scope.row)" v-permission="['/workflow/request']">{{ $t('button.view') }}</el-button>
         </template>
       </el-table-column>
     </el-table>

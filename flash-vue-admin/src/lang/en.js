@@ -64,7 +64,10 @@ export default {
     clear: 'Clear',
     back: 'Back',
     export: 'Export',
-    resetPwd: 'Reset Password'
+    resetPwd: 'Reset Password',
+    audit: 'Audit',
+    pass:'Accept',
+    reject:'Reject'
   },
   tags: {
     refresh: 'Refresh',

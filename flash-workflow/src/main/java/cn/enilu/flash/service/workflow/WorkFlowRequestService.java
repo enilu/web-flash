@@ -65,6 +65,9 @@ public class WorkFlowRequestService extends BaseService<WorkFlowRequest, Long, W
      * @return
      */
     public Page<WorkFlowRequest> queryTask(Page<WorkFlowRequest> page,List<String> roleNames){
+
+        roleNames = Lists.newArrayList();
+                roleNames.add("zhangsan");
         TaskQuery taskQuery = taskService.createTaskQuery();
         List<Task> tasks = taskQuery.taskAssigneeIds(roleNames).listPage(page.getOffset(),page.getLimit());
         Long count = taskQuery.count();
