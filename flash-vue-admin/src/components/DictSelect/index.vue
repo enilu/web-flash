@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { getDicts } from '@/api/system/dict'
+import dictApi from '@/api/system/dict'
 
 export default {
   name: 'DictSelect',
@@ -57,7 +57,7 @@ export default {
   methods: {
     getDictList() {
       // 从后台获取字典列表
-      getDicts(this.dictName).then(response => {
+      dictApi.getDicts(this.dictName).then(response => {
         this.dictList = response.data
       })
     },

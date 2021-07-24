@@ -49,6 +49,19 @@ public class ProcessDefinitionService {
 
         return page;
     }
+    public List<ProcessDefinitionVo> queryAll(){
+        ProcessDefinitionQuery processDefinitionQuery = repositoryService
+                .createProcessDefinitionQuery()
+                .orderByProcessDefinitionId()
+                .desc();
+        List<ProcessDefinition> processDefinitions = processDefinitionQuery.list();
+        List<ProcessDefinitionVo> processDefinitionVos = Lists.newArrayList();
+        for(ProcessDefinition processDefinition:processDefinitions){
+            ProcessDefinitionVo vo = new ProcessDefinitionVo(processDefinition);
+            processDefinitionVos.add(vo);
+        }
+        return processDefinitionVos;
+    }
 
     public void getProcessDefineXML(HttpServletResponse response, String deploymentId, String resourceName) throws IOException {
         InputStream inputStream = repositoryService.getResourceAsStream(deploymentId, resourceName);

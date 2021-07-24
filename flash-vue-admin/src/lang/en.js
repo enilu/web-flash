@@ -29,7 +29,8 @@ export default {
     document: 'Document',
     workFlow: 'Work Flow',
     processDefinition: 'Process Definition',
-    startProcessIns: 'Start'
+    workFlowRequest: 'Process Instance',
+    workFlowTask: 'My Tasks'
   },
   navbar: {
     logOut: 'Log Out',
@@ -53,7 +54,7 @@ export default {
     add: 'Add',
     edit: 'Edit',
     delete: 'Delete',
-    view:'View',
+    view: 'View',
     deploy: 'Deploy',
     search: 'Search',
     reset: 'Reset',
@@ -65,11 +66,11 @@ export default {
     export: 'Export',
     resetPwd: 'Reset Password'
   },
-  tags:{
-    refresh:'Refresh',
-    close:'Close',
-    closeOthers:'Close Others',
-    closeAll:'Close All'
+  tags: {
+    refresh: 'Refresh',
+    close: 'Close',
+    closeOthers: 'Close Others',
+    closeAll: 'Close All'
   },
   common: {
     mustSelectOne: 'Please select the record to operate!',
@@ -116,5 +117,8 @@ export default {
     nameInput: 'Input config name',
     valueInput: 'Input config value',
     lengthValidation: ' must be between 2 and 20 characters'
+  },
+  workflow: {
+    startProcessInstance: 'start'
   }
 }

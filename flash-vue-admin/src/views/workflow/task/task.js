@@ -1,20 +1,24 @@
-#set($refForm = "this.$refs['form']")
-import ${table.entityNameLowerFirstChar}Api from '@/api/${table.lastPackageName}/${table.entityNameLowerFirstChar}'
+import workFlowRequestApi from '@/api/workflow/workFlowRequest'
+import dictApi from '@/api/system/dict'
+import processDefinitionApi from '@/api/workflow/processDefinition'
 import permission from '@/directive/permission/index.js'
 
 export default {
   //如果需要标签页缓存生效，则需要保证name值和菜单管理中的编码值一致
-  name: '${table.entityNameLowerFirstChar}',
-  directives: { permission },
+  name: 'workFlowTask',
+  directives: {permission},
   data() {
     return {
+      activeName:'first',
       formVisible: false,
-      formTitle: '添加${table.Label}',
+      formTitle: '发起新流程',
       isAdd: true,
       form: {
-#foreach ($column in $table.LabeledColumns)
-        ${column.FieldName}:'',
-#end
+        title: '',
+        processDefId: '',
+        instanceId: '',
+        descript: '',
+        state: '',
         id: ''
       },
       listQuery: {
@@ -22,10 +26,15 @@ export default {
         limit: 20,
         id: undefined
       },
+      processDefinitionList: [],
+      dictStateList:[],
       total: 0,
       list: null,
       listLoading: true,
-      selRow: {}
+      selRow: {},
+      taskResult:{
+        list:[]
+      }
     }
   },
   filters: {
@@ -56,10 +65,14 @@ export default {
   methods: {
     init() {
       this.fetchData()
+      dictApi.getDicts('工作流实例状态').then( response => {
+        this.dictStateList = response.data
+      })
+
     },
     fetchData() {
       this.listLoading = true
-        ${table.entityNameLowerFirstChar}Api.getList(this.listQuery).then(response => {
+      workFlowRequestApi.getTasks(this.listQuery).then(response => {
         this.list = response.data.records
         this.listLoading = false
         this.total = response.data.total
@@ -98,53 +111,65 @@ export default {
     handleCurrentChange(currentRow, oldCurrentRow) {
       this.selRow = currentRow
     },
+    formatState(state){
+      let ret = ''
+      this.dictStateList.forEach(function(element){
+        if(state+'' == element.num){
+          ret = element.name
+        }
+      })
+      return ret
+    },
     resetForm() {
       this.form = {
-#foreach ($column in $table.LabeledColumns)
-        ${column.FieldName}:'',
-#end
+        title: '',
+        processDefId: '',
+        instanceId: '',
+        descript: '',
+        state: '',
         id: ''
       }
     },
     add() {
-      this.formTitle = '添加${table.Label}'
+      this.formTitle = '发起新流程'
       this.formVisible = true
       this.isAdd = true
 
-      if(this.$refs['form'] !== undefined) {
+      if (this.$refs['form'] !== undefined) {
         this.$refs['form'].resetFields()
       }
       //如果表单初始化有特殊处理需求,可以在resetForm中处理
-      ## this.resetForm()
     },
     save() {
-      ${refForm}.validate((valid) => {
+      this.$refs['form'].validate((valid) => {
         if (valid) {
-            const formData = {
-                id:this.form.id,
-#foreach ($column in $table.LabeledColumns)
-                ${column.FieldName}:this.form.${column.FieldName},
-#end
-            }
-            if(formData.id){
-                ${table.entityNameLowerFirstChar}Api.update(formData).then(response => {
-                    this.$message({
-                        message: this.$t('common.optionSuccess'),
-                        type: 'success'
-                    })
-                    this.fetchData()
-                    this.formVisible = false
-                })
-            }else{
-                ${table.entityNameLowerFirstChar}Api.add(formData).then(response => {
-                    this.$message({
-                        message: this.$t('common.optionSuccess'),
-                        type: 'success'
-                    })
-                    this.fetchData()
-                    this.formVisible = false
-                })
-            }
+          const formData = {
+            id: this.form.id,
+            title: this.form.title,
+            processDefId: this.form.processDefId,
+            instanceId: this.form.instanceId,
+            descript: this.form.descript,
+            state: this.form.state,
+          }
+          if (formData.id) {
+            workFlowRequestApi.update(formData).then(response => {
+              this.$message({
+                message: this.$t('common.optionSuccess'),
+                type: 'success'
+              })
+              this.fetchData()
+              this.formVisible = false
+            })
+          } else {
+            workFlowRequestApi.add(formData).then(response => {
+              this.$message({
+                message: this.$t('common.optionSuccess'),
+                type: 'success'
+              })
+              this.fetchData()
+              this.formVisible = false
+            })
+          }
         } else {
           return false
         }
@@ -160,7 +185,7 @@ export default {
       })
       return false
     },
-    editItem(record){
+    editItem(record) {
       this.selRow = record
       this.edit()
     },
@@ -169,17 +194,16 @@ export default {
         this.isAdd = false
         let form = Object.assign({}, this.selRow)
         this.form = form
-        this.formTitle = '编辑${table.Label}'
+        this.formTitle = '编辑流程实例'
         this.formVisible = true
 
-        if(this.$refs['form'] !== undefined) {
+        if (this.$refs['form'] !== undefined) {
           this.$refs['form'].resetFields()
         }
         //如果表单初始化有特殊处理需求,可以在resetForm中处理
-        ## this.resetForm()
       }
     },
-    removeItem(record){
+    removeItem(record) {
       this.selRow = record
       this.remove()
     },
@@ -191,13 +215,13 @@ export default {
           cancelButtonText: this.$t('button.cancel'),
           type: 'warning'
         }).then(() => {
-            ${table.entityNameLowerFirstChar}Api.remove(id).then(response => {
+          workFlowRequestApi.remove(id).then(response => {
             this.$message({
               message: this.$t('common.optionSuccess'),
               type: 'success'
             })
             this.fetchData()
-          }).catch( err=> {
+          }).catch(err => {
             this.$notify.error({
               title: '错误',
               message: err

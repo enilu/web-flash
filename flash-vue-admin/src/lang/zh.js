@@ -30,7 +30,9 @@ export default {
     document: '在线文档',
     workFlow:'工作流',
     processDefinition:'流程定义',
-    startProcessIns: '发起流程'
+    workFlowRequest: '历史流程',
+    workFlowTask:'待办任务',
+
   },
   navbar: {
     logOut: '退出登录',
@@ -116,6 +118,9 @@ export default {
     nameInput: '请输入参数名',
     valueInput: '请输入参数值',
     lengthValidation: '长度在 2 到 20 个字符'
+  },
+  workflow:{
+    startProcessInstance:'发起流程'
   }
 }
 

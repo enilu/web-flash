@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 流程定义controller
@@ -34,7 +35,11 @@ public class ProcessDefinitionController extends BaseController {
         page = processDefinitionService.queryPage(page);
         return Rets.success(page);
     }
-
+    @GetMapping(value = "/queryAll")
+    public Ret queryAll() {
+        List<ProcessDefinitionVo> list = processDefinitionService.queryAll();
+        return Rets.success(list);
+    }
 
     /**
      * 上传流程流程定义
