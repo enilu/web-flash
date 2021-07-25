@@ -7,6 +7,7 @@ import cn.enilu.flash.dao.workflow.WorkFlowRequestRepository;
 import cn.enilu.flash.service.BaseService;
 import cn.enilu.flash.utils.JsonUtil;
 import cn.enilu.flash.utils.Lists;
+import cn.enilu.flash.utils.Maps;
 import cn.enilu.flash.utils.factory.Page;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
@@ -21,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class WorkFlowRequestService extends BaseService<WorkFlowRequest, Long, WorkFlowRequestRepository> {
@@ -39,6 +41,7 @@ public class WorkFlowRequestService extends BaseService<WorkFlowRequest, Long, W
      * 1，保存业务表单
      * 2，启动新流程
      * 3，关联流程信息和业务信息
+     *
      * @param flowRequest
      * @return
      */
@@ -62,20 +65,21 @@ public class WorkFlowRequestService extends BaseService<WorkFlowRequest, Long, W
 
     /**
      * 查询所有代办任务
+     *
      * @return
      */
-    public Page<WorkFlowRequest> queryTask(Page<WorkFlowRequest> page,List<String> roleNames){
+    public Page<WorkFlowRequest> queryTask(Page<WorkFlowRequest> page, List<String> roleNames) {
 
-        roleNames = Lists.newArrayList();
-                roleNames.add("zhangsan");
+//        roleNames = Lists.newArrayList();
+//                roleNames.add("zhangsan");
         TaskQuery taskQuery = taskService.createTaskQuery();
-        List<Task> tasks = taskQuery.taskAssigneeIds(roleNames).listPage(page.getOffset(),page.getLimit());
+        List<Task> tasks = taskQuery.taskAssigneeIds(roleNames).listPage(page.getOffset(), page.getLimit());
         Long count = taskQuery.count();
         page.setTotal(count.intValue());
         List<WorkFlowRequest> flowRequests = Lists.newArrayList();
-        for(Task task:tasks){
+        for (Task task : tasks) {
             String processInstanceId = task.getProcessInstanceId();
-            WorkFlowRequest flowRequest = get(SearchFilter.build("instanceId",processInstanceId));
+            WorkFlowRequest flowRequest = get(SearchFilter.build("instanceId", processInstanceId));
             flowRequests.add(flowRequest);
             flowRequest.setTaskId(task.getId());
         }
@@ -85,5 +89,10 @@ public class WorkFlowRequestService extends BaseService<WorkFlowRequest, Long, W
     }
 
 
+    public void completeTask(Long id, String taskId,Integer state) {
+        Map<String,Object> params = Maps.newHashMap();
+        params.put("state",state);
+        taskService.complete(taskId,params);
+    }
 }
 

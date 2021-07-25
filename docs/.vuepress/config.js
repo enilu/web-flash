@@ -101,6 +101,7 @@ module.exports = {
                         '/guide/action/task',
                         '/guide/action/jpaauditing.md',
                         '/guide/action/validator',
+                        '/guide/action/workflow',
                         '/guide/action/deploy'
                     ]
                 },

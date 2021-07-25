@@ -149,4 +149,5 @@ public abstract class BaseService<T, ID extends Serializable, R extends BaseRepo
     public void truncate() {
         dao.truncate();
     }
+
 }

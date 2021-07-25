@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:activiti="http://activiti.org/bpmn" id="sample-diagram" targetNamespace="http://activiti.org/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:process id="testListener" name="测试监听器" isExecutable="true">
+    <bpmn2:startEvent id="StartEvent_1">
+      <bpmn2:outgoing>Flow_1yhfru8</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:userTask id="Activity_1dhhoa1" activiti:assignee="workflowAudit">
+      <bpmn2:incoming>Flow_1yhfru8</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0tqvi7y</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:endEvent id="Event_0tqefo9">
+      <bpmn2:extensionElements>
+        <activiti:executionListener class="cn.enilu.flash.workflow.WorkFlowRequestEndListener" event="end" />
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0tqvi7y</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_1yhfru8" sourceRef="StartEvent_1" targetRef="Activity_1dhhoa1" />
+    <bpmn2:sequenceFlow id="Flow_0tqvi7y" sourceRef="Activity_1dhhoa1" targetRef="Event_0tqefo9" />
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="testListener">
+      <bpmndi:BPMNEdge id="Flow_0tqvi7y_di" bpmnElement="Flow_0tqvi7y">
+        <di:waypoint x="520" y="140" />
+        <di:waypoint x="632" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1yhfru8_di" bpmnElement="Flow_1yhfru8">
+        <di:waypoint x="348" y="140" />
+        <di:waypoint x="420" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="312" y="122" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1dhhoa1_di" bpmnElement="Activity_1dhhoa1">
+        <dc:Bounds x="420" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0tqefo9_di" bpmnElement="Event_0tqefo9">
+        <dc:Bounds x="632" y="122" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

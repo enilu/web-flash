@@ -3,11 +3,16 @@ package cn.enilu.flash.api.controller.workflow;
 import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.constant.factory.PageFactory;
 import cn.enilu.flash.bean.core.BussinessLog;
+import cn.enilu.flash.bean.entity.system.FileInfo;
 import cn.enilu.flash.bean.vo.front.Ret;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.workflow.ProcessDefinitionVo;
+import cn.enilu.flash.service.system.FileService;
 import cn.enilu.flash.service.workflow.ProcessDefinitionService;
 import cn.enilu.flash.utils.factory.Page;
+import org.nutz.lang.Files;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,8 +31,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/workflow/process/definition")
 public class ProcessDefinitionController extends BaseController {
+    private Logger logger =  LoggerFactory.getLogger(ProcessDefinitionController.class);
     @Autowired
     private ProcessDefinitionService processDefinitionService;
+    @Autowired
+    private FileService fileService;
 
     @GetMapping(value = "/list")
     public Ret list() {
@@ -54,13 +62,32 @@ public class ProcessDefinitionController extends BaseController {
     public Ret upload(@RequestParam("processFile") MultipartFile multipartFile) throws IOException {
 
         if (!multipartFile.isEmpty()) {
-            String fileName = processDefinitionService.uploadAndDeploy(multipartFile);
-            return Rets.success(fileName);
+            FileInfo fileInfo = fileService.upload(multipartFile);
+            return Rets.success("workflow/process/definition/getProcessDefinitionXml?idFile="+fileInfo.getId());
+//            String fileName = processDefinitionService.upload(multipartFile);
+//            return Rets.success(fileName);
         }
         return Rets.failure("上传文件为空");
     }
 
+    /**
+     * 获取base64图片数据
+     *
+     * @param idFile
+     * @return
+     */
+    @GetMapping(value = "getProcessDefinitionXml")
+    public void getProcessDefinitionXml(@RequestParam("idFile") Long idFile,HttpServletResponse response) {
+        FileInfo fileInfo = fileService.get(idFile);
+        response.setContentType("application/octet-stream");
+        try {
+            String text = Files.read(fileInfo.getAblatePath());
+            response.getWriter().write(text);
+        } catch (Exception e) {
+            logger.error("getImgStream error", e);
+        }
 
+    }
     /**
      * 通过stringBPMN添加流程定义
      *

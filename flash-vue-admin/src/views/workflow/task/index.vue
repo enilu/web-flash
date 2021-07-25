@@ -91,11 +91,7 @@
             <div>{{form.descript}}</div>
             </el-form-item>
           </el-col>
-          <el-col :span="12" v-show="form.state">
-            <el-form-item label="状态">
-              <el-input v-model="form.state" minlength=1></el-input>
-            </el-form-item>
-          </el-col>
+
         </el-row>
         <el-form-item>
           <el-button type="primary" @click="pass">{{ $t('button.pass') }}</el-button>

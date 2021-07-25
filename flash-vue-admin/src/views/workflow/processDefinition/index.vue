@@ -3,8 +3,7 @@
     <div class="block">
       <el-row>
         <el-col :span="24">
-          <el-button type="success" size="mini" icon="el-icon-plus" @click.native="onlineDrawingProcess" v-permission="['/workflow/process/definition/edit']">{{ $t('button.add') }}</el-button>
-          <el-button type="primary" size="mini" icon="el-icon-upload2" @click.native="edit" v-permission="['/workflow/process/definition/edit']">{{ $t('button.deploy') }}</el-button>
+          <el-button type="success" size="mini" icon="el-icon-plus" @click.native="onlineDrawingProcess" >{{ $t('button.add') }}</el-button>
         </el-col>
       </el-row>
     </div>
@@ -22,11 +21,11 @@
           {{scope.row.key}}
         </template>
       </el-table-column>
-      <el-table-column label="版本号">
-        <template slot-scope="scope">
-          {{scope.row.version}}
-        </template>
-      </el-table-column>
+      <!--<el-table-column label="版本号">-->
+        <!--<template slot-scope="scope">-->
+          <!--{{scope.row.version}}-->
+        <!--</template>-->
+      <!--</el-table-column>-->
       <el-table-column label="部署id">
         <template slot-scope="scope">
           {{scope.row.deploymentId}}

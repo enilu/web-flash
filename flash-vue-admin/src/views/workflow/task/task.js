@@ -9,7 +9,7 @@ export default {
   directives: {permission},
   data() {
     return {
-      activeName:'first',
+      activeName: 'first',
       formVisible: false,
       formTitle: '发起新流程',
       isAdd: true,
@@ -27,13 +27,13 @@ export default {
         id: undefined
       },
       processDefinitionList: [],
-      dictStateList:[],
+      dictStateList: [],
       total: 0,
       list: null,
       listLoading: true,
       selRow: {},
-      taskResult:{
-        list:[]
+      taskResult: {
+        list: []
       }
     }
   },
@@ -65,7 +65,7 @@ export default {
   methods: {
     init() {
       this.fetchData()
-      dictApi.getDicts('工作流实例状态').then( response => {
+      dictApi.getDicts('工作流实例状态').then(response => {
         this.dictStateList = response.data
       })
 
@@ -111,10 +111,10 @@ export default {
     handleCurrentChange(currentRow, oldCurrentRow) {
       this.selRow = currentRow
     },
-    formatState(state){
+    formatState(state) {
       let ret = ''
-      this.dictStateList.forEach(function(element){
-        if(state+'' == element.num){
+      this.dictStateList.forEach(function (element) {
+        if (state + '' == element.num) {
           ret = element.name
         }
       })
@@ -140,12 +140,21 @@ export default {
       }
       //如果表单初始化有特殊处理需求,可以在resetForm中处理
     },
-    pass(){
-      this.formVisible=false
+    pass() {
+      this.form.state = 1
+      console.log('form',this.form)
+      workFlowRequestApi.completeTask(this.form).then(response => {
+        this.fetchData()
+        this.formVisible = false
+      })
     },
-    reject(){
-
-      this.formVisible=false
+    reject() {
+      this.form.state = 2
+      console.log('form',this.form)
+      workFlowRequestApi.completeTask(this.form).then(response => {
+        this.fetchData()
+        this.formVisible = false
+      })
     },
     save() {
       this.$refs['form'].validate((valid) => {

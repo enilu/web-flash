@@ -13,7 +13,7 @@
       <br>
       <el-row>
         <el-col :span="24">
-          <el-button type="success" size="mini" icon="el-icon-plus" @click.native="add" v-permission="['/workflow/request/add']">{{ $t('workflow.startProcessInstance') }}</el-button>
+          <el-button type="success" size="mini" icon="el-icon-caret-right" @click.native="add" v-permission="['/workflow/request/add']">{{ $t('workflow.startProcessInstance') }}</el-button>
           <el-button type="primary" size="mini" icon="el-icon-edit" @click.native="edit" v-permission="['/workflow/request/update']">{{ $t('button.edit') }}</el-button>
           <el-button type="danger" size="mini" icon="el-icon-delete" @click.native="remove" v-permission="['/workflow/request/delete']">{{ $t('button.delete') }}</el-button>
         </el-col>

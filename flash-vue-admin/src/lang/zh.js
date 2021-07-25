@@ -30,7 +30,7 @@ export default {
     document: '在线文档',
     workFlow: '工作流',
     processDefinition: '流程定义',
-    workFlowRequest: '历史流程',
+    workFlowRequest: '申请列表',
     workFlowTask: '待办任务',
 
   },

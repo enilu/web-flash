@@ -22,13 +22,18 @@ import javax.persistence.Transient;
 @Table(appliesTo = "t_workflow_request",comment = "工作流请求实例")
 @EntityListeners(AuditingEntityListener.class)
 public class WorkFlowRequest extends BaseEntity {
+    public static  final int PASS=1;
+    public static  final int REJECT=2;
+
+    public static  final int ING=0;
+
     @Column(columnDefinition = "VARCHAR(64) COMMENT '标题'")
     private String title;
     @Column(columnDefinition = "VARCHAR(64) COMMENT '流程定义deploymentId'")
     private String processDefId;
     @Column(columnDefinition = "VARCHAR(64) COMMENT '流程定义名称'")
     private String processDefName;
-    @Column(columnDefinition = "VARCHAR(32) COMMENT '流程实例id'")
+    @Column(columnDefinition = "VARCHAR(64) COMMENT '流程实例id'")
     private String instanceId;
     @Column(columnDefinition = "VARCHAR(128) COMMENT '备注'")
     private String descript;

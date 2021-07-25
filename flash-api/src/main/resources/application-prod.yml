@@ -14,3 +14,6 @@ spring:
     database-schema-update: update
     history-level: full
     db-history-used: true
+server:
+  tomcat:
+    basedir: /data/app/web-flash/runtime/tmp/

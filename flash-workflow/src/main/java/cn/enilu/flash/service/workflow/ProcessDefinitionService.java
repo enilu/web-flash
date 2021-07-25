@@ -75,6 +75,27 @@ public class ProcessDefinitionService {
         inputStream.close();
     }
 
+
+    public String upload(MultipartFile file) throws IOException {
+        // 获取上传的文件名
+        String fileName = file.getOriginalFilename();
+        // 得到输入流（字节流）对象
+        InputStream fileInputStream = file.getInputStream();
+        // 文件的扩展名
+        String extension = FilenameUtils.getExtension(fileName);
+
+        if (extension.equals("zip")) {
+            ZipInputStream zip = new ZipInputStream(fileInputStream);
+            repositoryService.createDeployment()//初始化流程
+                    .addZipInputStream(zip)
+                    .deploy();
+        } else {
+            repositoryService.createDeployment()//初始化流程
+                    .addInputStream(fileName, fileInputStream)
+                    .deploy();
+        }
+        return fileName;
+    }
     public String uploadAndDeploy(MultipartFile file) throws IOException {
         // 获取上传的文件名
         String fileName = file.getOriginalFilename();

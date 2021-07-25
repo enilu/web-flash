@@ -16,7 +16,7 @@
         <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>activiti-spring-boot-starter</artifactId>
-            <version>7.1.0.M4</version>
+            <version>7.1.0.M2</version>
             <exclusions>
                 <exclusion>
                     <groupId>javax.el</groupId>
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>org.activiti.dependencies</groupId>
             <artifactId>activiti-dependencies</artifactId>
-            <version>7.1.0.M4</version>
+            <version>7.1.0.M2</version>
             <type>pom</type>
         </dependency>
         <dependency>
