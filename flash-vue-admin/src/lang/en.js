@@ -83,6 +83,7 @@ export default {
     optionSuccess: 'success',
     uploadError: 'Upload Error',
     isRequired: ' is required',
+    todo:'Developing',
     week: {
       mon: 'Mon',
       tue: 'Tue',

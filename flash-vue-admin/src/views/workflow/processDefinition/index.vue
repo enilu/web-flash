@@ -3,7 +3,7 @@
     <div class="block">
       <el-row>
         <el-col :span="24">
-          <el-button type="success" size="mini" icon="el-icon-plus" @click.native="onlineDrawingProcess" >{{ $t('button.add') }}</el-button>
+          <el-button type="success" size="mini" icon="el-icon-plus" @click.native="onlineDrawingProcess" v-permission="['/workflow/process/definition/edit']">{{ $t('button.add') }}</el-button>
         </el-col>
       </el-row>
     </div>

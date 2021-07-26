@@ -5,6 +5,7 @@
 - Change 路由模式由默认的hash调整为history
 - Change pom.xml中去掉冗余的依赖
 - Change 完善单元测试
+- Issue 集成activiti实现基本的工作流功能
 ### Fixes
 - Fix #I3Z1QT 后端启动后，API接口访问不到后端，中途权限被拦截
 - Fix #I271AB token验证失败后，弹出过多token过期提示

@@ -162,6 +162,7 @@ export default {
               })
               this.fetchData()
               this.formVisible = false
+              this.resetForm()
             })
           } else {
             workFlowRequestApi.add(formData).then(response => {
@@ -171,6 +172,7 @@ export default {
               })
               this.fetchData()
               this.formVisible = false
+              this.resetForm()
             })
           }
         } else {
@@ -192,12 +194,18 @@ export default {
       this.selRow = record
       this.edit()
     },
+    todo(record){
+      this.$message({
+        message: this.$t('common.todo'),
+        type: 'info'
+      })
+    },
     edit() {
       if (this.checkSel()) {
         this.isAdd = false
         let form = Object.assign({}, this.selRow)
         this.form = form
-        this.formTitle = '编辑流程实例'
+        this.formTitle = '查看流程实例'
         this.formVisible = true
 
         if (this.$refs['form'] !== undefined) {

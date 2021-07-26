@@ -1,18 +1,6 @@
 <template>
   <div class="app-container">
-    <div class="block">
-      <el-row :gutter="20">
-        <el-col :span="4">
-          <el-input v-model="listQuery.id" size="mini" placeholder="请输入id"></el-input>
-        </el-col>
-        <el-col :span="6">
-          <el-button type="success" size="mini" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
-          <el-button type="primary" size="mini" icon="el-icon-refresh" @click.native="reset">{{ $t('button.reset') }}</el-button>
-        </el-col>
-      </el-row>
-      <br>
 
-    </div>
 
     <el-table :data="list" v-loading="listLoading" element-loading-text="Loading" border fit highlight-current-row
               @current-change="handleCurrentChange">
