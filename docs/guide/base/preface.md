@@ -28,7 +28,7 @@ web-flash项目本身有readme文件，如果你有丰富的spring boot的和vue
 - flash-vue-h5 移动端内容系统，基于后台管理CMS内容管理模块的内容进行展示。
 - flash-core 基础模块，包括工具类，dao，service，bean等内容
 - flash-generator 代码生成模块，IDEA插件需要配合该模块进行代码生成，如果在代码生成方面你有什么特殊需求，可以直接调整该模块
-
+- flash-workflow 基于activiti实现工作流功能
 ## 演示
 - 后台管理(vue版本) [http://flashadmin.enilu.cn](http://flashadmin.enilu.cn)
 - 手机端 [http://flash-mobile.enilu.cn/#/index](http://flash-mobile.enilu.cn/#/index) 打开浏览器后使用debug模式的手机视图模式浏览
@@ -58,6 +58,7 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 - 登录日志：查看用户登录登出日志
 - cms内容管理，配合flash-vue-h5提供了手机端内容展示系统
 - 消息管理：配置消息模板，发送短信，邮件消息
+- 工作流：流程定义，发起申请，待办任务
 - 基于idea插件的代码生成
 
 ## 使用

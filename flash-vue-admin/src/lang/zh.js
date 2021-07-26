@@ -123,7 +123,7 @@ export default {
     lengthValidation: '长度在 2 到 20 个字符'
   },
   workflow: {
-    startProcessInstance: '发起流程'
+    startProcessInstance: '发起申请'
   }
 }
 
