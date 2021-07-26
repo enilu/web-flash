@@ -17,4 +17,4 @@ spring:
     process-definition-location-prefix: classpath:/bpmn/
 server:
   tomcat:
-    basedir: d://data//app//web-flash//runtime//tmp
+    basedir: /data/app/web-flash/runtime/tmp
