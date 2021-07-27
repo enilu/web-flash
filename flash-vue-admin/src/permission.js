@@ -14,7 +14,8 @@ const whiteList = ['/login'] // no redirect whitelist
 router.beforeEach(async(to, from, next) => {
   // start progress bar
   NProgress.start()
-  // set page title,如果不使用国际化,使用： document.title = to.meta.title
+  // set page title,如果不使用国际化,to.meta.title
+  // document.title = getPageTitle(i18n.t(to.meta.title))
   document.title = getPageTitle(i18n.t('route.'+to.name))
 
   // determine whether the user has logged in

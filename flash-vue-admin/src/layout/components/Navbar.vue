@@ -57,6 +57,7 @@ export default {
     },
     async logout() {
       await this.$store.dispatch('user/logout')
+      await this.$store.dispatch('tagsView/delAllViews')
       this.$router.push('/login')
 
     }

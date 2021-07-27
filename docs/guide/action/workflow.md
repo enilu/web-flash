@@ -26,4 +26,4 @@
 - 其中任何人都可以发起一个流程申请
 - 初审用户auditUser/123456
 - 终审用户为自动化审核
-- 系统内置bpmnjs作为流程在线设计器，开发过程中，请参考其[官方文档(https://bpmn.io/toolkit/bpmn-js/)
+- 系统内置bpmnjs作为流程在线设计器，开发过程中，请参考其[官方文档](https://bpmn.io/toolkit/bpmn-js/)
