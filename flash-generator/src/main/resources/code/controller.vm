@@ -8,6 +8,7 @@ import ${table.basePackageName}.bean.core.BussinessLog;
 import ${table.basePackageName}.bean.constant.factory.PageFactory;
 import ${table.basePackageName}.bean.enumeration.BizExceptionEnum;
 import ${table.basePackageName}.bean.exception.ApplicationException;
+import ${table.basePackageName}.bean.vo.front.Ret;
 import ${table.basePackageName}.bean.vo.front.Rets;
 
 import ${table.basePackageName}.utils.factory.Page;
@@ -30,8 +31,8 @@ public class ${table.ControllerClassName} extends BaseController {
 	private ${table.ServiceClassName} ${table.ServiceInstanceName};
 
 	@GetMapping(value = "/list")
-	@RequiresPermissions(value = "${table.UriPrefix}")
-	public Object list(@RequestParam(required = false) Long id) {
+	@RequiresPermissions(value = "${table.entityNameLowerFirstChar}")
+	public Ret list(@RequestParam(required = false) Long id) {
 		Page<${table.EntityClassName}> page = new PageFactory<${table.EntityClassName}>().defaultPage();
 		page.addFilter("id",id);
 		page = ${table.ServiceInstanceName}.queryPage(page);
@@ -39,22 +40,22 @@ public class ${table.ControllerClassName} extends BaseController {
 	}
 	@PostMapping
 	@BussinessLog(value = "新增${table.Label}", key = "name")
-	@RequiresPermissions(value = "${table.UriPrefix}/add")
-	public Object add(@ModelAttribute ${table.EntityClassName} ${table.entityNameLowerFirstChar}){
+	@RequiresPermissions(value = "${table.entityNameLowerFirstChar}Add")
+	public Ret add(@ModelAttribute ${table.EntityClassName} ${table.entityNameLowerFirstChar}){
 		${table.ServiceInstanceName}.insert(${table.entityNameLowerFirstChar});
 		return Rets.success();
 	}
 	@PutMapping
 	@BussinessLog(value = "更新${table.Label}", key = "name")
-	@RequiresPermissions(value = "${table.UriPrefix}/update")
-	public Object update(@ModelAttribute ${table.EntityClassName} ${table.entityNameLowerFirstChar}){
+	@RequiresPermissions(value = "${table.entityNameLowerFirstChar}Update")
+	public Ret update(@ModelAttribute ${table.EntityClassName} ${table.entityNameLowerFirstChar}){
 		${table.ServiceInstanceName}.update(${table.entityNameLowerFirstChar});
 		return Rets.success();
 	}
 	@DeleteMapping
 	@BussinessLog(value = "删除${table.Label}", key = "id")
-	@RequiresPermissions(value = "${table.UriPrefix}/delete")
-	public Object remove(Long id){
+	@RequiresPermissions(value = "${table.entityNameLowerFirstChar}Delete")
+	public Ret remove(Long id){
 		if (id == null) {
 			throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
 		}
