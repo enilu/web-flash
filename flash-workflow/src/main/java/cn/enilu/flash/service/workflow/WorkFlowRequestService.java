@@ -69,9 +69,6 @@ public class WorkFlowRequestService extends BaseService<WorkFlowRequest, Long, W
      * @return
      */
     public Page<WorkFlowRequest> queryTask(Page<WorkFlowRequest> page, List<String> roleNames) {
-
-//        roleNames = Lists.newArrayList();
-//                roleNames.add("zhangsan");
         TaskQuery taskQuery = taskService.createTaskQuery();
         List<Task> tasks = taskQuery.taskAssigneeIds(roleNames).listPage(page.getOffset(), page.getLimit());
         Long count = taskQuery.count();
@@ -80,8 +77,10 @@ public class WorkFlowRequestService extends BaseService<WorkFlowRequest, Long, W
         for (Task task : tasks) {
             String processInstanceId = task.getProcessInstanceId();
             WorkFlowRequest flowRequest = get(SearchFilter.build("instanceId", processInstanceId));
-            flowRequests.add(flowRequest);
-            flowRequest.setTaskId(task.getId());
+            if(flowRequest!=null) {
+                flowRequests.add(flowRequest);
+                flowRequest.setTaskId(task.getId());
+            }
         }
         page.setRecords(flowRequests);
         logger.info(JsonUtil.toJson(page));

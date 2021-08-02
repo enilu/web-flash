@@ -1,14 +1,18 @@
 # change log
-##Latest
+##2.1
+[gitee](https://gitee.com/enilu/web-flash/releases/2.1)
+[github](https://github.com/enilu/web-flash/releases/tag/2.1)
 ### Issues
 - Issue 启用keep-Alive保存标签页状态
 - Change 路由模式由默认的hash调整为history
-- Change pom.xml中去掉冗余的依赖
+- Change 去掉maven冗余的依赖
 - Change 完善单元测试
 - Issue 集成activiti实现基本的工作流功能
+- Change 完善代码生成器中controller生成模板中关于权限配置部分
 ### Fixes
 - Fix #I3Z1QT 后端启动后，API接口访问不到后端，中途权限被拦截
 - Fix #I271AB token验证失败后，弹出过多token过期提示
+- Fix 初始化sql语句中菜单资源地址重复的问题
 
 ## 2.0
 
