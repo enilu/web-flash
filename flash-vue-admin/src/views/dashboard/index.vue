@@ -11,7 +11,7 @@
           <el-col :span="12" >
             <div class="card-panel-text">{{ $t('dashboard.document') }}</div>
             <div class="card-panel-num">
-              <a href="http://enilu.gitee.io/web-flash" target="_blank">Document</a>
+              <a href="http://webflash.enilu.cn" target="_blank">Document</a>
             </div>
           </el-col>
         </el-card>

@@ -66,7 +66,7 @@ public FileInfo createExcel(String template, String fileName, Map<String, Object
 ```
 
 
-值得注意的时候，导出的excel文件会在存放在t_sys_file_info表中和对应的系统上传目录下，如果导出功能使用频率比较高的话，时间久了会生成很多文件信息。
+值得注意的是，导出的excel文件会在存放在t_sys_file_info表中和对应的系统目录下，如果导出功能使用频率比较高的话，时间久了会生成很多文件信息。
 那么就需要定时清理这些数据。
 
 聪明的你一定想到用定时任务来做这件事情。如果你对定时任务不熟悉，可以参考这个文档：[定时任务管理](../action/task.md)

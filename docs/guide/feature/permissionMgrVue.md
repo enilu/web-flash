@@ -19,15 +19,16 @@
 
  ## 配置拦截器
 
-cn.enilu.flash.api.interceptor.JwtFilter中配置拦截器，拦截要过滤的请求地址，具体请参考源代码
+- cn.enilu.flash.api.interceptor.JwtFilter为权限拦截器，
+- 具体针对哪些地址做什么样的处理策略，参考：cn.enilu.flash.api.config.ShiroConfig中的配置
 
 
 ## 左侧菜单导航的权限控制
 用户登陆成功后，会根据用户所拥有的角色配置的菜单生成路由表数据返回到前端：cn.enilu.flash.api.controller.AccountController：
 ```java
 //获取用户可以操作的菜单列表
-List menus = menuRepository.getMenusByRoleIds(shiroUser.getRoleList());
-map.put("menus",menus);
+  List<RouterMenu> list = menuService.getSideBarMenus(shiroUser.getRoleList());
+  map.put("menus",list);
 ```
 前端接收到菜单列表信息后根据是否有这些菜单列表的操作权限来生成路由表：flash-vue-admin/src/store/modules/permission.js
 

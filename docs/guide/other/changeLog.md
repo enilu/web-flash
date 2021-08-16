@@ -1,5 +1,5 @@
 # change log
-##2.1
+## 2.1
 [gitee](https://gitee.com/enilu/web-flash/releases/2.1)
 [github](https://github.com/enilu/web-flash/releases/tag/2.1)
 ### Issues
@@ -19,9 +19,9 @@
 [gitee](https://gitee.com/enilu/web-flash/releases/2.0)
 [github](https://github.com/enilu/web-flash/releases/tag/2.0)
 ### Issues
-Change 完善消息发送服务功能
-Change 完善参数管理功能细节
-Change 完善账号管理逻辑
+- Change 完善消息发送服务功能
+- Change 完善参数管理功能细节
+- Change 完善账号管理逻辑
 ### Fixes
 - Fix 参数管理中参数值长度校验问题
 - Fix 自动生成hibernate_sequence的问题

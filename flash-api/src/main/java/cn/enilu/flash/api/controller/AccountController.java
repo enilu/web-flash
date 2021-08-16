@@ -108,10 +108,11 @@ public class AccountController extends BaseController {
                 return Rets.failure("该用户未配置权限");
             }
             ShiroUser shiroUser = tokenCache.getUser(getToken());
-            List<RouterMenu> list = menuService.getSideBarMenus(shiroUser.getRoleList());
             Map map = Maps.newHashMap("name", user.getName(), "role", "admin", "roles", shiroUser.getRoleCodes());
-            map.put("permissions", shiroUser.getUrls());
+            List<RouterMenu> list = menuService.getSideBarMenus(shiroUser.getRoleList());
             map.put("menus",list);
+            map.put("permissions", shiroUser.getUrls());
+
             Map profile = (Map) Mapl.toMaplist(user);
             profile.put("dept", shiroUser.getDeptName());
             profile.put("roles", shiroUser.getRoleNames());

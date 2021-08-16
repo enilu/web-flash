@@ -56,7 +56,7 @@ CREATE TABLE `t_sys_task_log` (
 
 ### 创建一个定时任务类
 
-比如我创建一个测试任务类
+比如本项目提供了一个测试定时任务：
 ```java
 package cn.enilu.flash.service.task.job;
 import cn.enilu.flash.service.task.JobExecuter;
@@ -65,8 +65,12 @@ import org.springframework.stereotype.Component;
 public class HelloJob extends JobExecuter {
     @Override
     public void execute(Map<String, Object> dataMap) throws Exception {
-        System.out.println("输出配置参数如下 :"+JsonUtil.toJson(dataMap));
-        System.out.println("这里可以编写任意其他业务逻辑");
+        //具体业务逻辑：获取id为1的系统参数记录，修改其备注信息
+        System.out.println("定时任务配置参数 :"+JsonUtil.toJson(dataMap));
+        Cfg cfg = cfgService.get(1L);
+        cfg.setCfgDesc("update by " + DateUtil.getTime());
+        cfgService.update(cfg);
+        logger.info("hello :" + JsonUtil.toJson(dataMap));
     }
 }
 

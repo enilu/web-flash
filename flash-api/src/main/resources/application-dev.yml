@@ -6,12 +6,12 @@ spring:
     password: webflash190602@ABC
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
   activiti:
 #    配置为true的时候自动检查resources/bpmn/目录下的工作流定义文件并部署到数据库表中
-    check-process-definitions: true
+    check-process-definitions: false
 #    启动的时候配置为true初始化工作流相关表
-    database-schema-update: true
+    database-schema-update: update
     history-level: full
     db-history-used: true
     process-definition-location-prefix: classpath:/bpmn/

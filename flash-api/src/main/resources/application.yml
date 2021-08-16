@@ -30,6 +30,9 @@ spring:
   jpa:
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  servlet:
+    multipart:
+      max-file-size: 100MB
 jwt:
   token:
     expire:

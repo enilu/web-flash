@@ -27,7 +27,6 @@ public class Boy extends BaseEntity {
     - @Table注解要使用org.hibernate.annotations.Table 不要使用javax.persistence.Table
     - @Table注解 必须配置表名(applyiesTo)和注释(comment)
     - @Column注解必须配置columnDefinition来表述列信息(英文全部大写)：包括类型,注释COMMENT
-    - 实体类必须继承BaseEntity
 - 实体类准备好了后,打开实体类，右键选择Generator(或者Alt+Insert)-->web-flash-mvc，弹出如下图所示对话框  
  ![](../img/plugin/generator.jpg)
 
