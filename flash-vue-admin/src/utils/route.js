@@ -13,7 +13,7 @@ export function getSideMenus() {
 export function traverseRoutes(menus){
   let routes = menus.map( menu =>{
     if(menu.component){
-      let name = menu.component;
+      let name = menu.component
 	    menu.component = (resolve)=> require([`@/${name}`],resolve)
     }
 
