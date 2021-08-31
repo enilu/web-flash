@@ -11,6 +11,7 @@ import java.io.Serializable;
 public interface CacheDao {
     String CONSTANT = "CONSTANT";
     String SESSION = "SESSION";
+    String SHORT = "SHORT";
 
     /**
      * 设置hash key值

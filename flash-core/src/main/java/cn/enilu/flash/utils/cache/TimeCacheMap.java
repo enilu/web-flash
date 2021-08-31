@@ -56,7 +56,6 @@ public class TimeCacheMap<K, V> {
                     } catch (InterruptedException e) {
 
                     }
-//                        Time.sleep(sleepTime);
                     synchronized (lock) {
                         //删掉最后一个桶，在头补充一个新的桶，最后一个桶的数据是最旧的
                         dead = buckets.removeLast();

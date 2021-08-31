@@ -29,6 +29,21 @@
            memoryStoreEvictionPolicy="LFU"
            transactionalMode="off">
     </cache>
+    <!--SHORT five minutes-->
+    <cache name="SHORT"
+           maxElementsInMemory="50000"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="300"
+           eternal="true"
+           clearOnFlush="false"
+           overflowToDisk="true"
+           diskSpoolBufferSizeMB="1024"
+           maxElementsOnDisk="100000"
+           diskPersistent="false"
+           diskExpiryThreadIntervalSeconds="120"
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+    </cache>
     <!--SESSION缓存-->
     <cache name="SESSION"
            maxElementsInMemory="50000"
