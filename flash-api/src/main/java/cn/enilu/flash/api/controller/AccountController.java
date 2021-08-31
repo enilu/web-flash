@@ -165,9 +165,10 @@ public class AccountController extends BaseController {
      *
      * @param response
      */
-    @PostMapping("/qrcode/generate")
-    public void generateQrcode(HttpServletResponse response) {
-        BitMatrix bitMatrix = qrcodeService.createQrcode();
+    @GetMapping("/qrcode/generate")
+    public void generateQrcode(@RequestParam("ticket") String ticket,
+                                HttpServletResponse response) {
+        BitMatrix bitMatrix = qrcodeService.createQrcode(ticket);
 
         response.setContentType("image/jpg");
         response.setHeader("Pragma", "no-cache");
@@ -196,8 +197,8 @@ public class AccountController extends BaseController {
      * @return
      */
     @GetMapping("/qrcode/getRet")
-    public Ret getQrcodeStatus(@RequestParam("qrcode") String qrcode) {
-        String ret = qrcodeService.getCrcodeStatus(qrcode);
+    public Ret getQrcodeStatus(@RequestParam("ticket") String ticket) {
+        String ret = qrcodeService.getCrcodeStatus(ticket);
         if(QrcodeService.INVALID.equals(ret)){
             return Rets.success(Maps.newHashMap("status",ret,"msg","二维码已过期"));
         }

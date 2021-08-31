@@ -57,8 +57,8 @@ $light_gray:#eee;
   }
   .tips {
     font-size: 14px;
-    color: #fff;
-    margin-bottom: 10px;
+    color: #000;
+    margin-bottom: 5px;
     span {
       &:first-of-type {
         margin-right: 16px;
@@ -96,10 +96,5 @@ $light_gray:#eee;
     color: $dark_gray;
     cursor: pointer;
     user-select: none;
-  }
-  .thirdparty-button {
-    position: absolute;
-    right: 0;
-    bottom: 6px;
   }
 }

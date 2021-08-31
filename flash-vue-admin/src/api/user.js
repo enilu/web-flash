@@ -6,9 +6,9 @@ export function login(data) {
     url: '/account/login',
     method: 'post',
     data: qs.stringify({
-         'username': data.username,
-         'password': data.password
-       })
+      'username': data.username,
+      'password': data.password
+    })
   })
 }
 
@@ -31,6 +31,14 @@ export function updatePwd(params) {
     url: '/account/updatePwd',
     method: 'post',
     data: qs.stringify(params)
+  })
+}
+
+export function getQrcodeStatus(params) {
+  return request({
+    url: '/account/qrcode/getRet',
+    method: 'get',
+    params
   })
 }
 
