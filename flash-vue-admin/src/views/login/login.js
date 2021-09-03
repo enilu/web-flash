@@ -24,8 +24,10 @@ export default {
 
       qrcode: {
         activeName: 'first',
+        showAppdownload: false,
         imgUrl: '',
         ticket: '',
+        resultStatus: '',
         msg: '请使用flash-uniapp 扫码登录'
       },
       loginForm: {
@@ -66,6 +68,12 @@ export default {
       }
       return (S4() + S4() + '-' + S4() + '-' + S4() + '-' + S4() + '-' + S4() + S4() + S4())
     },
+    showAppdownload() {
+      this.qrcode.showAppdownload = true
+    },
+    hideAppdownload() {
+      this.qrcode.showAppdownload = false
+    },
     getQrcodeResult() {
       if (this.qrcode.activeName === 'second') {
         const me = this
@@ -73,6 +81,7 @@ export default {
           console.log('开始查询扫描结果')
           getQrcodeStatus({ ticket: me.qrcode.ticket }).then(res => {
             console.log('扫描结果', res)
+            this.qrcode.resultStatus = res.data.status
             if (res.data.status === 'invalid') {
               me.qrcode.msg = '二维码已过期'
             }
