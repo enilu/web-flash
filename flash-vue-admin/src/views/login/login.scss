@@ -104,7 +104,7 @@ $light_gray: #eee;
       width: 200px;
       border: 1px solid #ccc9c9;
     }
-    .qrCodeCoverBlack {
+    .qrCodeCoverBlack { 
       text-align: center;
       width: 200px;
       height: 200px;
@@ -112,7 +112,6 @@ $light_gray: #eee;
       background-color: rgba(0, 0, 0, 0.7);
       color: #ffffff;
       position: absolute;
-      bottom: 0px;
     }
   }
   .app-download {

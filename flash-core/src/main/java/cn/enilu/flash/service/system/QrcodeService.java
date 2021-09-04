@@ -59,11 +59,9 @@ public class QrcodeService {
      * 
      * @return
      */
-    public BitMatrix createQrcode(String ticket) {
-        String qrcode = "web-flash:" + UUID.randomUUID().toString();
-
-        cacheDao.hset(CacheDao.SHORT, qrcode, UNDO);
-        cacheDao.hset(CacheDao.SHORT, ticket, qrcode);
+    public BitMatrix createQrcode(String uuid) { 
+        logger.info("set:{}={}",uuid,UNDO);
+        cacheDao.hset(CacheDao.SHORT, uuid, UNDO); 
         QRCodeWriter writer = new QRCodeWriter();
         // 其他参数，如字符集编码
         Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>();
@@ -74,37 +72,35 @@ public class QrcodeService {
         hints.put(EncodeHintType.MARGIN, 0);
         BitMatrix bitMatrix = null;
         try {
-            bitMatrix = new MultiFormatWriter().encode(qrcode, BarcodeFormat.QR_CODE, 200, 200, hints);
+            bitMatrix = new MultiFormatWriter().encode(uuid, BarcodeFormat.QR_CODE, 200, 200, hints);
         } catch (WriterException e) {
             logger.error("createQrcode error", e);
         }
         return bitMatrix;
     }
 
-    public String getCrcodeStatus(String ticket) {
-        String qrCode = (String) cacheDao.hget(CacheDao.SHORT, ticket);
-        String ret = null;
-        if (StringUtil.isNotEmpty(qrCode)) {
-            ret = (String) cacheDao.hget(CacheDao.SHORT, qrCode);
-        }
+    public String getCrcodeStatus(String uuid) {
+        String ret = (String) cacheDao.hget(CacheDao.SHORT, uuid);
+        logger.info("get:{}={}",uuid,ret);
         return ret == null ? INVALID : ret;
     }
 
-    public void  login(String account, String qrcode, String confirm) {
+    public void  login(String phone, String uuid, String confirm) {
+        logger.info("login:{}={}",uuid,confirm);
         if ("0".equals(confirm)) {
-            cacheDao.hset(CacheDao.SHORT, qrcode, CANCEL);
+            cacheDao.hset(CacheDao.SHORT, uuid, CANCEL);
             return;
         }
 
-        User user = userService.findByAccount(account);
+        User user = userService.findByPhone(phone);
         String token = userService.loginForToken(user);
         ShiroFactroy.me().shiroUser(token, user);
         Map<String, String> result = new HashMap<>(1);
         result.put("token", token);
         LogManager.me().executeLog(LogTaskFactory.loginLog(user.getId(), HttpUtil.getIp()));
 
-        cacheDao.hset(CacheDao.SHORT, qrcode,
-                JsonUtil.toJson(Maps.newHashMap("status", SUCCESS, "account", account, "token", token)));
+        cacheDao.hset(CacheDao.SHORT, uuid,
+                JsonUtil.toJson(Maps.newHashMap("status", SUCCESS, "account", user.getAccount(), "token", token)));
 
     }
 }

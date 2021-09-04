@@ -166,9 +166,9 @@ public class AccountController extends BaseController {
      * @param response
      */
     @GetMapping("/qrcode/generate")
-    public void generateQrcode(@RequestParam("ticket") String ticket,
+    public void generateQrcode(@RequestParam("uuid") String uuid,
                                 HttpServletResponse response) {
-        BitMatrix bitMatrix = qrcodeService.createQrcode(ticket);
+        BitMatrix bitMatrix = qrcodeService.createQrcode(uuid);
 
         response.setContentType("image/jpg");
         response.setHeader("Pragma", "no-cache");
@@ -197,8 +197,8 @@ public class AccountController extends BaseController {
      * @return
      */
     @GetMapping("/qrcode/getRet")
-    public Ret getQrcodeStatus(@RequestParam("ticket") String ticket) {
-        String ret = qrcodeService.getCrcodeStatus(ticket);
+    public Ret getQrcodeStatus(@RequestParam("uuid") String uuid) {
+        String ret = qrcodeService.getCrcodeStatus(uuid);
         if(QrcodeService.INVALID.equals(ret)){
             return Rets.success(Maps.newHashMap("status",ret,"msg","二维码已过期"));
         }
@@ -220,7 +220,7 @@ public class AccountController extends BaseController {
      * @return
      */
     @PostMapping("/qrcode/login")
-    public Ret qrLogin(@RequestParam("account") String account,
+    public Ret qrLogin(@RequestParam("phone") String phone,
                        @RequestParam("qrcode") String qrcode,
                        @RequestParam("confirm") String confirm
     ) {
@@ -232,7 +232,7 @@ public class AccountController extends BaseController {
             return Rets.failure("二维码已被他人使用");
         }
         if(QrcodeService.UNDO.equals(qrstatus)) {
-            qrcodeService.login(account, qrcode, confirm);
+            qrcodeService.login(phone, qrcode, confirm);
             return Rets.success();
         }  else if (QrcodeService.INVALID.equals(qrstatus)) {
             return Rets.failure("二维码已过期");

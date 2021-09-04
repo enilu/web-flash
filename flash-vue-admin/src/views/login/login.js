@@ -26,7 +26,7 @@ export default {
         activeName: 'first',
         showAppdownload: false,
         imgUrl: '',
-        ticket: '',
+        uuid: '',
         resultStatus: '',
         msg: '请使用flash-uniapp 扫码登录'
       },
@@ -45,8 +45,8 @@ export default {
   },
   mounted() {
     this.init()
-    this.qrcode.ticket = this.uuid()
-    this.qrcode.imgUrl = getApiUrl() + '/account/qrcode/generate?ticket=' + this.qrcode.ticket
+    this.getQrcode()
+
   },
   methods: {
     init() {
@@ -54,11 +54,12 @@ export default {
       if (redirect) {
         this.redirect = redirect
       }
+
     },
     changeLoginType(tab) {
-      console.log('p', tab)
-      console.log('activename', this.qrcode.activeName)
       if (this.qrcode.activeName === 'second') {
+
+        this.getQrcode()
         this.getQrcodeResult()
       }
     },
@@ -74,18 +75,30 @@ export default {
     hideAppdownload() {
       this.qrcode.showAppdownload = false
     },
+    getQrcode() {
+      this.qrcode.uuid = this.uuid()
+      const url = getApiUrl() + '/account/qrcode/generate?uuid=' + this.qrcode.uuid
+      console.log('getQrcode', url)
+      this.qrcode.imgUrl = url
+    },
+    refreshQrcode() {
+      this.getQrcode()
+      this.qrcode.resultStatus = ''
+      this.getQrcodeResult()
+    },
     getQrcodeResult() {
       if (this.qrcode.activeName === 'second') {
         const me = this
         this.sleep(1000).then(() => {
-          console.log('开始查询扫描结果')
-          getQrcodeStatus({ ticket: me.qrcode.ticket }).then(res => {
+          getQrcodeStatus({ uuid: me.qrcode.uuid }).then(res => {
             console.log('扫描结果', res)
             this.qrcode.resultStatus = res.data.status
             if (res.data.status === 'invalid') {
+              this.qrcode.showAppdownload = false
               me.qrcode.msg = '二维码已过期'
             }
             if (res.data.status === 'success') {
+              this.qrcode.showAppdownload = false
               this.qrcode.msg = '扫描成功，自动登录中'
               this.loading = true
               this.$store.dispatch('user/autoLogin', { token: res.data.token }).then(() => {

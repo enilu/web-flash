@@ -47,12 +47,6 @@ public class ApiApplication extends SpringBootServletInitializer {
         return application.sources(ApiApplication.class);
     }
 
-//    todo该事务配置影响quartz中对数据库的提交，暂时注释掉
-//    @Bean
-//    public PlatformTransactionManager transactionManager(DataSource dataSource) {
-//        return new DataSourceTransactionManager(dataSource);
-//    }
-
     public static void main(String[] args) throws UnknownHostException {
         ConfigurableApplicationContext application = SpringApplication.run(ApiApplication.class, args);
         Environment env = application.getEnvironment();

@@ -61,7 +61,7 @@
             </div>
           </div>
         </el-tab-pane>
-        <el-tab-pane label="扫码登录" name="second">
+        <el-tab-pane label="扫码登录" name="second" >
           <div v-if="qrcode.activeName=='second'"  >
              
               <div class="qrcode" v-show="!qrcode.showAppdownload">
@@ -69,7 +69,7 @@
                   <div  class="qrCodeCoverBlack"  v-show="qrcode.resultStatus=='invalid'">
                       <span >二维码已失效
                       </span><br>
-                      <el-button   type="primary" size="mini" style="margin-top:15px;">&nbsp;&nbsp;刷新&nbsp;&nbsp;</el-button>
+                      <el-button   type="primary" size="mini" style="margin-top:15px;" @click.native="refreshQrcode">&nbsp;&nbsp;刷新&nbsp;&nbsp;</el-button>
                       <img  style="width: 40px; display:none;margin-top:-15px;" src="${base}/res/images/success.png"/>
                   </div>
               </div>
@@ -89,7 +89,7 @@
                      @mouseenter="showAppdownload"
                      @mouseleave="hideAppdownload">web-flash APP</span>
                      </p>
-                    <p style="font-size:10px ;margin-top:-5px;">在【首页-左上角-扫一扫】扫描二维码登录</p>
+                    <p style="font-size:10px ;margin-top:-5px;">在【首页-左上角-扫码登录】扫描二维码登录</p>
                 </div>
                 <div v-if="qrcode.resultStatus=='success'">
                     <p>扫码成功</p>
