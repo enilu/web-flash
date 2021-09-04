@@ -75,7 +75,7 @@ const actions = {
         commit('SET_ROLES', roles)
         commit('SET_PERMISSIONS', permissions)
         const routes = traverseRoutes(menus)
-        commit('SET_ROUTES', routes);
+        commit('SET_ROUTES', routes)
         data.routes = routes
         resolve(data)
       }).catch(error => {

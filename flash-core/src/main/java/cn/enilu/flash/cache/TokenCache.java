@@ -2,14 +2,18 @@ package cn.enilu.flash.cache;
 
 import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.utils.HttpUtil;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+ 
 /**
  * 用户登录时，生成的Token与用户ID的对应关系
  */
 @Service
 public class TokenCache {
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private CacheDao cacheDao;
@@ -31,10 +35,13 @@ public class TokenCache {
     }
 
     public void setUser(String token, ShiroUser shiroUser) {
+        logger.info("setUser:{}={}",token,shiroUser.getAccount());
         cacheDao.hset(CacheDao.SESSION, token + "user", shiroUser);
     }
 
     public ShiroUser getUser(String token) {
-        return cacheDao.hget(CacheDao.SESSION, token + "user", ShiroUser.class);
+        ShiroUser user =  cacheDao.hget(CacheDao.SESSION, token + "user", ShiroUser.class);
+        logger.info("getUser:{}={}",token,user);
+        return user;
     }
 }

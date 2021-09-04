@@ -65,7 +65,7 @@ public class ShiroFactroy {
 
 
     public ShiroUser shiroUser(String token,User user) {
-        ShiroUser shiroUser = tokenCache.getUser(HttpUtil.getToken());
+        ShiroUser shiroUser = tokenCache.getUser(token);
         if (shiroUser != null) {
             return shiroUser;
         }
