@@ -13,13 +13,18 @@ $cursor: #fff;
 
 /* reset element-ui css */
 .login-container {
+  
+   
   .el-input {
     display: inline-block;
     height: 47px;
     width: 85%;
+  
     input {
       background: transparent;
-      border: 0px;
+      //background-color: #454545;
+  
+       border: 0px;
       -webkit-appearance: none;
       border-radius: 0px;
       padding: 12px 5px 12px 15px;
@@ -34,7 +39,9 @@ $cursor: #fff;
   }
   .el-form-item {
     border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.1);
+  //  background: rgba(0, 0, 0, 0.1);
+    background-color: #454545;
+  
     border-radius: 5px;
     color: #454545;
   }
