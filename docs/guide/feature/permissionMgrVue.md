@@ -56,3 +56,7 @@ export default {
 ```  
 
 完整的示例参考"系统管理"->"用户管理"的代码[/user/index.vue](https://github.com/enilu/web-flash/tree/master/flash-vue-admin/src/views/system/user)
+
+
+## 备注
+权限控制和菜单管理是紧密结合的，请详细阅读菜单管理中的相关字段说明：[菜单管理](menu.md),以便更容易的做好权限控制。

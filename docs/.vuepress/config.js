@@ -37,7 +37,6 @@ module.exports = {
                     },
                     {text:'帮助',items:[
                             {text: '在线资源',link:'/guide/other/resource'},
-                            {text:'问答社区',link:'/guide/other/xiaomiquan'},
                             {text:'QQ群(752844606)',link:'https://jq.qq.com/?_wv=1027&k=qWkkox36'},
                             {text:'作者blog',link:'http://blog.enilu.cn'},
                             {text:'FAQ',link:'/guide/other/faq'},

@@ -1,4 +1,4 @@
-//代码生成配置，具体用法参考：http://enilu.gitee.io/web-flash/ecosystem/code-generator.html
+//代码生成配置，具体用法参考：http://webflash.enilu.cn/ecosystem/code-generator.html
 {
   "codeConfig": {
     "type": "cn.enilu.flash.code.CodeConfig",
