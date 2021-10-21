@@ -7,6 +7,10 @@ public class XlsUtils {
         if (date == null) {
             return "";
         }
-        return DateUtil.formatDate(date, fmt);
+        if(StringUtil.isEmpty(fmt)){
+            return DateUtil.getTime(date);
+        }else{
+            return DateUtil.formatDate(date, fmt);
+        }
     }
 }
