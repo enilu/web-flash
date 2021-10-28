@@ -21,6 +21,7 @@ export default {
     file: 'File',
     contacts: 'Contacts',
     channel: 'Channel',
+    cmsDemo:'Cms Demo',
     druid: 'Monitor',
     swagger: 'Docs',
     msg: 'History',

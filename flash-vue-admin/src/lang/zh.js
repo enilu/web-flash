@@ -11,6 +11,7 @@ export default {
     file: '文件管理',
     contacts: '邀约管理',
     channel: '栏目管理',
+    cmsDemo:'手机站点演示',
     menu: '菜单管理',
     dept: '部门管理',
     mgr: '用户管理',
