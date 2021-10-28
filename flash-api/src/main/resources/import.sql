@@ -214,6 +214,7 @@ INSERT INTO `t_sys_menu` VALUES ('75', '1', '2021-07-21 19:46:59', null, null, '
 INSERT INTO `t_sys_menu` VALUES ('76', '1', '2021-07-21 19:46:59', null, null, 'processDefinitionEdit', null, '0', null, '0', null, '1', '编辑流程', '3', 'processDefinition', '[0],[workFlow],[processDefinition],', null, '/workflow/process/definition/edit');
 INSERT INTO `t_sys_menu` VALUES ('77', '1', '2021-07-24 21:53:56', null, null, 'workFlowRequestAdd', null, '0', null, '0', null, '3', '发起流程', '1', 'workFlowRequest', '[0],[workFlow],[workFlowRequest],', null, '/workflow/request/add');
 INSERT INTO `t_sys_menu` VALUES ('78', '1', '2021-07-24 21:53:56', null, null, 'workFlowTask', 'views/workflow/task/index', '0', 'workFlowTask', '1', null, '2', '代办任务', '3', 'workFlow', '[0],[workFlow],', null, '/workflow/request/task');
+INSERT INTO `t_sys_menu` VALUES ('79', '1', '2021-10-28 14:19:18', '1', '2021-10-28 14:19:18', 'cmsDemo', 'views/cms/demo/index', '0', 'phone', '1', null, '2', 'cms手机站', '7', 'cms', '[0],[cms],', null, '/demo');
 
 -- ----------------------------
 -- Records of t_sys_notice
@@ -328,6 +329,8 @@ INSERT INTO `t_sys_relation` VALUES ('152', '76', '3');
 INSERT INTO `t_sys_relation` VALUES ('153', '75', '3');
 INSERT INTO `t_sys_relation` VALUES ('154', '77', '3');
 INSERT INTO `t_sys_relation` VALUES ('155', '78', '3');
+INSERT INTO `t_sys_relation` VALUES ('156', '79', '1');
+INSERT INTO `t_sys_relation` VALUES ('157', '79', '3');
 
 -- ----------------------------
 -- Records of t_sys_role
