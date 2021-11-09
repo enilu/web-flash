@@ -9,7 +9,7 @@ http://47.104.84.62:8080/mobile/#/index
 # install dependencies
 npm install
 or 
-npm install --registry=https://registry.npm.taobao.org
+npm install --registry=https://registry.npmmirror.com
 
 # serve with hot reload at localhost:8080
 npm run dev

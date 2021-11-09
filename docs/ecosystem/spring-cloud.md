@@ -44,7 +44,7 @@
     - flash-schedule
     - flash-manage 启动后会自动创建数据库表和初始化数据
 - 进入flash-vue-admin目录
-    - 运行 npm install --registry=https://registry.npm.taobao.org
+    - 运行 npm install --registry=https://registry.npmmirror.com
     - 运行npm run dev
     - 启动成功后访问 http://localhost:9528 ,登录，用户名密码:admin/admin      
  

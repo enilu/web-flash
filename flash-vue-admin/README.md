@@ -14,7 +14,7 @@ PanJiaChen老师提供了全面的文档，开发过程可以参考这里：[htt
 
 # Install dependencies 
 # 建议不要用cnpm  安装有各种诡异的bug 可以通过如下操作解决npm速度慢的问题
-npm install --registry=https://registry.npm.taobao.org
+npm install --registry=https://registry.npmmirror.com
 
 # Serve with hot reload at localhost:9528
 npm run dev

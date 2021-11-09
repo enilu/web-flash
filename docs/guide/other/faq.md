@@ -10,7 +10,7 @@ java -Dfile.encoding=utf-8 -jar xxxxxxx.jar
 #### 打包vue-admin或者vue-h5总是下载依赖包失败
 使用淘宝源
 ```shell
-npm install --registry=https://registry.npm.taobao.org
+npm install --registry=https://registry.npmmirror.com
 ```
 
 #### 使用代码生成器的时候生成不了代码

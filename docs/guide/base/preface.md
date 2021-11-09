@@ -82,7 +82,7 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 - 修改flash-api中数据库连接配置
 - 启动flash-api，访问http://localhost:8082/swagger-ui.html，保证api服务启动成功
 - 进入flash-vue-admin目录
-    - 运行 npm install --registry=https://registry.npm.taobao.org 安装依赖
+    - 运行 npm install --registry=https://registry.npmmirror.com 安装依赖
     - 运行npm run dev 启动项目
     - 启动成功后访问 http://localhost:9528,登录，用户名密码:admin/admin
 
@@ -90,7 +90,7 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
  ![admin](../../vuejs.gif)
 
 - 进入flash-vue-h5目录
-    - 运行 npm install --registry=https://registry.npm.taobao.org
+    - 运行 npm install --registry=https://registry.npmmirror.com
     - 运行npm run dev
     - 启动成功后访问 http://localhost:8088/#/index
 - 手机端运行效果图：
