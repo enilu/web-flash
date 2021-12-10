@@ -25,8 +25,6 @@ import java.util.Set;
  */
 @Service
 public class ApiRealm extends AuthorizingRealm {
-
-    private Logger logger = LogManager.getLogger(getClass());
     @Autowired
     private UserService userService;
     @Autowired

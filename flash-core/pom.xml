@@ -66,11 +66,6 @@
             <artifactId>java-jwt</artifactId>
         </dependency>
 
-        <!--日志支持-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
-        </dependency>
         <!--任务调度支持-->
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
