@@ -28,28 +28,26 @@ public class UserService extends BaseService<User, Long, UserRepository> {
     @Value("${jwt.token.expire.time}")
     private Long tokenExpireTime;
 
+    /**
+     * 登录查询用户的时候不从缓存中查询
+     * @param account
+     * @return
+     */
+    public User findByAccountForLogin(String account) {
+        User user = userRepository.findByAccount(account);
+        cacheDao.hset(CacheDao.SESSION,account,user);
+        return user;
+    }
 
     public User findByAccount(String account) {
-        //由于：@Cacheable标注的方法，如果其所在的类实现了某一个接口，那么该方法也必须出现在接口里面，否则cache无效。
-        //具体的原因是， Spring把实现类装载成为Bean的时候，会用代理包装一下，所以从Spring Bean的角度看，只有接口里面的方法是可见的，其它的都隐藏了，自然课看不到实现类里面的非接口方法，@Cacheable不起作用。
-        //所以这里手动控制缓存
         User user = cacheDao.hget(CacheDao.SESSION, account, User.class);
         if (user != null) {
             return user;
         }
-        user = userRepository.findByAccount(account);
-        cacheDao.hset(CacheDao.SESSION, account, user);
-        return user;
+        return findByAccountForLogin(account);
     }
     public User findByPhone(String phone) {
-        //由于：@Cacheable标注的方法，如果其所在的类实现了某一个接口，那么该方法也必须出现在接口里面，否则cache无效。
-        //具体的原因是， Spring把实现类装载成为Bean的时候，会用代理包装一下，所以从Spring Bean的角度看，只有接口里面的方法是可见的，其它的都隐藏了，自然课看不到实现类里面的非接口方法，@Cacheable不起作用。
-        //所以这里手动控制缓存
-        User user = cacheDao.hget(CacheDao.SESSION, phone, User.class);
-        if (user != null) {
-            return user;
-        }
-        user = userRepository.findByPhone(phone);
+        User  user = userRepository.findByPhone(phone);
         cacheDao.hset(CacheDao.SESSION, phone, user);
         return user;
     }

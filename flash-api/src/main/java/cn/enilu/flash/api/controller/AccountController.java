@@ -70,7 +70,7 @@ public class AccountController extends BaseController {
                         @RequestParam("password") String password) {
         try {
             //1,
-            User user = userService.findByAccount(userName);
+            User user = userService.findByAccountForLogin(userName);
             if (user == null) {
                 return Rets.failure("用户名或密码错误");
             }
