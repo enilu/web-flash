@@ -6,7 +6,7 @@ flash-vue-admin（前端）和flash-api（后端）搭配使用提供了一套�
 
 该模块克隆自：[vue-admin-template](https://github.com/PanJiaChen/vue-admin-template)，感谢PanJiaChen，欢迎大家给他点赞。
 
-PanJiaChen老师提供了全面的文档，开发过程可以参考这里：[https://vuepress.vuejs.org/zh/](https://vuepress.vuejs.org/zh/)
+PanJiaChen老师提供了全面的文档，开发过程可以参考其官方文档
  
 ## 构建步骤
 

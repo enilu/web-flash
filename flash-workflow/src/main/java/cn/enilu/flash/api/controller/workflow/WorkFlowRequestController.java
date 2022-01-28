@@ -32,7 +32,7 @@ public class WorkFlowRequestController extends BaseController {
     private TokenCache tokenCache;
 
     @GetMapping(value = "/list")
-    @RequiresPermissions(value = "/workflow/request1")
+    @RequiresPermissions(value = "/workflow/request")
     public Object list(@RequestParam(required = false) Long id) {
         Page<WorkFlowRequest> page = new PageFactory<WorkFlowRequest>().defaultPage();
         page = workFlowRequestService.queryPage(page);
