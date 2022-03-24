@@ -51,7 +51,7 @@ public class CodeGenerator {
         param.add("view");
         param.add("repository");
         String[] args = param.toArray(new String[param.size()]);
-        Generator.generator(args);
+        Generator.main(args);
 
 
     }
