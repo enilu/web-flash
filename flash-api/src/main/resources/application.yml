@@ -5,7 +5,7 @@ spring:
     ehcache:
       config: classpath:ehcache.xml
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name:  com.mysql.cj.jdbc.Driver
     druid:
       web-stat-filter:
         enabled: true
