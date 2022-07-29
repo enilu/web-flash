@@ -11,14 +11,14 @@ export default {
         return request({
             url: '${table.UriPrefix}',
             method: 'post',
-            params
+            data: params
         })
     },
     update:function(params) {
         return request({
             url: '${table.UriPrefix}',
             method: 'PUT',
-            params
+            data: params
         })
     },
     remove:function(id) {

@@ -41,14 +41,14 @@ public class ${table.ControllerClassName} extends BaseController {
 	@PostMapping
 	@BussinessLog(value = "新增${table.Label}", key = "name")
 	@RequiresPermissions(value = "${table.entityNameLowerFirstChar}Add")
-	public Ret add(@ModelAttribute ${table.EntityClassName} ${table.entityNameLowerFirstChar}){
+	public Ret add(@RequestBody ${table.EntityClassName} ${table.entityNameLowerFirstChar}){
 		${table.ServiceInstanceName}.insert(${table.entityNameLowerFirstChar});
 		return Rets.success();
 	}
 	@PutMapping
 	@BussinessLog(value = "更新${table.Label}", key = "name")
 	@RequiresPermissions(value = "${table.entityNameLowerFirstChar}Update")
-	public Ret update(@ModelAttribute ${table.EntityClassName} ${table.entityNameLowerFirstChar}){
+	public Ret update(@RequestBody ${table.EntityClassName} ${table.entityNameLowerFirstChar}){
 		${table.ServiceInstanceName}.update(${table.entityNameLowerFirstChar});
 		return Rets.success();
 	}
