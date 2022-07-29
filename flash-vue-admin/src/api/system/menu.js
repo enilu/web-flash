@@ -1,49 +1,48 @@
 import request from '@/utils/request'
 
-export function getList() {
-  return request({
-    url: '/menu/list',
-    method: 'get'
-  })
-}
-
-export function getMenuTree() {
-  return request({
-    url: '/menu/tree',
-    method: 'get'
-  })
-}
-export function listForRouter(params) {
-  return request({
-    url: '/menu/listForRouter',
-    method: 'get',
-    params
-  })
-}
-
-export function save(params) {
-  return request({
-    url: '/menu',
-    method: 'post',
-    params: params
-  })
-}
-
-export function delMenu(id) {
-  return request({
-    url: '/menu',
-    method: 'delete',
-    params: {
-      id: id
-    }
-  })
-}
-export function menuTreeListByRoleId(roleId) {
-  return request({
-    url: '/menu/menuTreeListByRoleId',
-    method: 'get',
-    params: {
-      roleId: roleId
-    }
-  })
+export default {
+  getList: function () {
+    return request({
+      url: '/menu/list',
+      method: 'get'
+    })
+  },
+  getMenuTree: function () {
+    return request({
+      url: '/menu/tree',
+      method: 'get'
+    })
+  },
+  listForRouter: function (params) {
+    return request({
+      url: '/menu/listForRouter',
+      method: 'get',
+      params
+    })
+  },
+  save: function (params) {
+    return request({
+      url: '/menu',
+      method: 'post',
+      data: params
+    })
+  },
+  delMenu: function (id) {
+    return request({
+      url: '/menu',
+      method: 'delete',
+      params: {
+        id: id
+      }
+    })
+  },
+  menuTreeListByRoleId: function (roleId) {
+    return request({
+      url: '/menu/menuTreeListByRoleId',
+      method: 'get',
+      params: {
+        roleId: roleId
+      }
+    })
+  }
 }

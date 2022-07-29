@@ -1,9 +1,9 @@
-import { remove, getList, save } from '@/api/cms/channel'
+import channelApi from '@/api/cms/channel'
 import permission from '@/directive/permission/index.js'
 
 export default {
   name: 'channel',
-  directives: { permission },
+  directives: {permission},
   data() {
     return {
       formVisible: false,
@@ -26,10 +26,10 @@ export default {
     rules() {
       return {
         cfgName: [
-          { required: true, message: '名称不能为空', trigger: 'blur' }
+          {required: true, message: '名称不能为空', trigger: 'blur'}
         ],
         cfgValue: [
-          { required: true, message: '编码不能为空', trigger: 'blur' }
+          {required: true, message: '编码不能为空', trigger: 'blur'}
         ]
       }
     }
@@ -43,7 +43,7 @@ export default {
     },
     fetchData() {
       this.listLoading = true
-      getList().then(response => {
+      channelApi.getList().then(response => {
         this.list = response.data
         this.listLoading = false
       })
@@ -78,7 +78,7 @@ export default {
     save() {
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          save({
+          channelApi.save({
             id: this.form.id,
             name: this.form.name,
             code: this.form.code
@@ -105,7 +105,7 @@ export default {
       })
       return false
     },
-    editItem(record){
+    editItem(record) {
       this.selRow = record
       this.edit()
     },
@@ -117,19 +117,19 @@ export default {
         this.formVisible = true
       }
     },
-    removeItem(record){
+    removeItem(record) {
       this.selRow = record
       this.remove()
     },
     remove() {
       if (this.checkSel()) {
-        var id = this.selRow.id
+        const id = this.selRow.id
         this.$confirm(this.$t('common.deleteConfirm'), this.$t('common.tooltip'), {
           confirmButtonText: this.$t('button.submit'),
           cancelButtonText: this.$t('button.cancel'),
           type: 'warning'
         }).then(() => {
-          remove(id).then(response => {
+          channelApi.remove(id).then(response => {
             this.$message({
               message: this.$t('common.optionSuccess'),
               type: 'success'

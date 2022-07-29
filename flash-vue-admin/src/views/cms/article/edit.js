@@ -2,8 +2,8 @@ import editorImage from '@/components/Tinymce'
 import { Loading } from 'element-ui'
 import plugins from './plugins'
 import toolbar from './toolbar'
-import { save, get } from '@/api/cms/article'
-import { getList } from '@/api/cms/channel'
+import articleApi from '@/api/cms/article'
+import channelApi  from '@/api/cms/channel'
 import { getApiUrl } from '@/utils/utils'
 import { getToken } from '@/utils/auth'
 
@@ -103,14 +103,14 @@ export default {
       this.uploadHeaders['Authorization'] = getToken()
       const id = this.$route.query.id
       if (id) {
-        get(id).then(response => {
+        articleApi.get(id).then(response => {
           this.form = response.data
           this.setContent(response.data.content)
           this.articleImg = this.uploadUrl + '/getImgStream?idFile=' + response.data.img
           this.ifUpload = false
         })
       }
-      getList().then(response => {
+      channelApi.getList().then(response => {
         this.options = response.data
       })
     },
@@ -180,7 +180,7 @@ export default {
       this.$refs['form'].validate((valid) => {
         if (valid) {
           const content = this.form.content.split('%').join('%25')
-          save({
+          articleApi.save({
             id: this.form.id,
             title: this.form.title,
             author: this.form.author,

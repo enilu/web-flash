@@ -12,7 +12,7 @@ export function saveUser(params) {
   return request({
     url: '/user',
     method: 'post',
-    params
+    data: params
   })
 }
 

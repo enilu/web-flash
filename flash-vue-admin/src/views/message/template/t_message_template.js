@@ -1,25 +1,25 @@
-import { remove, getList, save } from '@/api/message/template'
-import { queryAll } from '@/api/message/sender'
+import templateApi from '@/api/message/template'
+import senderApi from '@/api/message/sender'
 import permission from '@/directive/permission/index.js'
 
 export default {
   name: 'msgTpl',
-  directives: { permission },
+  directives: {permission},
   data() {
     return {
       formVisible: false,
       formTitle: '添加消息模板',
       isAdd: true,
       form: {
-        code:'',
-        title:'',
-        content:'',
-        type:'',
-        idMessageSender:'',
-        remoteTplCode:'',
+        code: '',
+        title: '',
+        content: '',
+        type: '',
+        idMessageSender: '',
+        remoteTplCode: '',
         id: ''
       },
-      sendList:[],
+      sendList: [],
       listQuery: {
         page: 1,
         limit: 20,
@@ -49,13 +49,13 @@ export default {
   methods: {
     init() {
       this.fetchData()
-      queryAll().then(response => {
+      senderApi.queryAll().then(response => {
         this.sendList = response.data
       })
     },
     fetchData() {
       this.listLoading = true
-      getList(this.listQuery).then(response => {
+      templateApi.getList(this.listQuery).then(response => {
         this.list = response.data.records
         this.listLoading = false
         this.total = response.data.total
@@ -100,31 +100,31 @@ export default {
     },
     resetForm() {
       this.form = {
-        code:'',
-        title:'',
-        content:'',
-        type:0,
-        idMessageSender:'',
-        remoteTplCode:'',
+        code: '',
+        title: '',
+        content: '',
+        type: 0,
+        idMessageSender: '',
+        remoteTplCode: '',
         id: ''
       }
     },
     add() {
       this.resetForm()
       this.formTitle = '添加消息模板',
-      this.formVisible = true
+        this.formVisible = true
       this.isAdd = true
     },
     save() {
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          save({
-            code:this.form.code,
-            title:this.form.title,
-            content:this.form.content,
-            type:this.form.type,
-            remoteTplCode:this.form.remoteTplCode,
-            idMessageSender:this.form.idMessageSender,
+          templateApi.save({
+            code: this.form.code,
+            title: this.form.title,
+            content: this.form.content,
+            type: this.form.type,
+            remoteTplCode: this.form.remoteTplCode,
+            idMessageSender: this.form.idMessageSender,
             id: this.form.id
           }).then(response => {
             this.$message({
@@ -149,8 +149,8 @@ export default {
       })
       return false
     },
-    editItem(record){
-      this.selRow= Object.assign({},record);
+    editItem(record) {
+      this.selRow = Object.assign({}, record);
       this.edit()
     },
     edit() {
@@ -161,19 +161,19 @@ export default {
         this.formVisible = true
       }
     },
-    removeItem(record){
+    removeItem(record) {
       this.selRow = record
       this.remove()
     },
     remove() {
       if (this.checkSel()) {
-        var id = this.selRow.id
+        const id = this.selRow.id
         this.$confirm(this.$t('common.deleteConfirm'), this.$t('common.tooltip'), {
           confirmButtonText: this.$t('button.submit'),
           cancelButtonText: this.$t('button.cancel'),
           type: 'warning'
         }).then(() => {
-          remove(id).then(response => {
+          templateApi.remove(id).then(response => {
             this.$message({
               message: this.$t('common.optionSuccess'),
               type: 'success'

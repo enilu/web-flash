@@ -1,4 +1,4 @@
-import { remove, getList, save } from '@/api/message/sender'
+import senderApi from '@/api/message/sender'
 import permission from '@/directive/permission/index.js'
 
 export default {
@@ -45,7 +45,7 @@ export default {
     },
     fetchData() {
       this.listLoading = true
-      getList(this.listQuery).then(response => {
+      senderApi.getList(this.listQuery).then(response => {
         this.list = response.data.records
         this.listLoading = false
         this.total = response.data.total
@@ -104,7 +104,7 @@ export default {
     save() {
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          save({
+          senderApi.save({
             name:this.form.name,
             className:this.form.className,
             id: this.form.id
@@ -149,13 +149,13 @@ export default {
     },
     remove() {
       if (this.checkSel()) {
-        var id = this.selRow.id
+        const id = this.selRow.id
         this.$confirm(this.$t('common.deleteConfirm'), this.$t('common.tooltip'), {
           confirmButtonText: this.$t('button.submit'),
           cancelButtonText: this.$t('button.cancel'),
           type: 'warning'
         }).then(() => {
-          remove(id).then(response => {
+          senderApi.remove(id).then(response => {
               console.log(response)
               this.$message({
                 message: this.$t('common.optionSuccess'),

@@ -75,7 +75,7 @@ public class MenuController extends BaseController {
     @PostMapping
     @BussinessLog(value = "编辑菜单", key = "name")
     @RequiresPermissions(value = {Permission.MENU_EDIT})
-    public Object save(@ModelAttribute @Valid Menu menu) {
+    public Object save(@RequestBody @Valid Menu menu) {
         //判断是否存在该编号
         if (menu.getId() == null) {
             String existedMenuName = ConstantFactory.me().getMenuNameByCode(menu.getCode());

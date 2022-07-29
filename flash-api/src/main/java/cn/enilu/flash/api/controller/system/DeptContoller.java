@@ -44,7 +44,7 @@ public class DeptContoller extends BaseController {
     @PostMapping
     @BussinessLog(value = "编辑部门", key = "simplename")
     @RequiresPermissions(value = {Permission.DEPT_EDIT})
-    public Object save(@ModelAttribute @Valid Dept dept) {
+    public Object save(@RequestBody @Valid Dept dept) {
         if (BeanUtil.isOneEmpty(dept, dept.getSimplename())) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }

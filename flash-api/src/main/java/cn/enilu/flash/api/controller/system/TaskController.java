@@ -53,7 +53,7 @@ public class TaskController extends BaseController {
     @PostMapping
     @BussinessLog(value = "编辑定时任务", key = "name")
     @RequiresPermissions(value = {Permission.TASK_EDIT})
-    public Object add(@ModelAttribute @Valid Task task) {
+    public Object add(@RequestBody @Valid Task task) {
 
         Ret validRet = taskService.validate(task);
         if(!validRet.isSuccess()){

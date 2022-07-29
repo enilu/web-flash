@@ -1,5 +1,5 @@
 import { deleteUser, getList, saveUser, remove, setRole, changeStatus,resetPassword } from '@/api/system/user'
-import { list as deptList } from '@/api/system/dept'
+import deptApi from '@/api/system/dept'
 import { parseTime } from '@/utils/index'
 import { roleTreeListByIdUser } from '@/api/system/role'
 // 权限判断指令
@@ -91,7 +91,7 @@ export default {
   },
   methods: {
     init() {
-      deptList().then(response => {
+      deptApi.list().then(response => {
         this.deptTree.data = response.data
       })
       this.fetchData()

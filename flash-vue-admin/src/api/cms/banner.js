@@ -16,7 +16,7 @@ export function save(params) {
   return request({
     url: '/banner',
     method: 'post',
-    params
+    data: params
   })
 }
 

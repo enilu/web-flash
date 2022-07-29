@@ -1,10 +1,10 @@
-import { remove, getList, save } from '@/api/cms/article'
-import { getApiUrl } from '@/utils/utils'
+import articleApi from '@/api/cms/article'
+import {getApiUrl} from '@/utils/utils'
 import permission from '@/directive/permission/index.js'
 
 export default {
   name: 'article',
-  directives: { permission },
+  directives: {permission},
   data() {
     return {
       formVisible: false,
@@ -26,7 +26,7 @@ export default {
         startDate: undefined,
         endDate: undefined
       },
-      rangeDate:undefined,
+      rangeDate: undefined,
       total: 0,
       list: null,
       listLoading: true,
@@ -66,10 +66,10 @@ export default {
     rules() {
       return {
         title: [
-          { required: true, message: '标题不能为空', trigger: 'blur' }
+          {required: true, message: '标题不能为空', trigger: 'blur'}
         ],
         author: [
-          { required: true, message: '作者不能为空', trigger: 'blur' }
+          {required: true, message: '作者不能为空', trigger: 'blur'}
         ]
       }
     }
@@ -84,14 +84,14 @@ export default {
     fetchData() {
       this.listLoading = true
       let queryData = this.listQuery
-      if(this.rangeDate){
+      if (this.rangeDate) {
         queryData['startDate'] = this.rangeDate[0]
         queryData['endDate'] = this.rangeDate[1]
 
       }
-      getList(queryData).then(response => {
+      articleApi.getList(queryData).then(response => {
         this.list = response.data.records
-        for (var index in this.list) {
+        for (const index in this.list) {
           const item = this.list[index]
           item.img = getApiUrl() + '/file/getImgStream?idFile=' + item.img
         }
@@ -139,7 +139,7 @@ export default {
       this.selRow = currentRow
     },
     add() {
-      this.$router.push({ path: '/cms/articleEdit' })
+      this.$router.push({path: '/cms/articleEdit'})
     },
     checkSel() {
       if (this.selRow && this.selRow.id) {
@@ -151,29 +151,29 @@ export default {
       })
       return false
     },
-    editItem(record){
+    editItem(record) {
       this.selRow = record
       this.edit()
     },
     edit() {
       if (this.checkSel()) {
-        this.$router.push({ path: '/cms/articleEdit', query: { id: this.selRow.id }})
+        this.$router.push({path: '/cms/articleEdit', query: {id: this.selRow.id}})
       }
     },
-    removeItem(record){
+    removeItem(record) {
       this.selRow = record
       this.remove()
     },
     remove() {
       if (this.checkSel()) {
-        var id = this.selRow.id
+        const id = this.selRow.id
 
         this.$confirm(this.$t('common.deleteConfirm'), this.$t('common.tooltip'), {
           confirmButtonText: this.$t('button.submit'),
           cancelButtonText: this.$t('button.cancel'),
           type: 'warning'
         }).then(() => {
-          remove(id).then(response => {
+          articleApi.remove(id).then(response => {
             this.$message({
               message: this.$t('common.optionSuccess'),
               type: 'success'

@@ -1,25 +1,18 @@
 import request from '@/utils/request'
 
-export function getList(params) {
+export default {
+  getList: function (params) {
     return request({
-        url: '/message/list',
-        method: 'get',
-        params
+      url: '/message/list',
+      method: 'get',
+      params
     })
-}
-
-
-export function save(params) {
+  },
+  clear: function () {
     return request({
-        url: '/message',
-        method: 'post',
-        params
+      url: '/message',
+      method: 'delete'
     })
-}
+  }
 
-export function clear() {
-    return request({
-        url: '/message',
-        method: 'delete'
-    })
 }

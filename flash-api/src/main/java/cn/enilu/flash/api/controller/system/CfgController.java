@@ -81,7 +81,7 @@ public class CfgController extends BaseController {
     @PostMapping
     @BussinessLog(value = "新增参数", key = "cfgName")
     @RequiresPermissions(value = {"/cfg/add"})
-    public Object add(@ModelAttribute @Valid Cfg cfg) {
+    public Object add(@RequestBody @Valid Cfg cfg) {
         cfgService.saveOrUpdate(cfg);
         return Rets.success();
     }
@@ -89,7 +89,7 @@ public class CfgController extends BaseController {
     @PutMapping
     @BussinessLog(value = "编辑参数", key = "cfgName")
     @RequiresPermissions(value = {"/cfg/update"})
-    public Object update(@ModelAttribute @Valid Cfg cfg) {
+    public Object update(@RequestBody @Valid Cfg cfg) {
         Cfg old = cfgService.get(cfg.getId());
         LogObjectHolder.me().set(old);
         old.setCfgName(cfg.getCfgName());

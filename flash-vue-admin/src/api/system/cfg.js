@@ -1,7 +1,6 @@
 import request from '@/utils/request'
 
 export default {
-
   getList: function (params) {
     return request({
       url: '/cfg/list',
@@ -9,8 +8,6 @@ export default {
       params
     })
   },
-
-
   exportXls: function (params) {
     return request({
       url: '/cfg/export',
@@ -22,14 +19,14 @@ export default {
     return request({
       url: '/cfg',
       method: 'post',
-      params
+      data: params
     })
   },
   update: function (params) {
     return request({
       url: '/cfg',
       method: 'put',
-      params
+      data: params
     })
   },
   remove: function (id) {

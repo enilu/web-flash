@@ -27,7 +27,7 @@ public class BannerMgrController extends BaseController {
     @PostMapping
     @BussinessLog(value = "编辑banner", key = "title")
     @RequiresPermissions(value = {Permission.BANNER_EDIT})
-    public Object save(@ModelAttribute @Valid Banner banner) {
+    public Object save(@RequestBody @Valid Banner banner) {
         if (banner.getId() == null) {
             bannerService.insert(banner);
         } else {

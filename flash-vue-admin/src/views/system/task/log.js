@@ -1,4 +1,4 @@
-import { logList } from '@/api/system/task'
+import taskApi from '@/api/system/task'
 
 export default {
   data() {
@@ -25,7 +25,7 @@ export default {
     },
     fetchData() {
       this.listLoading = true
-      logList(this.listQuery).then(response => {
+      taskApi.logList(this.listQuery).then(response => {
         this.list = response.data.records
         this.listLoading = false
         this.total = response.data.total

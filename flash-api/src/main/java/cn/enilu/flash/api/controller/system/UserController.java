@@ -65,7 +65,7 @@ public class UserController extends BaseController {
     @PostMapping
     @BussinessLog(value = "编辑账号", key = "name")
     @RequiresPermissions(value = {Permission.USER_EDIT})
-    public Object save(@Valid UserDto user, BindingResult result) {
+    public Object save(@RequestBody @Valid UserDto user, BindingResult result) {
         if (user.getId() == null) {
             // 判断账号是否重复
             User theUser = userService.findByAccount(user.getAccount());

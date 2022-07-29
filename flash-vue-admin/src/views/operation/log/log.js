@@ -1,4 +1,4 @@
-import {clear, getList} from '@/api/system/log'
+import logApi from '@/api/system/log'
 import permission from '@/directive/permission/index.js'
 
 export default {
@@ -37,7 +37,7 @@ export default {
     },
     fetchData() {
       this.listLoading = true
-      getList(this.listQuery).then(response => {
+      logApi.getList(this.listQuery).then(response => {
         this.list = response.data.records
         this.listLoading = false
         this.total = response.data.total
@@ -81,7 +81,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        clear().then(response => {
+        logApi.clear().then(response => {
           this.$message({
             message: '清空成功',
             type: 'sucess'

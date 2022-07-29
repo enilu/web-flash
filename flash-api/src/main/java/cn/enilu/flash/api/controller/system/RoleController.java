@@ -60,7 +60,7 @@ public class RoleController extends BaseController {
     @PostMapping
     @BussinessLog(value = "编辑角色", key = "name")
     @RequiresPermissions(value = {Permission.ROLE_EDIT})
-    public Object save(@Valid Role role) {
+    public Object save(@RequestBody @Valid Role role) {
         if (role.getId() == null) {
             roleService.insert(role);
         } else {

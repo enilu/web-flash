@@ -1,5 +1,5 @@
 import treeTable from '@/components/TreeTable'
-import { getList, save, delMenu, getMenuTree } from '@/api/system/menu'
+import menuApi from '@/api/system/menu'
 import permission from '@/directive/permission/index.js'
 import IconSelect from '@/components/IconSelect'
 
@@ -62,13 +62,13 @@ export default {
     },
     init() {
       this.fetchData()
-      getMenuTree().then(response => {
+      menuApi.getMenuTree().then(response => {
         this.treeData = response.data
       })
     },
     fetchData() {
       this.listLoading = true
-      getList().then(response => {
+      menuApi.getList().then(response => {
         this.data = response.data
         this.listLoading = false
       })
@@ -93,13 +93,13 @@ export default {
       }
     },
     save() {
-      var self = this
+      let self = this
       this.$refs['form'].validate((valid) => {
         if (valid) {
           const menuData = self.form
           delete menuData.parent
           delete menuData.children
-          save(menuData).then(response => {
+          menuApi.save(menuData).then(response => {
             this.$message({
               message: '提交成功',
               type: 'success'
@@ -133,7 +133,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        delMenu(row.id).then(response => {
+        menuApi.delMenu(row.id).then(response => {
           this.$message({
             message: '删除成功',
             type: 'success'

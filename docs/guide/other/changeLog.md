@@ -2,6 +2,7 @@
 ## Latest
 ### Issues
 - Change 将角色编码从之前得tips调整为code
+- Change 统一调整新增和修改接口的传参方式为:Request Payload
 ## 2.1
 [gitee](https://gitee.com/enilu/web-flash/releases/2.1)
 [github](https://github.com/enilu/web-flash/releases/tag/2.1)

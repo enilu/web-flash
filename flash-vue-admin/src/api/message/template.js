@@ -1,28 +1,27 @@
 import request from '@/utils/request'
 
-export function getList(params) {
+export default {
+  getList: function (params) {
     return request({
-        url: '/message/template/list',
-        method: 'get',
-        params
+      url: '/message/template/list',
+      method: 'get',
+      params
     })
-}
-
-
-export function save(params) {
+  },
+  save: function (params) {
     return request({
-        url: '/message/template',
-        method: 'post',
-        params
+      url: '/message/template',
+      method: 'post',
+      data: params
     })
-}
-
-export function remove(id) {
+  },
+  remove: function (id) {
     return request({
-        url: '/message/template',
-        method: 'delete',
-        params: {
-            id: id
-        }
+      url: '/message/template',
+      method: 'delete',
+      params: {
+        id: id
+      }
     })
+  }
 }

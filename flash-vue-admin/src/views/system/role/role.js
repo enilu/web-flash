@@ -1,11 +1,11 @@
-import { remove, getList, save, savePermissons } from '@/api/system/role'
-import { list as getDeptList } from '@/api/system/dept'
-import { menuTreeListByRoleId } from '@/api/system/menu'
+import roleApi from '@/api/system/role'
+import deptApi from '@/api/system/dept'
+import menuApi from '@/api/system/menu'
 import permission from '@/directive/permission/index.js'
 
 export default {
-  name:'role',
-  directives: { permission },
+  name: 'role',
+  directives: {permission},
   data() {
     return {
       formVisible: false,
@@ -22,10 +22,10 @@ export default {
       },
       permissonVisible: false,
       deptTree: {
-          data: [],
+        data: [],
       },
       roleTree: {
-        data:[],
+        data: [],
       },
       form: {
         code: '',
@@ -40,19 +40,19 @@ export default {
       },
       rules: {
         code: [
-          { required: true, message: '请输入角色编码', trigger: 'blur' },
-          { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
+          {required: true, message: '请输入角色编码', trigger: 'blur'},
+          {min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur'}
         ],
         name: [
-          { required: true, message: '请输入角色名称', trigger: 'blur' },
-          { min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur' }
+          {required: true, message: '请输入角色名称', trigger: 'blur'},
+          {min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur'}
         ]
       },
       listQuery: {
         page: 1,
         limit: 20,
         name: undefined,
-        code:undefined,
+        code: undefined,
       },
       total: 0,
       list: null,
@@ -75,14 +75,14 @@ export default {
   },
   methods: {
     init() {
-      getDeptList().then(response => {
+      deptApi.list().then(response => {
         this.deptTree.data = response.data
       })
       this.fetchData()
     },
     fetchData() {
       this.listLoading = true
-      getList(this.listQuery).then(response => {
+      roleApi.getList(this.listQuery).then(response => {
         this.list = response.data.records
         this.roleTree.data = response.data.records
         this.listLoading = false
@@ -143,7 +143,7 @@ export default {
     save() {
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          save({
+          roleApi.save({
             id: this.form.id,
             num: this.form.num,
             deptid: this.form.deptid,
@@ -174,9 +174,9 @@ export default {
       })
       return false
     },
-    editItem(record){
-      this.selRow= Object.assign({},record);
-      console.log('sel',this.selRow);
+    editItem(record) {
+      this.selRow = Object.assign({}, record);
+      console.log('sel', this.selRow);
       this.edit()
     },
     edit() {
@@ -189,7 +189,7 @@ export default {
         this.formVisible = true
       }
     },
-    removeItem(record){
+    removeItem(record) {
       this.selRow = record
       this.remove()
     },
@@ -201,29 +201,29 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          remove(id).then(response => {
+          roleApi.remove(id).then(response => {
             this.$message({
               message: '提交成功',
               type: 'success'
             })
             this.fetchData()
-          }).catch( err=> {
+          }).catch(err => {
             this.$notify.error({
               title: '错误',
-              message:err,
+              message: err,
             })
           })
         }).catch(() => {
         })
       }
     },
-    openPermissionsItem(record){
+    openPermissionsItem(record) {
       this.selRow = record
       this.openPermissions()
     },
     openPermissions() {
       if (this.checkSel()) {
-        menuTreeListByRoleId(this.selRow.id).then(response => {
+        menuApi.menuTreeListByRoleId(this.selRow.id).then(response => {
           this.permissons = response.data.treeData
           this.checkedPermissionKeys = response.data.checkedIds
           this.permissonVisible = true
@@ -231,16 +231,16 @@ export default {
       }
     },
     savePermissions() {
-      let checkedNodes =this.$refs.permissonTree.getCheckedNodes(false,true)
+      let checkedNodes = this.$refs.permissonTree.getCheckedNodes(false, true)
       let menuIds = ''
-      for (var index in checkedNodes) {
+      for (const index in checkedNodes) {
         menuIds += checkedNodes[index].id + ','
       }
       const data = {
         roleId: this.selRow.id,
         permissions: menuIds
       }
-      savePermissons(data).then(response => {
+      roleApi.savePermissons(data).then(response => {
         this.permissonVisible = false
         this.$message({
           message: '提交成功',

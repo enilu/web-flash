@@ -1,26 +1,16 @@
-import { clear, getList, save } from '@/api/message/message'
+import messageApi from '@/api/message/message'
 import permission from '@/directive/permission/index.js'
 
 export default {
   name: 'msg',
-  directives: { permission },
+  directives: {permission},
   data() {
     return {
-      formVisible: false,
-      formTitle: '添加历史消息',
-      isAdd: true,
-      form: {
-        tplCode:'',
-        content:'',
-        receiver:'',
-        type:'',
-        id: ''
-      },
       listQuery: {
         page: 1,
         limit: 20,
         id: undefined,
-        tplCode:undefined
+        tplCode: undefined
       },
       rangeDate: undefined,
       total: 0,
@@ -44,18 +34,18 @@ export default {
   },
   methods: {
     init() {
-      const type =  this.$route.query.type
+      const type = this.$route.query.type
       this.fetchData()
     },
     fetchData() {
       this.listLoading = true
       let queryData = this.listQuery
-      if(this.rangeDate){
+      if (this.rangeDate) {
         queryData['startDate'] = this.rangeDate[0]
         queryData['endDate'] = this.rangeDate[1]
 
       }
-      getList(queryData).then(response => {
+      messageApi.getList(queryData).then(response => {
         this.list = response.data.records
         this.listLoading = false
         this.total = response.data.total
@@ -93,21 +83,20 @@ export default {
       this.listQuery.limit = limit
       this.fetchData()
     },
-    clear(){
-      this.$confirm('确认清楚所有历史消息?', '提示', {
+    clear() {
+      this.$confirm('确认清除所有历史消息?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-         clear().then(response => {
-           this.fetchData()
-           this.$message({
-             type: 'success',
-             message: '清楚成功!'
-           });
-         })
+        messageApi.clear().then(response => {
+          this.fetchData()
+          this.$message({
+            type: 'success',
+            message: '清除成功!'
+          });
+        })
       })
     }
-
   }
 }
