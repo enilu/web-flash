@@ -335,9 +335,9 @@ INSERT INTO `t_sys_relation` VALUES ('157', '79', '3');
 -- ----------------------------
 -- Records of t_sys_role
 -- ----------------------------
-INSERT INTO `t_sys_role` VALUES ('1', null, null, null, null, '1', '超级管理员', '1', '0', 'administrator', '1');
-INSERT INTO `t_sys_role` VALUES ('2', null, null, null, null, '2', '网站管理员', '1', '1', 'developer', null);
-INSERT INTO `t_sys_role` VALUES ('3', '1', '2021-07-25 00:55:26', '1', '2021-07-25 00:57:29', '1', '审批员', '3', '0', 'workflowAudit', null);
+INSERT INTO `t_sys_role`(id,create_by,create_time,modify_by,modify_time,deptid,name,num,pid,code,version) VALUES ('1', null, null, null, null, '1', '超级管理员', '1', '0', 'administrator', '1');
+INSERT INTO `t_sys_role`(id,create_by,create_time,modify_by,modify_time,deptid,name,num,pid,code,version) VALUES ('2', null, null, null, null, '2', '网站管理员', '1', '1', 'developer', null);
+INSERT INTO `t_sys_role`(id,create_by,create_time,modify_by,modify_time,deptid,name,num,pid,code,version) VALUES ('3', '1', '2021-07-25 00:55:26', '1', '2021-07-25 00:57:29', '1', '审批员', '3', '0', 'workflowAudit', null);
 
 
 -- ----------------------------

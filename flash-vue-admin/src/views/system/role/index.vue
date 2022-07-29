@@ -6,7 +6,7 @@
           <el-input v-model="listQuery.name" size="mini" placeholder="请输入角色名称"></el-input>
         </el-col>
         <el-col :span="4">
-          <el-input v-model="listQuery.tips" size="mini" placeholder="请输入角色编号"></el-input>
+          <el-input v-model="listQuery.code" size="mini" placeholder="请输入角色编号"></el-input>
         </el-col>
         <el-col :span="6">
           <el-button type="success" size="mini" icon="el-icon-search" @click.native="search">{{ $t('button.search') }}</el-button>
@@ -35,7 +35,7 @@
       </el-table-column>
       <el-table-column label="编码">
         <template slot-scope="scope">
-          {{scope.row.tips}}
+          {{scope.row.code}}
         </template>
       </el-table-column>
       <el-table-column label="所在部门">
@@ -79,8 +79,8 @@
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-row>
           <el-col :span="12">
-            <el-form-item label="编码" prop="tips">
-              <el-input v-model="form.tips" minlength=1></el-input>
+            <el-form-item label="编码" prop="code">
+              <el-input v-model="form.code" minlength=1></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">

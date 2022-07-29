@@ -1,4 +1,7 @@
 # change log
+## Latest
+### Issues
+- Change 将角色编码从之前得tips调整为code
 ## 2.1
 [gitee](https://gitee.com/enilu/web-flash/releases/2.1)
 [github](https://github.com/enilu/web-flash/releases/tag/2.1)

@@ -46,11 +46,11 @@ public class RoleController extends BaseController {
     @GetMapping(value = "/list")
     @RequiresPermissions(value = {Permission.ROLE})
     public Object list(@RequestParam(required = false) String name,
-                       @RequestParam(required = false) String tips) {
+                       @RequestParam(required = false) String code) {
 
         Page page = new PageFactory().defaultPage();
         page.addFilter("name", name);
-        page.addFilter("tips", tips);
+        page.addFilter("code", code);
         page = roleService.queryPage(page);
         List list = (List) new RoleWrapper(BeanUtil.objectsToMaps(page.getRecords())).warp();
         page.setRecords(list);

@@ -109,7 +109,7 @@ public class UserController extends BaseController {
         }
         //不能修改超级管理员
         if (userId.intValue() == Const.ADMIN_ID.intValue()) {
-            throw new ApplicationException(BizExceptionEnum.CANT_CHANGE_ADMIN);
+            return Rets.failure("不能修改超级管理员得角色");
         }
         User user = userService.get(userId);
         user.setRoleid(roleIds);

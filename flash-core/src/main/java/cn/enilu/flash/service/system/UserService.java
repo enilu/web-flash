@@ -72,7 +72,6 @@ public class UserService extends BaseService<User, Long, UserRepository> {
         String refreshTokenCacheKey = token;
         Date expireDate = new Date(System.currentTimeMillis() + tokenExpireTime * 120000);
         cacheDao.hset(CacheDao.SESSION, refreshTokenCacheKey, String.valueOf(expireDate.getTime()));
-        logger.info("token:{}", token);
         return token;
     }
 

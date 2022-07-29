@@ -145,7 +145,7 @@ public class ConstantFactory implements IConstantFactory {
         }
         Role roleObj = getRole(roleId);
         if (StringUtil.isNotNullOrEmpty(roleObj) && StringUtil.isNotEmpty(roleObj.getName())) {
-            return roleObj.getTips();
+            return roleObj.getCode();
         }
         return "";
     }

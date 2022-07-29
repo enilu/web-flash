@@ -28,7 +28,7 @@ export default {
         data:[],
       },
       form: {
-        tips: '',
+        code: '',
         name: '',
         deptid: '',
         pid: undefined,
@@ -39,7 +39,7 @@ export default {
         num: 1
       },
       rules: {
-        tips: [
+        code: [
           { required: true, message: '请输入角色编码', trigger: 'blur' },
           { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
         ],
@@ -52,7 +52,7 @@ export default {
         page: 1,
         limit: 20,
         name: undefined,
-        tips:undefined,
+        code:undefined,
       },
       total: 0,
       list: null,
@@ -96,7 +96,7 @@ export default {
     reset() {
       this.listQuery.name = ''
       this.listQuery.page = 1
-      this.listQuery.tips = ''
+      this.listQuery.code = ''
       this.fetchData()
     },
     handleFilter() {
@@ -123,7 +123,7 @@ export default {
     },
     resetForm() {
       this.form = {
-        tips: '',
+        code: '',
         name: '',
         deptid: undefined,
         pid: undefined,
@@ -149,7 +149,7 @@ export default {
             deptid: this.form.deptid,
             pid: this.form.pid,
             name: this.form.name,
-            tips: this.form.tips
+            code: this.form.code
           }).then(response => {
             this.$message({
               message: '提交成功',

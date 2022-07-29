@@ -29,7 +29,7 @@ public class Role extends BaseEntity {
     @NotBlank(message = "角色名称不能为空")
     private String name;
     @Column(columnDefinition = "VARCHAR(64) COMMENT '角色编码'")
-    private String tips;
+    private String code;
     @Column(columnDefinition = "BIGINT COMMENT '角色所属部门'")
     private Long deptid;
     @Column(columnDefinition = "INT COMMENT '角色版本号'")

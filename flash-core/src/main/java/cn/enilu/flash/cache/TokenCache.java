@@ -35,13 +35,11 @@ public class TokenCache {
     }
 
     public void setUser(String token, ShiroUser shiroUser) {
-        logger.info("setUser:{}={}",token,shiroUser.getAccount());
         cacheDao.hset(CacheDao.SESSION, token + "user", shiroUser);
     }
 
     public ShiroUser getUser(String token) {
         ShiroUser user =  cacheDao.hget(CacheDao.SESSION, token + "user", ShiroUser.class);
-        logger.info("getUser:{}={}",token,user);
         return user;
     }
 }

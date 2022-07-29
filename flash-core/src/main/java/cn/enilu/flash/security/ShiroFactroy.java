@@ -86,7 +86,7 @@ public class ShiroFactroy {
             roleList.add(roleId);
             Role role = roleRepository.getOne(roleId);
             roleNameList.add(role.getName());
-            roleCodeList.add(role.getTips());
+            roleCodeList.add(role.getCode());
             permissions.addAll(menuRepository.getResCodesByRoleId(roleId));
             List<String> list = menuRepository.getResUrlsByRoleId(roleId);
             for (String resUrl : list) {
