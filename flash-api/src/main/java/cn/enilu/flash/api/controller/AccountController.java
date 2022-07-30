@@ -3,6 +3,7 @@ package cn.enilu.flash.api.controller;
 import cn.enilu.flash.api.utils.ApiConstants;
 import cn.enilu.flash.bean.constant.state.ManagerStatus;
 import cn.enilu.flash.bean.core.ShiroUser;
+import cn.enilu.flash.bean.dto.LoginDto;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.vo.front.Ret;
 import cn.enilu.flash.bean.vo.front.Rets;
@@ -14,10 +15,7 @@ import cn.enilu.flash.security.ShiroFactroy;
 import cn.enilu.flash.service.system.MenuService;
 import cn.enilu.flash.service.system.QrcodeService;
 import cn.enilu.flash.service.system.UserService;
-import cn.enilu.flash.utils.HttpUtil;
-import cn.enilu.flash.utils.MD5;
-import cn.enilu.flash.utils.Maps;
-import cn.enilu.flash.utils.StringUtil;
+import cn.enilu.flash.utils.*;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import org.nutz.json.Json;
@@ -55,21 +53,23 @@ public class AccountController extends BaseController {
     @Autowired
     QrcodeService qrcodeService;
 
+
     /**
      * 用户登录<br>
      * 1，验证没有注册<br>
      * 2，验证密码错误<br>
      * 3，登录成功
      *
-     * @param userName
-     * @param password
+     * @param loginDto
      * @return
      */
     @PostMapping(value = "/login")
-    public Object login(@RequestParam("username") String userName,
-                        @RequestParam("password") String password) {
+    public Object login(@RequestBody LoginDto loginDto) {
         try {
             //1,
+            String password = loginDto.getPassword();
+            String userName = loginDto.getUsername();
+            password = CryptUtil.desEncrypt(password);
             User user = userService.findByAccountForLogin(userName);
             if (user == null) {
                 return Rets.failure("用户名或密码错误");

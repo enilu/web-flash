@@ -1,10 +1,12 @@
-import { isvalidUsername } from '@/utils/validate'
-import { getApiUrl } from '@/utils/utils'
-import { getQrcodeStatus } from '@/api/user'
+import {isvalidUsername} from '@/utils/validate'
+import {getApiUrl} from '@/utils/utils'
+import AesUtil  from "@/utils/aes.js"
+import {getQrcodeStatus} from '@/api/user'
 import LangSelect from '@/components/LangSelect'
+
 export default {
   name: 'login',
-  components: { LangSelect },
+  components: {LangSelect},
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!isvalidUsername(value)) {
@@ -14,7 +16,7 @@ export default {
       }
     }
     const validatePassword = (rule, value, callback) => {
-      if (value.length < 3) {
+      if (value.length < 2) {
         callback(new Error(this.$t('login.errorPassword')))
       } else {
         callback()
@@ -35,8 +37,8 @@ export default {
         password: ''
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        username: [{required: true, trigger: 'blur', validator: validateUsername}],
+        password: [{required: true, trigger: 'blur', validator: validatePassword}]
       },
       loading: false,
       pwdType: 'password',
@@ -67,6 +69,7 @@ export default {
       function S4() {
         return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
       }
+
       return (S4() + S4() + '-' + S4() + '-' + S4() + '-' + S4() + '-' + S4() + S4() + S4())
     },
     showAppdownload() {
@@ -90,7 +93,7 @@ export default {
       if (this.qrcode.activeName === 'second') {
         const me = this
         this.sleep(1000).then(() => {
-          getQrcodeStatus({ uuid: me.qrcode.uuid }).then(res => {
+          getQrcodeStatus({uuid: me.qrcode.uuid}).then(res => {
             console.log('扫描结果', res)
             this.qrcode.resultStatus = res.data.status
             if (res.data.status === 'invalid') {
@@ -101,9 +104,9 @@ export default {
               this.qrcode.showAppdownload = false
               this.qrcode.msg = '扫描成功，自动登录中'
               this.loading = true
-              this.$store.dispatch('user/autoLogin', { token: res.data.token }).then(() => {
+              this.$store.dispatch('user/autoLogin', {token: res.data.token}).then(() => {
                 this.loading = false
-                this.$router.push({ path: this.redirect })
+                this.$router.push({path: this.redirect})
               }).catch((err) => {
                 this.qrcode.msg = '登录失败'
                 this.loading = false
@@ -129,12 +132,14 @@ export default {
       }
     },
     handleLogin() {
+      const loginForm = this.loginForm
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
+          let loginBody = {username: loginForm.username, password: AesUtil.encrypt(loginForm.password)}
+          this.$store.dispatch('user/login', loginBody).then(() => {
             this.loading = false
-            this.$router.push({ path: this.redirect })
+            this.$router.push({path: this.redirect})
           }).catch((err) => {
             this.loading = false
           })

@@ -1,4 +1,4 @@
-import { queryByUser } from '@/api/system/log'
+import logApi  from '@/api/system/log'
 import { updatePwd } from '@/api/user'
 
 export default {
@@ -27,7 +27,7 @@ export default {
       // this.$router.push({ path: '/account/'+tab.name})
     },
     queryByUser() {
-      queryByUser().then(response => {
+      logApi.queryByUser().then(response => {
         console.log(response)
         this.activities = response.data
 
