@@ -107,6 +107,9 @@ public class CfgController extends BaseController {
         if (id == null) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
+        if(id<9){
+            return Rets.failure("禁止删除初始化参数");
+        }
         cfgService.delete(id);
         return Rets.success();
     }

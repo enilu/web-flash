@@ -102,7 +102,7 @@ public class MenuController extends BaseController {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
         //演示环境不允许删除初始化的菜单
-        if (id.intValue() <= 72) {
+        if (id.intValue() <= 80) {
             return Rets.failure("演示环境不允许删除初始菜单");
         }
         //缓存菜单的名称

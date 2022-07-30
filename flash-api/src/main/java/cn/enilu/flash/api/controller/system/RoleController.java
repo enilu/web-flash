@@ -77,7 +77,7 @@ public class RoleController extends BaseController {
         if (roleId == null) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
-        if (roleId.intValue() < 2) {
+        if (roleId.intValue() < 4) {
             return Rets.failure("不能删除初始角色");
         }
         List<User> userList = userService.queryAll(SearchFilter.build("roleid", SearchFilter.Operator.EQ, String.valueOf(roleId)));

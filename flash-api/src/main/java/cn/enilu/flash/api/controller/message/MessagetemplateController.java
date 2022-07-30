@@ -61,6 +61,9 @@ public class MessagetemplateController {
         if (id == null) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
         }
+        if(id<5){
+            return Rets.failure("禁止删除初始化数据");
+        }
         messagetemplateService.delete(id);
         return Rets.success();
     }

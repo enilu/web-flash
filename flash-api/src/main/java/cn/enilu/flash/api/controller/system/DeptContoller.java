@@ -68,9 +68,11 @@ public class DeptContoller extends BaseController {
     @BussinessLog(value = "删除部门", key = "id")
     @RequiresPermissions(value = {Permission.DEPT_DEL})
     public Object remove(@RequestParam Long id) {
-        logger.info("id:{}", id);
         if (id == null) {
             throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
+        }
+        if(id<5){
+            return Rets.failure("禁止删除初始部门");
         }
         deptService.deleteDept(id);
         return Rets.success();

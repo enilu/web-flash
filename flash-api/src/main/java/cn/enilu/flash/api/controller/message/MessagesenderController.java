@@ -61,7 +61,9 @@ public class MessagesenderController {
     @BussinessLog(value = "删除消息发送者", key = "id")
     @RequiresPermissions(value = {Permission.MSG_SENDER_DEL})
     public Object remove(Long id) {
-
+        if(id<4){
+            return Rets.failure("禁止删除初始化数据");
+        }
         try {
             messagesenderService.delete(id);
             return Rets.success();

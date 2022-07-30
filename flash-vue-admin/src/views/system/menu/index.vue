@@ -111,7 +111,7 @@
               <el-form-item label="图标">
                 <el-popover
                   placement="bottom-start"
-                  width="460"
+                  width="414"
                   trigger="click"
                   @show="$refs['iconSelect'].reset()"
                 >
