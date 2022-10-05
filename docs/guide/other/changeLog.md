@@ -1,7 +1,7 @@
 # change log
 ## Latest
 ### Issues
-- Change 将角色编码从之前得tips调整为code
+- Change 将角色编码字段名从之前得tips调整为code
 - Change 统一调整新增和修改接口的传参方式为:Request Payload
 - Issue 使用aes加密算法对登录密码加密后传送
 - Change 限制对初始化数据的删除
