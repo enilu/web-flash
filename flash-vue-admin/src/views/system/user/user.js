@@ -1,7 +1,7 @@
 import { deleteUser, getList, saveUser, remove, setRole, changeStatus,resetPassword } from '@/api/system/user'
 import deptApi from '@/api/system/dept'
 import { parseTime } from '@/utils/index'
-import { roleTreeListByIdUser } from '@/api/system/role'
+import roleApi from '@/api/system/role'
 // 权限判断指令
 import permission from '@/directive/permission/index.js'
 
@@ -309,7 +309,7 @@ export default {
     },
     openRole() {
       if (this.checkSel()) {
-        roleTreeListByIdUser(this.selRow.id).then(response => {
+        roleApi.roleTreeListByIdUser(this.selRow.id).then(response => {
           this.roleDialog.roles = response.data.treeData
           this.roleDialog.checkedRoleKeys = response.data.checkedIds
           this.roleDialog.visible = true
