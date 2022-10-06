@@ -94,7 +94,6 @@ export default {
         const me = this
         this.sleep(1000).then(() => {
           getQrcodeStatus({uuid: me.qrcode.uuid}).then(res => {
-            console.log('扫描结果', res)
             this.qrcode.resultStatus = res.data.status
             if (res.data.status === 'invalid') {
               this.qrcode.showAppdownload = false
