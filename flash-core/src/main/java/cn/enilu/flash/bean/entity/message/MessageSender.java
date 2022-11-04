@@ -16,7 +16,7 @@ import javax.validation.constraints.NotBlank;
 @Table(appliesTo = "t_message_sender", comment = "消息发送者")
 public class MessageSender extends BaseEntity {
     @Column(name = "name", columnDefinition = "VARCHAR(64) COMMENT '名称'")
-    @NotBlank(message = "名称并能为空")
+    @NotBlank(message = "名称不能")
     private String name;
     @Column(name = "class_name", columnDefinition = "VARCHAR(64) COMMENT '发送类'")
     @NotBlank(message = "发送类不能为空")

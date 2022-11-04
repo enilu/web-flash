@@ -20,7 +20,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Cfg extends BaseEntity {
-    @NotBlank(message = "参数名并能为空")
+    @NotBlank(message = "参数名不能")
     @Column(name = "cfg_name", columnDefinition = "VARCHAR(32) COMMENT '参数名'")
     private String cfgName;
     @NotBlank(message = "参数值不能为空")

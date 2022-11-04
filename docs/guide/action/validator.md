@@ -17,7 +17,7 @@ public class MessageTemplate extends BaseEntity {
     @Column(name="code",columnDefinition = "VARCHAR(32) COMMENT '编号'")
     @NotBlank(message = "编号不能为空")
     private String code;
-    @NotBlank(message = "内容并能为空")
+    @NotBlank(message = "内容不能")
     @Column(name="content",columnDefinition = "TEXT COMMENT '内容'")
     private String content;
     @Column(name="id_message_sender",columnDefinition = "BIGINT COMMENT '发送者id'")
