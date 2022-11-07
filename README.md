@@ -79,6 +79,19 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 - 手机端运行效果图：
     ![mobile](https://gitee.com/enilu/web-flash/raw/master/docs/flash-mobile.gif)
 
+## 测试
+```
+mvn package -DisSkipTest=false
+```
+## 打包
+```
+mvn package 
+```
+## install
+**如果使用代码生成功能，需要首先运行下mvn install 将 flash-generator模块安装到本地maven仓库**
+```
+mvn install
+```
 ## 在线文档
 - [http://webflash.enilu.cn](http://webflash.enilu.cn)
 
