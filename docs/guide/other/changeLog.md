@@ -1,9 +1,16 @@
 # change log
 ## Latest
+- Issues
+- issue 打包时默认跳过测试
+- issue 升级mysql驱动包到版本:8.0.28
+## 2.2
+[gitee](https://gitee.com/enilu/web-flash/releases/2.2)
+[github](https://github.com/enilu/web-flash/releases/tag/2.2)
 ### Issues
+- Issue 增加扫码登陆功能
+- Issue 使用aes加密算法对登录密码加密后传送
 - Change 将角色编码字段名从之前得tips调整为code
 - Change 统一调整新增和修改接口的传参方式为:Request Payload
-- Issue 使用aes加密算法对登录密码加密后传送
 - Change 限制对初始化数据的删除
 ## 2.1
 [gitee](https://gitee.com/enilu/web-flash/releases/2.1)
