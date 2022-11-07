@@ -18,7 +18,7 @@
     <properties>
         <spring.boot.version>2.3.11.RELEASE</spring.boot.version>
         <springframework.version>5.2.12.RELEASE</springframework.version>
-
+        <isSkipTest>true</isSkipTest>
         <!-- Test libs -->
         <junit.version>4.12</junit.version>
         <!--build libs-->
@@ -28,7 +28,8 @@
         <file_encoding>UTF-8</file_encoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!--driver libs-->
-        <mysql.connector.java.version>5.1.45</mysql.connector.java.version>
+        <mysql.connector.java.version>8.0.28</mysql.connector.java.version>
+       <druid.spring.boot.starter.version>1.1.22</druid.spring.boot.starter.version>
         <!--auth libs-->
         <spring.security.jwt.version>1.0.9.RELEASE</spring.security.jwt.version>
         <spring.security.oauth2.version>2.2.0.RELEASE</spring.security.oauth2.version>
@@ -81,7 +82,7 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
-                <version>1.1.13</version>
+                <version>${druid.spring.boot.starter.version}</version>
             </dependency>
 
             <dependency>
@@ -296,7 +297,6 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                    <skip>false</skip>
                 </configuration>
             </plugin>
         </plugins>

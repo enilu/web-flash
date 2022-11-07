@@ -34,15 +34,18 @@
 
     <build>
         <plugins>
+
             <!--以war形式运行 配置开始-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
                 <configuration>
                     <warName>api</warName>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+
             <!-- 以war形式运行 配置结束-->
 
             <!--以jar包形式单独部署 配置开始:并将packaging调整为jar-->
