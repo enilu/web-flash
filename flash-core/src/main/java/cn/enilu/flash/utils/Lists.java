@@ -267,6 +267,9 @@ public final class Lists {
     }
 
     private static Object getProperty(Object bean, String name) {
+        if(bean instanceof  Map){
+            return ((Map)bean).get(name);
+        }
         return BeanUtils.getBeanProperty(bean, name);
     }
 }

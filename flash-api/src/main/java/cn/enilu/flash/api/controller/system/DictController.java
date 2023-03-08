@@ -3,7 +3,7 @@ package cn.enilu.flash.api.controller.system;
 import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.entity.system.Dict;
-import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
+import cn.enilu.flash.bean.enumeration.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Rets;
@@ -52,7 +52,7 @@ public class DictController extends BaseController {
     @RequiresPermissions(value = {Permission.DICT_EDIT})
     public Object add(String dictName, String dictValues) {
         if (BeanUtil.isOneEmpty(dictName, dictValues)) {
-            throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
+            throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
         }
         dictService.addDict(dictName, dictValues);
         return Rets.success();
@@ -63,7 +63,7 @@ public class DictController extends BaseController {
     @RequiresPermissions(value = {Permission.DICT_EDIT})
     public Object update(Long id, String dictName, String dictValues) {
         if (BeanUtil.isOneEmpty(dictName, dictValues)) {
-            throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
+            throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
         }
         dictService.editDict(id, dictName, dictValues);
         return Rets.success();

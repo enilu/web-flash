@@ -5,7 +5,7 @@ import cn.enilu.flash.bean.constant.factory.PageFactory;
 import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.entity.workflow.WorkFlowRequest;
-import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
+import cn.enilu.flash.bean.enumeration.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.cache.TokenCache;
@@ -85,7 +85,7 @@ public class WorkFlowRequestController extends BaseController {
     @BussinessLog(value = "删除工作流请求实例", key = "id")
     public Object remove(Long id) {
         if (id == null) {
-            throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
+            throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
         }
         workFlowRequestService.delete(id);
         return Rets.success();

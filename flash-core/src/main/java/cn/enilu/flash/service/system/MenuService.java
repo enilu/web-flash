@@ -2,7 +2,7 @@ package cn.enilu.flash.service.system;
 
 
 import cn.enilu.flash.bean.entity.system.Menu;
-import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
+import cn.enilu.flash.bean.enumeration.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.node.*;
 import cn.enilu.flash.dao.system.MenuRepository;
@@ -262,7 +262,7 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
 
             //如果编号和父编号一致会导致无限递归
             if (menu.getCode().equals(menu.getPcode())) {
-                throw new ApplicationException(BizExceptionEnum.MENU_PCODE_COINCIDENCE);
+                throw new ApplicationException(ApplicationExceptionEnum.MENU_PCODE_COINCIDENCE);
             }
 
             menu.setLevels(pLevels + 1);

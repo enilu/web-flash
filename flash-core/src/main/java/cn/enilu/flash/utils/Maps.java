@@ -1,7 +1,11 @@
 package cn.enilu.flash.utils;
 
 
+import cn.enilu.flash.bean.entity.system.User;
+
+import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Map 工具类
@@ -38,4 +42,20 @@ public final class Maps {
         }
         return map;
     }
+    public static <T> T mapToObj(Map source, Class<T> target)  {
+        return JsonUtil.fromJson(target,JsonUtil.toJson(source));
+    }
+    public static  Map objToMap(Object source){
+        return JsonUtil.fromJson(Map.class,JsonUtil.toJson(source));
+    }
+
+    public static void main(String[] args) {
+        User user = new User();
+        user.setAccount("zhangsan");
+        user.setPassword("123434");
+        Map map = objToMap(user);
+        System.out.println(JsonUtil.toJson(map));
+        System.out.println(JsonUtil.toJson(mapToObj(map,User.class)));
+    }
+
 }

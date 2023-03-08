@@ -3,9 +3,9 @@ package cn.enilu.flash.workflow.servicetask;
 import cn.enilu.flash.bean.entity.workflow.WorkFlowRequest;
 import cn.enilu.flash.bean.vo.SpringContextHolder;
 import cn.enilu.flash.service.workflow.WorkFlowRequestService;
+import cn.enilu.flash.utils.JsonUtil;
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.JavaDelegate;
-import org.nutz.json.Json;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class AutoCompleteServiceTask implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) {
         String businessKey = delegateExecution.getProcessInstanceBusinessKey();
         WorkFlowRequest request = SpringContextHolder.getBean(WorkFlowRequestService.class).get(Long.valueOf(businessKey));
-        logger.info("request:{}", Json.toJson(request));
+        logger.info("request:{}", JsonUtil.toJson(request));
         Long ret =System.currentTimeMillis()%2;
         Integer state = ret.intValue()==1?1:2;
         delegateExecution.setVariable("state",state);
