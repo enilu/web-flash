@@ -1,13 +1,9 @@
 package cn.enilu.flash.bean.vo.query;
 
-import org.apache.commons.lang3.StringUtils;
+import cn.enilu.flash.utils.StringUtil;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Path;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.Collection;
 import java.util.Date;
 
@@ -16,7 +12,6 @@ import java.util.Date;
  * @date ：Created in 12/10/2019 8:59 PM
  */
 public class SimpleSpecification<T> implements Specification<T> {
-
     /**
      * 查询的条件列表，是一组列表
      */
@@ -67,7 +62,7 @@ public class SimpleSpecification<T> implements Specification<T> {
      */
     private Predicate generatePredicate(Root<T> root, CriteriaBuilder cb, SearchFilter op) {
         Object value = op.value;
-        String[] names = StringUtils.split(op.fieldName, ".");
+        String[] names = StringUtil.split(op.fieldName, ".");
         Path expression = root.get(names[0]);
         for (int i = 1; i < names.length; i++) {
             expression = expression.get(names[i]);

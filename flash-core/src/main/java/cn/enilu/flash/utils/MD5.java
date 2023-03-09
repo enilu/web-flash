@@ -2,7 +2,6 @@ package cn.enilu.flash.utils;
 
 
 import com.google.common.base.Strings;
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -87,8 +86,14 @@ public class MD5 {
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         } finally {
-            IOUtils.closeQuietly(in);
-            IOUtils.closeQuietly(ch);
+            try {
+                in.close();
+            } catch (Exception e) {
+            }
+            try {
+                ch.close();
+            } catch (Exception e) {
+            }
         }
         return ret;
     }
@@ -172,7 +177,7 @@ public class MD5 {
                 md5StrBuff.append(Integer.toHexString(0xFF & byteArray[i]));
             }
         }
-        String ret  =  md5StrBuff.toString();
+        String ret = md5StrBuff.toString();
 
         return ret;
     }

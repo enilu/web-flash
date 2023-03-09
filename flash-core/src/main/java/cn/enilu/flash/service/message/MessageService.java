@@ -15,7 +15,6 @@ import cn.enilu.flash.service.message.sms.SmsSender;
 import cn.enilu.flash.utils.StringUtil;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
-import org.apache.commons.lang3.text.StrSubstitutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +22,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamSource;
 import org.springframework.stereotype.Service;
 
-import java.text.MessageFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * MessageService
@@ -63,7 +64,7 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
      */
     public void sendTplEmail(String tplCode,  String to, String cc, String title, Map<String, Object> dataMap) {
         MessageTemplate messageTemplate = messagetemplateRepository.findByCode(tplCode);
-        String content = getContent(messageTemplate.getContent(), dataMap);
+        String content = StringUtil.replace(messageTemplate.getContent(), dataMap);
         sendEmailMessage(tplCode, from, to, cc, title, content, messageTemplate, null, null);
     }
 
@@ -78,7 +79,7 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
      */
     public void sendTplEmail(String tplCode, String from, String to, String cc, String title, Map<String, Object> dataMap) {
         MessageTemplate messageTemplate = messagetemplateRepository.findByCode(tplCode);
-        String content = getContent(messageTemplate.getContent(), dataMap);
+        String content = StringUtil.replace(messageTemplate.getContent(), dataMap);
         sendEmailMessage(tplCode, from, to, cc, title, content, messageTemplate, null, null);
     }
 
@@ -97,7 +98,7 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
                              String attachmentFilename, InputStreamSource inputStreamSource,
                              Map<String, Object> dataMap) {
         MessageTemplate messageTemplate = messagetemplateRepository.findByCode(tplCode);
-        String content = getContent(messageTemplate.getContent(), dataMap);
+        String content = StringUtil.replace(messageTemplate.getContent(), dataMap);
         sendEmailMessage(tplCode, from, to, cc, title, content, messageTemplate, attachmentFilename, inputStreamSource);
     }
     public void sendSimpleEmail(String to, String cc, String title, String body) {
@@ -105,7 +106,7 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
     }
     public void sendSimpleEmail(String tplCode, String from, String to, String cc, String title, String... args) {
         MessageTemplate messageTemplate = messagetemplateRepository.findByCode(tplCode);
-        String content = getContent(messageTemplate.getContent(), args);
+        String content = StringUtil.replace(messageTemplate.getContent(), args);
         sendEmailMessage(tplCode, from, to, cc, title, content, messageTemplate, null, null);
     }
 
@@ -119,7 +120,7 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
 
     public void sendSms(String tplCode, String receiver, LinkedHashMap params) {
         MessageTemplate messageTemplate = messagetemplateRepository.findByCode(tplCode);
-        String content = getContent(messageTemplate.getContent(), params);
+        String content = StringUtil.replace(messageTemplate.getContent(), params);
         boolean isSuccess = false;
         try {
             isSuccess = this.sendSmsMessage(receiver, content, messageTemplate, params);
@@ -150,19 +151,7 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
         }
     }
 
-    private String getContent(String template, String... args) {
-        List<Object> argList = new ArrayList<>();
-        argList.add("");
-        if (args != null) {
-            Collections.addAll(argList, args);
-        }
-        String content = MessageFormat.format(template, argList.toArray());
-        return content;
-    }
 
-    private String getContent(String template, Map<String, Object> dataMap) {
-        return StrSubstitutor.replace(template, dataMap);
-    }
 
 
 
@@ -237,8 +226,11 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
         Map map = new HashMap();
         map.put("code", 11122);
         String template = "短信验证码为${code},谨慎保存";
-        String ret = new MessageService().getContent(template, map);
+        MessageService m = new MessageService();
+        String ret = StringUtil.replace(template, map);
         System.out.println(ret);
+        template = "你好:{1},欢迎使用{2}";
+        System.out.println(StringUtil.replace(template,"张三","web-flash"));
     }
 
 }

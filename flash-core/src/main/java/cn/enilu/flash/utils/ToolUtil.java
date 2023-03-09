@@ -16,9 +16,6 @@
 package cn.enilu.flash.utils;
 
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -29,28 +26,6 @@ import java.util.Map;
  * 高频方法集合类
  */
 public class ToolUtil {
-
-    /**
-     * 获取异常的具体信息
-     *
-     * @author fengshuonan
-     * @Date 2017/3/30 9:21
-     * @version 2.0
-     */
-    public static String getExceptionMsg(Exception e) {
-        StringWriter sw = new StringWriter();
-        try {
-            e.printStackTrace(new PrintWriter(sw));
-        } finally {
-            try {
-                sw.close();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }
-        return sw.getBuffer().toString().replaceAll("\\$", "T");
-    }
-
 
     /**
      * 计算对象长度，如果是字符串调用其length函数，集合类调用其size函数，数组调用其length属性，其他可遍历对象遍历计算长度

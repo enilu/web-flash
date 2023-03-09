@@ -16,8 +16,6 @@
 package cn.enilu.flash.utils;
 
 
-import org.apache.commons.lang3.time.DateFormatUtils;
-
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -127,9 +125,9 @@ public class DateUtil {
     public static String formatDate(Date date, String pattern) {
         String formatDate = null;
         if (StringUtil.isNotEmpty(pattern)) {
-            formatDate = DateFormatUtils.format(date, pattern);
+            formatDate = format(date, pattern);
         } else {
-            formatDate = DateFormatUtils.format(date, "yyyy-MM-dd");
+            formatDate = format(date, "yyyy-MM-dd");
         }
         return formatDate;
     }
@@ -214,7 +212,8 @@ public class DateUtil {
      * @return
      */
     public static String format(Date date, String pattern) {
-        return DateFormatUtils.format(date, pattern);
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        return sdf.format(date);
     }
 
     /**
