@@ -19,6 +19,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 
@@ -90,4 +94,49 @@ public class WorkFlowRequestController extends BaseController {
         workFlowRequestService.delete(id);
         return Rets.success();
     }
+
+    @GetMapping("png/{processInstanceId}/{highLight}")
+    public void currentProcessInstanceImage(@PathVariable("processInstanceId") String processInstanceId,
+                                            @PathVariable("highLight") Boolean highLight,
+                                            HttpServletResponse response) throws IOException {
+        int index;
+        InputStream inputStream = workFlowRequestService.getProcessDiagram(processInstanceId,highLight);
+//        FileOutputStream fos = new FileOutputStream("d:\\a.svg");
+//        byte[] b = new byte[1024];
+//        while ((inputStream.read(b)) != -1) {
+//            fos.write(b);// 写入数据
+//        }
+//        inputStream.close();
+//        fos.close();// 保存数据
+
+
+
+        OutputStream out = response.getOutputStream();
+        response.setContentType("image/svg+xml");
+
+        try {
+
+
+            byte[] b = new byte[inputStream.available()];
+            inputStream.read(b);
+            out.write(b);
+            out.flush();
+        } catch (Exception e) {
+            logger.error("getImgStream error", e);
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    logger.error("close getImgStream error", e);
+                }
+            }
+        }
+
+
+
+    }
+
+
+
 }

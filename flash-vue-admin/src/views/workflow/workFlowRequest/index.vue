@@ -40,9 +40,7 @@
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button type="text" size="mini" icon="el-icon-edit" @click.native="todo(scope.row)" v-permission="['/workflow/request']">{{ $t('button.edit') }}</el-button>
-          <el-button type="text" size="mini" icon="el-icon-view" @click.native="todo(scope.row)" v-permission="['/workflow/request']">任务进度</el-button>
-          <el-button type="text" size="mini" icon="el-icon-view" @click.native="todo(scope.row)" v-permission="['/workflow/request']">{{ $t('button.view') }}</el-button>
+         <el-button type="text" size="mini" icon="el-icon-view" @click.native="viewImg(scope.row)" v-permission="['/workflow/request']" v-if="scope.row.state!=1">任务进度</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -60,6 +58,14 @@
     </el-pagination>
 
 
+    <el-dialog
+      title="任务进度"
+      :visible.sync="processInstanceImg.show"
+      width="70%">
+      <div>
+        <object style="width:80%"  type="image/svg+xml" :data="processInstanceImg.url"></object>
+      </div>
+    </el-dialog>
     <el-dialog
       :title="formTitle"
       :visible.sync="formVisible"
