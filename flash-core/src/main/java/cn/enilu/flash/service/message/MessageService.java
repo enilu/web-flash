@@ -94,7 +94,7 @@ public class MessageService extends BaseService<Message, Long, MessageRepository
      * @param inputStreamSource
      * @param dataMap
      */
-    public void sendTplEmail(String tplCode, String from, String to, String cc, String title,
+    public void sendTplEmailWithFile(String tplCode, String from, String to, String cc, String title,
                              String attachmentFilename, InputStreamSource inputStreamSource,
                              Map<String, Object> dataMap) {
         MessageTemplate messageTemplate = messagetemplateRepository.findByCode(tplCode);
