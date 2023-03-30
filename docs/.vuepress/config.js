@@ -17,7 +17,7 @@ module.exports = {
     evergreen: true,
     editLinkText: '在 GitHub 上编辑此页',
     port: 8081,
-    ga: 'UA-71886989-13',
+    ga: 'G-JW505HKR1M',
     themeConfig: {
         repo: 'enilu/web-flash',
         docsDir: 'docs',
