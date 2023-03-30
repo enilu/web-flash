@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 public class EntityDescLoader extends AbstractLoader {
 
     private static final Log log = Logs.get();
-    public static final Pattern COLUMN_DEFINITION_PATTERN = Pattern.compile("([A-Za-z]+)(?:\\(\\d+\\))?\\s*(?:(?:COMMENT|[Cc]omment)\\s+'(.*?)')?");
+    public static final Pattern COLUMN_DEFINITION_PATTERN =  Pattern.compile("(\\w+)\\((\\d+),?(\\d+)?\\)\\s*(?:(?:COMMENT|[Cc]omment)\\s*['\"](.+?)['\"])?");
 
     @Override
     public Map<String, TableDescriptor> loadTables(Ioc ioc, String basePackageName,
@@ -99,7 +99,7 @@ public class EntityDescLoader extends AbstractLoader {
                             Matcher matcher = COLUMN_DEFINITION_PATTERN.matcher(columnDefinition.trim());
                             if (matcher.find()) {
                                 String type = matcher.group(1);
-                                String comment = matcher.group(2);
+                                String comment = matcher.group(4);
                                 if (comment != null) {
                                     column.setLabel(comment);
                                     column.setComment(comment);
