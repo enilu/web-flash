@@ -6,6 +6,7 @@ import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.test.BoyService;
 import cn.enilu.flash.utils.JsonUtil;
 import cn.enilu.flash.utils.Lists;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -19,6 +20,7 @@ import java.util.List;
  * @date ：Created in 2020/5/12 18:14
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@Slf4j
 public class SearchFilterTest extends BaseApplicationStartTest {
     @Autowired
     private BoyService boyService;
@@ -41,23 +43,22 @@ public class SearchFilterTest extends BaseApplicationStartTest {
     @Test
     public void test_01_isNull() {
         List<Boy> list = boyService.queryAll(SearchFilter.build("birthday", SearchFilter.Operator.ISNULL));
-        System.out.println(JsonUtil.toJson(list));
         Assert.assertTrue(!list.isEmpty());
     }
 
     @Test
     public void test_02_isNotNull() {
         List<Boy> list = boyService.queryAll(SearchFilter.build("birthday", SearchFilter.Operator.ISNOTNULL));
-        System.out.println(JsonUtil.toJson(list));
         Assert.assertTrue(!list.isEmpty());
     }
     @Test
     public void test_02_Or() {
         List<SearchFilter> filters = Lists.newArrayList();
 
-        filters.add(SearchFilter.build("birthday","", SearchFilter.Join.or));
-        List<Boy> list = boyService.queryAll(SearchFilter.build("birthday","", SearchFilter.Join.or));
-        System.out.println(JsonUtil.toJson(list));
+        filters.add(SearchFilter.build("birthday","1990-02-10", SearchFilter.Join.or));
+        filters.add(SearchFilter.build("birthday","1996-02-10", SearchFilter.Join.or));
+
+        List<Boy> list = boyService.queryAll(filters);
         Assert.assertTrue(!list.isEmpty());
     }
 }

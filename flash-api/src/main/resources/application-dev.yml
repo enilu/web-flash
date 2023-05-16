@@ -1,12 +1,12 @@
 debug: false
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/webflash?useUnicode=true&characterEncoding=UTF8&useSSL=false
+    url: jdbc:mysql://my-db:3306/webflash?useUnicode=true&characterEncoding=UTF8&useSSL=false
     username: webflash
     password: webflash190602@ABC
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
   activiti:
     #    配置为true的时候自动检查resources/bpmn/目录下的工作流定义文件并部署到数据库表中
     check-process-definitions: true

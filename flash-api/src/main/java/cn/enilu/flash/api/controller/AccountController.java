@@ -18,8 +18,6 @@ import cn.enilu.flash.service.system.UserService;
 import cn.enilu.flash.utils.*;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
-import org.nutz.json.Json;
-import org.nutz.mapl.Mapl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +67,11 @@ public class AccountController extends BaseController {
             //1,
             String password = loginDto.getPassword();
             String userName = loginDto.getUsername();
-            password = CryptUtil.desEncrypt(password);
+            try {
+                password = CryptUtil.desEncrypt(password);
+            }catch (Exception e){
+                logger.info("密码未加密");
+            }
             User user = userService.findByAccountForLogin(userName);
             if (user == null) {
                 return Rets.failure("用户名或密码错误");
@@ -118,12 +120,12 @@ public class AccountController extends BaseController {
                 return Rets.failure("该用户未配置权限");
             }
             ShiroUser shiroUser = tokenCache.getUser(getToken());
-            Map map = Maps.newHashMap("name", user.getName(), "role", "admin", "roles", shiroUser.getRoleCodes());
+            Map map = Maps.newHashMap("name", user.getName(),"username",user.getAccount(), "roles", shiroUser.getRoleCodes());
             List<RouterMenu> list = menuService.getSideBarMenus(shiroUser.getRoleList());
             map.put("menus", list);
             map.put("permissions", shiroUser.getUrls());
 
-            Map profile = (Map) Mapl.toMaplist(user);
+            Map profile =  Maps.objToMap (user);
             profile.put("dept", shiroUser.getDeptName());
             profile.put("roles", shiroUser.getRoleNames());
             map.put("profile", profile);
@@ -209,12 +211,12 @@ public class AccountController extends BaseController {
         if ( QrcodeService.UNDO.equals(ret)) {
             return Rets.success(Maps.newHashMap("status",ret,"msg","待扫描"));
         }
-        Map map = Json.fromJson(Map.class,ret);
+        Map map =  JsonUtil.fromJson(Map.class,ret);
         return Rets.success(map);
     }
 
     /**
-     * @param account 用户账号
+     * @param phone 用户账号
      * @param qrcode  二维码值
      * @param confirm 是否确认登录：1:是,0:否
      * @return

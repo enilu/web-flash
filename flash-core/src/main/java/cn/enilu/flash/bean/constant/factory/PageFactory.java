@@ -4,7 +4,6 @@ import cn.enilu.flash.bean.constant.state.Order;
 import cn.enilu.flash.utils.HttpUtil;
 import cn.enilu.flash.utils.StringUtil;
 import cn.enilu.flash.utils.factory.Page;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Sort;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +27,7 @@ public class PageFactory<T> {
         String pageNum = request.getParameter("page");
         int current = 1;
 
-        if (StringUtils.isNotEmpty(pageNum)) {
+        if (StringUtil.isNotEmpty(pageNum)) {
             current = Integer.valueOf(pageNum);
         }
         //排序字段名称

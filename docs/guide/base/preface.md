@@ -4,11 +4,15 @@ pageClass: getting-started
 # 介绍
 [![Spring Boot](https://img.shields.io/badge/spring--boot-2.3.11.RELEASE-brightgreen)](https://github.com/spring-projects/spring-boot)
 [![vue](https://img.shields.io/badge/vue-2.6.10-brightgreen.svg)](https://github.com/vuejs/vue)
+[![Node.js](https://img.shields.io/badge/node--js-14.15.0-brightgreen.svg)](https://nodejs.org/zh-cn)
+[![element-ui](https://img.shields.io/badge/element--ui-2.12.0-brightgreen.svg)](https://github.com/ElemeFE/element)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/enilu/web-flash/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/enilu/web-flash.svg)](https://github.com/enilu/web-flash/releases)
-[![donate](https://img.shields.io/badge/%24-donate-ff69b4.svg)](../../donate.md)
+[![donate](https://img.shields.io/badge/%24-donate-ff69b4.svg)](./docs/donate.md)
 [![Gitee stars](https://gitee.com/enilu/web-flash/badge/star.svg?theme=social)](https://gitee.com/enilu/web-flash)
 [![GitHub stars](https://img.shields.io/github/stars/enilu/web-flash.svg?style=social&label=Stars)](https://github.com/enilu/web-flash)
+[![Join the chat at https://gitter.im/web-flash/community](https://badges.gitter.im/web-flash/community.svg)](https://gitter.im/web-flash/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 
 本文档以向导的方式引导用户使用web-flash系统做二次开发。
 web-flash项目本身有readme文件，如果你有丰富的Spring Boot的和Vue.Js的开发经验，那么基本上你是用不上本文档了，
@@ -97,8 +101,19 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 
     ![mobile](../../flash-mobile.gif)
 
-## 在线文档
-- [http://webflash.enilu.cn](http://webflash.enilu.cn)
+## 测试
+```
+mvn package -DisSkipTest=false
+```
+## 打包
+```
+mvn package 
+```
+## install
+**如果使用代码生成功能，需要首先运行下mvn install 将 flash-generator模块安装到本地maven仓库**
+```
+mvn install
+```
 
 ## 交流
 - Bugs: [Issues](https://github.com/enilu/web-flash/issues/new)

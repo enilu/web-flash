@@ -2,7 +2,7 @@ import workFlowRequestApi from '@/api/workflow/workFlowRequest'
 import dictApi from '@/api/system/dict'
 import processDefinitionApi from '@/api/workflow/processDefinition'
 import permission from '@/directive/permission/index.js'
-
+import { getApiUrl } from '@/utils/utils'
 export default {
   //如果需要标签页缓存生效，则需要保证name值和菜单管理中的编码值一致
   name: 'workFlowRequest',
@@ -25,6 +25,10 @@ export default {
         page: 1,
         limit: 20,
         id: undefined
+      },
+      processInstanceImg:{
+        show:false,
+        url:''
       },
       processDefinitionList: [],
       dictStateList:[],
@@ -193,6 +197,11 @@ export default {
     editItem(record) {
       this.selRow = record
       this.edit()
+    },
+    viewImg(record){
+    this.processInstanceImg.show = true
+      this.processInstanceImg.url = getApiUrl() + '/workflow/request/png/'+record.instanceId+'/true'
+
     },
     todo(record){
       this.$message({

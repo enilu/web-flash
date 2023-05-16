@@ -1,11 +1,11 @@
 package cn.enilu.flash.service.task;
 
 import cn.enilu.flash.bean.entity.system.Task;
+import cn.enilu.flash.bean.enumeration.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.exception.ApplicationException;
-import cn.enilu.flash.bean.exception.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.vo.QuartzJob;
 import cn.enilu.flash.utils.JsonUtil;
-import org.apache.commons.lang3.StringUtils;
+import cn.enilu.flash.utils.StringUtil;
 import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,7 +77,7 @@ public class JobService {
             job.setJobClass(task.getJobClass());
             job.setDescription(task.getName());
             job.setDisabled(task.isDisabled());
-            if (StringUtils.isNotBlank(task.getData())) {
+            if (StringUtil.isNotEmpty(task.getData())) {
                 try {
                     Map<String, Object> dataMap = JsonUtil.fromJson(Map.class, task.getData());
                     job.setDataMap(dataMap);

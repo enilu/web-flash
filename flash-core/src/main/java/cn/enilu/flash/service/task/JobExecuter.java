@@ -6,7 +6,6 @@ import cn.enilu.flash.bean.vo.QuartzJob;
 import cn.enilu.flash.dao.system.TaskLogRepository;
 import cn.enilu.flash.dao.system.TaskRepository;
 import cn.enilu.flash.utils.StringUtil;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +53,7 @@ public abstract class JobExecuter {
         } catch (Exception e) {
             log.error("exeucte " + getClass().getName() + " error : ", e);
             exeResult = "执行失败\n";
-            exeResult += ExceptionUtils.getStackTrace(e);
+            exeResult += StringUtil.getStackTrace(e);
             taskLog.setExecSuccess(TaskLog.EXE_FAILURE_RESULT);
             taskLog.setJobException(e.getClass().getName());
         }

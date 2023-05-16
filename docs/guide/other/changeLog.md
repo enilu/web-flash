@@ -1,4 +1,12 @@
 # change log
+## Latest
+- Issues
+- Issue 打包时默认跳过测试
+- Issue 升级mysql驱动包到版本:8.0.28
+- Change 默认的jdk编译版本升级到11
+- Issue 移除冗余的maven依赖
+- Issue 工作流的待办任务中增加任务进度图
+
 ## 2.2
 [gitee](https://gitee.com/enilu/web-flash/releases/2.2)
 [github](https://github.com/enilu/web-flash/releases/tag/2.2)
@@ -8,7 +16,6 @@
 - Change 将角色编码字段名从之前得tips调整为code
 - Change 统一调整新增和修改接口的传参方式为:Request Payload
 - Change 限制对初始化数据的删除
-
 ## 2.1
 [gitee](https://gitee.com/enilu/web-flash/releases/2.1)
 [github](https://github.com/enilu/web-flash/releases/tag/2.1)

@@ -7,7 +7,7 @@ import cn.enilu.flash.bean.entity.system.OperationLog;
 import cn.enilu.flash.bean.vo.SpringContextHolder;
 import cn.enilu.flash.dao.system.LoginLogRepository;
 import cn.enilu.flash.dao.system.OperationLogRepository;
-import cn.enilu.flash.utils.ToolUtil;
+import cn.enilu.flash.utils.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -87,7 +87,7 @@ public class LogTaskFactory {
         return new TimerTask() {
             @Override
             public void run() {
-                String msg = ToolUtil.getExceptionMsg(exception);
+                String msg = StringUtil.getStackTrace(exception);
                 OperationLog operationLog = LogFactory.createOperationLog(
                         LogType.EXCEPTION, userId, "", null, null, msg, LogSucceed.FAIL);
                 try {

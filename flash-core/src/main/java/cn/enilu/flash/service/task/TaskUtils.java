@@ -2,7 +2,7 @@ package cn.enilu.flash.service.task;
 
 import cn.enilu.flash.bean.vo.QuartzJob;
 import cn.enilu.flash.bean.vo.SpringContextHolder;
-import org.apache.commons.lang3.StringUtils;
+import cn.enilu.flash.utils.StringUtil;
 import org.quartz.impl.triggers.CronTriggerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +26,7 @@ public class TaskUtils {
     public static void executeJob(QuartzJob job) throws Exception {
         JobExecuter jobExecuter = null;
         Class<?> clazz = null;
-        if (StringUtils.isNotBlank(job.getJobClass())) {
+        if (StringUtil.isNotEmpty(job.getJobClass())) {
             clazz = Class.forName(job.getJobClass());
             jobExecuter = (JobExecuter) SpringContextHolder.getBean(clazz);
             jobExecuter.setJob(job);

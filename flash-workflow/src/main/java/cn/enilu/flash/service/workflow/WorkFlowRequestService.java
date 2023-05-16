@@ -9,6 +9,8 @@ import cn.enilu.flash.utils.JsonUtil;
 import cn.enilu.flash.utils.Lists;
 import cn.enilu.flash.utils.Maps;
 import cn.enilu.flash.utils.factory.Page;
+import org.activiti.bpmn.model.BpmnModel;
+import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -16,11 +18,14 @@ import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.activiti.engine.task.TaskQuery;
+import org.activiti.image.ProcessDiagramGenerator;
+import org.activiti.image.impl.DefaultProcessDiagramGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +40,8 @@ public class WorkFlowRequestService extends BaseService<WorkFlowRequest, Long, W
     private RepositoryService repositoryService;
     @Autowired
     private TaskService taskService;
+    @Autowired
+    private HistoryService historyService;
 
     /**
      * 启动新流程
@@ -92,6 +99,41 @@ public class WorkFlowRequestService extends BaseService<WorkFlowRequest, Long, W
         Map<String,Object> params = Maps.newHashMap();
         params.put("state",state);
         taskService.complete(taskId,params);
+    }
+
+    /**
+     * 获取流程图
+     *
+     * @param processInstanceId
+     * @param highLight
+     * @return
+     */
+    /**
+     * Get Process instance diagram
+     */
+    public InputStream getProcessDiagram(String processInstanceId, boolean highLight) {
+        ProcessInstance processInstance = runtimeService.createProcessInstanceQuery()
+                .processInstanceId(processInstanceId).singleResult();
+        String processDefinitionId =   processInstance.getProcessDefinitionId();
+
+        // null check
+        if (processDefinitionId != null) {
+            // get process model
+            BpmnModel model = repositoryService.getBpmnModel(processDefinitionId);
+
+            if (model != null && model.getLocationMap().size() > 0) {
+                ProcessDiagramGenerator generator = new DefaultProcessDiagramGenerator();
+                if(highLight) {
+                    // 生成流程图 已启动的task 高亮
+                    List<String> list =  runtimeService.getActiveActivityIds(processInstanceId);
+                    return generator.generateDiagram(model,list);
+                }else {
+                    // 生成流程图 都不高亮
+                return generator.generateDiagram(model, "宋体","宋体","宋体");
+                }
+            }
+        }
+        return null;
     }
 }
 

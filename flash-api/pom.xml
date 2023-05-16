@@ -15,6 +15,11 @@
     <dependencies>
         <dependency>
             <groupId>cn.enilu</groupId>
+            <artifactId>flash-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.enilu</groupId>
             <artifactId>flash-workflow</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -30,14 +35,27 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.junit.vintage</groupId>-->
+<!--            <artifactId>junit-vintage-engine</artifactId>-->
+<!--            <scope>test</scope>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.hamcrest</groupId>-->
+<!--                    <artifactId>hamcrest-core</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
         <plugins>
+
             <!--以war形式运行 配置开始-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
                 <configuration>
                     <warName>api</warName>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -45,23 +63,25 @@
             </plugin>
             <!-- 以war形式运行 配置结束-->
 
-            <!--以jar包形式单独部署 配置开始:并将packaging调整为jar-->
-            <!--<plugin>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-            <!--<configuration>-->
-            <!--<mainClass>cn.enilu.flash.api.ApiApplication</mainClass>-->
-            <!--<layout>ZIP</layout>-->
-            <!--<finalName>flash-api</finalName>-->
-            <!--</configuration>-->
-            <!--<executions>-->
-            <!--<execution>-->
-            <!--<goals>-->
-            <!--<goal>repackage</goal>-->
-            <!--</goals>-->
-            <!--</execution>-->
-            <!--</executions>-->
-            <!--</plugin>-->
+            <!--以jar包形式单独部署 配置开始:切记需要将packaging调整为jar-->
+            <!--
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>cn.enilu.flash.api.ApiApplication</mainClass>
+                    <layout>ZIP</layout>
+                    <finalName>flash-api</finalName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            -->
             <!--以jar包形式单独部署 配置结束-->
 
         </plugins>
