@@ -1,5 +1,7 @@
 package cn.enilu.flash.bean.vo.front;
 
+import cn.enilu.flash.utils.Maps;
+
 public class Rets {
 
     public static final Integer SUCCESS = 20000;
@@ -11,7 +13,7 @@ public class Rets {
     }
 
     public static Ret failure(String msg) {
-        return new Ret(Rets.FAILURE, msg, null);
+        return new Ret(Rets.FAILURE, msg, Maps.newHashMap());
     }
 
     public static Ret success() {
