@@ -5,7 +5,7 @@ spring:
     ehcache:
       config: classpath:ehcache.xml
   datasource:
-    driver-class-name:  com.mysql.jdbc.Driver
+    driver-class-name:  com.mysql.cj.jdbc.Driver
     druid:
       web-stat-filter:
         enabled: true
@@ -23,10 +23,17 @@ spring:
     time-zone: GMT+8
   mail:
     host: smtp.qq.com
-    username: enidfdluzt@qq.com
-    password: 123456
+    username: eniluzt@qq.com
+    password: sheseerzuoydxxeafszpafbhhb
     port: 465
-    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+          starttls:
+            enable: true
   jpa:
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

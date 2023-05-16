@@ -1,10 +1,14 @@
 package cn.enilu.flash.utils;
 
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.Map;
+import java.text.MessageFormat;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -383,5 +387,63 @@ public class StringUtil {
             return new String(data);
         }
         return new String(data, charset);
+    }
+
+    /**
+     *字符串模板替换
+     * 例:你好${name},欢迎使用${projectName}
+     * @param template
+     * @param params
+     * @return
+     */
+    public static String replace(String template, final Map<String, Object> params) {
+        Matcher m = Pattern.compile("\\$\\{\\w+\\}").matcher(template);
+
+        StringBuffer sb = new StringBuffer();
+        while (m.find()) {
+            String param = m.group();
+            Object value = params.get(param.substring(2, param.length() - 1));
+            m.appendReplacement(sb, value == null ? "" : value.toString());
+        }
+        m.appendTail(sb);
+        return sb.toString();
+    }
+
+    /**
+     * 字符串模板替换
+     * 例:你好{1},欢迎使用{2}
+     * @param template
+     * @param args
+     * @return
+     */
+    public static  String replace(String template, String... args) {
+        List<Object> argList = new ArrayList<>();
+        argList.add("");
+        if (args != null) {
+            Collections.addAll(argList, args);
+        }
+        String content = MessageFormat.format(template, argList.toArray());
+        return content;
+    }
+
+    /**
+     * 获取异常的具体信息
+     *
+     * @author fengshuonan
+     * @Date 2017/3/30 9:21
+     * @version 2.0
+     */
+    public static String getStackTrace(Exception e) {
+        StringWriter sw = new StringWriter();
+        try {
+            e.printStackTrace(new PrintWriter(sw));
+        } finally {
+            try {
+                sw.close();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+        return sw.getBuffer().toString().replaceAll("\\$", "T");
     }
 }

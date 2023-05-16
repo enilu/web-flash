@@ -105,7 +105,7 @@ public class BaseRepositoryTest extends BaseApplicationStartTest {
 
     @Test
     public void test_09_queryObjBySql() {
-        String sql = "SELECT id, pid AS pId, simplename AS NAME, ( CASE WHEN (pId = 0 OR pId IS NULL) THEN 'true' ELSE 'false' END ) AS open FROM t_sys_dept";
+        String sql = "SELECT id, pid AS pId, simplename AS name, ( CASE WHEN (pId = 0 OR pId IS NULL) THEN 'true' ELSE 'false' END ) AS open FROM t_sys_dept";
         List<ZTreeNode> list = (List<ZTreeNode>) boyRepository.queryObjBySql(sql, ZTreeNode.class);
         System.out.println(JsonUtil.toJson(list));
         Assert.assertTrue(list.get(0) instanceof ZTreeNode);

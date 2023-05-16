@@ -1,6 +1,6 @@
 package cn.enilu.flash;
 
-import cn.enilu.flash.code.Generator;
+//import cn.enilu.flash.code.Generator;
 import cn.enilu.flash.utils.Lists;
 
 import java.util.List;
@@ -51,7 +51,7 @@ public class CodeGenerator {
         param.add("view");
         param.add("repository");
         String[] args = param.toArray(new String[param.size()]);
-        Generator.main(args);
+//        Generator.main(args);
 
 
     }

@@ -1,6 +1,11 @@
 package cn.enilu.flash.code;
 
+import org.nutz.json.Json;
+import org.nutz.lang.Lang;
 import org.nutz.lang.Strings;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 工具类<br>
@@ -51,6 +56,11 @@ public class Utils {
     }
 
     public static void main(String[] args) {
+        List list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        System.out.println(Json.toJson(Lang.collection2array(list)));
+        System.out.println(Json.toJson(list.toArray()));
         System.out.println(upperCamel("AAAA_BBBB"));
     }
 }

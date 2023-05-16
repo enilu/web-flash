@@ -1,8 +1,12 @@
 # change log
 ## Latest
 - Issues
-- issue 打包时默认跳过测试
-- issue 升级mysql驱动包到版本:8.0.28
+- Issue 打包时默认跳过测试
+- Issue 升级mysql驱动包到版本:8.0.28
+- Change 默认的jdk编译版本升级到11
+- Issue 移除冗余的maven依赖
+- Issue 工作流的待办任务中增加任务进度图
+
 ## 2.2
 [gitee](https://gitee.com/enilu/web-flash/releases/2.2)
 [github](https://github.com/enilu/web-flash/releases/tag/2.2)

@@ -26,7 +26,7 @@ public class TimeCacheMap<K, V> {
     /**
      * 把数据分成多个桶，用链表是因为在头尾的增减操作时O（1）
      */
-    private LinkedList<HashMap<K, V>> buckets;
+    private LinkedList<Map<K, V>> buckets;
 
     private final Object lock = new Object();
     private Thread cleaner;
@@ -37,7 +37,7 @@ public class TimeCacheMap<K, V> {
             throw new IllegalArgumentException("numBuckets must be >= 2");
         }
         //构造函数中，按照桶的数量，初始桶
-        buckets = new LinkedList<HashMap<K, V>>();
+        buckets = new LinkedList<Map<K, V>>();
         for (int i = 0; i < numBuckets; i++) {
             buckets.add(new HashMap<K, V>());
         }

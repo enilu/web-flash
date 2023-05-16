@@ -23,8 +23,8 @@
         <junit.version>4.12</junit.version>
         <!--build libs-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java_source_version>1.8</java_source_version>
-        <java_target_version>1.8</java_target_version>
+        <java_source_version>11</java_source_version>
+        <java_target_version>11</java_target_version>
         <file_encoding>UTF-8</file_encoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!--driver libs-->
@@ -144,6 +144,12 @@
                 <artifactId>spring-boot-starter-test</artifactId>
                 <scope>test</scope>
                 <version>${spring.boot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.skyscreamer</groupId>
+                        <artifactId>jsonassert</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.github.napp-com</groupId>
@@ -304,8 +310,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${java_source_version}</source>
+                    <target>${java_target_version}</target>
                 </configuration>
             </plugin>
         </plugins>

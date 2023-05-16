@@ -56,14 +56,14 @@
               <span>{{ $t("login.password") }} : admin</span>
             </div>
             <div class="tips">
-              <span style="margin-right: 18px">{{ $t("login.username") }} : developer</span>
-              <span>{{ $t("login.password") }} : developer</span>
+              <span style="margin-right: 18px">{{ $t("login.username") }} : auditUser</span>
+              <span>{{ $t("login.password") }} : 123456</span>
             </div>
           </div>
         </el-tab-pane>
         <el-tab-pane label="扫码登录" name="second" >
           <div v-if="qrcode.activeName=='second'"  >
-             
+
               <div class="qrcode" v-show="!qrcode.showAppdownload">
                   <img   :src="qrcode.imgUrl"/>
                   <div  class="qrCodeCoverBlack"  v-show="qrcode.resultStatus=='invalid'">
@@ -84,7 +84,7 @@
           </div>
             <div style="position: relative;text-align:center;">
                 <div v-if="qrcode.resultStatus=='' ||qrcode.resultStatus=='undo' ">
-                    <p>打开<span 
+                    <p>打开<span
                     style="color:#5b9bd1;cursor:pointer;"
                      @mouseenter="showAppdownload"
                      @mouseleave="hideAppdownload">web-flash APP</span>

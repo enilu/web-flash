@@ -4,10 +4,10 @@ import cn.enilu.flash.bean.exception.ServiceExceptionEnum;
 
 /**
  * @author fengshuonan
- * @Description 所有业务异常的枚举
+ * @Description 所有业务异常的枚举,和ApplicationException配合使用
  * @date 2016年11月12日 下午5:04:51
  */
-public enum BizExceptionEnum implements ServiceExceptionEnum {
+public enum ApplicationExceptionEnum implements ServiceExceptionEnum {
 
     /**
      * 字典
@@ -53,9 +53,10 @@ public enum BizExceptionEnum implements ServiceExceptionEnum {
     DICT_MUST_BE_NUMBER(400, "字典的值必须为数字"),
     REQUEST_NULL(400, "请求有错误"),
     SESSION_TIMEOUT(400, "会话超时"),
-    SERVER_ERROR(500, "服务器异常");
+    SERVER_ERROR(500, "服务器异常"),
+    TASK_CONFIG_ERROR(500, "定时任务配置错误");
 
-    BizExceptionEnum(int code, String message) {
+    ApplicationExceptionEnum(int code, String message) {
         this.code = code;
         this.message = message;
     }

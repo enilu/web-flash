@@ -6,7 +6,7 @@ import cn.enilu.flash.bean.constant.factory.PageFactory;
 import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.entity.system.Role;
 import cn.enilu.flash.bean.entity.system.User;
-import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
+import cn.enilu.flash.bean.enumeration.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Rets;
@@ -75,7 +75,7 @@ public class RoleController extends BaseController {
     public Object remove(@RequestParam Long roleId) {
         logger.info("id:{}", roleId);
         if (roleId == null) {
-            throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
+            throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
         }
         if (roleId.intValue() < 4) {
             return Rets.failure("不能删除初始角色");
@@ -100,7 +100,7 @@ public class RoleController extends BaseController {
     public Object setAuthority(Long roleId, String
             permissions) {
         if (BeanUtil.isOneEmpty(roleId)) {
-            throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
+            throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
         }
         roleService.setAuthority(roleId, permissions);
         return Rets.success();

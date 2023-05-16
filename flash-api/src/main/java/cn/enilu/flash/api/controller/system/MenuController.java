@@ -3,7 +3,7 @@ package cn.enilu.flash.api.controller.system;
 import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.entity.system.Menu;
-import cn.enilu.flash.bean.enumeration.BizExceptionEnum;
+import cn.enilu.flash.bean.enumeration.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Rets;
@@ -80,7 +80,7 @@ public class MenuController extends BaseController {
         if (menu.getId() == null) {
             String existedMenuName = ConstantFactory.me().getMenuNameByCode(menu.getCode());
             if (StringUtil.isNotEmpty(existedMenuName)) {
-                throw new ApplicationException(BizExceptionEnum.EXISTED_THE_MENU);
+                throw new ApplicationException(ApplicationExceptionEnum.EXISTED_THE_MENU);
             }
         }
 
@@ -99,7 +99,7 @@ public class MenuController extends BaseController {
     @RequiresPermissions(value = {Permission.MENU_DEL})
     public Object remove(@RequestParam Long id) {
         if (id == null) {
-            throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
+            throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
         }
         //演示环境不允许删除初始化的菜单
         if (id.intValue() <= 80) {

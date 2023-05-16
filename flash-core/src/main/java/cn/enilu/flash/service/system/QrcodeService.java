@@ -8,8 +8,6 @@ import cn.enilu.flash.security.ShiroFactroy;
 import cn.enilu.flash.utils.HttpUtil;
 import cn.enilu.flash.utils.JsonUtil;
 import cn.enilu.flash.utils.Maps;
-import cn.enilu.flash.utils.StringUtil;
-
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -24,7 +22,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * 二维码登录服务

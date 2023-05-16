@@ -10,7 +10,7 @@ import cn.enilu.flash.bean.vo.workflow.ProcessDefinitionVo;
 import cn.enilu.flash.service.system.FileService;
 import cn.enilu.flash.service.workflow.ProcessDefinitionService;
 import cn.enilu.flash.utils.factory.Page;
-import org.nutz.lang.Files;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.List;
 
 /**
@@ -81,7 +83,8 @@ public class ProcessDefinitionController extends BaseController {
         FileInfo fileInfo = fileService.get(idFile);
         response.setContentType("application/octet-stream");
         try {
-            String text = Files.read(fileInfo.getAblatePath());
+           String text =  FileUtils.readFileToString(new File(fileInfo.getAblatePath()), Charset.defaultCharset());
+//            String text = Files.read(fileInfo.getAblatePath());
             response.getWriter().write(text);
         } catch (Exception e) {
             logger.error("getImgStream error", e);

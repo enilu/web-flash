@@ -1,9 +1,10 @@
 package cn.enilu.flash.dao;
 
+import cn.enilu.flash.utils.JsonUtil;
 import cn.enilu.flash.utils.Lists;
+import cn.enilu.flash.utils.Maps;
 import org.hibernate.query.internal.NativeQueryImpl;
 import org.hibernate.transform.Transformers;
-import org.nutz.mapl.Mapl;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
@@ -53,7 +54,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable>
         List result = Lists.newArrayList();
         for(Map map:list){
             try {
-                Object bean = Mapl.maplistToObj(map, klass);
+                Object bean = Maps.mapToObj(map,klass);
                 result.add(bean);
             } catch (Exception e) {
             }
