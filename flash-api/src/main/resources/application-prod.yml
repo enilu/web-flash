@@ -1,10 +1,9 @@
 debug: true
 spring:
   datasource:
-    druid:
-      url: jdbc:mysql://my-db:3306/webflash?useUnicode=true&characterEncoding=UTF8&useSSL=false
-      username: webflash
-      password: webflash190602@ABC
+    url: jdbc:mysql://my-db:3306/webflash?useUnicode=true&characterEncoding=UTF8&useSSL=false
+    username: webflash
+    password: webflash190602@ABC
   jpa:
     hibernate:
       ## 生产环境建议去掉改配置

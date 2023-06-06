@@ -24,7 +24,7 @@
           {{scope.row.id}}
         </template>
       </el-table-column>
-      <el-table-column label="文件名3">
+      <el-table-column label="文件名">
         <template slot-scope="scope">
           {{scope.row.originalFileName}}
         </template>
