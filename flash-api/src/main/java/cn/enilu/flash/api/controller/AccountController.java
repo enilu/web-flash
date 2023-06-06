@@ -67,7 +67,11 @@ public class AccountController extends BaseController {
             //1,
             String password = loginDto.getPassword();
             String userName = loginDto.getUsername();
-            password = CryptUtil.desEncrypt(password);
+            try {
+                password = CryptUtil.desEncrypt(password);
+            }catch (Exception e){
+                logger.info("密码未加密");
+            }
             User user = userService.findByAccountForLogin(userName);
             if (user == null) {
                 return Rets.failure("用户名或密码错误");
@@ -116,7 +120,7 @@ public class AccountController extends BaseController {
                 return Rets.failure("该用户未配置权限");
             }
             ShiroUser shiroUser = tokenCache.getUser(getToken());
-            Map map = Maps.newHashMap("name", user.getName(), "role", "admin", "roles", shiroUser.getRoleCodes());
+            Map map = Maps.newHashMap("name", user.getName(),"username",user.getAccount(), "roles", shiroUser.getRoleCodes());
             List<RouterMenu> list = menuService.getSideBarMenus(shiroUser.getRoleList());
             map.put("menus", list);
             map.put("permissions", shiroUser.getUrls());
