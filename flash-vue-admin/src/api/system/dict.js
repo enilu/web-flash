@@ -38,8 +38,11 @@ export default {
   },
   getDicts: function (dictName) {
     return request({
-      url: '/dict/getDicts/' + dictName,
-      method: 'get'
+      url: '/dict/getDicts',
+      method: 'get',
+      params:{
+        dictName:dictName
+      }
     })
   }
 }

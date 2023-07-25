@@ -11,8 +11,6 @@
 
     <artifactId>flash-generator</artifactId>
     <properties>
-        <java-version>11</java-version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <nutz-version>1.r.60</nutz-version>
         <evo-inflector-version>1.0.1</evo-inflector-version>
         <velocity-version>1.7</velocity-version>
@@ -54,12 +52,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>junit</groupId>-->
-<!--            <artifactId>junit</artifactId>-->
-<!--            <version>4.12</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
     </dependencies>
 
 
