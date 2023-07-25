@@ -110,12 +110,7 @@ export default {
       this.formTitle = '添加${table.Label}'
       this.formVisible = true
       this.isAdd = true
-
-      if(this.$refs['form'] !== undefined) {
-        this.$refs['form'].resetFields()
-      }
-      //如果表单初始化有特殊处理需求,可以在resetForm中处理
-      ## this.resetForm()
+      this.resetForm()
     },
     save() {
       ${refForm}.validate((valid) => {
@@ -171,12 +166,6 @@ export default {
         this.form = form
         this.formTitle = '编辑${table.Label}'
         this.formVisible = true
-
-        if(this.$refs['form'] !== undefined) {
-          this.$refs['form'].resetFields()
-        }
-        //如果表单初始化有特殊处理需求,可以在resetForm中处理
-        ## this.resetForm()
       }
     },
     removeItem(record){
