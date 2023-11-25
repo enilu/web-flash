@@ -37,7 +37,7 @@ public class NewsController extends BaseController {
         List<News> newsList = new ArrayList<>();
         Page<Article> articlePage = articleService.query(1, 10, ChannelEnum.NEWS.getId());
 
-        for (Article article : articlePage.getRecords()) {
+        for (Article article : articlePage.getList()) {
             News news = new News();
             news.setDesc(article.getTitle());
             news.setUrl("/article?id=" + article.getId());

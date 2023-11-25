@@ -37,7 +37,7 @@ public class SolutionController extends BaseController {
 
         List<Solution> solutions = new ArrayList<>();
         Page<Article> articlePage = articleService.query(1, 10, ChannelEnum.SOLUTION.getId());
-        for (Article article : articlePage.getRecords()) {
+        for (Article article : articlePage.getList()) {
             solutions.add(new Solution(article.getId(), article.getTitle(), article.getImg()));
         }
         dataMap.put("solutionList", solutions);

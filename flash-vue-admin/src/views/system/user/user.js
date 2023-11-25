@@ -286,7 +286,7 @@ export default {
         }).then(() => {
           resetPassword(id).then(response => {
             this.$message({
-              message: '重置密码成功',
+              message: '重置密码成功,新密码为：'+response.data,
               type: 'success'
             })
           }).catch(err => {

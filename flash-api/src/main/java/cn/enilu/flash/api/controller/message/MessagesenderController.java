@@ -28,7 +28,7 @@ public class MessagesenderController {
         page.addFilter("name", name);
         page.addFilter("className", className);
         page = messagesenderService.queryPage(page);
-        page.setRecords(page.getRecords());
+        page.setList(page.getList());
         return Rets.success(page);
     }
 

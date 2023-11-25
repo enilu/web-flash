@@ -23,7 +23,7 @@ public class ArticleService extends BaseService<Article, Long, ArticleRepository
      */
     public List<Article> queryIndexNews() {
         Page<Article> page = query(1, 5, ChannelEnum.NEWS.getId());
-        return page.getRecords();
+        return page.getList();
     }
 
     public Page<Article> query(int currentPage, int size, Long idChannel) {

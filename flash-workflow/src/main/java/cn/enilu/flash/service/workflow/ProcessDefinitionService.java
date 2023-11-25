@@ -45,7 +45,7 @@ public class ProcessDefinitionService {
             ProcessDefinitionVo vo = new ProcessDefinitionVo(processDefinition);
             processDefinitionVos.add(vo);
         }
-        page.setRecords(processDefinitionVos);
+        page.setList(processDefinitionVos);
 
         return page;
     }

@@ -32,7 +32,7 @@ public class MessageController {
         page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parse(startDate, "yyyyMMddHHmmss"));
         page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parse(endDate, "yyyyMMddHHmmss"));
         page = messageService.queryPage(page);
-        page.setRecords(page.getRecords());
+        page.setList(page.getList());
         return Rets.success(page);
     }
 

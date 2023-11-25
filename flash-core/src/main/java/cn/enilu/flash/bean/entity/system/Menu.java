@@ -52,4 +52,8 @@ public class Menu extends BaseEntity {
     @Column(columnDefinition = "TINYINT COMMENT '是否隐藏'")
     private Boolean hidden = false;
 
+    public boolean isButton(){
+        return getIsmenu() == 0;
+    }
+
 }

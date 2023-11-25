@@ -52,8 +52,8 @@ public class RoleController extends BaseController {
         page.addFilter("name", name);
         page.addFilter("code", code);
         page = roleService.queryPage(page);
-        List list = (List) new RoleWrapper(BeanUtil.objectsToMaps(page.getRecords())).warp();
-        page.setRecords(list);
+        List list = (List) new RoleWrapper(BeanUtil.objectsToMaps(page.getList())).warp();
+        page.setList(list);
         return Rets.success(page);
     }
 

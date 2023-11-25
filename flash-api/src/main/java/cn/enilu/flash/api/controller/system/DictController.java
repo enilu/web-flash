@@ -10,6 +10,8 @@ import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.cache.DictCache;
 import cn.enilu.flash.service.system.DictService;
 import cn.enilu.flash.utils.BeanUtil;
+import cn.enilu.flash.utils.Lists;
+import cn.enilu.flash.utils.Maps;
 import cn.enilu.flash.utils.StringUtil;
 import cn.enilu.flash.warpper.DictWrapper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * DictController
@@ -82,5 +85,14 @@ public class DictController extends BaseController {
     public Object getDicts(@RequestParam String dictName) {
         List<Dict> dicts = dictCache.getDictsByPname(dictName);
         return Rets.success(dicts);
+    }
+    @GetMapping(value = "/getDicts/V2")
+    public Object getDictsV2(@RequestParam String dictName) {
+        List<Dict> dicts = dictCache.getDictsByPname(dictName);
+        List<Map> results = Lists.newArrayList();
+        for(Dict dict:dicts){
+            results.add(Maps.newHashMap("label",dict.getName(),"value",Integer.valueOf(dict.getNum())));
+        }
+        return Rets.success(results);
     }
 }

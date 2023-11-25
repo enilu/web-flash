@@ -1,6 +1,7 @@
 package cn.enilu.flash.bean.entity.system;
 
 import cn.enilu.flash.bean.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.hibernate.annotations.Table;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -36,6 +37,7 @@ public class User extends BaseEntity {
     @Column(columnDefinition = "VARCHAR(32) COMMENT '姓名'")
     private String name;
     @Column(columnDefinition = "DATE COMMENT '生日'")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date birthday;
     @Column(columnDefinition = "INT COMMENT '性别:1:男,2:女'")
     private Integer sex;

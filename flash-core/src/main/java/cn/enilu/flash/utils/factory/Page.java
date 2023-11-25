@@ -33,7 +33,7 @@ public class Page<T> {
     /**
      * 每页显示条数，默认 10
      */
-    private int size = 10;
+    private int pageSize = 10;
 
     /**
      * 总页数
@@ -43,7 +43,7 @@ public class Page<T> {
     /**
      * 当前页
      */
-    private int current = 1;
+    private int pageNum = 1;
 
     /**
      * 查询总记录数（默认 true）
@@ -53,7 +53,7 @@ public class Page<T> {
     /**
      * 查询数据列表
      */
-    private List<T> records = Collections.emptyList();
+    private List<T> list = Collections.emptyList();
 
     private transient List<SearchFilter> filters;
 
@@ -61,14 +61,14 @@ public class Page<T> {
 
     }
 
-    public Page(int current, int size, String orderByField) {
-        this(current, size, orderByField, true);
+    public Page(int current, int pageSize, String orderByField) {
+        this(current, pageSize, orderByField, true);
 
 
     }
 
-    public Page(int current, int size, String orderByField, boolean isAsc) {
-        this(current, size);
+    public Page(int current, int pageSize, String orderByField, boolean isAsc) {
+        this(current, pageSize);
         setSort(Sort.by(isAsc ? Sort.Direction.ASC : Sort.Direction.DESC, orderByField));
 
     }
@@ -79,27 +79,27 @@ public class Page<T> {
      * </p>
      *
      * @param current 当前页
-     * @param size    每页显示条数
+     * @param pageSize    每页显示条数
      */
-    public Page(int current, int size) {
-        this(current, size, true);
+    public Page(int current, int pageSize) {
+        this(current, pageSize, true);
     }
 
 
-    public Page(int current, int size, boolean searchCount) {
+    public Page(int pageNum, int pageSize, boolean searchCount) {
 
-        setOffset(offsetCurrent(current, size));
-        setLimit(size);
-        if (current > 1) {
-            this.current = current;
+        setOffset(offsetCurrent(pageNum, pageSize));
+        setLimit(pageSize);
+        if (pageNum > 1) {
+            this.pageNum = pageNum;
         }
-        this.size = size;
+        this.pageSize = pageSize;
         this.searchCount = searchCount;
     }
 
-    protected static int offsetCurrent(int current, int size) {
+    protected static int offsetCurrent(int current, int pageSize) {
         if (current > 0) {
-            return (current - 1) * size;
+            return (current - 1) * pageSize;
         }
         return 0;
     }
@@ -113,15 +113,15 @@ public class Page<T> {
     }
 
     public int offsetCurrent() {
-        return offsetCurrent(this.current, this.size);
+        return offsetCurrent(this.pageNum, this.pageSize);
     }
 
     public boolean hasPrevious() {
-        return this.current > 1;
+        return this.pageNum > 1;
     }
 
     public boolean hasNext() {
-        return this.current < this.pages;
+        return this.pageNum < this.pages;
     }
 
     public int getTotal() {
@@ -133,32 +133,32 @@ public class Page<T> {
         return this;
     }
 
-    public int getSize() {
-        return size;
+    public int getPageSize() {
+        return pageSize;
     }
 
-    public Page setSize(int size) {
-        this.size = size;
+    public Page setPageSize(int pageSize) {
+        this.pageSize = pageSize;
         return this;
     }
 
     public int getPages() {
-        if (this.size == 0) {
+        if (this.pageSize == 0) {
             return 0;
         }
-        this.pages = this.total / this.size;
-        if (this.total % this.size != 0) {
+        this.pages = this.total / this.pageSize;
+        if (this.total % this.pageSize != 0) {
             this.pages++;
         }
         return this.pages;
     }
 
-    public int getCurrent() {
-        return current;
+    public int getPageNum() {
+        return pageNum;
     }
 
-    public Page setCurrent(int current) {
-        this.current = current;
+    public Page setPageNum(int current) {
+        this.pageNum = current;
         return this;
     }
 
@@ -190,12 +190,12 @@ public class Page<T> {
     }
 
 
-    public List<T> getRecords() {
-        return records;
+    public List<T> getList() {
+        return list;
     }
 
-    public Page<T> setRecords(List<T> records) {
-        this.records = records;
+    public Page<T> setList(List<T> list) {
+        this.list = list;
         return this;
     }
 
@@ -232,8 +232,8 @@ public class Page<T> {
     public String toString() {
         StringBuilder pg = new StringBuilder();
         pg.append(" Page:{ [").append(super.toString()).append("], ");
-        if (records != null) {
-            pg.append("records-size:").append(records.size());
+        if (list != null) {
+            pg.append("records-size:").append(list.size());
         } else {
             pg.append("records is null");
         }

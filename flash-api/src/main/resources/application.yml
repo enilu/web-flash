@@ -22,18 +22,23 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   mail:
-    host: smtp.qq.com
-    username: eniluzt@qq.com
-    password: sheseerzuoydxxeafszpafbhhb
+    host: smtp.126.com
+    username: enilu@126.com
+    password: GRTWRFAYZGZSFAXV
     port: 465
+    protocol: smtp
     properties:
       mail:
         smtp:
           auth: true
-          socketFactory:
-            class: javax.net.ssl.SSLSocketFactory
+          ssl:
+            enable: true
           starttls:
             enable: true
+            required: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
   jpa:
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

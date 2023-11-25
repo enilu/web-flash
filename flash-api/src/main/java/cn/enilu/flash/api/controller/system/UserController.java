@@ -13,19 +13,19 @@ import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.core.factory.UserFactory;
+import cn.enilu.flash.service.system.DeptService;
 import cn.enilu.flash.service.system.UserService;
 import cn.enilu.flash.utils.BeanUtil;
+import cn.enilu.flash.utils.DateUtil;
 import cn.enilu.flash.utils.MD5;
 import cn.enilu.flash.utils.RandomUtil;
 import cn.enilu.flash.utils.factory.Page;
-import cn.enilu.flash.warpper.UserWrapper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * UserController
@@ -38,6 +38,8 @@ import java.util.List;
 public class UserController extends BaseController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private DeptService deptService;
 
     @GetMapping(value = "/list")
     @RequiresPermissions(value = {Permission.USER})
@@ -46,7 +48,9 @@ public class UserController extends BaseController {
                        @RequestParam(required = false) Long deptid,
                        @RequestParam(required = false) String phone,
                        @RequestParam(required = false) Integer status,
-                       @RequestParam(required = false) Integer sex
+                       @RequestParam(required = false) Integer sex,
+                        @RequestParam(required = false) String startTime,
+                       @RequestParam(required = false) String endTime
     ) {
         Page page = new PageFactory().defaultPage();
         page.addFilter("name", SearchFilter.Operator.LIKE, name);
@@ -56,9 +60,9 @@ public class UserController extends BaseController {
         page.addFilter("status", status);
         page.addFilter("status", SearchFilter.Operator.GT, 0);
         page.addFilter("sex", sex);
+        page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parseTime(startTime));
+        page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parseTime(endTime));
         page = userService.queryPage(page);
-        List list = (List) new UserWrapper(BeanUtil.objectsToMaps(page.getRecords())).warp();
-        page.setRecords(list);
         return Rets.success(page);
     }
 
@@ -66,22 +70,30 @@ public class UserController extends BaseController {
     @BussinessLog(value = "编辑账号", key = "name")
     @RequiresPermissions(value = {Permission.USER_EDIT})
     public Object save(@RequestBody @Valid UserDto user, BindingResult result) {
+        User repeatUser = userService.findByAccountForLogin(user.getAccount());
         if (user.getId() == null) {
+
             // 判断账号是否重复
-            User theUser = userService.findByAccount(user.getAccount());
-            if (theUser != null) {
-                throw new ApplicationException(ApplicationExceptionEnum.USER_ALREADY_REG);
+            if (repeatUser != null) {
+              return Rets.failure("账号重复");
             }
             // 完善账号信息
+            String password = RandomUtil.getRandomPassword();
             user.setSalt(RandomUtil.getRandomString(5));
-            user.setPassword(MD5.md5(user.getPassword(), user.getSalt()));
+            user.setPassword(MD5.md5(password, user.getSalt()));
             user.setStatus(ManagerStatus.OK.getCode());
             userService.insert(UserFactory.createUser(user, new User()));
+            return Rets.success(password);
         } else {
+            if(repeatUser!=null&&repeatUser.getId().intValue()!=user.getId().intValue()){
+                return Rets.failure("账号重复");
+            }
+
             User oldUser = userService.get(user.getId());
             userService.update(UserFactory.updateUser(user, oldUser));
+            return Rets.success();
         }
-        return Rets.success();
+
     }
 
     @BussinessLog(value = "删除账号", key = "userId")
@@ -136,8 +148,13 @@ public class UserController extends BaseController {
     @PostMapping(value="resetPassword")
     public Object resetPassword(Long userId){
         User user = userService.get(userId);
-        user.setPassword(MD5.md5("111111", user.getSalt()));
+        String password = RandomUtil.getRandomPassword();
+        user.setPassword(MD5.md5(password, user.getSalt()));
         userService.update(user);
-        return Rets.success();
+        return Rets.success(password);
+    }
+    @GetMapping(value = "getAllDepts")
+    public Object getAllDepts(){
+        return Rets.success(deptService.queryAll());
     }
 }

@@ -1,5 +1,7 @@
 package cn.enilu.flash.utils;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -15,6 +17,9 @@ public class RandomUtil {
      */
     public static String getRandomString(int length) {
         String base = "abcdefghijklmnopqrstuvwxyz0123456789";
+        return getRandomString(length,base);
+    }
+    public static String getRandomString(int length,String base) {
         Random random = new Random();
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < length; i++) {
@@ -22,5 +27,39 @@ public class RandomUtil {
             sb.append(base.charAt(number));
         }
         return sb.toString();
+    }
+    public static String getRandomNum(int length) {
+        String base = "0123456789";
+        return getRandomString(length,base);
+    }
+    public static String getRandomChar(int length) {
+        String base = "abcdefghijklmnopqrstuvwxyz";
+        return getRandomString(length,base);
+    }
+    public static String getRandomSpecialChar(int length) {
+        String base = "@&._%$*!";
+        return getRandomString(length,base);
+    }
+    public static String getRandomPassword() {
+        char[] arr1 =  getRandomChar(8).toCharArray();
+        char[] arr2 = getRandomSpecialChar(1).toCharArray();
+        char[] arr3 = getRandomNum(3).toCharArray();
+        List<Character> list = Lists.newArrayList();
+        for(char c:arr1){
+            list.add(c);
+        }
+        for(char c:arr2){
+            list.add(c);
+        }
+        for(char c:arr3){
+            list.add(c);
+        }
+        Collections.shuffle(list);
+        StringBuilder stringBuilder = new StringBuilder(list.size());
+        for (Character c : list) {
+            stringBuilder.append(c);
+        }
+
+        return stringBuilder.toString();
     }
 }

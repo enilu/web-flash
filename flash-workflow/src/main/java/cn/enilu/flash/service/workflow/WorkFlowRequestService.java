@@ -89,7 +89,7 @@ public class WorkFlowRequestService extends BaseService<WorkFlowRequest, Long, W
                 flowRequest.setTaskId(task.getId());
             }
         }
-        page.setRecords(flowRequests);
+        page.setList(flowRequests);
         logger.info(JsonUtil.toJson(page));
         return page;
     }

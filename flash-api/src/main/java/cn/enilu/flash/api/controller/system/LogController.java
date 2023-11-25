@@ -54,7 +54,7 @@ public class LogController extends BaseController {
             page.addFilter(SearchFilter.build("logtype", SearchFilter.Operator.EQ, BizLogType.valueOf(logType)));
         }
         page = operationLogService.queryPage(page);
-        page.setRecords((List<OperationLog>) new LogWrapper(BeanUtil.objectsToMaps(page.getRecords())).warp());
+        page.setList((List<OperationLog>) new LogWrapper(BeanUtil.objectsToMaps(page.getList())).warp());
         return Rets.success(page);
     }
 
@@ -66,7 +66,7 @@ public class LogController extends BaseController {
         Page<OperationLog> page = new Page<OperationLog>();
         page.addFilter(SearchFilter.build("userid", SearchFilter.Operator.EQ, getIdUser(HttpUtil.getRequest())));
         Page<OperationLog> pageResult = operationLogService.queryPage(page);
-        return Rets.success(pageResult.getRecords());
+        return Rets.success(pageResult.getList());
     }
 
     /**

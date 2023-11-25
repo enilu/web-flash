@@ -19,12 +19,12 @@ public class PageFactory<T> {
     public Page<T> defaultPage() {
         HttpServletRequest request = HttpUtil.getRequest();
 
-        String limitStr = request.getParameter("limit");
+        String limitStr = request.getParameter("pageSize");
         int limit =  10;
         if(StringUtil.isNotEmpty(limitStr)){
           limit = Integer.valueOf(limitStr);
         }
-        String pageNum = request.getParameter("page");
+        String pageNum = request.getParameter("pageNum");
         int current = 1;
 
         if (StringUtil.isNotEmpty(pageNum)) {

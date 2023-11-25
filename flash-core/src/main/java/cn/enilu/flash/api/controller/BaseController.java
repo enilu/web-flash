@@ -38,6 +38,15 @@ public class BaseController {
         }
         return idUser;
     }
+    public Long getIdUser( ) {
+        String token = HttpUtil.getRequest().getHeader("Authorization");
+
+        Long idUser = JwtUtil.getUserId(token);
+        if (idUser == null) {
+            throw new RuntimeException("用户不存在");
+        }
+        return idUser;
+    }
 
     /**
      * 获取客户端token

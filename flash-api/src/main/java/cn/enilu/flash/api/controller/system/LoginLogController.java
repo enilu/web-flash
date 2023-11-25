@@ -40,7 +40,7 @@ public class LoginLogController extends BaseController {
         page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parseDate(endTime));
         page.addFilter("logname", SearchFilter.Operator.LIKE, logName);
         Page pageResult = loginlogService.queryPage(page);
-        pageResult.setRecords((List<LoginLog>) new LogWrapper(BeanUtil.objectsToMaps(pageResult.getRecords())).warp());
+        pageResult.setList((List<LoginLog>) new LogWrapper(BeanUtil.objectsToMaps(pageResult.getList())).warp());
         return Rets.success(pageResult);
 
     }

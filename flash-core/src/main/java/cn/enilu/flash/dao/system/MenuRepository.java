@@ -41,6 +41,7 @@ public interface MenuRepository extends BaseRepository<Menu, Long> {
             "ORDER BY levels, num ASC")
     List getMenusByRoleids(@Param("roleIds") List<String>roleIds);
 
+
     @Query(nativeQuery = true, value = "select menuid from t_sys_relation where roleid=?1")
     List getMenuIdsByRoleId(Integer roleId);
 

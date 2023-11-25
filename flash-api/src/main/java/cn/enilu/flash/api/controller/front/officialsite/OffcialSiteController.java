@@ -51,7 +51,7 @@ public class OffcialSiteController extends BaseController {
 
         List<Product> products = new ArrayList<>();
         Page<Article> articlePage = articleService.query(1, 4, ChannelEnum.PRODUCT.getId());
-        for (Article article : articlePage.getRecords()) {
+        for (Article article : articlePage.getList()) {
             Product product = new Product();
             product.setId(article.getId());
             product.setName(article.getTitle());
@@ -62,7 +62,7 @@ public class OffcialSiteController extends BaseController {
 
         List<Solution> solutions = new ArrayList<>();
         articlePage = articleService.query(1, 4, ChannelEnum.SOLUTION.getId());
-        for (Article article : articlePage.getRecords()) {
+        for (Article article : articlePage.getList()) {
             Solution solution = new Solution();
             solution.setId(article.getId());
             solution.setName(article.getTitle());

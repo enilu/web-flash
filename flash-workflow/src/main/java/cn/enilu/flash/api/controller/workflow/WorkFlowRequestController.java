@@ -57,7 +57,7 @@ public class WorkFlowRequestController extends BaseController {
         page = workFlowRequestService.queryTask(page, roleCodes);
 
 
-        page.setRecords((List<WorkFlowRequest>) new TaskWrapper(BeanUtil.objectsToMaps(page.getRecords())).warp());
+        page.setList((List<WorkFlowRequest>) new TaskWrapper(BeanUtil.objectsToMaps(page.getList())).warp());
         return Rets.success(page);
     }
 

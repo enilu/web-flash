@@ -74,7 +74,7 @@ public class CfgController extends BaseController {
             page.addFilter(SearchFilter.build("cfgValue", SearchFilter.Operator.LIKE, cfgValue));
         }
         page = cfgService.queryPage(page);
-        FileInfo fileInfo = fileService.createExcel("templates/config.xlsx", "系统参数.xlsx", Maps.newHashMap("list", page.getRecords()));
+        FileInfo fileInfo = fileService.createExcel("templates/config.xlsx", "系统参数.xlsx", Maps.newHashMap("list", page.getList()));
         return Rets.success(fileInfo);
     }
 

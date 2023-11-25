@@ -37,7 +37,7 @@ public class CaseController extends BaseController {
 
         List<Product> products = new ArrayList<>();
         Page<Article> articlePage = articleService.query(1, 10, ChannelEnum.PRODUCT.getId());
-        for (Article article : articlePage.getRecords()) {
+        for (Article article : articlePage.getList()) {
             products.add(new Product(article.getId(), article.getTitle(), article.getImg()));
         }
         dataMap.put("caseList", products);

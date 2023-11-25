@@ -83,14 +83,14 @@ public abstract class BaseService<T, ID extends Serializable, R extends BaseRepo
     public Page<T> queryPage(Page<T> page) {
         Pageable pageable = null;
         if (page.getSort() != null) {
-            pageable = PageRequest.of(page.getCurrent() - 1, page.getSize(), page.getSort());
+            pageable = PageRequest.of(page.getPageNum() - 1, page.getPageSize(), page.getSort());
         } else {
-            pageable = PageRequest.of(page.getCurrent() - 1, page.getSize(), Sort.Direction.DESC, "id");
+            pageable = PageRequest.of(page.getPageNum() - 1, page.getPageSize(), Sort.Direction.DESC, "id");
         }
         Specification<T> specification = DynamicSpecifications.bySearchFilter(page.getFilters(), dao.getDataClass());
         org.springframework.data.domain.Page<T> pageResult = dao.findAll(specification, pageable);
         page.setTotal(Integer.valueOf(pageResult.getTotalElements() + ""));
-        page.setRecords(pageResult.getContent());
+        page.setList(pageResult.getContent());
         return page;
     }
 

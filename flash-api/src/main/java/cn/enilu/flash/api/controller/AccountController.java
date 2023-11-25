@@ -8,6 +8,7 @@ import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.vo.front.Ret;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.node.RouterMenu;
+import cn.enilu.flash.bean.vo.v3.RouterMenuV3;
 import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.core.log.LogManager;
 import cn.enilu.flash.core.log.LogTaskFactory;
@@ -69,7 +70,7 @@ public class AccountController extends BaseController {
             String userName = loginDto.getUsername();
             try {
                 password = CryptUtil.desEncrypt(password);
-            }catch (Exception e){
+            } catch (Exception e) {
                 logger.info("密码未加密");
             }
             User user = userService.findByAccountForLogin(userName);
@@ -120,12 +121,12 @@ public class AccountController extends BaseController {
                 return Rets.failure("该用户未配置权限");
             }
             ShiroUser shiroUser = tokenCache.getUser(getToken());
-            Map map = Maps.newHashMap("name", user.getName(),"username",user.getAccount(), "roles", shiroUser.getRoleCodes());
+            Map map = Maps.newHashMap("name", user.getName(), "username", user.getAccount(), "roles", shiroUser.getRoleCodes());
             List<RouterMenu> list = menuService.getSideBarMenus(shiroUser.getRoleList());
             map.put("menus", list);
             map.put("permissions", shiroUser.getUrls());
 
-            Map profile =  Maps.objToMap (user);
+            Map profile = Maps.objToMap(user);
             profile.put("dept", shiroUser.getDeptName());
             profile.put("roles", shiroUser.getRoleNames());
             map.put("profile", profile);
@@ -134,6 +135,45 @@ public class AccountController extends BaseController {
         }
         return Rets.failure("获取用户信息失败");
     }
+
+    @GetMapping(value = "/v3/menu/list")
+    public Object getMenuList() {
+        Long idUser = getIdUser();
+        if (idUser != null) {
+            User user = userService.get(idUser);
+            if (user == null) {
+                //该用户可能被删除
+                return Rets.expire();
+            }
+            if (StringUtil.isEmpty(user.getRoleid())) {
+                return Rets.failure("该用户未配置权限");
+            }
+            ShiroUser shiroUser = tokenCache.getUser(getToken());
+            List<RouterMenuV3> list = menuService.getSideBarMenusForV3(shiroUser.getRoleList());
+            return Rets.success(list);
+        }
+        return Rets.failure("获取用户信息失败");
+    }
+
+    @GetMapping(value = "/v3/button/list")
+    public Object getButtonList() {
+        Long idUser = getIdUser();
+        if (idUser != null) {
+            User user = userService.get(idUser);
+            if (user == null) {
+                //该用户可能被删除
+                return Rets.expire();
+            }
+            if (StringUtil.isEmpty(user.getRoleid())) {
+                return Rets.failure("该用户未配置权限");
+            }
+            ShiroUser shiroUser = tokenCache.getUser(getToken());
+            Map result = menuService.getButtonAuth(shiroUser.getRoleList());
+            return Rets.success(result);
+        }
+        return Rets.failure("获取用户信息失败");
+    }
+
 
     @PostMapping(value = "/updatePwd")
     public Object updatePwd(String oldPassword, String password, String rePassword) {
@@ -169,7 +209,7 @@ public class AccountController extends BaseController {
      */
     @GetMapping("/qrcode/generate")
     public void generateQrcode(@RequestParam("uuid") String uuid,
-                                HttpServletResponse response) {
+                               HttpServletResponse response) {
         BitMatrix bitMatrix = qrcodeService.createQrcode(uuid);
 
         response.setContentType("image/jpg");
@@ -201,22 +241,22 @@ public class AccountController extends BaseController {
     @GetMapping("/qrcode/getRet")
     public Ret getQrcodeStatus(@RequestParam("uuid") String uuid) {
         String ret = qrcodeService.getCrcodeStatus(uuid);
-        if(QrcodeService.INVALID.equals(ret)){
-            return Rets.success(Maps.newHashMap("status",ret,"msg","二维码已过期"));
+        if (QrcodeService.INVALID.equals(ret)) {
+            return Rets.success(Maps.newHashMap("status", ret, "msg", "二维码已过期"));
         }
-        if ( QrcodeService.CANCEL.equals(ret)) {
-            return Rets.success(Maps.newHashMap("status",ret,"msg","已取消登录"));
+        if (QrcodeService.CANCEL.equals(ret)) {
+            return Rets.success(Maps.newHashMap("status", ret, "msg", "已取消登录"));
 
         }
-        if ( QrcodeService.UNDO.equals(ret)) {
-            return Rets.success(Maps.newHashMap("status",ret,"msg","待扫描"));
+        if (QrcodeService.UNDO.equals(ret)) {
+            return Rets.success(Maps.newHashMap("status", ret, "msg", "待扫描"));
         }
-        Map map =  JsonUtil.fromJson(Map.class,ret);
+        Map map = JsonUtil.fromJson(Map.class, ret);
         return Rets.success(map);
     }
 
     /**
-     * @param phone 用户账号
+     * @param phone   用户账号
      * @param qrcode  二维码值
      * @param confirm 是否确认登录：1:是,0:否
      * @return
@@ -233,12 +273,12 @@ public class AccountController extends BaseController {
         if (QrcodeService.SUCCESS.equals(qrstatus) || QrcodeService.CANCEL.equals(qrstatus)) {
             return Rets.failure("二维码已被他人使用");
         }
-        if(QrcodeService.UNDO.equals(qrstatus)) {
+        if (QrcodeService.UNDO.equals(qrstatus)) {
             qrcodeService.login(phone, qrcode, confirm);
             return Rets.success();
-        }  else if (QrcodeService.INVALID.equals(qrstatus)) {
+        } else if (QrcodeService.INVALID.equals(qrstatus)) {
             return Rets.failure("二维码已过期");
-        }else{
+        } else {
             return Rets.failure("无效的二维码");
         }
 

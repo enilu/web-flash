@@ -5,10 +5,14 @@ import cn.enilu.flash.bean.entity.system.Menu;
 import cn.enilu.flash.bean.enumeration.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.node.*;
+import cn.enilu.flash.bean.vo.v3.MenuMetaV3;
+import cn.enilu.flash.bean.vo.v3.RouterMenuV3;
 import cn.enilu.flash.dao.system.MenuRepository;
 import cn.enilu.flash.service.BaseService;
 import cn.enilu.flash.utils.Lists;
+import cn.enilu.flash.utils.Maps;
 import cn.enilu.flash.utils.StringUtil;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +95,57 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
         return result;
     }
 
+    public Map getButtonAuth(List<Long> roleIds) {
+        List<Menu> list = menuRepository.query(String.format("SELECT t1.* FROM t_sys_menu t1 JOIN t_sys_relation t2 ON t1.id = t2.menuid WHERE t2.roleid IN (%s)", StringUtils.join(roleIds, ",")));
+
+
+        Map<String, Menu> menuMap = Lists.toMap(list, "code");
+        List result = Lists.newArrayList();
+        for (Menu menu : list) {
+            if (menu.isButton()) {
+                Map map = Maps.newHashMap("pcode", menuMap.get(menu.getPcode()).getCode());
+                map.put("code", menu.getCode());
+                result.add(map);
+            }
+        }
+        Map<String, List> group = Lists.group(result, "pcode");
+        for (Map.Entry<String, List> entry : group.entrySet()) {
+            List<Map> items = entry.getValue();
+            List newItems = Lists.newArrayList();
+            for (Map map : items) {
+                newItems.add(map.get("code"));
+            }
+            group.put(entry.getKey(),newItems);
+
+        }
+        return group;
+    }
+
+    public List<RouterMenuV3> getSideBarMenusForV3(List roleIds) {
+        List<RouterMenuV3> list = transferRouteMenuForV3(menuRepository.getMenusByRoleids(roleIds));
+        List<RouterMenuV3> result = generateRouterTreeForV3(list);
+        for (RouterMenuV3 menuNode : result) {
+            if (!menuNode.getChildren().isEmpty()) {
+                sortRouterTreeForV3(menuNode.getChildren());
+                for (RouterMenuV3 menuNode1 : menuNode.getChildren()) {
+                    if (!menuNode1.getChildren().isEmpty()) {
+                        sortRouterTreeForV3(menuNode1.getChildren());
+                    }
+                }
+            }
+        }
+        sortRouterTreeForV3(result);
+        RouterMenuV3 home = new RouterMenuV3();
+        home.setPath("/home/index");
+        home.setComponent("/home/index");
+        home.getMeta().setIsAffix(true);
+        home.getMeta().setTitle("首页");
+        home.getMeta().setIcon("HomeFilled");
+        result.add(0, home);
+
+        return result;
+    }
+
     private void sortTree(List<MenuNode> list) {
         Collections.sort(list, new Comparator<MenuNode>() {
             @Override
@@ -104,6 +159,15 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
         Collections.sort(list, new Comparator<RouterMenu>() {
             @Override
             public int compare(RouterMenu o1, RouterMenu o2) {
+                return o1.getNum() - o2.getNum();
+            }
+        });
+    }
+
+    private void sortRouterTreeForV3(List<RouterMenuV3> list) {
+        Collections.sort(list, new Comparator<RouterMenuV3>() {
+            @Override
+            public int compare(RouterMenuV3 o1, RouterMenuV3 o2) {
                 return o1.getNum() - o2.getNum();
             }
         });
@@ -134,6 +198,25 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
 
             if (menuNode.getParentId().intValue() != 0) {
                 RouterMenu parentNode = map.get(menuNode.getParentId());
+                if (parentNode != null) {
+                    parentNode.getChildren().add(menuNode);
+                }
+            } else {
+                result.add(menuNode);
+            }
+        }
+        return result;
+
+    }
+
+    private List<RouterMenuV3> generateRouterTreeForV3(List<RouterMenuV3> list) {
+        List<RouterMenuV3> result = new ArrayList<>(20);
+        Map<Long, RouterMenuV3> map = Lists.toMap(list, "id");
+        for (Map.Entry<Long, RouterMenuV3> entry : map.entrySet()) {
+            RouterMenuV3 menuNode = entry.getValue();
+
+            if (menuNode.getParentId().intValue() != 0) {
+                RouterMenuV3 parentNode = map.get(menuNode.getParentId());
                 if (parentNode != null) {
                     parentNode.getChildren().add(menuNode);
                 }
@@ -196,13 +279,51 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
                 meta.setTitle(String.valueOf(source[3]));
                 menu.setNum(Integer.valueOf(source[7].toString()));
                 menu.setParentId(Long.valueOf(source[2].toString()));
-                if(source[9]!=null) {
+                if (source[9] != null) {
                     menu.setComponent(source[9].toString());
                 }
                 menu.setId(Long.valueOf(source[0].toString()));
                 menu.setMeta(meta);
                 if ("1".equals(source[10].toString())) {
                     menu.setHidden(true);
+                }
+                routerMenus.add(menu);
+
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return routerMenus;
+    }
+
+    private List<RouterMenuV3> transferRouteMenuForV3(List menus) {
+        List<RouterMenuV3> routerMenus = new ArrayList<>();
+        try {
+            for (int i = 0; i < menus.size(); i++) {
+                Object[] source = (Object[]) menus.get(i);
+                if (source[9] == null) {
+                    continue;
+                }
+
+                RouterMenuV3 menu = new RouterMenuV3();
+                menu.setPath(String.valueOf(source[4]));
+                menu.setName(String.valueOf(source[8]));
+                MenuMetaV3 meta = new MenuMetaV3();
+                meta.setIcon(String.valueOf(source[1]));
+                meta.setTitle(String.valueOf(source[3]));
+                menu.setNum(Integer.valueOf(source[7].toString()));
+                menu.setParentId(Long.valueOf(source[2].toString()));
+                if (source[9] != null) {
+                    String component = source[9].toString();
+                    if (component.startsWith("views/")) {
+                        component = component.substring(5);
+                    }
+                    menu.setComponent(component);
+                }
+                menu.setId(Long.valueOf(source[0].toString()));
+                menu.setMeta(meta);
+                if ("1".equals(source[10].toString())) {
+                    meta.setIsHide(true);
                 }
                 routerMenus.add(menu);
 
