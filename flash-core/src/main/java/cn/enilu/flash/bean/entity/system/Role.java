@@ -32,8 +32,6 @@ public class Role extends BaseEntity {
     private String code;
     @Column(columnDefinition = "BIGINT COMMENT '角色所属部门'")
     private Long deptid;
-    @Column(columnDefinition = "INT COMMENT '角色版本号'")
-    private Integer version;
     @Transient
     private String label = name;
 

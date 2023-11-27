@@ -48,6 +48,6 @@ spring:
 jwt:
   token:
     expire:
-      time: 30
+      time: 300
 server:
   port: 8082

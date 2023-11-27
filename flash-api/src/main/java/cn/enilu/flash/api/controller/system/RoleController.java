@@ -28,6 +28,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -51,6 +52,7 @@ public class RoleController extends BaseController {
         Page page = new PageFactory().defaultPage();
         page.addFilter("name", name);
         page.addFilter("code", code);
+        page.setSort(Sort.by(Sort.Direction.ASC,"num"));
         page = roleService.queryPage(page);
         List list = (List) new RoleWrapper(BeanUtil.objectsToMaps(page.getList())).warp();
         page.setList(list);
@@ -61,6 +63,9 @@ public class RoleController extends BaseController {
     @BussinessLog(value = "编辑角色", key = "name")
     @RequiresPermissions(value = {Permission.ROLE_EDIT})
     public Object save(@RequestBody @Valid Role role) {
+        if(role.getPid()==null){
+            role.setPid(0L);
+        }
         if (role.getId() == null) {
             roleService.insert(role);
         } else {

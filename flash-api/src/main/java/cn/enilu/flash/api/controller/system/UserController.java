@@ -52,13 +52,13 @@ public class UserController extends BaseController {
                         @RequestParam(required = false) String startTime,
                        @RequestParam(required = false) String endTime
     ) {
-        Page page = new PageFactory().defaultPage();
+        Page<User> page = new PageFactory().defaultPage();
         page.addFilter("name", SearchFilter.Operator.LIKE, name);
         page.addFilter("account", SearchFilter.Operator.LIKE, account);
         page.addFilter("deptid", deptid);
         page.addFilter("phone", phone);
         page.addFilter("status", status);
-        page.addFilter("status", SearchFilter.Operator.GT, 0);
+//        page.addFilter("status", SearchFilter.Operator.GT, 0);
         page.addFilter("sex", sex);
         page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parseTime(startTime));
         page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parseTime(endTime));
