@@ -34,7 +34,7 @@ public class OperationLog {
     private String classname;
     @Column(columnDefinition = "VARCHAR(32) COMMENT '对应方法名'")
     private String method;
-    @Column(columnDefinition = "DATE COMMENT '操作日期'")
+    @Column(columnDefinition = "DATETIME COMMENT '操作日期'")
     private Date createTime;
     @Column(columnDefinition = "VARCHAR(32) COMMENT '成功标识'")
     private String succeed;

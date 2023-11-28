@@ -15,24 +15,21 @@
  */
 package cn.enilu.flash.utils;
 
+import com.google.common.collect.Maps;
+import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.ServletRequestWrapper;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class HttpUtil {
 
@@ -72,6 +69,70 @@ public class HttpUtil {
         return values;
     }
 
+    public static Map<String, Object> getParameterMap() {
+        HttpServletRequest request = HttpUtil.getWafRequest();
+        ServletRequestWrapper servletRequestWrapper = null;
+        if(request instanceof ShiroHttpServletRequest){
+            servletRequestWrapper  = (ServletRequestWrapper) ((ShiroHttpServletRequest)request).getRequest();
+        }
+        Map<String, Object> paramMap = new LinkedHashMap<>();
+        if(servletRequestWrapper instanceof WafRequestWrapper){
+            WafRequestWrapper requestWrapper = (WafRequestWrapper) servletRequestWrapper;
+            Map<String, Object> body = getParameterMap(requestWrapper.getRequestBody());
+            if (!CollectionUtils.isEmpty(body)) {
+                paramMap.putAll(body);
+            }
+        }
+        Enumeration<String> names = request.getParameterNames();
+        while (names.hasMoreElements()) {
+            String key = names.nextElement();
+            paramMap.put(key, request.getParameter(key));
+        }
+
+        return paramMap;
+    }
+
+    /**
+     * 获取参数对象
+     *
+     * @param params
+     * @return
+     */
+    public static Map<String, Object> getParameterMap(byte[] params) {
+        try {
+            return JsonUtil.fromJson(Map.class,new String(params,"UTF-8"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                return convertParameterToMap(new String(params, "UTF-8"));
+            } catch (UnsupportedEncodingException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+    }
+
+
+    /**
+     * 将参数转换为Map类型
+     *
+     * @param param
+     * @return
+     */
+    public static Map<String, Object> convertParameterToMap(String param) {
+        if (StringUtil.isEmpty(param)) {
+            return Collections.emptyMap();
+        }
+        Map<String, Object> pMap = Maps.newLinkedHashMap();
+        String[] pArray = StringUtil.split(param, "&");
+        for (int i = 0; i < pArray.length; i++) {
+            String[] array = StringUtil.split(pArray[i], "=");
+            if (array.length == 2) {
+                pMap.put(array[0], array[1]);
+            }
+        }
+        return pMap;
+    }
+
     /**
      * 获取 HttpServletRequest
      */
@@ -88,6 +149,10 @@ public class HttpUtil {
     public static HttpServletRequest getRequest() {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         return new WafRequestWrapper(request);
+    }
+    public static HttpServletRequest getWafRequest() {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        return  request;
     }
 
     public static String getToken() {

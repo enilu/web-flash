@@ -40,8 +40,8 @@ public class LogController extends BaseController {
     @RequiresPermissions(value = {Permission.LOG})
     public Object list(@RequestParam(required = false) String beginTime,
                        @RequestParam(required = false) String endTime,
-                       @RequestParam(required = false) String logName,
-                       @RequestParam(required = false) Integer logType) {
+                       @RequestParam(required = false) String logname,
+                       @RequestParam(required = false) Integer logtype) {
         Page<OperationLog> page = new PageFactory<OperationLog>().defaultPage();
         if (StringUtil.isNotEmpty(beginTime)) {
             page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parseDate(beginTime));
@@ -49,9 +49,9 @@ public class LogController extends BaseController {
         if (StringUtil.isNotEmpty(endTime)) {
             page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parseDate(endTime));
         }
-        page.addFilter("logname", SearchFilter.Operator.LIKE, logName);
-        if (logType != null) {
-            page.addFilter(SearchFilter.build("logtype", SearchFilter.Operator.EQ, BizLogType.valueOf(logType)));
+        page.addFilter("logname", SearchFilter.Operator.LIKE, logname);
+        if (logtype != null) {
+            page.addFilter(SearchFilter.build("logtype", SearchFilter.Operator.EQ, BizLogType.valueOf(logtype)));
         }
         page = operationLogService.queryPage(page);
         page.setList((List<OperationLog>) new LogWrapper(BeanUtil.objectsToMaps(page.getList())).warp());

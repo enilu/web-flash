@@ -9,6 +9,7 @@ import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.enumeration.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.exception.ApplicationException;
+import cn.enilu.flash.bean.vo.front.Ret;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.node.Node;
 import cn.enilu.flash.bean.vo.node.ZTreeNode;
@@ -60,7 +61,7 @@ public class RoleController extends BaseController {
     }
 
     @PostMapping
-    @BussinessLog(value = "编辑角色", key = "name")
+    @BussinessLog(value = "编辑角色", key = "id")
     @RequiresPermissions(value = {Permission.ROLE_EDIT})
     public Object save(@RequestBody @Valid Role role) {
         if(role.getPid()==null){
@@ -69,6 +70,7 @@ public class RoleController extends BaseController {
         if (role.getId() == null) {
             roleService.insert(role);
         } else {
+            LogObjectHolder.me().set(roleService.get(role.getId()));
             roleService.update(role);
         }
         return Rets.success();
@@ -98,7 +100,31 @@ public class RoleController extends BaseController {
         roleService.delRoleById(roleId);
         return Rets.success();
     }
-
+    @DeleteMapping("batchRemove")
+    @BussinessLog(value = "批量删除角色", key = "id")
+    @RequiresPermissions(value = {Permission.ROLE_DEL})
+    public Ret batchRemove(@RequestParam(value="id[]") Long[] id) {
+        for(Long roleId:id) {
+            if (roleId == null) {
+                throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
+            }
+            if (roleId.intValue() < 4) {
+                return Rets.failure("不能删除初始角色");
+            }
+            List<User> userList = userService.queryAll(SearchFilter.build("roleid", SearchFilter.Operator.EQ, String.valueOf(roleId)));
+            if (!userList.isEmpty()) {
+                return Rets.failure("有用户使用该角色，禁止删除");
+            }
+            //不能删除超级管理员角色
+            if (roleId.intValue() == Const.ADMIN_ROLE_ID) {
+                return Rets.failure("禁止删除超级管理员角色");
+            }
+            //缓存被删除的角色名称
+            LogObjectHolder.me().set(ConstantFactory.me().getSingleRoleName(roleId));
+            roleService.delRoleById(roleId);
+        }
+        return Rets.success();
+    }
     @PostMapping(value = "/savePermisson")
     @BussinessLog(value = "配置角色权限", key = "roleId")
     @RequiresPermissions(value = {Permission.ROLE_EDIT})

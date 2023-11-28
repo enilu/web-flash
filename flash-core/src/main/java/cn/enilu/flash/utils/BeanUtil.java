@@ -2,6 +2,8 @@ package cn.enilu.flash.utils;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.cglib.beans.BeanMap;
 
@@ -9,7 +11,6 @@ import javax.persistence.Column;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -21,6 +22,7 @@ import java.util.regex.Pattern;
  * @author enilu
  */
 public class BeanUtil {
+    private static Logger logger = LoggerFactory.getLogger(BeanUtil.class);
     /**
      * 记录每个修改字段的分隔符
      */
@@ -127,57 +129,39 @@ public class BeanUtil {
      * 比较两个对象pojo1和pojo2,并输出不一致信息
      *
      * @param key
-     * @param pojo1
-     * @param pojo2
+     * @param pojo1 旧数据
+     * @param pojo2 新数据
      * @return
      * @throws IllegalAccessException
      * @throws InstantiationException
      */
-    public static String contrastObj(String key, Object pojo1, Map<String, String> pojo2)
-            throws IllegalAccessException, InstantiationException {
+    public static String contrastObj(String key, Map<String,Object> pojo1 , Map<String,Object>  pojo2)
+            {
+        StringBuilder str = new StringBuilder(key).append("=").append(pojo2.get(key)).append(";;;");
 
-        StringBuilder str = new StringBuilder();
-        String headerName = key;
-        String headerValue = pojo2.get(key);
         try {
-            Class clazz = pojo1.getClass();
-            Field[] fields = pojo1.getClass().getDeclaredFields();
-            int i = 1;
-            for (Field field : fields) {
-                if ("serialVersionUID".equals(field.getName())) {
+
+            for(Map.Entry<String,Object> entry:pojo1.entrySet()){
+                String entryKey = entry.getKey();
+                Object oldVal = entry.getValue();
+                Object newVal = pojo2.get(entryKey);
+                if("createTime".equals(entryKey)||"createBy".equals(entryKey)||"modifyTime".equals(entryKey)||"modifyBy".equals(entryKey)||"id".equals(entryKey)){
                     continue;
                 }
-                // PropertyDescriptor pd = new PropertyDescriptor(field.getName(), clazz);
-                Method getMethod = getReadMethod(field.getName(), clazz);
-                Object o1 = "null";
-                if (StringUtil.isNotNullOrEmpty(pojo2.get("id"))) {
-                    o1 = getMethod.invoke(pojo1);
-                }
-                Object o2 = pojo2.get(StringUtil.firstCharToLowerCase(getMethod.getName().substring(3)));
-                if (StringUtil.equals(key, field.getName())) {
-                    headerName = getFieldComment(clazz, field);
-                }
-                if (o1 == null || o2 == null) {
+                if(StringUtil.isNullOrEmpty(newVal) && StringUtil.isNullOrEmpty(oldVal)){
                     continue;
                 }
-                if (o1 instanceof Date) {
-                    o1 = DateUtil.getDay((Date) o1);
-                } else if (o1 instanceof Integer) {
-                    o2 = Integer.parseInt(o2.toString());
+                if(String.valueOf(newVal).equals(String.valueOf(oldVal))){
+                    continue;
                 }
-                if (!o1.toString().equals(o2.toString())) {
-                    if (i != 1) {
-                        str.append(SEPARATOR);
-                    }
-                    String fieldName = getFieldComment(clazz, field);
-                    str.append(fieldName + ":" + o1 + "=>" + o2);
-                    i++;
-                }
+                str.append(entryKey + ":" + String.valueOf(oldVal) + "=>" + String.valueOf(newVal)).append(";");
+
             }
+
         } catch (Exception e) {
+            logger.warn("保存业务日志异常",e);
         }
-        String header = headerName + "=" + headerValue + SEPARATOR;
-        return header + str;
+        return str.toString();
     }
 
     private static Method getReadMethod(String fieldName, Class clazz) {

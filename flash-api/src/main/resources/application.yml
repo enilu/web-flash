@@ -50,4 +50,6 @@ jwt:
     expire:
       time: 300
 server:
+  tomcat:
+    relaxed-query-chars: <,>,[,],^,`,{,},|
   port: 8082

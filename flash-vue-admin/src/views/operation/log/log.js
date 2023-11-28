@@ -19,8 +19,8 @@ export default {
         limit: 20,
         beginTime: undefined,
         endTime: undefined,
-        logName: undefined,
-        logType: undefined
+        logname: undefined,
+        logtype: undefined
       },
       total: 0,
       list: null,
@@ -50,8 +50,8 @@ export default {
     reset() {
       this.listQuery.beginTime = ''
       this.listQuery.endTime = ''
-      this.listQuery.logName = ''
-      this.listQuery.logType = ''
+      this.listQuery.logname = ''
+      this.listQuery.logtype = ''
       this.listQuery.page = 1
       this.fetchData()
     },

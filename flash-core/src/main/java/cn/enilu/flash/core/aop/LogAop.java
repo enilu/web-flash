@@ -14,6 +14,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.nutz.mapl.Mapl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -96,11 +97,14 @@ public class LogAop {
         String msg = "";
         if (bussinessName.indexOf("修改") != -1 || bussinessName.indexOf("编辑") != -1) {
             Object obj1 = LogObjectHolder.me().get();
-            Map<String, String> obj2 = HttpUtil.getRequestParameters();
+            if(StringUtil.isNullOrEmpty(obj1)){
+                return;
+            }
+            Map  obj2 = HttpUtil.getParameterMap();
             try {
-                msg = BeanUtil.contrastObj(key, obj1, obj2);
+                msg = BeanUtil.contrastObj(key, (Map)Mapl.toMaplist(obj1), obj2);
             } catch (Exception e) {
-
+                log.error(e.getMessage(),e);
             }
         } else {
             Map<String, String> parameters = HttpUtil.getRequestParameters();
