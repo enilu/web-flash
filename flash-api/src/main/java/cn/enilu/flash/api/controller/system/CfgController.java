@@ -8,6 +8,7 @@ import cn.enilu.flash.bean.entity.system.FileInfo;
 import cn.enilu.flash.bean.enumeration.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.exception.ApplicationException;
+import cn.enilu.flash.bean.vo.front.Ret;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.system.CfgService;
@@ -113,4 +114,18 @@ public class CfgController extends BaseController {
         cfgService.delete(id);
         return Rets.success();
     }
+
+    @DeleteMapping("batchRemove")
+    @BussinessLog(value = "批量删除参数", key = "id")
+    @RequiresPermissions(value = {"/cfg/delete"})
+    public Ret batchRemove(@RequestParam(value = "id[]") Long[] id) {
+        for (Long cfgId : id) {
+            if (cfgId == null) {
+                throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
+            }
+            cfgService.delete(cfgId);
+        }
+        return Rets.success();
+    }
+
 }
