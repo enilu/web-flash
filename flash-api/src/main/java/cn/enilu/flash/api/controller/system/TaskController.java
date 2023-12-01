@@ -5,13 +5,14 @@ import cn.enilu.flash.bean.constant.factory.PageFactory;
 import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.entity.system.Task;
 import cn.enilu.flash.bean.entity.system.TaskLog;
+import cn.enilu.flash.bean.enumeration.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
+import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Ret;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.task.TaskLogService;
 import cn.enilu.flash.service.task.TaskService;
-import cn.enilu.flash.utils.StringUtil;
 import cn.enilu.flash.utils.factory.Page;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +38,16 @@ public class TaskController extends BaseController {
     /**
      * 获取定时任务管理列表
      */
+
     @GetMapping(value = "/list")
     @RequiresPermissions(value = {Permission.TASK})
-    public Object list(String name) {
-        if (StringUtil.isNullOrEmpty(name)) {
-            return Rets.success(taskService.queryAll());
-        } else {
-            return Rets.success(taskService.queryAllByNameLike(name));
-        }
+    public Object list(@RequestParam(required = false) String name,
+                       @RequestParam(required = false) Boolean disabled) {
+        Page<Task> page = new PageFactory<Task>().defaultPage();
+        page.addFilter("name", name);
+        page.addFilter("disabled", disabled);
+        page = taskService.queryPage(page);
+        return Rets.success(page);
     }
 
     /**
@@ -56,7 +59,7 @@ public class TaskController extends BaseController {
     public Object add(@RequestBody @Valid Task task) {
 
         Ret validRet = taskService.validate(task);
-        if(!validRet.isSuccess()){
+        if (!validRet.isSuccess()) {
             return validRet;
         }
         if (task.getId() == null) {
@@ -81,6 +84,19 @@ public class TaskController extends BaseController {
     @RequiresPermissions(value = {Permission.TASK_DEL})
     public Object delete(@RequestParam Long id) {
         taskService.delete(id);
+        return Rets.success();
+    }
+
+    @DeleteMapping("batchRemove")
+    @BussinessLog(value = "批量删除任务", key = "id")
+    @RequiresPermissions(value = {Permission.ROLE_DEL})
+    public Ret batchRemove(@RequestParam(value = "id[]") Long[] id) {
+        for (Long taskId : id) {
+            if (taskId == null) {
+                throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
+            }
+            taskService.delete(taskId);
+        }
         return Rets.success();
     }
 
