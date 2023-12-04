@@ -32,12 +32,12 @@ public class LoginLogController extends BaseController {
 
     @GetMapping(value = "/list")
     @RequiresPermissions(value = {Permission.LOGIN_LOG})
-    public Object list(@RequestParam(required = false) String beginTime,
+    public Object list(@RequestParam(required = false) String startTime,
                        @RequestParam(required = false) String endTime,
                        @RequestParam(required = false) String logName) {
         Page<LoginLog> page = new PageFactory<LoginLog>().defaultPage();
-        page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parseDate(beginTime));
-        page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parseDate(endTime));
+        page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parseTime(startTime));
+        page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parseTime(endTime));
         page.addFilter("logname", SearchFilter.Operator.LIKE, logName);
         Page pageResult = loginlogService.queryPage(page);
         pageResult.setList((List<LoginLog>) new LogWrapper(BeanUtil.objectsToMaps(pageResult.getList())).warp());

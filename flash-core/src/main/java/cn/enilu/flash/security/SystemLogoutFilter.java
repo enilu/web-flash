@@ -1,6 +1,9 @@
 package cn.enilu.flash.security;
 
 import cn.enilu.flash.bean.vo.front.Rets;
+import cn.enilu.flash.core.log.LogManager;
+import cn.enilu.flash.core.log.LogTaskFactory;
+import cn.enilu.flash.utils.HttpUtil;
 import cn.enilu.flash.utils.JsonUtil;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.LogoutFilter;

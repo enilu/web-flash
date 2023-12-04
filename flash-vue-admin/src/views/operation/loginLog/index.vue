@@ -3,11 +3,11 @@
     <div class="block">
       <el-row :gutter="24">
         <el-col :span="4">
-          <el-date-picker type="date" size="mini" placeholder="起始日期" v-model="listQuery.beginTime" value-format="yyyy-MM-dd"
+          <el-date-picker type="datetime" size="mini" placeholder="起始日期" v-model="listQuery.startTime" value-format="yyyy-MM-dd HH:mm:ss"
                           style="width: 100%;"></el-date-picker>
         </el-col>
         <el-col :span="4">
-          <el-date-picker type="date" size="mini" placeholder="结束日期" v-model="listQuery.endTime" value-format="yyyy-MM-dd"
+          <el-date-picker type="datetime" size="mini" placeholder="结束日期" v-model="listQuery.endTime" value-format="yyyy-MM-dd HH:mm:ss"
                           style="width: 100%;"></el-date-picker>
         </el-col>
 

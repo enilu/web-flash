@@ -9,7 +9,7 @@ export default {
       listQuery: {
         page: 1,
         limit: 20,
-        beginTime: undefined,
+        startTime: undefined,
         endTime: undefined
       },
       total: 0,
@@ -38,7 +38,7 @@ export default {
       this.fetchData()
     },
     reset() {
-      this.listQuery.beginTime = ''
+      this.listQuery.startTime = ''
       this.listQuery.endTime = ''
       this.listQuery.page = 1
       this.fetchData()
