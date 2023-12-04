@@ -215,6 +215,8 @@ INSERT INTO `t_sys_menu` VALUES ('76', '1', '2021-07-21 19:46:59', null, null, '
 INSERT INTO `t_sys_menu` VALUES ('77', '1', '2021-07-24 21:53:56', null, null, 'workFlowRequestAdd', null, '0', null, '0', null, '3', '发起流程', '1', 'workFlowRequest', '[0],[workFlow],[workFlowRequest],', null, '/workflow/request/add');
 INSERT INTO `t_sys_menu` VALUES ('78', '1', '2021-07-24 21:53:56', null, null, 'workFlowTask', 'views/workflow/task/index', '0', 'workFlowTask', '1', null, '2', '代办任务', '3', 'workFlow', '[0],[workFlow],', null, '/workflow/request/task');
 INSERT INTO `t_sys_menu` VALUES ('79', '1', '2021-10-28 14:19:18', '1', '2021-10-28 14:19:18', 'cmsDemo', 'views/cms/demo/index', '0', 'phone', '1', null, '2', 'cms手机站', '7', 'cms', '[0],[cms],', null, '/demo');
+INSERT INTO `t_sys_menu` VALUES (80, 1, '2023-12-4 17:50:40', 1, '2023-12-4 17:55:41', 'home', 'views/home/index', 0, 'HomeFilled', 1, NULL, 1, '首页', 1, '0', '[0],', NULL, '/home/index');
+INSERT INTO `t_sys_menu` VALUES (81, 1, '2023-12-4 17:44:47', 1, '2023-12-4 18:05:52', 'profile', 'views/account/index', 1, 'user', 1, NULL, 2, '个人中心', 6, 'home', '[0],[home],', NULL, '/profile');
 
 -- ----------------------------
 -- Records of t_sys_notice
@@ -331,6 +333,12 @@ INSERT INTO `t_sys_relation` VALUES ('154', '77', '3');
 INSERT INTO `t_sys_relation` VALUES ('155', '78', '3');
 INSERT INTO `t_sys_relation` VALUES ('156', '79', '1');
 INSERT INTO `t_sys_relation` VALUES ('157', '79', '3');
+INSERT INTO `t_sys_relation` VALUES ('158', '80', '1');
+INSERT INTO `t_sys_relation` VALUES ('159', '81', '1');
+INSERT INTO `t_sys_relation` VALUES ('160', '80', '2');
+INSERT INTO `t_sys_relation` VALUES ('161', '81', '2');
+INSERT INTO `t_sys_relation` VALUES ('162', '80', '3');
+INSERT INTO `t_sys_relation` VALUES ('163', '81', '3');
 
 -- ----------------------------
 -- Records of t_sys_role

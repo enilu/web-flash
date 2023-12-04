@@ -100,6 +100,4 @@ public class DeptService extends BaseService<Dept, Long, DeptRepository> {
 
 
     }
-
-
 }

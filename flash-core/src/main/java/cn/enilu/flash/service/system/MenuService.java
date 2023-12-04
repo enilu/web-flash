@@ -135,13 +135,6 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
             }
         }
         sortRouterTreeForV3(result);
-        RouterMenuV3 home = new RouterMenuV3();
-        home.setPath("/home/index");
-        home.setComponent("/home/index");
-        home.getMeta().setIsAffix(true);
-        home.getMeta().setTitle("首页");
-        home.getMeta().setIcon("HomeFilled");
-        result.add(0, home);
 
         return result;
     }

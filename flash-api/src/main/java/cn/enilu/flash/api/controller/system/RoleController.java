@@ -80,7 +80,6 @@ public class RoleController extends BaseController {
     @BussinessLog(value = "删除角色", key = "roleId")
     @RequiresPermissions(value = {Permission.ROLE_DEL})
     public Object remove(@RequestParam Long roleId) {
-        logger.info("id:{}", roleId);
         if (roleId == null) {
             throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
         }

@@ -6,10 +6,14 @@ import cn.enilu.flash.bean.entity.system.Dept;
 import cn.enilu.flash.bean.enumeration.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.exception.ApplicationException;
+import cn.enilu.flash.bean.vo.front.Ret;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.node.DeptNode;
+import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.system.DeptService;
 import cn.enilu.flash.service.system.LogObjectHolder;
+import cn.enilu.flash.service.system.RoleService;
+import cn.enilu.flash.service.system.UserService;
 import cn.enilu.flash.utils.BeanUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
@@ -33,6 +37,10 @@ public class DeptContoller extends BaseController {
 
     @Autowired
     private DeptService deptService;
+    @Autowired
+    private RoleService roleService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping(value = "/list")
     @RequiresPermissions(value = {Permission.DEPT})
@@ -71,10 +79,34 @@ public class DeptContoller extends BaseController {
         if (id == null) {
             throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
         }
-        if(id<5){
+        if (id < 5) {
             return Rets.failure("禁止删除初始部门");
         }
+        if (deptService.count(SearchFilter.build("pid", id)) > 0
+                || userService.count(SearchFilter.build("deptid", id)) > 0
+                || roleService.count(SearchFilter.build("deptid", id)) > 0) {
+            return Rets.failure("该部门下有关联的用户或角色，无法删除");
+        }
         deptService.deleteDept(id);
+        return Rets.success();
+    }
+
+
+    @DeleteMapping("batchRemove")
+    @BussinessLog(value = "批量删除部门", key = "id")
+    @RequiresPermissions(value = {Permission.DEPT_DEL})
+    public Ret batchRemove(@RequestParam(value = "id[]") Long[] id) {
+        for (Long deptId : id) {
+            if (deptId == null) {
+                throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
+            }
+            if (deptService.count(SearchFilter.build("pid", deptId)) > 0
+                    || userService.count(SearchFilter.build("deptid", deptId)) > 0
+                    || roleService.count(SearchFilter.build("deptid", deptId)) > 0) {
+                return Rets.failure("该部门下有关联的用户或角色，无法删除");
+            }
+            deptService.delete(deptId);
+        }
         return Rets.success();
     }
 }
