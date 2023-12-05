@@ -98,7 +98,7 @@ public class DeptContoller extends BaseController {
     public Ret batchRemove(@RequestParam(value = "id[]") Long[] id) {
         for (Long deptId : id) {
             if (deptId == null) {
-                throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
+                continue;
             }
             if (deptService.count(SearchFilter.build("pid", deptId)) > 0
                     || userService.count(SearchFilter.build("deptid", deptId)) > 0

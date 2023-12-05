@@ -4,6 +4,7 @@ import cn.enilu.flash.bean.constant.factory.PageFactory;
 import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.entity.message.MessageSender;
 import cn.enilu.flash.bean.enumeration.Permission;
+import cn.enilu.flash.bean.vo.front.Ret;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.message.MessagesenderService;
@@ -71,5 +72,18 @@ public class MessagesenderController {
             return Rets.failure(e.getMessage());
         }
 
+    }
+
+    @DeleteMapping("batchRemove")
+    @BussinessLog(value = "批量删除消息发送者", key = "id")
+    @RequiresPermissions(value = {Permission.MSG_SENDER_DEL})
+    public Ret batchRemove(@RequestParam(value = "id[]") Long[] id) {
+        for (Long senderId : id) {
+            if (senderId == null) {
+               continue;
+            }
+            messagesenderService.delete(senderId);
+        }
+        return Rets.success();
     }
 }

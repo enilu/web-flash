@@ -13,7 +13,7 @@
                 range-separator="至"
                 start-placeholder="发送起始日期"
                 end-placeholder="发送截至日期"
-                value-format="yyyyMMddHHmmss"
+                value-format="yyyy-MM-dd HH:mm:ss"
                 align="right">
               </el-date-picker>
             </el-col>

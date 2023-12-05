@@ -118,7 +118,7 @@ public class MenuController extends BaseController {
     public Ret batchRemove(@RequestParam(value = "id[]") Long[] id) {
         for (Long menuId : id) {
             if (menuId == null) {
-                throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
+                continue;
             }
             //演示环境不允许删除初始化的菜单
             if (menuId.intValue() < 80) {

@@ -121,7 +121,7 @@ public class CfgController extends BaseController {
     public Ret batchRemove(@RequestParam(value = "id[]") Long[] id) {
         for (Long cfgId : id) {
             if (cfgId == null) {
-                throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
+                continue;
             }
             cfgService.delete(cfgId);
         }

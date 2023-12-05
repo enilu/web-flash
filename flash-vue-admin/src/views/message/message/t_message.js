@@ -41,8 +41,8 @@ export default {
       this.listLoading = true
       let queryData = this.listQuery
       if (this.rangeDate) {
-        queryData['startDate'] = this.rangeDate[0]
-        queryData['endDate'] = this.rangeDate[1]
+        queryData['startTime'] = this.rangeDate[0]
+        queryData['endTime'] = this.rangeDate[1]
 
       }
       messageApi.getList(queryData).then(response => {
@@ -56,8 +56,8 @@ export default {
       this.fetchData()
     },
     reset() {
-      this.listQuery.startDate = undefined
-      this.listQuery.endDate = undefined
+      this.listQuery.startTime = undefined
+      this.listQuery.endTime = undefined
       this.rangeDate = ''
       this.tplCode = ''
       this.listQuery.page = 1

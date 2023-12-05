@@ -5,9 +5,7 @@ import cn.enilu.flash.bean.constant.factory.PageFactory;
 import cn.enilu.flash.bean.core.BussinessLog;
 import cn.enilu.flash.bean.entity.system.Task;
 import cn.enilu.flash.bean.entity.system.TaskLog;
-import cn.enilu.flash.bean.enumeration.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
-import cn.enilu.flash.bean.exception.ApplicationException;
 import cn.enilu.flash.bean.vo.front.Ret;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
@@ -93,7 +91,7 @@ public class TaskController extends BaseController {
     public Ret batchRemove(@RequestParam(value = "id[]") Long[] id) {
         for (Long taskId : id) {
             if (taskId == null) {
-                throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
+                continue;
             }
             taskService.delete(taskId);
         }

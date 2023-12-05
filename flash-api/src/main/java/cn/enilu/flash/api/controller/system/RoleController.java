@@ -105,7 +105,7 @@ public class RoleController extends BaseController {
     public Ret batchRemove(@RequestParam(value="id[]") Long[] id) {
         for(Long roleId:id) {
             if (roleId == null) {
-                throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
+                continue;
             }
             if (roleId.intValue() < 4) {
                 return Rets.failure("不能删除初始角色");

@@ -6,6 +6,7 @@ import cn.enilu.flash.bean.entity.message.MessageTemplate;
 import cn.enilu.flash.bean.enumeration.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.exception.ApplicationException;
+import cn.enilu.flash.bean.vo.front.Ret;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.message.MessagetemplateService;
@@ -65,6 +66,19 @@ public class MessagetemplateController {
             return Rets.failure("禁止删除初始化数据");
         }
         messagetemplateService.delete(id);
+        return Rets.success();
+    }
+
+    @DeleteMapping("batchRemove")
+    @BussinessLog(value = "批量删除消息模板", key = "id")
+    @RequiresPermissions(value = {Permission.MSG_TPL_DEL})
+    public Ret batchRemove(@RequestParam(value = "id[]") Long[] id) {
+        for (Long tplId : id) {
+            if (tplId == null) {
+                continue;
+            }
+            messagetemplateService.delete(tplId);
+        }
         return Rets.success();
     }
 }
