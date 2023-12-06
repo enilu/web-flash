@@ -6,6 +6,7 @@ import cn.enilu.flash.bean.entity.system.Dict;
 import cn.enilu.flash.bean.enumeration.ApplicationExceptionEnum;
 import cn.enilu.flash.bean.enumeration.Permission;
 import cn.enilu.flash.bean.exception.ApplicationException;
+import cn.enilu.flash.bean.vo.front.Ret;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.cache.DictCache;
 import cn.enilu.flash.service.system.DictService;
@@ -81,6 +82,18 @@ public class DictController extends BaseController {
         return Rets.success();
     }
 
+    @DeleteMapping("batchRemove")
+    @BussinessLog(value = "批量删除字典", key = "id")
+    @RequiresPermissions(value = {Permission.DICT_EDIT})
+    public Ret batchRemove(@RequestParam(value = "id[]") Long[] id) {
+        for (Long dictId : id) {
+            if (dictId == null) {
+                continue;
+            }
+            dictService.delete(dictId);
+        }
+        return Rets.success();
+    }
     @GetMapping(value = "/getDicts")
     public Object getDicts(@RequestParam String dictName) {
         List<Dict> dicts = dictCache.getDictsByPname(dictName);

@@ -28,9 +28,9 @@ public class MessagetemplateController {
     public Object list(@RequestParam(name = "idMessageSender", required = false) Long idMessageSender,
                        @RequestParam(name = "title", required = false) String title) {
         Page<MessageTemplate> page = new PageFactory<MessageTemplate>().defaultPage();
-//        page.addFilter("idMessageSender",idMessageSender);
+        page.addFilter("idMessageSender",idMessageSender);
         //也可以通过下面关联查询的方式
-        page.addFilter("messageSender.id", idMessageSender);
+//        page.addFilter("messageSender.id", idMessageSender);
         page.addFilter("title", SearchFilter.Operator.LIKE, title);
 
         page = messagetemplateService.queryPage(page);
