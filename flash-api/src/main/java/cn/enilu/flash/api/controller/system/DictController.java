@@ -19,6 +19,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -54,22 +55,22 @@ public class DictController extends BaseController {
     @PostMapping
     @BussinessLog(value = "添加字典", key = "dictName")
     @RequiresPermissions(value = {Permission.DICT_EDIT})
-    public Object add(String dictName, String dictValues) {
-        if (BeanUtil.isOneEmpty(dictName, dictValues)) {
+    public Object add(@RequestBody @Valid Dict dict) {
+        if (BeanUtil.isOneEmpty(dict.getName(), dict.getDetail())) {
             throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
         }
-        dictService.addDict(dictName, dictValues);
+        dictService.addDict(dict.getName(), dict.getDetail());
         return Rets.success();
     }
 
     @PutMapping
     @BussinessLog(value = "修改字典", key = "dictName")
     @RequiresPermissions(value = {Permission.DICT_EDIT})
-    public Object update(Long id, String dictName, String dictValues) {
-        if (BeanUtil.isOneEmpty(dictName, dictValues)) {
+    public Object update(@RequestBody @Valid Dict dict) {
+        if (BeanUtil.isOneEmpty(dict.getName(), dict.getDetail())) {
             throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
         }
-        dictService.editDict(id, dictName, dictValues);
+        dictService.editDict(dict.getId(), dict.getName(), dict.getDetail());
         return Rets.success();
     }
 

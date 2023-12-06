@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.Transient;
 
 /**
  * Created  on 2018/4/2 0002.
@@ -27,5 +28,7 @@ public class Dict extends BaseEntity {
     private String name;
     @Column(columnDefinition = "VARCHAR(32) COMMENT '备注'")
     private String tips;
+    @Transient
+    private String detail;
 
 }

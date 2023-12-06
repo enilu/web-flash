@@ -105,7 +105,7 @@ export default {
             dictValues += item['key'] + ':' + item['value'] + ';'
           }
           if (this.form.id !== '') {
-            dictApi.update({id: self.form.id, dictName: dictName, dictValues: dictValues}).then(response => {
+            dictApi.update({ id: self.form.id, name: dictName, detail: dictValues }).then(response => {
               this.$message({
                 message: '提交成功',
                 type: 'success'
@@ -114,7 +114,7 @@ export default {
               self.formVisible = false
             })
           } else {
-            dictApi.save({dictName: dictName, dictValues: dictValues}).then(response => {
+            dictApi.save({ name: name, detail: dictValues }).then(response => {
               this.$message({
                 message: '提交成功',
                 type: 'success'

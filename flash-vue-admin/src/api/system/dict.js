@@ -14,7 +14,7 @@ export default {
     return request({
       url: '/dict',
       method: 'post',
-      params
+      data: params
     })
   },
 
@@ -23,7 +23,7 @@ export default {
     return request({
       url: '/dict',
       method: 'put',
-      params
+      data: params
     })
   },
 
@@ -40,8 +40,8 @@ export default {
     return request({
       url: '/dict/getDicts',
       method: 'get',
-      params:{
-        dictName:dictName
+      params: {
+        dictName: dictName
       }
     })
   }
