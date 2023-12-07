@@ -4,6 +4,7 @@ import cn.enilu.flash.api.controller.BaseController;
 import cn.enilu.flash.bean.constant.Const;
 import cn.enilu.flash.bean.constant.factory.PageFactory;
 import cn.enilu.flash.bean.core.BussinessLog;
+import cn.enilu.flash.bean.dto.RolePermissionDto;
 import cn.enilu.flash.bean.entity.system.Role;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.enumeration.ApplicationExceptionEnum;
@@ -127,12 +128,11 @@ public class RoleController extends BaseController {
     @PostMapping(value = "/savePermisson")
     @BussinessLog(value = "配置角色权限", key = "roleId")
     @RequiresPermissions(value = {Permission.ROLE_EDIT})
-    public Object setAuthority(Long roleId, String
-            permissions) {
-        if (BeanUtil.isOneEmpty(roleId)) {
+    public Object setAuthority(@RequestBody RolePermissionDto permissionDto) {
+        if (BeanUtil.isOneEmpty(permissionDto.getRoleId())) {
             throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
         }
-        roleService.setAuthority(roleId, permissions);
+        roleService.setAuthority(permissionDto.getRoleId(), permissionDto.getPermissions());
         return Rets.success();
     }
 

@@ -37,7 +37,7 @@ export default {
     return request({
       url: '/role/savePermisson',
       method: 'post',
-      params
+      data: params
     })
   }
 }
