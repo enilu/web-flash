@@ -127,6 +127,8 @@ public class AccountController extends BaseController {
             map.put("permissions", shiroUser.getUrls());
 
             Map profile = Maps.objToMap(user);
+            profile.remove("password");
+            profile.remove("salt");
             profile.put("dept", shiroUser.getDeptName());
             profile.put("roles", shiroUser.getRoleNames());
             map.put("profile", profile);

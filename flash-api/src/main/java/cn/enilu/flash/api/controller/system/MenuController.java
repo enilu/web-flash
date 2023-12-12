@@ -121,7 +121,7 @@ public class MenuController extends BaseController {
                 continue;
             }
             //演示环境不允许删除初始化的菜单
-            if (menuId.intValue() < 80) {
+            if (menuId.intValue() < 70) {
                 return Rets.failure("演示环境不允许删除初始菜单");
             }
             menuService.delMenuContainSubMenus(menuId);

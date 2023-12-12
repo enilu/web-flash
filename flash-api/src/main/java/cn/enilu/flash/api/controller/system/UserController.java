@@ -58,7 +58,6 @@ public class UserController extends BaseController {
         page.addFilter("deptid", deptid);
         page.addFilter("phone", phone);
         page.addFilter("status", status);
-//        page.addFilter("status", SearchFilter.Operator.GT, 0);
         page.addFilter("sex", sex);
         page.addFilter("createTime", SearchFilter.Operator.GTE, DateUtil.parseTime(startTime));
         page.addFilter("createTime", SearchFilter.Operator.LTE, DateUtil.parseTime(endTime));

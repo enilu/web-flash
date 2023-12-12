@@ -12,20 +12,17 @@
 
 - web-flash是一个基于[Spring Boot](https://spring.io/projects/spring-boot/)和[Vue.js](https://cn.vuejs.org)的web系统，包含了基于[element](https://element.eleme.cn/#/zh-CN)搭建的后台管理系统和基于[vux](https://vux.li)搭建的手机端h5站点
 - web-flash具备后台管理类系统的通用的基础功能，而且提供了基于idea intellij的的代码生成插件，可以一键生成前后端页面。
-- web-flash提供了一个后台管理系统和前端h5站点系统
-- 另提供Material Design风格的单体版：[material-admin](https://github.com/enilu/material-admin)
-- 另提供[web-flash spring cloud版本](https://gitee.com/enilu/web-flash-spring-cloud)
+- web-flash提供了一个后台管理系统 
+- 
 ## 目录说明
 - flash-api 后台api服务
-- flash-vue-admin 基于vuejs的后台管理系统
-- flash-vue-h5 移动端内容系统，基于后台管理CMS内容管理模块的内容进行展示。
+- flash-vue-admin 前端项目单独维护，具体参考flash-vue-admin/README.md
 - flash-core 基础模块，包括工具类，dao，service，bean等内容
 - flash-generator 代码生成模块,配合IDEA 代码生成插件[webflash-generator](https://plugins.jetbrains.com/plugin/12648-webflash-generator)使用效果更好
 - flash-workflow 基于activiti实现工作流功能
 ## 演示
-- 后台管理(vue版本) [http://flashadmin.enilu.cn](http://flashadmin.enilu.cn)
-- 手机端 [http://flash-mobile.enilu.cn/#/index](http://flash-mobile.enilu.cn/#/index) 打开浏览器后使用debug模式的手机视图模式浏览
-
+-   [http://v3.flashadmin.enilu.cn](http://v3.flashadmin.enilu.cn)
+ 
 ## 技术选型
 - 核心框架：Spring Boot
 - 数据库层：Spring data jpa
@@ -73,13 +70,7 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
     - 启动成功后访问 http://localhost:9528 ,登录，用户名密码:admin/admin     
 - 后台管理运行效果图：
     ![admin](https://gitee.com/enilu/web-flash/raw/master/docs/vuejs.gif)
-- 进入flash-vue-h5目录
-    - 运行 npm install --registry=https://registry.npmmirror.com
-    - 运行npm run dev
-    - 启动成功后访问 http://localhost:8088/#/index
-- 手机端运行效果图：
-    ![mobile](https://gitee.com/enilu/web-flash/raw/master/docs/flash-mobile.gif)
-
+ 
 ## 打包
 ```
 mvn package 
