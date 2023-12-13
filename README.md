@@ -13,7 +13,7 @@
 - web-flash是一个基于[Spring Boot](https://spring.io/projects/spring-boot/)和[Vue.js](https://cn.vuejs.org)的web系统，包含了基于[element](https://element.eleme.cn/#/zh-CN)搭建的后台管理系统和基于[vux](https://vux.li)搭建的手机端h5站点
 - web-flash具备后台管理类系统的通用的基础功能，而且提供了基于idea intellij的的代码生成插件，可以一键生成前后端页面。
 - web-flash提供了一个后台管理系统 
-- 
+
 ## 目录说明
 - flash-api 后台api服务
 - flash-vue-admin 前端项目单独维护，具体参考flash-vue-admin/README.md
@@ -24,12 +24,12 @@
 -   [http://v3.flashadmin.enilu.cn](http://v3.flashadmin.enilu.cn)
  
 ## 技术选型
-- 核心框架：Spring Boot
+- 核心框架：Spring Boot 2.6.15,Spring framework 5.3.27
 - 数据库层：Spring data jpa
 - 数据库连接池：Druid
 - 缓存：Ehcache
-- 前端：基于Vue.js的Element（后端）和vux（手机端） 
-- 工作流：activiti
+- 前端：基于Vue 3 的Element-plus 
+- 工作流：activiti 7.1.0.M6
 
 
 ## 包含的功能
@@ -49,15 +49,18 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 - 工作流：流程定义，发起申请，待办任务
 - 基于idea插件的代码生成
 
-
+## 环境准备
+- JDK11
+- MySQL8.x
+- Maven3.x
 ## 使用
 - 克隆本项目
 - 导入idea或者eclipse
 - 创建数据库：web-flash
      ```sql
-        CREATE DATABASE IF NOT EXISTS webflash DEFAULT CHARSET utf8 COLLATE utf8_general_ci; 
-        CREATE USER 'webflash'@'%' IDENTIFIED BY 'webflash190602@ABC';
-        GRANT ALL privileges ON webflash.* TO 'webflash'@'%';
+        CREATE DATABASE IF NOT EXISTS webflashv3 DEFAULT CHARSET utf8 COLLATE utf8_general_ci; 
+        CREATE USER 'webflashv3'@'%' IDENTIFIED BY 'webflash190602@ABC';
+        GRANT ALL privileges ON webflashv3.* TO 'webflashv3'@'%';
         flush privileges;
      ```
 - 在开发环境中配置了系统启动后自动创建数据库和初始化数据，所以不需要开发人员手动初始化数据库
@@ -67,7 +70,7 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 - 进入flash-vue-admin目录
     - 运行 npm install --registry=https://registry.npmmirror.com
     - 运行npm run dev
-    - 启动成功后访问 http://localhost:9528 ,登录，用户名密码:admin/admin     
+    - 启动成功后访问 http://localhost:4000 ,登录，用户名密码:admin/admin     
 - 后台管理运行效果图：
     ![admin](https://gitee.com/enilu/web-flash/raw/master/docs/vuejs.gif)
  
@@ -75,11 +78,7 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 ```
 mvn package 
 ```
-## install
-**如果使用代码生成功能，需要首先运行下mvn install 将 flash-generator模块安装到本地maven仓库**
-```
-mvn install
-```
+ 
 ## 在线文档
 - [http://webflash.enilu.cn](http://webflash.enilu.cn)
 

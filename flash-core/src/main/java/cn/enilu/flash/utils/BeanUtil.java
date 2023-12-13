@@ -2,6 +2,7 @@ package cn.enilu.flash.utils;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.nutz.mapl.Mapl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -52,19 +53,6 @@ public class BeanUtil {
     }
 
     /**
-     * 将map装换为javabean对象
-     *
-     * @param map
-     * @param bean
-     * @return
-     */
-    public static <T> T mapToBean(Map<String, Object> map, T bean) {
-        BeanMap beanMap = BeanMap.create(bean);
-        beanMap.putAll(map);
-        return bean;
-    }
-
-    /**
      * 将List<T>转换为List<Map<String, Object>>
      *
      * @param objList
@@ -101,8 +89,7 @@ public class BeanUtil {
             T bean = null;
             for (int i = 0, size = maps.size(); i < size; i++) {
                 map = maps.get(i);
-                bean = clazz.newInstance();
-                mapToBean(map, bean);
+                bean = Mapl.maplistToT(map,clazz);
                 list.add(bean);
             }
         }

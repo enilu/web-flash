@@ -1,12 +1,15 @@
 debug: false
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/webflashv3?useUnicode=true&characterEncoding=UTF8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://enilu-db:3306/webflashv3?useUnicode=true&characterEncoding=UTF8&useSSL=false&allowPublicKeyRetrieval=true
     username: webflashv3
     password: webflash190602@ABC
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: cn.enilu.flash.api.config.DefaultMySQL8InnoDBDialect
   activiti:
     #    配置为true的时候自动检查resources/bpmn/目录下的工作流定义文件并部署到数据库表中
     check-process-definitions: true
