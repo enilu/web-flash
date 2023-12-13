@@ -62,4 +62,16 @@ public class ${table.ControllerClassName} extends BaseController {
 		${table.ServiceInstanceName}.delete(id);
 		return Rets.success();
 	}
+	@DeleteMapping("batchRemove")
+	@BussinessLog(value = "批量删除${table.Label}", key = "id")
+	@RequiresPermissions(value = "${table.entityNameLowerFirstChar}Delete")
+	public Ret batchRemove(@RequestParam(value = "id[]") Long[] id){
+		for (Long tmpId : id) {
+			if (id == null) {
+				continue;
+			}
+			${table.ServiceInstanceName}.delete(id);
+		}		
+		return Rets.success();
+	}
 }

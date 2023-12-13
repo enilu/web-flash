@@ -196,7 +196,7 @@ public class Generator {
             typeMap.put("controller", controllerPackageName);
             typeMap.put("repository", repositoryPackageName);
 
-            for (String type : new String[]{"model", "repository", "service", "controller", "view"}) {
+            for (String type : new String[]{"model", "repository", "service", "controller"}) {
                 if (!isTypeMatch(types, type)) {
                     continue;
                 }
