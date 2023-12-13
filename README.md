@@ -24,16 +24,16 @@
 -   [http://v3.flashadmin.enilu.cn](http://v3.flashadmin.enilu.cn)
  
 ## 技术选型
-- 核心框架：Spring Boot 2.6.15,Spring framework 5.3.27
+- 核心框架：Spring BootSpring framework
 - 数据库层：Spring data jpa
 - 数据库连接池：Druid
 - 缓存：Ehcache
 - 前端：基于Vue 3 的Element-plus 
-- 工作流：activiti 7.1.0.M6
+- 工作流：activiti
 
 
 ## 包含的功能
-web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
+
 - 部门管理
 - 用户管理
 - 角色管理
@@ -46,8 +46,7 @@ web-flash包含了成熟的后台管理功能和手机端h5内容站点系统
 - 登录日志：查看用户登录登出日志
 - cms内容管理，配合flash-vue-h5提供了手机端内容展示系统
 - 消息管理：配置消息模板，发送短信，邮件消息
-- 工作流：流程定义，发起申请，待办任务
-- 基于idea插件的代码生成
+- 工作流：流程定义，发起申请，待办任务 
 
 ## 环境准备
 - JDK11
