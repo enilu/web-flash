@@ -146,6 +146,9 @@ public class UserController extends BaseController {
     @BussinessLog(value = "重置密码", key = "userId")
     @PostMapping(value="resetPassword")
     public Object resetPassword(Long userId){
+        if (userId.intValue() <= 3) {
+            return Rets.failure("不能重置初始用户密码");
+        }
         User user = userService.get(userId);
         String password = RandomUtil.getRandomPassword();
         user.setPassword(MD5.md5(password, user.getSalt()));
