@@ -1,13 +1,13 @@
 debug: true
 spring:
   datasource:
-    url: jdbc:mysql://my-db:3306/webflash?useUnicode=true&characterEncoding=UTF8&useSSL=false
+    url: jdbc:mysql://my-db:3306/webflashv3?useUnicode=true&characterEncoding=UTF8&useSSL=false&allowPublicKeyRetrieval=true
     username: webflash
     password: webflash190602@ABC
   jpa:
     hibernate:
       ## 生产环境建议去掉改配置
-      ddl-auto: create
+      ddl-auto: update
   activiti:
     check-process-definitions: false
     database-schema-update: update

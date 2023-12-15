@@ -74,29 +74,37 @@ INSERT INTO `t_sys_dept` (`id`, `num`, `pid`, `pids`, `simplename`, `fullname`, 
 -- Records of t_sys_dict
 -- ----------------------------
 
-INSERT INTO `t_sys_dict` VALUES ('16', '1', '2019-01-13 14:18:21', '1', '2020-07-18 21:43:41', '状态', '0', '0', null);
-INSERT INTO `t_sys_dict` VALUES ('17', '1', '2019-01-13 14:18:21', '1', '2020-07-18 21:43:41', '启用', '1', '16', null);
-INSERT INTO `t_sys_dict` VALUES ('18', '1', '2019-01-13 14:18:21', '1', '2020-07-18 21:43:41', '禁用', '2', '16', null);
-INSERT INTO `t_sys_dict` VALUES ('29', '1', '2019-01-13 14:18:21', '1', '2020-07-18 21:43:41', '性别', '0', '0', null);
-INSERT INTO `t_sys_dict` VALUES ('30', '1', '2019-01-13 14:18:21', '1', '2020-07-18 21:43:41', '男', '1', '29', null);
-INSERT INTO `t_sys_dict` VALUES ('31', '1', '2019-01-13 14:18:21', '1', '2020-07-18 21:43:41', '女', '2', '29', null);
-INSERT INTO `t_sys_dict` VALUES ('35', '1', '2019-01-13 14:18:21', '1', '2020-07-18 21:43:41', '账号状态', '0', '0', null);
-INSERT INTO `t_sys_dict` VALUES ('36', '1', '2019-01-13 14:18:21', '1', '2020-07-18 21:43:41', '启用', '1', '35', null);
-INSERT INTO `t_sys_dict` VALUES ('37', '1', '2019-01-13 14:18:21', '1', '2020-07-18 21:43:41', '冻结', '2', '35', null);
-INSERT INTO `t_sys_dict` VALUES ('38', '1', '2019-01-13 14:18:21', '1', '2020-07-18 21:43:41', '已删除', '3', '35', null);
-INSERT INTO `t_sys_dict` VALUES ('53', '1', '2019-01-13 14:18:21', '1', '2020-07-18 21:43:41', '证件类型', '0', '0', null);
-INSERT INTO `t_sys_dict` VALUES ('54', '1', '2019-01-13 14:18:21', '1', '2020-07-18 21:43:41', '身份证', '1', '53', null);
-INSERT INTO `t_sys_dict` VALUES ('55', '1', '2019-01-13 14:18:21', '1', '2020-07-18 21:43:41', '护照', '2', '53', null);
-INSERT INTO `t_sys_dict` VALUES ('68', '1', '2019-01-13 14:18:21', '1', '2019-01-13 14:18:21', '是否', '0', '0', null);
-INSERT INTO `t_sys_dict` VALUES ('69', '1', '2019-01-13 14:18:21', '1', '2019-01-13 14:18:21', '是', '1', '68', null);
-INSERT INTO `t_sys_dict` VALUES ('70', '1', '2019-01-13 14:18:21', '1', '2019-01-13 14:18:21', '否', '0', '68', null);
-INSERT INTO `t_sys_dict` VALUES ('71', '1', '2020-07-18 21:43:41', '1', '2020-07-18 21:43:41', '日志类型', '0', '0', null);
-INSERT INTO `t_sys_dict` VALUES ('72', '1', '2020-07-18 21:43:41', '1', '2020-07-18 21:43:41', '业务日志', '1', '71', null);
-INSERT INTO `t_sys_dict` VALUES ('73', '1', '2019-01-13 14:18:21', '1', '2020-07-18 21:43:41', '异常日志', '2', '71', null);
-INSERT INTO `t_sys_dict` VALUES ('74', '1', '2021-07-24 22:27:00', '1', '2021-07-24 22:27:00', '工作流实例状态', '0', '0', null);
-INSERT INTO `t_sys_dict` VALUES ('75', '1', '2021-07-24 22:27:00', '1', '2021-07-24 22:27:00', '进行中', '0', '74', null);
-INSERT INTO `t_sys_dict` VALUES ('76', '1', '2021-07-24 22:27:00', '1', '2021-07-24 22:27:00', '成功', '1', '74', null);
-INSERT INTO `t_sys_dict` VALUES ('77', '1', '2021-07-24 22:27:00', '1', '2021-07-24 22:27:00', '失败', '2', '74', null);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (16, 1, '2019-1-13 14:18:21', 1, '2020-7-18 21:43:41', '状态', '0', 0, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (17, 1, '2019-1-13 14:18:21', 1, '2020-7-18 21:43:41', '启用', '1', 16, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (18, 1, '2019-1-13 14:18:21', 1, '2020-7-18 21:43:41', '禁用', '2', 16, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (29, 1, '2019-1-13 14:18:21', 1, '2020-7-18 21:43:41', '性别', '0', 0, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (30, 1, '2019-1-13 14:18:21', 1, '2020-7-18 21:43:41', '男', '1', 29, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (31, 1, '2019-1-13 14:18:21', 1, '2020-7-18 21:43:41', '女', '2', 29, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (35, 1, '2019-1-13 14:18:21', 1, '2020-7-18 21:43:41', '账号状态', '0', 0, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (36, 1, '2019-1-13 14:18:21', 1, '2020-7-18 21:43:41', '启用', '1', 35, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (37, 1, '2019-1-13 14:18:21', 1, '2020-7-18 21:43:41', '冻结', '2', 35, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (38, 1, '2019-1-13 14:18:21', 1, '2020-7-18 21:43:41', '已删除', '3', 35, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (53, 1, '2019-1-13 14:18:21', 1, '2020-7-18 21:43:41', '证件类型', '0', 0, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (54, 1, '2019-1-13 14:18:21', 1, '2020-7-18 21:43:41', '身份证', '1', 53, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (55, 1, '2019-1-13 14:18:21', 1, '2020-7-18 21:43:41', '护照', '2', 53, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (68, 1, '2019-1-13 14:18:21', 1, '2019-1-13 14:18:21', '是否', '0', 0, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (69, 1, '2019-1-13 14:18:21', 1, '2019-1-13 14:18:21', '是', '1', 68, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (70, 1, '2019-1-13 14:18:21', 1, '2019-1-13 14:18:21', '否', '0', 68, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (71, 1, '2020-7-18 21:43:41', 1, '2020-7-18 21:43:41', '日志类型', '0', 0, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (72, 1, '2020-7-18 21:43:41', 1, '2020-7-18 21:43:41', '业务日志', '1', 71, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (73, 1, '2019-1-13 14:18:21', 1, '2020-7-18 21:43:41', '异常日志', '2', 71, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (74, 1, '2021-7-24 22:27:00', 1, '2021-7-24 22:27:00', '工作流实例状态', '0', 0, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (75, 1, '2021-7-24 22:27:00', 1, '2021-7-24 22:27:00', '进行中', '0', 74, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (76, 1, '2021-7-24 22:27:00', 1, '2021-7-24 22:27:00', '成功', '1', 74, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (77, 1, '2021-7-24 22:27:00', 1, '2021-7-24 22:27:00', '失败', '2', 74, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (78, 1, '2023-12-14 22:37:24', 1, '2023-12-14 22:37:24', '消息类型', '0', 0, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (79, 1, '2023-12-14 22:37:24', 1, '2023-12-14 22:37:24', '短信', '0', 78, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (80, 1, '2023-12-14 22:37:25', 1, '2023-12-14 22:37:25', '邮件', '1', 78, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (81, 1, '2023-12-14 22:38:29', 1, '2023-12-14 22:38:29', '消息状态', '0', 0, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (82, 1, '2023-12-14 22:38:29', 1, '2023-12-14 22:38:29', '初始', '0', 81, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (83, 1, '2023-12-14 22:38:30', 1, '2023-12-14 22:38:30', '成功', '1', 81, NULL);
+INSERT INTO `t_sys_dict` (`id`, `create_by`, `create_time`, `modify_by`, `modify_time`, `name`, `num`, `pid`, `tips`) VALUES (84, 1, '2023-12-14 22:38:30', 1, '2023-12-14 22:38:30', '失败', '2', 81, NULL);
+
 
 -- ----------------------------
 -- Records of t_sys_file_info
