@@ -1,7 +1,7 @@
 debug: false
 spring:
   datasource:
-    url: jdbc:mysql://enilu-db:3306/webflashv3?useUnicode=true&characterEncoding=UTF8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/webflashv3?useUnicode=true&characterEncoding=UTF8&useSSL=false&allowPublicKeyRetrieval=true
     username: webflashv3
     password: webflash190602@ABC
   jpa:

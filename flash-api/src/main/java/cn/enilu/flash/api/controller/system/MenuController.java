@@ -95,27 +95,11 @@ public class MenuController extends BaseController {
         return Rets.success();
     }
 
-    @DeleteMapping
-    @BussinessLog(value = "删除菜单", key = "id")
-    @RequiresPermissions(value = {Permission.MENU_DEL})
-    public Object remove(@RequestParam Long id) {
-        if (id == null) {
-            throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
-        }
-        //演示环境不允许删除初始化的菜单
-        if (id.intValue() <= 80) {
-            return Rets.failure("演示环境不允许删除初始菜单");
-        }
-        //缓存菜单的名称
-        LogObjectHolder.me().set(ConstantFactory.me().getMenuName(id));
-        menuService.delMenuContainSubMenus(id);
-        return Rets.success();
-    }
 
-    @DeleteMapping("batchRemove")
-    @BussinessLog(value = "批量删除部菜单", key = "id")
+    @DeleteMapping
+    @BussinessLog(value = "删除部菜单", key = "id")
     @RequiresPermissions(value = {Permission.DEPT_DEL})
-    public Ret batchRemove(@RequestParam(value = "id[]") Long[] id) {
+    public Ret remove(@RequestParam(value = "id[]") Long[] id) {
         for (Long menuId : id) {
             if (menuId == null) {
                 continue;

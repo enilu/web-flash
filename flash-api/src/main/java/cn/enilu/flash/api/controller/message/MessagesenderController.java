@@ -58,26 +58,11 @@ public class MessagesenderController {
         return Rets.success();
     }
 
+
     @DeleteMapping
     @BussinessLog(value = "删除消息发送者", key = "id")
     @RequiresPermissions(value = {Permission.MSG_SENDER_DEL})
-    public Object remove(Long id) {
-        if(id<4){
-            return Rets.failure("禁止删除初始化数据");
-        }
-        try {
-            messagesenderService.delete(id);
-            return Rets.success();
-        } catch (Exception e) {
-            return Rets.failure(e.getMessage());
-        }
-
-    }
-
-    @DeleteMapping("batchRemove")
-    @BussinessLog(value = "批量删除消息发送者", key = "id")
-    @RequiresPermissions(value = {Permission.MSG_SENDER_DEL})
-    public Ret batchRemove(@RequestParam(value = "id[]") Long[] id) {
+    public Ret remove(@RequestParam(value = "id[]") Long[] id) {
         for (Long senderId : id) {
             if (senderId == null) {
                continue;

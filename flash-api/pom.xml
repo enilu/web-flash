@@ -7,11 +7,13 @@
         <groupId>cn.enilu</groupId>
         <version>1.0</version>
     </parent>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>flash-api</artifactId>
-
+    <properties>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>cn.enilu</groupId>
@@ -41,19 +43,19 @@
         <plugins>
 
             <!--以war形式运行 配置开始-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.3.2</version>
-                <configuration>
-                    <warName>api</warName>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-war-plugin</artifactId>-->
+<!--                <version>3.3.2</version>-->
+<!--                <configuration>-->
+<!--                    <warName>api</warName>-->
+<!--                    <failOnMissingWebXml>false</failOnMissingWebXml>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
             <!-- 以war形式运行 配置结束-->
 
             <!--以jar包形式单独部署 配置开始:切记需要将packaging调整为jar-->
-            <!--
+            <!-- -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -70,7 +72,7 @@
                     </execution>
                 </executions>
             </plugin>
-            -->
+
             <!--以jar包形式单独部署 配置结束-->
 
         </plugins>

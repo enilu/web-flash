@@ -74,21 +74,10 @@ public class TaskController extends BaseController {
         return Rets.success();
     }
 
-    /**
-     * 删除定时任务管理
-     */
     @DeleteMapping
-    @BussinessLog(value = "删除定时任务", key = "taskId")
-    @RequiresPermissions(value = {Permission.TASK_DEL})
-    public Object delete(@RequestParam Long id) {
-        taskService.delete(id);
-        return Rets.success();
-    }
-
-    @DeleteMapping("batchRemove")
-    @BussinessLog(value = "批量删除任务", key = "id")
+    @BussinessLog(value = "删除任务", key = "id")
     @RequiresPermissions(value = {Permission.ROLE_DEL})
-    public Ret batchRemove(@RequestParam(value = "id[]") Long[] id) {
+    public Ret remove(@RequestParam(value = "id[]") Long[] id) {
         for (Long taskId : id) {
             if (taskId == null) {
                 continue;

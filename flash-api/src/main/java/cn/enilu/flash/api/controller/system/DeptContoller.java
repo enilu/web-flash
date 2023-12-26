@@ -72,30 +72,10 @@ public class DeptContoller extends BaseController {
         return Rets.success();
     }
 
-    @DeleteMapping
+    @DeleteMapping()
     @BussinessLog(value = "删除部门", key = "id")
     @RequiresPermissions(value = {Permission.DEPT_DEL})
-    public Object remove(@RequestParam Long id) {
-        if (id == null) {
-            throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
-        }
-        if (id < 5) {
-            return Rets.failure("禁止删除初始部门");
-        }
-        if (deptService.count(SearchFilter.build("pid", id)) > 0
-                || userService.count(SearchFilter.build("deptid", id)) > 0
-                || roleService.count(SearchFilter.build("deptid", id)) > 0) {
-            return Rets.failure("该部门下有关联的用户或角色，无法删除");
-        }
-        deptService.deleteDept(id);
-        return Rets.success();
-    }
-
-
-    @DeleteMapping("batchRemove")
-    @BussinessLog(value = "批量删除部门", key = "id")
-    @RequiresPermissions(value = {Permission.DEPT_DEL})
-    public Ret batchRemove(@RequestParam(value = "id[]") Long[] id) {
+    public Ret remove(@RequestParam(value = "id[]") Long[] id) {
         for (Long deptId : id) {
             if (deptId == null) {
                 continue;

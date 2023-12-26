@@ -75,18 +75,11 @@ public class DictController extends BaseController {
     }
 
 
+
     @DeleteMapping
     @BussinessLog(value = "删除字典", key = "id")
     @RequiresPermissions(value = {Permission.DICT_EDIT})
-    public Object delete(@RequestParam Long id) {
-        dictService.delteDict(id);
-        return Rets.success();
-    }
-
-    @DeleteMapping("batchRemove")
-    @BussinessLog(value = "批量删除字典", key = "id")
-    @RequiresPermissions(value = {Permission.DICT_EDIT})
-    public Ret batchRemove(@RequestParam(value = "id[]") Long[] id) {
+    public Ret remove(@RequestParam(value = "id[]") Long[] id) {
         for (Long dictId : id) {
             if (dictId == null) {
                 continue;

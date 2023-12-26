@@ -52,4 +52,4 @@ jwt:
 server:
   tomcat:
     relaxed-query-chars: <,>,[,],^,`,{,},|
-  port: 8082
+  port: 8083

@@ -78,32 +78,9 @@ public class RoleController extends BaseController {
     }
 
     @DeleteMapping
-    @BussinessLog(value = "删除角色", key = "roleId")
+    @BussinessLog(value = "删除角色", key = "id")
     @RequiresPermissions(value = {Permission.ROLE_DEL})
-    public Object remove(@RequestParam Long roleId) {
-        if (roleId == null) {
-            throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
-        }
-        if (roleId.intValue() < 4) {
-            return Rets.failure("不能删除初始角色");
-        }
-        List<User> userList = userService.queryAll(SearchFilter.build("roleid", SearchFilter.Operator.EQ, String.valueOf(roleId)));
-        if (!userList.isEmpty()) {
-            return Rets.failure("有用户使用该角色，禁止删除");
-        }
-        //不能删除超级管理员角色
-        if (roleId.intValue() == Const.ADMIN_ROLE_ID) {
-            return Rets.failure("禁止删除超级管理员角色");
-        }
-        //缓存被删除的角色名称
-        LogObjectHolder.me().set(ConstantFactory.me().getSingleRoleName(roleId));
-        roleService.delRoleById(roleId);
-        return Rets.success();
-    }
-    @DeleteMapping("batchRemove")
-    @BussinessLog(value = "批量删除角色", key = "id")
-    @RequiresPermissions(value = {Permission.ROLE_DEL})
-    public Ret batchRemove(@RequestParam(value="id[]") Long[] id) {
+    public Ret remove(@RequestParam(value="id[]") Long[] id) {
         for(Long roleId:id) {
             if (roleId == null) {
                 continue;

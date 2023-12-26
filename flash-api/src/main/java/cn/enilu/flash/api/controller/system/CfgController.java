@@ -100,25 +100,11 @@ public class CfgController extends BaseController {
         return Rets.success();
     }
 
-    @DeleteMapping
-    @BussinessLog(value = "删除参数", key = "id")
-    @RequiresPermissions(value = {"/cfg/delete"})
-    public Object remove(@RequestParam Long id) {
-        logger.info("id:{}", id);
-        if (id == null) {
-            throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
-        }
-        if(id<9){
-            return Rets.failure("禁止删除初始化参数");
-        }
-        cfgService.delete(id);
-        return Rets.success();
-    }
 
-    @DeleteMapping("batchRemove")
+    @DeleteMapping()
     @BussinessLog(value = "批量删除参数", key = "id")
     @RequiresPermissions(value = {"/cfg/delete"})
-    public Ret batchRemove(@RequestParam(value = "id[]") Long[] id) {
+    public Ret remove(@RequestParam(value = "id[]") Long[] id) {
         for (Long cfgId : id) {
             if (cfgId == null) {
                 continue;

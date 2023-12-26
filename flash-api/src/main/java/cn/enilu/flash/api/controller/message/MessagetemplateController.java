@@ -58,21 +58,7 @@ public class MessagetemplateController {
     @DeleteMapping
     @BussinessLog(value = "删除消息模板", key = "id")
     @RequiresPermissions(value = {Permission.MSG_TPL_DEL})
-    public Object remove(Long id) {
-        if (id == null) {
-            throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
-        }
-        if(id<5){
-            return Rets.failure("禁止删除初始化数据");
-        }
-        messagetemplateService.delete(id);
-        return Rets.success();
-    }
-
-    @DeleteMapping("batchRemove")
-    @BussinessLog(value = "批量删除消息模板", key = "id")
-    @RequiresPermissions(value = {Permission.MSG_TPL_DEL})
-    public Ret batchRemove(@RequestParam(value = "id[]") Long[] id) {
+    public Ret remove(@RequestParam(value = "id[]") Long[] id) {
         for (Long tplId : id) {
             if (tplId == null) {
                 continue;
