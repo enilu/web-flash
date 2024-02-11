@@ -4,6 +4,7 @@ import cn.enilu.flash.api.utils.ApiConstants;
 import cn.enilu.flash.bean.constant.state.ManagerStatus;
 import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.dto.LoginDto;
+import cn.enilu.flash.bean.dto.UpdatePasswdDto;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.vo.front.Ret;
 import cn.enilu.flash.bean.vo.front.Rets;
@@ -136,9 +137,11 @@ public class AccountController extends BaseController {
     }
 
     @PostMapping(value = "/updatePwd")
-    public Object updatePwd(String oldPassword, String password, String rePassword) {
+    public Object updatePwd(@RequestBody UpdatePasswdDto passwdDto) {
         try {
-
+            String password = passwdDto.getPassword();
+            String rePassword = passwdDto.getRePassword();
+            String oldPassword = passwdDto.getOldPassword();
             if (StringUtil.isEmpty(password) || StringUtil.isEmpty(rePassword)) {
                 return Rets.failure("密码不能为空");
             }
