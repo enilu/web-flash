@@ -20,6 +20,7 @@ web-flash项目本身有readme文件，如果你有丰富的Spring Boot的和Vue
 
 但是考虑到有的开发者可能初次使用上述框架技术，有的甚至刚接触java不久，那么本文当将引导你一步步使用本系统搭建一个后台管理系统，并在此基础上做二次开发。
 
+**另** web-flash提供了基于vue3的前端系统，[点击查看](https://gitee.com/enilu/flash-vue3-admin)
 
 ## 项目说明
 - web-flash提供了一个后台管理系统和前端h5站点系统

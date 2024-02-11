@@ -1,8 +1,14 @@
 # change log
-## Latest
+## 3.0
+[gitee](https://gitee.com/enilu/web-flash/releases/3.0)
+[github](https://github.com/enilu/web-flash/releases/tag/3.0)
+
 - Issues
+- Issue 适配flash-vue3-admin；从3.0开始，api和前端项目将进行分离。
 - Issue 打包时默认跳过测试
 - Issue 升级mysql驱动包到版本:8.0.28
+- Change 升级Logback
+- Change 升级shiro
 - Change 默认的jdk编译版本升级到11
 - Issue 移除冗余的maven依赖
 - Issue 工作流的待办任务中增加任务进度图
