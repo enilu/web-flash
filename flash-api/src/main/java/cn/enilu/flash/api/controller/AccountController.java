@@ -4,6 +4,7 @@ import cn.enilu.flash.api.utils.ApiConstants;
 import cn.enilu.flash.bean.constant.state.ManagerStatus;
 import cn.enilu.flash.bean.core.ShiroUser;
 import cn.enilu.flash.bean.dto.LoginDto;
+import cn.enilu.flash.bean.dto.UpdatePasswdDto;
 import cn.enilu.flash.bean.entity.system.User;
 import cn.enilu.flash.bean.vo.front.Ret;
 import cn.enilu.flash.bean.vo.front.Rets;
@@ -178,15 +179,17 @@ public class AccountController extends BaseController {
 
 
     @PostMapping(value = "/updatePwd")
-    public Object updatePwd(String oldPassword, String password, String rePassword) {
+    public Object updatePwd(@RequestBody UpdatePasswdDto passwdDto) {
         try {
 
-            if (StringUtil.isEmpty(password) || StringUtil.isEmpty(rePassword)) {
+            if (StringUtil.isEmpty(passwdDto.getPassword()) || StringUtil.isEmpty(passwdDto.getRePassword())) {
                 return Rets.failure("密码不能为空");
             }
-            if (!password.equals(rePassword)) {
+            if (!passwdDto.getPassword().equals(passwdDto.getRePassword())) {
                 return Rets.failure("新密码前后不一致");
             }
+            String oldPassword = CryptUtil.desEncrypt(passwdDto.getOldPassword());
+            String password = CryptUtil.desEncrypt(passwdDto.getPassword());
             User user = userService.get(getIdUser(HttpUtil.getRequest()));
             if (ApiConstants.ADMIN_ACCOUNT.equals(user.getAccount())) {
                 return Rets.failure("不能修改超级管理员密码");

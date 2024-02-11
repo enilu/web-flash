@@ -15,6 +15,8 @@ import java.util.Base64;
 public class CryptUtil {
 
     public static void main(String[] args) throws Exception {
+        System.out.println(encrypt("admin@123"));
+        System.out.println(desEncrypt("V3BTR4lIMofADzNxzXsg=="));
         String test1 = "sa";
         String test = new String(test1.getBytes(), "UTF-8");
         String data = null;

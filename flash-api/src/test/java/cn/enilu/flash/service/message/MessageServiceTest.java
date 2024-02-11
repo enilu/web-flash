@@ -1,12 +1,12 @@
 package cn.enilu.flash.service.message;
 
 import cn.enilu.flash.BaseApplicationStartTest;
+import cn.enilu.flash.utils.Maps;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 
 import java.io.File;
-import java.util.Map;
 
 /**
  * 消息测试
@@ -22,19 +22,19 @@ public class MessageServiceTest extends BaseApplicationStartTest {
     @Test
     public void sendTplEmail() {
         messageService.sendTplEmail("EMAIL_HTML_TEMPLATE_TEST","82552623@qq.com","zhangtao@xinshucredit.com","邮件标题",
-                Map.of("userName","张三","appName","web-flash"));
+                Maps.newHashMap("userName","张三","appName","web-flash"));
     }
     @Test
     public void sendTplEmail2() {
         messageService.sendTplEmail("EMAIL_HTML_TEMPLATE_TEST","eniluzt@qq.com","82552623@qq.com","zhangtao@xinshucredit.com","邮件标题",
-                Map.of("userName","张三2","appName","web-flash2"));
+                Maps.newHashMap("userName","张三2","appName","web-flash2"));
     }
 
     @Test
     public void sendTplEmailWithFile() {
         FileSystemResource fileSystemResource=new FileSystemResource(new File("d:\\test.txt"));
         messageService.sendTplEmailWithFile("EMAIL_HTML_TEMPLATE_TEST","eniluzt@qq.com","82552623@qq.com","zhangtao@xinshucredit.com","邮件标题",
-                fileSystemResource.getFilename(),fileSystemResource, Map.of("userName","张三2","appName","web-flash2"));
+                fileSystemResource.getFilename(),fileSystemResource, Maps.newHashMap("userName","张三2","appName","web-flash2"));
     }
     @Test
     public void sendSimpleEmail() {

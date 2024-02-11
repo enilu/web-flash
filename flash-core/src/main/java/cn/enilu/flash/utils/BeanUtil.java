@@ -2,19 +2,12 @@ package cn.enilu.flash.utils;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.nutz.mapl.Mapl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.cglib.beans.BeanMap;
 
-import javax.persistence.Column;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -72,45 +65,6 @@ public class BeanUtil {
         return list;
     }
 
-    /**
-     * 将List<Map<String,Object>>转换为List<T>
-     *
-     * @param maps
-     * @param clazz
-     * @return
-     * @throws InstantiationException
-     * @throws IllegalAccessException
-     */
-    public static <T> List<T> mapsToObjects(List<Map<String, Object>> maps, Class<T> clazz)
-            throws InstantiationException, IllegalAccessException {
-        List<T> list = Lists.newArrayList();
-        if (maps != null && maps.size() > 0) {
-            Map<String, Object> map = null;
-            T bean = null;
-            for (int i = 0, size = maps.size(); i < size; i++) {
-                map = maps.get(i);
-                bean = Mapl.maplistToT(map,clazz);
-                list.add(bean);
-            }
-        }
-        return list;
-    }
-
-    public static <T> List<T> objectToObjects(List<Object> objectList, Class<T> clazz)
-            throws InstantiationException, IllegalAccessException {
-        List<T> list = Lists.newArrayList();
-        if (objectList != null && objectList.size() > 0) {
-            Object source = null;
-            T bean = null;
-            for (int i = 0, size = objectList.size(); i < size; i++) {
-                source = objectList.get(i);
-                bean = clazz.newInstance();
-                BeanUtils.copyProperties(source, bean);
-                list.add(bean);
-            }
-        }
-        return list;
-    }
 
     /**
      * 比较两个对象pojo1和pojo2,并输出不一致信息
@@ -151,56 +105,6 @@ public class BeanUtil {
         return str.toString();
     }
 
-    private static Method getReadMethod(String fieldName, Class clazz) {
-        String methodName = "get" + StringUtil.firstCharToUpperCase(fieldName);
-        Method method = null;
-        ;
-        try {
-            method = clazz.getDeclaredMethod(methodName);
-        } catch (Exception e) {
-            methodName = "is" + StringUtil.firstCharToUpperCase(fieldName);
-            try {
-                method = clazz.getDeclaredMethod(methodName);
-            } catch (Exception e1) { 
-                e1.printStackTrace();
-            } 
-        }  
-
-        return method;
-    }
-    /**
-     * 从实体类的columDefinition中获取字段的中文注释，如果
-     *
-     * @param clazz
-     * @param field
-     * @return
-     */
-    public static String getFieldComment(Class clazz, Field field) {
-        String key = clazz.getName() + field.getName();
-        String comment = fieldMap.get(key);
-        if (comment == null) {
-            Annotation[] annotations = field.getAnnotations();
-            for (Annotation annotation : annotations) {
-                if (annotation instanceof Column) {
-                    Column columnAnno = (Column) annotation;
-                    String columnDefinition = columnAnno.columnDefinition();
-                    if (columnDefinition != null && !"".equals(columnDefinition.trim())) {
-                        Matcher matcher = COLUMN_DEFINITION_PATTERN.matcher(columnDefinition.trim());
-                        if (matcher.find()) {
-                            comment = matcher.group(2);
-                            fieldMap.put(key, comment);
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        if (comment == null) {
-            comment = field.getName();
-            fieldMap.put(key, comment);
-        }
-        return comment;
-    }
 
     /**
      * 解析多个key(逗号隔开的)

@@ -104,7 +104,9 @@ public class MenuService extends BaseService<Menu, Long, MenuRepository> {
         for (Menu menu : list) {
             if (menu.isButton()) {
                 Map map = Maps.newHashMap("pcode", menuMap.get(menu.getPcode()).getCode());
-                map.put("code", menu.getCode());
+                if(map!=null) {
+                    map.put("code", menu.getCode());
+                }
                 result.add(map);
             }
         }

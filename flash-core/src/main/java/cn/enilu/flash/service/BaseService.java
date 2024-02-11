@@ -7,8 +7,8 @@ import cn.enilu.flash.dao.BaseRepository;
 import cn.enilu.flash.utils.Lists;
 import cn.enilu.flash.utils.factory.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -26,13 +26,14 @@ import java.util.List;
  * @author ：enilu
  * @date ：Created in 2019/6/29 22:32
  */
+@EnableCaching
 public abstract class BaseService<T, ID extends Serializable, R extends BaseRepository<T, ID>>
         implements CrudService<T, ID> {
     @Autowired
     private R dao;
 
     @Override
-    @CacheEvict(value = Cache.APPLICATION, key = "#root.targetClass.simpleName+':'+#id")
+    @Cacheable(value = Cache.APPLICATION, key = "#root.targetClass.simpleName+':'+#id")
     public void delete(ID id) {
         dao.deleteById(id);
     }
@@ -135,7 +136,7 @@ public abstract class BaseService<T, ID extends Serializable, R extends BaseRepo
     }
 
     @Override
-    @CacheEvict(value = Cache.APPLICATION, key = "#root.targetClass.simpleName+':'+#record.id")
+    @Cacheable(value = Cache.APPLICATION, key = "#root.targetClass.simpleName+':'+#record.id")
     public T update(T record) {
         return dao.save(record);
     }
