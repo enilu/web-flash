@@ -19,6 +19,7 @@ public interface DeleteService<ID> {
      * @param ids 主键集合
      */
     void delete(Iterable<ID> ids);
+    void delete(ID[] ids);
 
     /**
      * 清空表数据

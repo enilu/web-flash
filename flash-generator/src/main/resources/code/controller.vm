@@ -6,7 +6,7 @@ import ${table.ServiceFullClassName};
 
 import ${table.basePackageName}.bean.core.BussinessLog;
 import ${table.basePackageName}.bean.constant.factory.PageFactory;
-import ${table.basePackageName}.bean.enumeration.BizExceptionEnum;
+import ${table.basePackageName}.bean.enumeration.ApplicationExceptionEnum;
 import ${table.basePackageName}.bean.exception.ApplicationException;
 import ${table.basePackageName}.bean.vo.front.Ret;
 import ${table.basePackageName}.bean.vo.front.Rets;
@@ -57,7 +57,7 @@ public class ${table.ControllerClassName} extends BaseController {
 	@RequiresPermissions(value = "${table.entityNameLowerFirstChar}Delete")
 	public Ret remove(Long id){
 		if (id == null) {
-			throw new ApplicationException(BizExceptionEnum.REQUEST_NULL);
+			throw new ApplicationException(ApplicationExceptionEnum.REQUEST_NULL);
 		}
 		${table.ServiceInstanceName}.delete(id);
 		return Rets.success();

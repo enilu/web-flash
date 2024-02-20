@@ -48,6 +48,13 @@ public abstract class BaseService<T, ID extends Serializable, R extends BaseRepo
     }
 
     @Override
+    public void delete(ID[] ids) {
+        for( ID id:ids){
+            dao.deleteById(id);
+        }
+    }
+
+    @Override
     public T insert(T record) {
         return dao.save(record);
     }

@@ -44,7 +44,6 @@
 - 定时任务管理：编写、配置、执行定时任务
 - 业务日志：通过注解的方式记录用户操作日志，并提供日志查询功能
 - 登录日志：查看用户登录登出日志
-- cms内容管理，配合flash-vue-h5提供了手机端内容展示系统
 - 消息管理：配置消息模板，发送短信，邮件消息
 - 工作流：流程定义，发起申请，待办任务 
 
@@ -66,12 +65,7 @@
 - 确保开发工具下载了lombok插件
 - 修改flash-api中数据库连接配置
 - 启动flash-api，访问http://localhost:8082/swagger-ui.html ， 保证api服务启动成功
-- 进入flash-vue-admin目录
-    - 运行 npm install --registry=https://registry.npmmirror.com
-    - 运行npm run dev
-    - 启动成功后访问 http://localhost:4000 ,登录，用户名密码:admin/admin     
-- 后台管理运行效果图：
-    ![admin](https://gitee.com/enilu/web-flash/raw/master/docs/vuejs.gif)
+- 前端项目启动参考flash-vue-admin/README.md
  
 ## 打包
 ```
