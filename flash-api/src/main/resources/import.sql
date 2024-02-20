@@ -2,10 +2,10 @@
 -- ----------------------------
 -- Records of t_sys_user
 -- ----------------------------
-INSERT INTO `t_sys_user` VALUES ('-1', null, '2016-01-29 08:49:53', '1', '2019-03-20 23:45:24', 'system', null, null, null, null, '应用系统', null, null, null, null, null, null, null);
-INSERT INTO `t_sys_user` VALUES ('1', null, '2016-01-29 08:49:53', '1', '2023-11-27 11:45:14', 'admin', null, '2020-08-01', '1', 'eniluzt@qq.com', '超级管理员', 'b5a51391f271f062867e5984e2fcffee', '15011112222', '1', '8pgby', '1', '1', '2');
-INSERT INTO `t_sys_user` VALUES ('2', null, '2018-09-13 17:21:02', '1', '2023-12-12 17:48:50', 'developer', null, '2017-12-18', '3', 'eniluzt@qq.com', '系统管理员', 'a7d02ce3a0d632d71a1498feb0e6e9e6', '15022222222', '2,', 'vscp9', '1', '1', null);
-INSERT INTO `t_sys_user` VALUES ('3', '1', '2021-07-25 00:58:20', '1', '2021-07-25 00:58:37', 'auditUser', null, '2021-07-21', '1', 'audit@qq.com', '审批人员（测试流程）', '068210f42bcfb9fa14291b9b0673b761', '15010101010', '3,', 'o050t', '1', '1', null);
+INSERT INTO `t_sys_user` VALUES ('-1', null, '2016-01-29 08:49:53', '1', '2019-03-20 23:45:24', 'system', null, null, null, null, '应用系统', null, null, null, null, null, '1');
+INSERT INTO `t_sys_user` VALUES ('1', null, '2016-01-29 08:49:53', '1', '2023-11-27 11:45:14', 'admin', null, '2020-08-01', '1', 'eniluzt@qq.com', '超级管理员', 'b5a51391f271f062867e5984e2fcffee', '15011112222', '1', '8pgby', '1', '1');
+INSERT INTO `t_sys_user` VALUES ('2', null, '2018-09-13 17:21:02', '1', '2023-12-12 17:48:50', 'developer', null, '2017-12-18', '3', 'eniluzt@qq.com', '系统管理员', 'a7d02ce3a0d632d71a1498feb0e6e9e6', '15022222222', '2,', 'vscp9', '1', '1');
+INSERT INTO `t_sys_user` VALUES ('3', '1', '2021-07-25 00:58:20', '1', '2021-07-25 00:58:37', 'auditUser', null, '2021-07-21', '1', 'audit@qq.com', '审批人员（测试流程）', '068210f42bcfb9fa14291b9b0673b761', '15010101010', '3,', 'o050t', '1', '1');
 
 -- ----------------------------
 -- Records of t_sys_task_log

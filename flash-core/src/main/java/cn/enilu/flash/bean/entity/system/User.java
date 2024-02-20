@@ -51,8 +51,6 @@ public class User extends BaseEntity {
     private Long deptid;
     @Column(columnDefinition = "INT COMMENT '状态1:启用,2:禁用'")
     private Integer status;
-    @Column(columnDefinition = "INT COMMENT '版本'")
-    private Integer version;
     @JoinColumn(name = "deptid", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @ManyToOne(fetch = FetchType.EAGER)
     private Dept dept;
