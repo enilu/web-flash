@@ -11,8 +11,6 @@
     <modules>
         <module>flash-api</module>
         <module>flash-core</module>
-        <module>flash-generator</module>
-        <module>flash-workflow</module>
     </modules>
 
     <properties>
@@ -39,7 +37,6 @@
         <guava.version>20.0</guava.version>
         <mail.version>1.4.7</mail.version>
         <httpcomponents.version>4.4.1</httpcomponents.version>
-        <velocity.version>1.7</velocity.version>
         <quartz.version>2.2.1</quartz.version>
         <ehcache.version>3.3.1</ehcache.version>
         <logback.version>1.2.9</logback.version>
@@ -124,11 +121,6 @@
                 <groupId>com.google.zxing</groupId>
                 <artifactId>javase</artifactId>
                 <version>${zxing.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.velocity</groupId>
-                <artifactId>velocity</artifactId>
-                <version>${velocity.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.ehcache</groupId>
